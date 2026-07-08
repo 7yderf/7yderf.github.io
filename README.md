@@ -35,7 +35,7 @@ Copiar `.env.example` a `.env`. En producción es obligatorio definir `NUXT_PUBL
 
 ## Notas
 
-- **Node**: el proyecto corre con Node 20, pero el tooling de ESLint ya asume Node 22+ (hay un polyfill temporal de `Object.groupBy` en `eslint.config.mjs`). Recomendado migrar a Node 22 LTS y retirar el polyfill.
+- **Node**: se requiere Node 22+ (declarado en `engines` de `package.json`).
 - **lightGallery** se usa bajo licencia GPLv3 (`licenseKey: '0000-0000-000-0000'`); para uso comercial cerrado se requiere licencia de pago.
 - **Fuentes**: Jost es self-hosted (`public/fonts/`); DM Sans y Roboto Mono se cargan de Google Fonts (ver `nuxt.config.ts`).
 - La página `src/pages/index.vue` es una demo que ejercita todo el stack — sustituir por el contenido real.
