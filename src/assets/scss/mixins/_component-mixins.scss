@@ -1,0 +1,164 @@
+// _component-mixins.scss
+
+// Definición de tipos de botones
+// hover-transform: translateY(-1px) levanta el botón — solo solid y danger
+// shadow / hover-shadow: sombra base y su variante elevada en hover
+$button-types: (
+  solid: (
+    bg-color:           var(--primary-color),
+    text-color:         var(--text-color),
+    border-color:       var(--primary-color),
+    shadow:             0 4px 12px -2px rgba(174, 174, 192, 0.35),
+    hover-bg-color:     var(--primary-color),   // color no cambia — solo sube la sombra
+    hover-text-color:   var(--text-color),
+    hover-border-color: var(--primary-color),
+    hover-shadow:       0 8px 18px -4px rgba(174, 174, 192, 0.45),
+    hover-transform:    translateY(-1px),
+    active-bg:          rgba(206, 255, 28, 0.4),
+    active-shadow:      inset 0 4px 8px rgba(0, 0, 0, 0.06)
+  ),
+  outline: (
+    bg-color:           #FFFFFF,
+    text-color:         var(--text-color),
+    border-color:       var(--border-input),    // --sc-line-2 #D5D7DA
+    shadow:             none,
+    hover-bg-color:     var(--surface-2-color), // --sc-surface-2 #F7F7F9
+    hover-text-color:   var(--text-color),
+    hover-border-color: var(--border-input),
+    hover-shadow:       none,
+    hover-transform:    translateY(0),
+    active-bg:          var(--bg-color),        // --sc-bg #F0F0F3
+    active-shadow:      none
+  ),
+  ghost: (
+    bg-color:           transparent,
+    text-color:         var(--text-color),
+    border-color:       transparent,
+    shadow:             none,
+    hover-bg-color:     transparent,
+    hover-text-color:   var(--text-custom),
+    hover-border-color: transparent,
+    hover-shadow:       none,
+    hover-transform:    translateY(0),
+    active-bg:          transparent,
+    active-shadow:      none
+  ),
+  danger: (
+    bg-color:           var(--error-color),
+    text-color:         var(--text-invert),
+    border-color:       var(--error-color),
+    shadow:             0 4px 12px -2px rgba(243, 45, 45, 0.25),
+    hover-bg-color:     #D42626,
+    hover-text-color:   var(--text-invert),
+    hover-border-color: #D42626,
+    hover-shadow:       0 8px 18px -4px rgba(243, 45, 45, 0.35),
+    hover-transform:    translateY(-1px),
+    active-bg:          rgba(243, 45, 45, 0.4),
+    active-shadow:      inset 0 4px 8px rgba(0, 0, 0, 0.08)
+  ),
+  whatsapp: (
+    bg-color:           #00BB2D,
+    text-color:         #FFFFFF,
+    border-color:       #00BB2D,
+    shadow:             none,
+    hover-bg-color:     #04c230,
+    hover-text-color:   #FFFFFF,
+    hover-border-color: #04c230,
+    hover-shadow:       0 4px 14px rgba(0, 187, 45, 0.30),
+    hover-transform:    translateY(0),
+    active-bg:          #009e27,
+    active-shadow:      none
+  )
+);
+
+// Mixin de botón principal
+@mixin button(
+  $type: solid, 
+  $width: auto, 
+  $max-width: 300px,
+  $padding: 14px 22px,
+  $border-radius: 10px
+) {
+  // Obtener configuración del tipo de botón
+  $button-config: map-get($button-types, $type);
+  
+  @if $button-config == null {
+    @error "Tipo de botón '#{$type}' no está definido.";
+  }
+
+  // Configuraciones base del botón
+  @include flex(center, 10px);
+  @include text(1.4rem, 500, 1.8rem, center);
+
+  // Estilos específicos del botón
+  width: $width;
+  max-width: $max-width;
+  padding: $padding;
+  border-radius: $border-radius;
+  
+  // Estilos de color y estado
+  background-color: map-get($button-config, bg-color);
+  color: map-get($button-config, text-color);
+  border: 1px solid map-get($button-config, border-color);
+  box-shadow: map-get($button-config, shadow);
+
+  // Propiedades de transición
+  text-decoration: none;
+  letter-spacing: 1px;
+  text-wrap: nowrap;
+  transition: all 140ms cubic-bezier(.2, 0, 0, 1);
+  will-change: transform, box-shadow;
+
+  // Estados del botón
+  &:not(:disabled) {
+    &:hover {
+      cursor: pointer;
+      background-color: map-get($button-config, hover-bg-color);
+      color: map-get($button-config, hover-text-color);
+      border-color: map-get($button-config, hover-border-color);
+      box-shadow: map-get($button-config, hover-shadow);
+      transform: map-get($button-config, hover-transform);
+    }
+
+    &:active {
+      background-color: map-get($button-config, active-bg);
+      box-shadow: map-get($button-config, active-shadow);
+      transform: translateY(0);
+    }
+  }
+
+  // Estado deshabilitado
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+
+  // Estilos para elementos internos
+  a, .icon {
+    color: inherit;
+  }
+}
+
+// Ejemplos de uso
+.button-solid {
+  @include button(solid);
+}
+
+.button-outline {
+  @include button(outline);
+}
+
+.button-whatsapp {
+  @include button(whatsapp);
+}
+
+// Ejemplo de personalización
+.button-custom {
+  @include button(
+    $type: solid, 
+    $width: 100%, 
+    $max-width: 250px, 
+    $padding: 12px 24px,
+    $border-radius: 8px
+  );
+}

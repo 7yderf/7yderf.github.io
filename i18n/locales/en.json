@@ -1,0 +1,37 @@
+{
+  "language": "Language",
+  "meta": {
+    "title": "Conecta",
+    "description": "Landing built with Nuxt 4: Tailwind v4, i18n, SEO, validated forms, carousel and gallery."
+  },
+  "nav": {
+    "home": "Home"
+  },
+  "hero": {
+    "title": "Welcome to Conecta",
+    "subtitle": "Production-ready Nuxt 4 base: Tailwind v4, i18n, SEO, validated forms, carousel and gallery."
+  },
+  "form": {
+    "title": "Contact us",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "terms": "I accept the terms and conditions",
+    "submit": "Send",
+    "success": "Message sent successfully"
+  },
+  "validation": {
+    "required": "This field is required",
+    "email": "Enter a valid email",
+    "terms": "You must accept the terms"
+  },
+  "carousel": {
+    "title": "Carousel"
+  },
+  "gallery": {
+    "title": "Gallery"
+  },
+  "footer": {
+    "rights": "All rights reserved"
+  }
+}

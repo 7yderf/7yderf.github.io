@@ -1,0 +1,182 @@
+/* ============================================================
+   Sidebar — SCSS centralizado
+   Mismo patrón que Inputs.scss: un archivo, todo el sidebar
+   ============================================================ */
+
+// --- Variables ---
+$sidebar-width: 260px;
+$sidebar-mobile-width: 300px;
+$sidebar-bg: var(--secondary-color-second, #FFFFFF);
+$sidebar-text: var(--sidebar-text, #242636);
+$sidebar-hover: var(--bg-color, #F0F0F3);
+$sidebar-active: var(--primary-color, #CEFF1C);
+$sidebar-active-shadow: 0 4px 12px 3px rgba(0, 0, 0, 0.04),
+  0 6px 13px -4px rgba(206, 255, 28, 0.40);
+$sidebar-header-height: 60px;
+$sidebar-transition: 0.3s ease-in-out;
+
+// --- Overlay (móvil) ---
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 40;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity $sidebar-transition, visibility $sidebar-transition;
+
+  &--visible {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+// --- Sidebar container ---
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: $sidebar-width;
+  min-width: $sidebar-width;
+  background: $sidebar-bg;
+  color: $sidebar-text;
+  font-weight: 600;
+  font-size: 1.4rem;
+  transition: all $sidebar-transition;
+  display: flex;
+  flex-direction: column;
+
+  // Móvil: drawer fijo
+  &--mobile {
+    position: fixed;
+    width: $sidebar-mobile-width;
+    z-index: 50;
+    left: 0;
+  }
+
+  &--mobile-closed {
+    left: -$sidebar-mobile-width;
+  }
+
+  &--mobile-open {
+    left: 0;
+  }
+}
+
+// --- Header (logo + close) ---
+.sidebar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  min-height: $sidebar-header-height;
+}
+
+.sidebar__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sidebar__logo-text {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.sidebar__close {
+  color: $sidebar-text;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+// --- Nav ---
+.sidebar__nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 0;
+  height: calc(100vh - #{$sidebar-header-height});
+}
+
+.sidebar__menu {
+  padding: 0 1rem;
+}
+
+// --- Item (link individual) ---
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  margin: 0.25rem 0;
+  border-radius: 0.5rem;
+  color: $sidebar-text;
+  text-decoration: none;
+  transition: background $sidebar-transition;
+
+  &:hover {
+    background: $sidebar-hover;
+  }
+
+  &--active {
+    background: $sidebar-active;
+    color: #1a1a1a;
+    box-shadow: $sidebar-active-shadow;
+  }
+
+  &--child {
+    margin-left: 2.5rem;
+  }
+
+  &--root {
+    margin-left: 0;
+  }
+}
+
+// --- Dropdown ---
+.sidebar-dropdown__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin: 0.25rem 0;
+  border-radius: 0.5rem;
+  color: $sidebar-text;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: inherit;
+  transition: background $sidebar-transition;
+
+  &:hover {
+    background: $sidebar-hover;
+  }
+
+  &--active {
+    background: $sidebar-hover;
+  }
+}
+
+.sidebar-dropdown__label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sidebar-dropdown__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+
+  &--open {
+    max-height: 500px;
+  }
+}

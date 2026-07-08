@@ -1,0 +1,24 @@
+// _layout-mixins.scss
+@mixin flex($justify:center, $gap: false, $alignItems: center) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $alignItems;
+  @if $gap {
+    gap: $gap;
+  }
+}
+
+@mixin grid($columns, $gap) {
+  display: grid;
+  grid-template-columns: $columns;
+  gap: $gap;
+}
+
+@mixin content($width: 1500px, $padding: 0 16px) {
+  display: block;
+  width: 100%;
+  max-width: $width;
+  margin: 0 auto;
+  padding: $padding;
+}
+

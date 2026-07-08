@@ -1,0 +1,37 @@
+{
+  "language": "Idioma",
+  "meta": {
+    "title": "Conecta",
+    "description": "Landing construida con Nuxt 4: Tailwind v4, i18n, SEO, formularios validados, carrusel y galería."
+  },
+  "nav": {
+    "home": "Inicio"
+  },
+  "hero": {
+    "title": "Bienvenido a Conecta",
+    "subtitle": "Base Nuxt 4 lista para producción: Tailwind v4, i18n, SEO, formularios validados, carrusel y galería."
+  },
+  "form": {
+    "title": "Contáctanos",
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "message": "Mensaje",
+    "terms": "Acepto los términos y condiciones",
+    "submit": "Enviar",
+    "success": "Mensaje enviado con éxito"
+  },
+  "validation": {
+    "required": "Este campo es obligatorio",
+    "email": "Ingresa un correo válido",
+    "terms": "Debes aceptar los términos"
+  },
+  "carousel": {
+    "title": "Carrusel"
+  },
+  "gallery": {
+    "title": "Galería"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados"
+  }
+}

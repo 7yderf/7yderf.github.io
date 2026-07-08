@@ -1,0 +1,390 @@
+@import "../Mixins";
+
+/* ============================================
+   Input System — SCSS
+   Ported from React project (withField + Input)
+   Visual layer for FieldWrapper + input components
+   ============================================ */
+
+$font-input: var(--text-custom);
+
+/* ── Autofill resets ─────────────────────────── */
+input:-internal-autofill-selected {
+  background-color: transparent !important;
+  background-image: none !important;
+  color: $font-input !important;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 600000s 0s, color 600000s 0s;
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff00 inset;
+  box-shadow: 0 0 0px 1000px #ffffff00 inset;
+  -webkit-text-fill-color: inherit;
+}
+
+@layer base {
+
+.input {
+  $root: &;
+  position: relative;
+  // width: 100%;
+  flex-grow: 1;
+  height: max-content;
+  z-index: 0;
+
+  /* ── Dark variant ──────────────────────────── */
+  &[data-black="true"] {
+    #{$root}__text,
+    #{$root}__select-value {
+      color: var(--border-input);
+    }
+    #{$root}__input,
+    #{$root}__select,
+    #{$root}__select-value::after {
+      border-width: 1px;
+    }
+    #{$root}__select-value::after {
+      top: -1px;
+      right: -1px;
+    }
+  }
+
+  /* ── Label fijo: transition=false (sin data-active) ─── */
+  &:not([data-active]) > #{$root}__text {
+    position: static;
+    display: block;
+    margin-bottom: 6px;
+    padding-left: 2px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--text-color);
+  }
+
+  /* ── Label float: inactive ─────────────────── */
+  &[data-active="false"] > #{$root}__text {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    transition: all 0.2s ease;
+  }
+
+  /* ── Label float: active ───────────────────── */
+  &[data-active="true"] {
+    #{$root}__text {
+      position: absolute;
+      top: -8px;
+      left: 10px;
+      padding: 0;
+      font-size: 1.2rem;
+      transition: all 0.2s ease;
+      line-height: 1;
+      color: var(--text-color);
+      z-index: 1;
+    }
+    #{$root}__input {
+      border-color: var(--border-active);
+    }
+    #{$root}__select {
+      border-color: var(--border-active);
+    }
+  }
+
+  /* ── Select z-index reset ──────────────────── */
+  &[data-select="true"] {
+    position: relative;
+    z-index: initial;
+  }
+
+  /* ── Readonly ──────────────────────────────── */
+  &[data-readonly="true"] {
+    #{$root}__input {
+      background: #f6f6f6;
+      border: none;
+      &:hover,
+      &:disabled {
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  /* ── Input element ─────────────────────────── */
+  &__input {
+    @include text(1.6rem, 400, 1.5);
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background-color: var(--neutral-color, #fff);
+    color: var(--text-color);
+    border: 1px solid var(--border-input);
+    border-radius: 10px;
+    margin-bottom: 4px;
+    &:focus-within {
+      border-color: var(--border-active);
+    }
+    &[data-error="true"] {
+      border-color: var(--error-color);
+    }
+    &::placeholder {
+      @include text(1.4rem, 300, 1.5);
+      color: var(--border-input);
+    }
+  }
+
+  /* ── Icon & show/hide password ─────────────── */
+  &__icon-text,
+  &__show {
+    position: absolute;
+    display: block;
+    width: 20px;
+    height: 20px;
+    right: 10px;
+    bottom: 48px;
+    transform: translateY(10%);
+    z-index: 1;
+    &:active {
+      transform: translateY(10%);
+    }
+  }
+  &__show-icon {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  &__icon-text {
+    bottom: 22px;
+  }
+
+  /* ── Floating label ────────────────────────── */
+  &__text {
+    @include text(1.4rem, 400, 2.6rem);
+    padding-bottom: 5px;
+    z-index: 1;
+    color: var(--text-color);
+    &[data-error="true"] {
+      color: var(--error-color);
+    }
+  }
+
+  /* ── Error message (animated height) ────────── */
+  &__error {
+    color: var(--error-color);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.25s ease, opacity 0.2s ease, margin 0.25s ease;
+    margin-bottom: 0;
+    &[data-error="true"] {
+      max-height: 40px;
+      opacity: 1;
+      margin-bottom: 8px;
+    }
+  }
+
+  /* ── Textarea ──────────────────────────────── */
+  &__area {
+    @include text(1.6rem, 400, 1.5);
+    display: block;
+    width: 100%;
+    min-height: 100px;
+    padding: 14px;
+    background-color: var(--neutral-color, #fff);
+    color: var(--text-color);
+    border: 1px solid var(--border-input);
+    border-radius: 10px;
+    margin-bottom: 4px;
+    resize: vertical;
+    &:focus-within {
+      border-color: var(--border-active);
+    }
+    &[data-error="true"] {
+      border-color: var(--error-color);
+    }
+  }
+
+  /* ── Select dropdown ───────────────────────── */
+  &__select {
+    position: relative;
+    width: 100%;
+    min-height: 50px;
+    background-color: var(--neutral-color, #fff);
+    border: 1px solid var(--border-input);
+    border-radius: 10px;
+    margin-bottom: 4px;
+    &:hover {
+      cursor: pointer;
+    }
+    &[data-active="true"] {
+      #{$root}__select-options {
+        display: block;
+      }
+      #{$root}__select-value {
+        &::before {
+          transform: translateY(-50%) rotateX(180deg);
+        }
+      }
+    }
+    &[data-error="true"] {
+      border-color: var(--error-color);
+    }
+  }
+  &__select-options {
+    position: absolute;
+    display: none;
+    margin-top: -5px;
+    width: calc(100% + 2px);
+    max-height: 200px;
+    background-color: white;
+    border-radius: 0 0 10px 10px;
+    overflow: hidden auto;
+    border: 1px solid var(--border-input);
+    border-top: none;
+    top: 100%;
+    left: -1px;
+    z-index: 10;
+    &::-webkit-scrollbar {
+      width: 6px;
+      background-color: var(--neutral-color, #fff);
+      border-radius: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+      width: 6px;
+      background-color: var(--border-input);
+      border-radius: 6px;
+    }
+  }
+  &__select-option,
+  &__select-value {
+    @include text(1.6rem, 400, 1.5);
+    margin: 0;
+    padding: 14px 16px;
+  }
+  &__select-option {
+    display: block;
+    color: var(--text-color);
+    transition: background-color 0.4s ease;
+    will-change: background-color;
+    &:hover {
+      background-color: var(--border-input);
+    }
+    &:last-child {
+      border-radius: 0 0 10px 10px;
+    }
+  }
+  &__select-value {
+    position: relative;
+    padding-right: 40px;
+    color: var(--text-color);
+    pointer-events: none;
+  }
+
+  &__select-chevron {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--text-color);
+    opacity: 0.5;
+    transition: transform 0.25s ease;
+  }
+
+  &[data-active="true"] &__select-chevron {
+    transform: translateY(-50%) rotate(180deg);
+  }
+
+  /* ── Checkbox ──────────────────────────────── */
+  &--check {
+    padding-bottom: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    &[data-switch="false"]::before {
+      display: inline-block;
+      content: "";
+      width: 16px;
+      height: 16px;
+      margin-bottom: -2px;
+      margin-right: 6px;
+      border: 1px solid var(--border-input);
+      border-radius: 4px;
+    }
+    &[data-checked="true"]::before {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+
+    /* Switch variant */
+    &[data-switch="true"] {
+      &::before {
+        display: none;
+      }
+      &::after {
+        display: none;
+      }
+      #{$root}__checkbox {
+        height: 0;
+        position: absolute;
+        display: flex;
+        &::before {
+          content: "";
+          width: 40px;
+          position: absolute;
+          cursor: pointer;
+          top: -7px;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #ccc;
+          transition: 0.4s;
+          height: 20px;
+          border-radius: 20px;
+        }
+      }
+      #{$root}__text--check {
+        margin-left: 42px;
+        line-height: 6px;
+      }
+      #{$root}__text--check::before {
+        position: absolute;
+        content: "";
+        height: 19px;
+        width: 19px;
+        left: 2px;
+        top: -4px;
+        border-radius: 50%;
+        background-color: #fdfdfd;
+        transition: 0.4s;
+        box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.43);
+        margin-left: 0;
+      }
+      #{$root}__checkbox:checked::before {
+        background: var(--primary-color);
+      }
+      #{$root}__checkbox:checked + #{$root}__text--check::before {
+        background-image: none;
+        transform: translateX(17px);
+      }
+    }
+  }
+  &__checkbox {
+    display: none;
+  }
+  &__checkbox-error {
+    position: absolute;
+    width: 100%;
+    color: var(--error-color);
+    font-weight: 400;
+    top: 130%;
+  }
+  &__text--check {
+    font-weight: normal;
+    padding-bottom: 0;
+    padding-top: 2px;
+  }
+
+} // end .input
+
+} // end @layer base
