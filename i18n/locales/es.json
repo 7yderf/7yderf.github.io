@@ -1,15 +1,166 @@
 {
   "language": "Idioma",
   "meta": {
-    "title": "Conecta",
-    "description": "Landing construida con Nuxt 4: Tailwind v4, i18n, SEO, formularios validados, carrusel y galería."
+    "title": "Conecta — Tecnología para el sector financiero",
+    "description": "Soluciones de ciberseguridad, pagos e infraestructura para las instituciones financieras que mueven América Latina."
+  },
+  "announcement": {
+    "text": "Actualización regulatoria: nuevas disposiciones de cumplimiento para entidades financieras en México.",
+    "cta": "Conoce cómo mitigar el impacto operativo"
   },
   "nav": {
-    "home": "Inicio"
+    "solutions": "Soluciones",
+    "services": "Servicios",
+    "vendors": "Fabricantes",
+    "industries": "Industrias",
+    "resources": "Recursos",
+    "about": "Nosotros",
+    "cta": "Hablar con un experto"
   },
   "hero": {
-    "title": "Bienvenido a Conecta",
-    "subtitle": "Base Nuxt 4 lista para producción: Tailwind v4, i18n, SEO, formularios validados, carrusel y galería."
+    "titlePre": "Conectamos tecnología de clase mundial con el",
+    "titleHighlight": "sector financiero.",
+    "subtitle": "Acercamos soluciones avanzadas de ciberseguridad, pagos e infraestructura, cloud a las instituciones que mueven el futuro de América Latina.",
+    "ctaPrimary": "Hablar con un experto",
+    "ctaSecondary": "Explorar soluciones"
+  },
+  "partners": {
+    "title": "Trabajamos con los líderes que marcan la diferencia",
+    "logos": ["Thales", "Imperva", "Entrust", "Utimaco", "Tesseract"]
+  },
+  "finder": {
+    "title": "¿Qué solución buscas hoy?",
+    "placeholder": "¿Qué solución, fabricante o desafío normativo necesitas resolver hoy?",
+    "submit": "Buscar",
+    "tags": ["Cumplimiento CNBV", "Conexión SPEI", "Cifrado de datos", "HSM Luna 700"]
+  },
+  "features": {
+    "titlePre": "Tecnologías que protegen, optimizan y",
+    "titleHighlight": "transforman.",
+    "subtitle": "Un portafolio de soluciones en ciberseguridad e infraestructura de pagos para el sector financiero.",
+    "items": [
+      {
+        "title": "Protección de datos y criptografía",
+        "description": "HSM, gestión de llaves, autenticación y cifrado para proteger lo que más importa.",
+        "link": "Descubrir criptografía"
+      },
+      {
+        "title": "Pagos instantáneos SPEI",
+        "description": "Conectamos a las instituciones financieras con el Banco de México de forma segura y eficiente.",
+        "link": "Conectar al SPEI"
+      },
+      {
+        "title": "Infraestructura y nube segura",
+        "description": "Soluciones en la nube on-premise e híbridas con los más altos estándares en seguridad.",
+        "link": "Saber más de la nube"
+      }
+    ]
+  },
+  "process": {
+    "title": "Unimos lo mejor de la tecnología con las necesidades del negocio.",
+    "cta": "Conoce nuestra tecnología",
+    "steps": [
+      { "label": "Tecnología" },
+      { "label": "Experiencia, confianza y acompañamiento" },
+      { "label": "Instituciones Financieras" },
+      { "label": "Clientes y sociedad" }
+    ]
+  },
+  "strategic": {
+    "titlePre": "Más que tecnología somos tu aliado",
+    "titleHighlight": "estratégico.",
+    "subtitle": "Trabajamos contigo desde la estrategia hasta la implementación, acompañando cada etapa del proceso.",
+    "items": [
+      {
+        "title": "Consultoría estratégica",
+        "description": "Diseñamos la mejor ruta tecnológica para tus objetivos.",
+        "link": "Quiero una consultoría"
+      },
+      {
+        "title": "Implementación y proyectos",
+        "description": "Ejecutamos soluciones de punta con metodología probada.",
+        "link": "Iniciar implementación"
+      },
+      {
+        "title": "Soporte 24/7 y monitoreo",
+        "description": "Acompañamiento continuo para asegurar la operación.",
+        "link": "Solicitar acompañamiento"
+      },
+      {
+        "title": "Capacitación y transferencia",
+        "description": "Formamos a tu equipo para maximizar el valor de la tecnología.",
+        "link": "Solicitar una capacitación"
+      },
+      {
+        "title": "Servicios administrados",
+        "description": "Operamos y monitoreamos tus soluciones para que tú te enfoques en crecer.",
+        "link": "Descubrir cómo operamos"
+      }
+    ]
+  },
+  "carousel": {
+    "titlePre": "Soluciones para instituciones",
+    "titleHighlight": "que mueven el mundo.",
+    "active": [
+      { "label": "Fintech y Pagos" },
+      { "label": "Banca y Finanzas" },
+      { "label": "Aseguradoras" }
+    ],
+    "upcoming": [
+      { "label": "Gobierno" },
+      { "label": "Retail y eCommerce" },
+      { "label": "Salud" }
+    ]
+  },
+  "stats": {
+    "titlePre": "Tecnología que impulsa negocios, personas que generan",
+    "titleHighlight": "confianza.",
+    "subtitle": "Combinamos experiencia, innovación y acompañamiento estratégico para transformar desafíos complejos en soluciones que impulsan el crecimiento con confianza.",
+    "items": [
+      { "value": "120", "label": "Clientes en la región" },
+      { "value": "+15", "label": "Años de experiencia" },
+      { "value": "99.9%", "label": "Disponibilidad de servicios" },
+      { "value": "6", "label": "Países con experiencia" }
+    ]
+  },
+  "trustedBy": {
+    "title": "Empresas que confían en nosotros.",
+    "logos": ["Banorte", "Scotiabank", "Walmart", "Nissan", "Actinver", "Afirme"]
+  },
+  "blog": {
+    "eyebrow": "Recursos",
+    "title": "Lo nuevo en Conecta",
+    "tag": "Blog",
+    "readMore": "Leer más",
+    "posts": [
+      {
+        "title": "Soberanía y jurisdicción de datos: el nuevo desafío estratégico para las empresas digitales",
+        "excerpt": "La soberanía de datos ya no es opcional. Durante años, la conversación sobre infraestructura digital se centró en capacidad, almacenamiento..."
+      },
+      {
+        "title": "La confianza digital no se promete, se diseña, y empieza por el control criptográfico",
+        "excerpt": "El control criptográfico en servicios financieros se está convirtiendo en uno de los pilares de la confianza digital. En una..."
+      },
+      {
+        "title": "World Password Day: por qué las contraseñas ya no son seguridad y qué implica adoptar Zero Trust hoy",
+        "excerpt": "Cada año, el World Password Day nos recuerda la importancia de proteger nuestras credenciales. Sin embargo, en 2026 la conversación..."
+      }
+    ]
+  },
+  "finalCta": {
+    "title": "¿Listo para conectar tecnología con resultados?",
+    "subtitle": "Hablemos de cómo podemos ayudarte a proteger, optimizar y escalar tu institución.",
+    "cta": "Contáctanos"
+  },
+  "footer": {
+    "tagline": "Criptografía certificada, pagos SPEI y cloud regulado. Seguridad que conecta.",
+    "rights": "Todos los derechos reservados.",
+    "privacy": "Privacidad",
+    "terms": "Términos",
+    "security": "Seguridad",
+    "company": { "title": "Compañía", "links": ["Nosotros", "Partners", "Blog", "Eventos"] },
+    "solutions": { "title": "Soluciones", "links": ["Criptografía", "Gateway SPEI", "IAM / CIAM", "Servicios"] },
+    "compliance": { "title": "Cumplimiento", "links": ["CNBV", "PCI-DSS", "Banxico", "ISO 27001"] }
   },
   "form": {
     "title": "Contáctanos",
@@ -24,14 +175,5 @@
     "required": "Este campo es obligatorio",
     "email": "Ingresa un correo válido",
     "terms": "Debes aceptar los términos"
-  },
-  "carousel": {
-    "title": "Carrusel"
-  },
-  "gallery": {
-    "title": "Galería"
-  },
-  "footer": {
-    "rights": "Todos los derechos reservados"
   }
 }

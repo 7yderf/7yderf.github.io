@@ -1,0 +1,48 @@
+<template>
+  <section class="sc-section w-full px-4 py-16 text-center lg:px-8">
+    <h2 class="mx-auto text-center font-secondary text-deep-ink">
+      {{ t('strategic.titlePre') }}
+      <span class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">{{ t('strategic.titleHighlight') }}</span>
+    </h2>
+    <p class="mx-auto mt-4 max-w-2xl text-ink-3">{{ t('strategic.subtitle') }}</p>
+
+    <article class="sc-article mx-auto mt-12 w-full max-w-5xl flex-wrap justify-center gap-6 text-left">
+      <section
+        v-for="item in items"
+        :key="item.title"
+        class="sc-section w-full rounded-2xl border border-line-3 bg-gradient-to-b from-primary-soft/60 to-accent-soft/40 p-6 sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+      >
+        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary-light to-primary-dark text-text-invert">
+          <Icon :icon="item.icon" width="24" height="24" />
+        </div>
+        <h3 class="mt-4 font-secondary text-deep-ink">{{ item.title }}</h3>
+        <p class="mt-2 text-sm text-ink-3">{{ item.description }}</p>
+        <a href="#" class="mt-3 inline-flex items-center gap-1 font-secondary text-sm font-bold text-primary hover:underline">
+          {{ item.link }} →
+        </a>
+      </section>
+    </article>
+  </section>
+</template>
+
+<script setup lang="ts">
+import { Icon } from '@iconify/vue'
+
+interface StrategicText {
+  title: string
+  description: string
+  link: string
+}
+
+const { t } = useI18n()
+
+const icons = [
+  'mdi:message-text-outline',
+  'mdi:cog-outline',
+  'mdi:headset',
+  'mdi:account-arrow-right-outline',
+  'mdi:monitor-dashboard',
+]
+const texts = useLocalizedItems<StrategicText>('strategic.items', icons.length, ['title', 'description', 'link'])
+const items = computed(() => texts.value.map((text, i) => ({ ...text, icon: icons[i] })))
+</script>
