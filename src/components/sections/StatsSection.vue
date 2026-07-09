@@ -1,18 +1,19 @@
 <template>
   <section class="sc-section w-full px-4 py-16 text-center lg:px-8">
-    <h2 class="mx-auto text-center font-secondary text-deep-ink">
+    <h2 class="mx-auto text-center text-3xl font-secondary text-deep-ink">
       {{ t('stats.titlePre') }} <span class="text-accent">{{ t('stats.titleHighlight') }}</span>
     </h2>
-    <p class="mx-auto mt-4 max-w-2xl text-ink-3">{{ t('stats.subtitle') }}</p>
+    <p class="mx-auto mt-4 max-w-2xl text-ink-3 text-center">{{ t('stats.subtitle') }}</p>
 
-    <article class="sc-article mx-auto mt-12 w-full max-w-5xl flex-wrap justify-center gap-4">
+    <article class="sc-article mx-auto mt-12 grid w-full max-w-5xl grid-cols-2 gap-4 sm:grid-cols-4">
       <section
-        v-for="stat in items"
+        v-for="(stat, i) in items"
         :key="stat.label"
-        class="sc-section w-[calc(50%-0.5rem)] rounded-2xl border border-line-3 bg-gradient-to-b from-primary-soft/50 to-accent-soft/30 p-6 sm:w-[calc(25%-0.75rem)]"
+        class="sc-section flex flex-col items-center rounded-2xl border border-line-3 bg-gradient-to-br p-6 text-center"
+        :class="i % 2 === 0 ? 'from-primary-soft/50 to-accent-soft/30' : 'from-accent-soft/50 to-primary-soft/30'"
       >
-        <Icon :icon="stat.icon" class="mx-auto text-deep-ink" width="28" height="28" />
-        <p class="mt-3 font-secondary text-3xl font-extrabold text-deep-ink">{{ stat.value }}</p>
+        <Icon :icon="stat.icon" class="text-deep-ink" width="36" height="36" />
+        <h3 class="mt-3 font-secondary text-4xl font-extrabold text-deep-ink">{{ stat.value }}</h3>
         <p class="mt-1 text-sm text-ink-3">{{ stat.label }}</p>
       </section>
     </article>

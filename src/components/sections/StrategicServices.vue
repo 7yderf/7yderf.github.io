@@ -1,16 +1,16 @@
 <template>
   <section class="sc-section w-full px-4 py-16 text-center lg:px-8">
-    <h2 class="mx-auto text-center font-secondary text-deep-ink">
+    <h2 class="mx-auto max-w-2xl text-center font-secondary text-deep-ink">
       {{ t('strategic.titlePre') }}
-      <span class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">{{ t('strategic.titleHighlight') }}</span>
+      <span class="bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">{{ t('strategic.titleHighlight') }}</span>
     </h2>
-    <p class="mx-auto mt-4 max-w-2xl text-center">{{ t('strategic.subtitle') }}</p>
+    <p class="mx-auto mt-4 max-w-4xl text-center">{{ t('strategic.subtitle') }}</p>
 
-    <article class="sc-article mx-auto mt-12 w-full max-w-5xl flex-wrap justify-center gap-6 text-left">
+    <article class="sc-article mx-auto mt-12 grid w-full max-w-5xl grid-cols-1 gap-6 text-left sm:grid-cols-2 lg:grid-cols-3">
       <section
         v-for="item in items"
         :key="item.title"
-        class="sc-section w-full rounded-2xl border border-line-3 bg-gradient-to-b from-primary-soft/60 to-accent-soft/40 p-6 sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+        class="sc-section rounded-2xl border border-line-3 bg-gradient-to-b from-primary-soft/60 to-accent-soft/40 p-6"
       >
         <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary-light to-primary-dark text-text-invert">
           <Icon :icon="item.icon" width="24" height="24" />

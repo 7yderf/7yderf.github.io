@@ -6,17 +6,19 @@
       {{ t('carousel.titlePre') }} <span class="text-primary">{{ t('carousel.titleHighlight') }}</span>
     </h2>
 
-    <div class="relative mx-auto mt-12 w-full max-w-5xl">
+    <div class="relative mx-auto mt-12 w-full max-w-5xl ">
       <swiper-container
         class="block"
         slides-per-view="3"
         space-between="16"
         navigation="true"
+        loop="true"
+        centered-slides="true"
       >
         <swiper-slide v-for="item in allItems" :key="item.label">
-          <div class="flex flex-col items-center gap-3 py-2" :class="item.upcoming ? 'opacity-40' : ''">
-            <div class="flex h-24 w-24 items-center justify-center rounded-full bg-primary-soft">
-              <Icon :icon="item.icon" class="text-primary" width="40" height="40" />
+          <div class="flex flex-col items-center gap-3 py-2 pt-16">
+            <div class="carousel-media flex h-32 w-32 items-center justify-center rounded-full bg-primary-soft">
+              <img :src="item.img" :alt="item.label" class="h-36 w-36 object-contain" >
             </div>
             <span class="font-secondary text-sm font-semibold text-deep-ink">{{ item.label }}</span>
           </div>
@@ -27,22 +29,51 @@
 </template>
 
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
-
 interface CarouselText {
   label: string
 }
 
 const { t } = useI18n()
 
-const activeIcons = ['mdi:bank-outline', 'mdi:cellphone-wireless', 'mdi:shield-check-outline']
-const upcomingIcons = ['mdi:city-variant-outline', 'mdi:cart-outline', 'mdi:heart-pulse']
+// Imagenes por institucion (public/instituciones), mapeadas a su etiqueta
+const activeImages = ['/instituciones/fintech.webp', '/instituciones/banca.webp', '/instituciones/aseguradoras.webp']
+const upcomingImages = ['/instituciones/gobierno.webp', '/instituciones/ecommerce.webp', '/instituciones/salud.webp']
 
-const activeTexts = useLocalizedItems<CarouselText>('carousel.active', activeIcons.length, ['label'])
-const upcomingTexts = useLocalizedItems<CarouselText>('carousel.upcoming', upcomingIcons.length, ['label'])
+const activeTexts = useLocalizedItems<CarouselText>('carousel.active', activeImages.length, ['label'])
+const upcomingTexts = useLocalizedItems<CarouselText>('carousel.upcoming', upcomingImages.length, ['label'])
 
 const allItems = computed(() => [
-  ...activeTexts.value.map((text, i) => ({ ...text, icon: activeIcons[i], upcoming: false })),
-  ...upcomingTexts.value.map((text, i) => ({ ...text, icon: upcomingIcons[i], upcoming: true })),
+  ...activeTexts.value.map((text, i) => ({ ...text, img: activeImages[i], upcoming: false })),
+  ...upcomingTexts.value.map((text, i) => ({ ...text, img: upcomingImages[i], upcoming: true })),
 ])
 </script>
+
+<!-- Sin scope: Swiper clona los slides del loop; la clase .swiper-slide-active
+     (que Swiper aplica al slide central por centered-slides) engancha directo. -->
+<style>
+.carousel-media {
+  transition: transform 0.4s ease;
+  will-change: transform;
+}
+
+/* El item central (activo) "respira": flota + leve zoom, fino y organico */
+.swiper-slide-active .carousel-media {
+  animation: carousel-breathe 3s ease-in-out infinite;
+}
+
+@keyframes carousel-breathe {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .swiper-slide-active .carousel-media {
+    animation: none;
+  }
+}
+</style>

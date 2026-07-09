@@ -5,7 +5,7 @@
     <div
       aria-hidden="true"
       class="pointer-events-none fixed inset-0 -z-10"
-      style="background: radial-gradient(45rem 45rem at -6% 52%, rgba(255, 122, 77, 0.22), transparent 62%);"
+      style="background: radial-gradient(90rem 90rem at -5% 90%, rgba(255, 122, 77, 0.22), transparent 62%);"
     ></div>
 
     <!-- Announcement bar -->
