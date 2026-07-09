@@ -1,5 +1,13 @@
 <template>
-  <div class="flex min-h-screen flex-col bg-bg-second font-primary text-text">
+  <div class="isolate flex min-h-screen flex-col bg-bg-second font-primary text-text">
+    <!-- Fondo decorativo: glow naranja difuminado, fijo, asomando ~40% por la izquierda.
+         -z-10 + isolate en el root: queda sobre el fondo blanco y bajo el contenido. -->
+    <div
+      aria-hidden="true"
+      class="pointer-events-none fixed inset-0 -z-10"
+      style="background: radial-gradient(45rem 45rem at -6% 52%, rgba(255, 122, 77, 0.22), transparent 62%);"
+    ></div>
+
     <!-- Announcement bar -->
     <div class="w-full bg-gradient-to-r from-accent to-primary-light px-4 py-2.5 text-text-invert">
       <p class="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-center gap-2 text-center text-sm">

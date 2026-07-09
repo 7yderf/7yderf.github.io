@@ -4,7 +4,7 @@
       {{ t('strategic.titlePre') }}
       <span class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">{{ t('strategic.titleHighlight') }}</span>
     </h2>
-    <p class="mx-auto mt-4 max-w-2xl text-ink-3">{{ t('strategic.subtitle') }}</p>
+    <p class="mx-auto mt-4 max-w-2xl text-center">{{ t('strategic.subtitle') }}</p>
 
     <article class="sc-article mx-auto mt-12 w-full max-w-5xl flex-wrap justify-center gap-6 text-left">
       <section

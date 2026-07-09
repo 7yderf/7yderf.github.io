@@ -3,14 +3,14 @@
 <template>
   <div>
     <Hero />
-    <LogosStrip :title="t('partners.title')" :logos="partnerLogos" />
+    <LogosStrip :title="t('partners.title')" :logos="manufacturerLogos" />
     <SolutionFinder />
     <FeatureCards />
     <ProcessCta />
     <StrategicServices />
     <SolutionsCarousel />
     <StatsSection />
-    <LogosStrip :title="t('trustedBy.title')" :logos="trustedLogos" />
+    <LogosStrip :title="t('trustedBy.title')" :logos="manufacturerLogos" />
     <BlogGrid />
     <FinalCta />
   </div>
@@ -24,6 +24,14 @@ useSeoMeta({
   description: () => t('meta.description'),
 })
 
-const partnerLogos = useLocalizedStrings('partners.logos', 5)
-const trustedLogos = useLocalizedStrings('trustedBy.logos', 6)
+// Logos de fabricantes (public/logos). Silueta monocroma aplicada en LogosStrip.
+const manufacturerLogos = [
+  { src: '/logos/thales.svg', alt: 'Thales' },
+  { src: '/logos/imperva.svg', alt: 'Imperva' },
+  { src: '/logos/entrust.svg', alt: 'Entrust' },
+  { src: '/logos/utimaco.svg', alt: 'Utimaco' },
+  { src: '/logos/tesseract.svg', alt: 'Tesseract' },
+  { src: '/logos/google-cloud.svg', alt: 'Google Cloud' },
+  { src: '/logos/hermes.svg', alt: 'Hermes' },
+]
 </script>

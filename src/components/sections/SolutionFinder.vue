@@ -1,7 +1,12 @@
 <template>
-  <section class="sc-section w-full px-4 pb-16 lg:px-8">
-    <div class="mx-auto flex w-full max-w-5xl flex-col items-center rounded-3xl bg-surface-2 p-8 text-center md:p-12">
-      <Icon icon="mdi:compass-outline" class="mb-4 text-accent" width="64" height="64" />
+  <section class="sc-section w-full px-4 py-20 lg:px-8">
+    <div class="relative mx-auto flex w-full max-w-5xl flex-col items-center rounded-3xl bg-surface-2 p-8 text-center md:p-12">
+      <img
+        src="/images/fox.svg"
+        alt=""
+        aria-hidden="true"
+        class="pointer-events-none absolute left-1/2 top-0 w-28 -translate-x-1/2 -translate-y-1/2"
+      >
       <h2 class="mx-auto text-center font-secondary text-deep-ink">{{ t('finder.title') }}</h2>
 
       <form class="mt-8 flex w-full flex-col gap-2 sm:flex-row" @submit.prevent>
