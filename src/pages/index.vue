@@ -75,7 +75,7 @@
 
           <button
             type="submit"
-            class="mt-2 justify-self-start rounded-full bg-primary px-8 py-3 font-secondary font-bold text-deep-ink shadow-flat transition-shadow hover:shadow-card"
+            class="mt-2 justify-self-start rounded-full bg-primary px-8 py-3 font-secondary font-bold text-text-invert shadow-flat transition-shadow hover:shadow-card"
           >
             {{ t('form.submit') }}
           </button>
@@ -102,8 +102,8 @@ useSeoMeta({
 
 /* ---- Carrusel ---- */
 const slides = [
-  { label: 'Slide 1', class: 'bg-primary text-deep-ink' },
-  { label: 'Slide 2', class: 'bg-secondary text-deep-ink' },
+  { label: 'Slide 1', class: 'bg-primary text-text-invert' },
+  { label: 'Slide 2', class: 'bg-primary-light text-text-invert' },
   { label: 'Slide 3', class: 'bg-accent text-text-invert' },
   { label: 'Slide 4', class: 'bg-violet text-text-invert' },
 ]

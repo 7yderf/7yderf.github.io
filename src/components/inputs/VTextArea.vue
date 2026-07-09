@@ -38,7 +38,7 @@ defineOptions({ inheritAttrs: false })
 withDefaults(defineProps<VTextAreaProps>(), {
   rows: 4,
   black: false,
-  transition: true,
+  transition: false,
   displayError: true,
   active: undefined,
   disabled: false,

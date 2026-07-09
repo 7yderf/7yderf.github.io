@@ -68,8 +68,10 @@
 :root {
   /* ── Variables para SCSS/CSS nativo — ver tabla de equivalencias en CONTEXT_FOR_AI.md ──
      Nomenclatura actual del proyecto → referencia UI Kit (--sc-*)               */
-  --primary-color:        #CEFF1C;   /* --sc-lime */
-  --secondary-color:      #C5FD83;   /* --sc-mint */
+  --primary-color:        #5B3FE0;   /* Conecta — violeta primario (medido en landing.jpg / contact.png) */
+  --primary-light-color:  #6C46FB;   /* extremo claro del gradiente en botones/CTAs */
+  --primary-dark-color:   #4E31DD;   /* extremo oscuro del gradiente en botones/CTAs, tambien usado en :active */
+  --primary-soft-color:   #F0E4FC;   /* fondo lavanda de tarjetas y pills */
   --bg-color:             #F0F0F3;   /* --sc-bg */
   --bg-second-color:      #FFFFFF;   /* --sc-surface */
   --text-color:           #242636;   /* --sc-ink */

@@ -50,7 +50,7 @@ import type { FieldWrapperProps } from './types'
 
 const props = withDefaults(defineProps<FieldWrapperProps>(), {
   black: false,
-  transition: true,
+  transition: false,
   displayError: true,
   active: undefined,
   disabled: false,

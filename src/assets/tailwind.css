@@ -8,8 +8,10 @@
 
 @theme {
   /* Colors — brand & base */
-  --color-primary: #CEFF1C;       /* --sc-lime */
-  --color-secondary: #C5FD83;     /* --sc-mint */
+  --color-primary: #5B3FE0;           /* Conecta — violeta primario (medido en landing.jpg / contact.png) */
+  --color-primary-light: #6C46FB;     /* extremo claro del gradiente en botones/CTAs */
+  --color-primary-dark: #4E31DD;      /* extremo oscuro del gradiente en botones/CTAs */
+  --color-primary-soft: #F0E4FC;      /* fondo lavanda de tarjetas y pills (contact.png) */
   --color-bg: #F0F0F3;            /* --sc-bg */
   --color-bg-second: #FFFFFF;     /* --sc-surface */
   --color-surface-2: #F7F7F9;     /* --sc-surface-2 — tonal surface */

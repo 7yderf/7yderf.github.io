@@ -76,7 +76,7 @@ defineOptions({ inheritAttrs: false })
 const props = withDefaults(defineProps<VInputProps>(), {
   type: 'text',
   black: false,
-  transition: true,
+  transition: false,
   displayError: true,
   active: undefined,
   disabled: false,

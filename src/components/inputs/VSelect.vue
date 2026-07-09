@@ -56,7 +56,7 @@ defineOptions({ inheritAttrs: false })
 
 const props = withDefaults(defineProps<VSelectProps>(), {
   black: false,
-  transition: true,
+  transition: false,
   displayError: true,
   active: undefined,
   disabled: false,

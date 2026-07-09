@@ -17,7 +17,7 @@ export interface FieldWrapperProps {
   label: string
   /** Dark variant */
   black?: boolean
-  /** Enable float animation (default: true) */
+  /** Enable floating-label animation. Default false — Conecta usa label fijo (ver contact.png) */
   transition?: boolean
   /** Show error message (default: true) */
   displayError?: boolean

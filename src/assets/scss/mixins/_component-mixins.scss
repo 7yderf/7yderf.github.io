@@ -6,15 +6,15 @@
 $button-types: (
   solid: (
     bg-color:           var(--primary-color),
-    text-color:         var(--text-color),
+    text-color:         var(--text-invert),
     border-color:       var(--primary-color),
     shadow:             0 4px 12px -2px rgba(174, 174, 192, 0.35),
     hover-bg-color:     var(--primary-color),   // color no cambia — solo sube la sombra
-    hover-text-color:   var(--text-color),
+    hover-text-color:   var(--text-invert),
     hover-border-color: var(--primary-color),
     hover-shadow:       0 8px 18px -4px rgba(174, 174, 192, 0.45),
     hover-transform:    translateY(-1px),
-    active-bg:          rgba(206, 255, 28, 0.4),
+    active-bg:          var(--primary-dark-color),
     active-shadow:      inset 0 4px 8px rgba(0, 0, 0, 0.06)
   ),
   outline: (
