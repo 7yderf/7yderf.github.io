@@ -1,17 +1,21 @@
 // _component-mixins.scss
 
+// Degradado primario de CTAs — extremos definidos en :root
+// (--primary-light-color #6C46FB → --primary-dark-color #4E31DD).
+$primary-gradient: linear-gradient(135deg, var(--primary-light-color) 0%, var(--primary-dark-color) 100%);
+
 // Definición de tipos de botones
 // hover-transform: translateY(-1px) levanta el botón — solo solid y danger
 // shadow / hover-shadow: sombra base y su variante elevada en hover
 $button-types: (
   solid: (
-    bg-color:           var(--primary-color),
+    bg-color:           $primary-gradient,
     text-color:         var(--text-invert),
-    border-color:       var(--primary-color),
+    border-color:       transparent,            // el degradado no lleva borde visible
     shadow:             0 4px 12px -2px rgba(174, 174, 192, 0.35),
-    hover-bg-color:     var(--primary-color),   // color no cambia — solo sube la sombra
+    hover-bg-color:     $primary-gradient,       // mismo degradado — solo sube la sombra
     hover-text-color:   var(--text-invert),
-    hover-border-color: var(--primary-color),
+    hover-border-color: transparent,
     hover-shadow:       0 8px 18px -4px rgba(174, 174, 192, 0.45),
     hover-transform:    translateY(-1px),
     active-bg:          var(--primary-dark-color),
@@ -72,12 +76,14 @@ $button-types: (
 );
 
 // Mixin de botón principal
+// $border-radius: 14px es el radio base del diseño ("menos redondeado").
+// Para la variante pill usar el modificador .btn-pill (radius: 9999px).
 @mixin button(
-  $type: solid, 
-  $width: auto, 
+  $type: solid,
+  $width: auto,
   $max-width: 300px,
   $padding: 14px 22px,
-  $border-radius: 10px
+  $border-radius: 14px
 ) {
   // Obtener configuración del tipo de botón
   $button-config: map-get($button-types, $type);
@@ -97,7 +103,7 @@ $button-types: (
   border-radius: $border-radius;
   
   // Estilos de color y estado
-  background-color: map-get($button-config, bg-color);
+  background: map-get($button-config, bg-color);
   color: map-get($button-config, text-color);
   border: 1px solid map-get($button-config, border-color);
   box-shadow: map-get($button-config, shadow);
@@ -113,7 +119,7 @@ $button-types: (
   &:not(:disabled) {
     &:hover {
       cursor: pointer;
-      background-color: map-get($button-config, hover-bg-color);
+      background: map-get($button-config, hover-bg-color);
       color: map-get($button-config, hover-text-color);
       border-color: map-get($button-config, hover-border-color);
       box-shadow: map-get($button-config, hover-shadow);
@@ -121,7 +127,7 @@ $button-types: (
     }
 
     &:active {
-      background-color: map-get($button-config, active-bg);
+      background: map-get($button-config, active-bg);
       box-shadow: map-get($button-config, active-shadow);
       transform: translateY(0);
     }

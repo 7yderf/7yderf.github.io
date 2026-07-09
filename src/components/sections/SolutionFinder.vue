@@ -1,6 +1,6 @@
 <template>
   <section class="sc-section w-full px-4 pb-16 lg:px-8">
-    <div class="mx-auto flex w-full max-w-3xl flex-col items-center rounded-3xl bg-surface-2 p-8 text-center md:p-12">
+    <div class="mx-auto flex w-full max-w-5xl flex-col items-center rounded-3xl bg-surface-2 p-8 text-center md:p-12">
       <Icon icon="mdi:compass-outline" class="mb-4 text-accent" width="64" height="64" />
       <h2 class="mx-auto text-center font-secondary text-deep-ink">{{ t('finder.title') }}</h2>
 
@@ -13,10 +13,7 @@
             class="w-full bg-transparent text-sm text-text placeholder:text-ink-3 focus:outline-none"
           >
         </div>
-        <button
-          type="submit"
-          class="whitespace-nowrap rounded-full bg-primary px-8 py-3.5 font-secondary font-bold text-text-invert shadow-flat transition-shadow hover:shadow-card"
-        >
+        <button type="submit" class="btn-primary btn-pill">
           {{ t('finder.submit') }}
         </button>
       </form>

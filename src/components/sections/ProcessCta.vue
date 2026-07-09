@@ -1,12 +1,9 @@
 <template>
   <section class="sc-section w-full px-4 py-4 lg:px-8">
-    <div class="sc-article mx-auto w-full max-w-6xl flex-col items-center justify-between gap-8 rounded-3xl bg-gradient-to-r from-primary-soft via-bg-second to-accent-soft p-8 md:flex-row md:p-12">
+    <div class="sc-article mx-auto w-full max-w-5xl flex-col items-center justify-between gap-8 rounded-3xl bg-gradient-to-r from-primary-soft via-bg-second to-accent-soft p-8 md:flex-row md:p-12">
       <div class="flex flex-col items-center gap-4 text-center md:items-start md:text-left">
         <h2 class="font-secondary text-deep-ink">{{ t('process.title') }}</h2>
-        <a
-          href="#"
-          class="rounded-full bg-primary px-6 py-3 font-secondary font-bold text-text-invert shadow-flat transition-shadow hover:shadow-card"
-        >
+        <a href="#" class="btn-primary">
           {{ t('process.cta') }} →
         </a>
       </div>

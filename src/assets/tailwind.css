@@ -16,6 +16,7 @@
   --color-bg-second: #FFFFFF;     /* --sc-surface */
   --color-surface-2: #F7F7F9;     /* --sc-surface-2 — tonal surface */
   --color-surface-3: #F5F5F5;     /* --sc-surface-3 — notification bg */
+  --color-cream: #F5F1E6;         /* fondo crema cálido del hero — se funde con el video (medido en Figma) */
   --color-text: #242636;          /* --sc-ink */
   --color-text-custom: #2E65F3;   /* --sc-link */
   --color-text-invert: #FFFFFF;   /* --sc-ink-on-dark */

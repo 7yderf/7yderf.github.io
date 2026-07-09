@@ -27,10 +27,7 @@
 
         <div class="flex items-center gap-3">
           <LanguageSwitcher />
-          <a
-            href="#"
-            class="whitespace-nowrap rounded-full bg-primary px-5 py-2.5 font-secondary text-sm font-bold text-text-invert shadow-flat transition-shadow hover:shadow-card"
-          >
+          <a href="#" class="btn-primary">
             {{ t('nav.cta') }} →
           </a>
         </div>

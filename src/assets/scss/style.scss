@@ -270,7 +270,7 @@ h1 {
   @include text(3.6rem, 700, 1.2);
 }
 h2 {
-  @include text(2.8rem, 700, 1.3);
+  @include text(4.4rem, 700, 1.2);
 }
 h3 {
   @include text(2.2rem, 600, 1.4);
@@ -391,6 +391,11 @@ img{
 
 // Modificador de ancho completo — usar junto con cualquier variante
 .btn-block { width: 100%; }
+
+// Modificador de radio pill — esquinas totalmente redondeadas ("más redondeado",
+// ej: botón "Buscar"). Combinable con cualquier variante:
+//   .btn-primary.btn-pill  |  .btn-secondary.btn-pill
+.btn-pill { border-radius: 9999px; }
 
 // Modificador tamaño pequeño — diálogos de confirmación, acciones compactas
 .btn-sm {

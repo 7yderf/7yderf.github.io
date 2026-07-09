@@ -6,7 +6,7 @@
       {{ t('carousel.titlePre') }} <span class="text-primary">{{ t('carousel.titleHighlight') }}</span>
     </h2>
 
-    <div class="relative mx-auto mt-12 w-full max-w-4xl">
+    <div class="relative mx-auto mt-12 w-full max-w-5xl">
       <swiper-container
         class="block"
         slides-per-view="3"

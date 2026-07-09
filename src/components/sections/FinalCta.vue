@@ -1,6 +1,6 @@
 <template>
   <section class="sc-section w-full px-4 py-16 lg:px-8">
-    <div class="sc-article mx-auto w-full max-w-6xl flex-col items-center gap-8 overflow-hidden rounded-3xl bg-gradient-to-r from-accent to-primary p-8 text-text-invert md:flex-row md:p-14">
+    <div class="sc-article mx-auto w-full max-w-5xl flex-col items-center gap-8 overflow-hidden rounded-3xl bg-gradient-to-r from-accent to-primary p-8 text-text-invert md:flex-row md:p-14">
       <Icon icon="mdi:account-voice" class="shrink-0 text-text-invert/90" width="140" height="140" />
       <div class="text-center md:text-left">
         <h2 class="font-secondary">{{ t('finalCta.title') }}</h2>
