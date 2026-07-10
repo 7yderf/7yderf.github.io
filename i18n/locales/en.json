@@ -120,7 +120,7 @@
       { "value": "120", "label": "Clients in the region" },
       { "value": "+15", "label": "Years of experience" },
       { "value": "99.9%", "label": "Service availability" },
-      { "value": "6", "label": "Countries with experience" }
+      { "value": "6", "label": "Countries with a presence" }
     ]
   },
   "trustedBy": {

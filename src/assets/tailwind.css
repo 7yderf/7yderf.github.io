@@ -56,8 +56,8 @@
   --color-scheduled-ink: #1D4ED8; /* Status "programada" — texto azul oscuro */
 
   /* Font families */
-  --font-primary: 'Jost', sans-serif;       /* --sc-font-display / --sc-font-body */
-  --font-secondary: 'DM Sans', sans-serif;  /* --sc-font-ui */
+  --font-primary: 'Poppins', sans-serif;    /* fuente principal del sitio */
+  --font-secondary: 'Poppins', sans-serif;  /* mismo Poppins (antes DM Sans) */
   --font-mono: 'Roboto Mono', monospace;    /* --sc-font-mono */
 
   /* Shadows — elevación funcional */

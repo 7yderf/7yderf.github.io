@@ -12,7 +12,7 @@
         :key="item.title"
         class="sc-section rounded-2xl border border-line-3 bg-gradient-to-b from-primary-soft/60 to-accent-soft/40 p-6"
       >
-        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary-light to-primary-dark text-text-invert">
+        <div class="service-icon flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-b from-primary-light to-primary-dark text-text-invert">
           <Icon :icon="item.icon" width="24" height="24" />
         </div>
         <h3 class="mt-4 font-secondary text-deep-ink">{{ item.title }}</h3>
@@ -46,3 +46,13 @@ const icons = [
 const texts = useLocalizedItems<StrategicText>('strategic.items', icons.length, ['title', 'description', 'link'])
 const items = computed(() => texts.value.map((text, i) => ({ ...text, icon: icons[i] })))
 </script>
+
+<style scoped>
+/* Bevel interno del icono: borde inset claro arriba + sombra abajo = volumen 3D */
+.service-icon {
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.14),
+    inset 0 2px 2px rgba(255, 255, 255, 0.38),
+    inset 0 -3px 4px rgba(0, 0, 0, 0.18);
+}
+</style>

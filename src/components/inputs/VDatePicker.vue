@@ -104,7 +104,7 @@ const dpTokens = {
   '--dp-border-color-hover':  '#FF7A4D',
   '--dp-text-color':          '#242636',
   '--dp-hover-color':         '#F0F0F3',
-  '--dp-font-family':         'Jost, sans-serif',
+  '--dp-font-family':         'Poppins, sans-serif',
   '--dp-font-size':           '1.3rem',
   '--dp-border-radius':       '0.8rem',
   '--dp-input-padding':       '0.8rem 1.2rem',
