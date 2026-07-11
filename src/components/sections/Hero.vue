@@ -1,18 +1,20 @@
 <template>
   <section class="sc-section flex-col items-center bg-gradient-to-b from-cream from-[70%] to-bg-second px-4 pb-16 text-center lg:px-8">
     <div class="mx-auto flex w-full max-w-5xl flex-col items-center">
-      <video
-        class="w-full"
-        src="/videos/home-animation.mp4"
-        autoplay
-        loop
-        muted
-        playsinline
-        preload="auto"
-        aria-hidden="true"
-      ></video>
+      <div class="w-full overflow-hidden z-0">
+        <video
+          class="block w-full scale-105"
+          src="/videos/home_2.mp4"
+          autoplay
+          loop
+          muted
+          playsinline
+          preload="auto"
+          aria-hidden="true"
+        />
+      </div>
 
-      <h1 class="hero font-secondary text-deep-ink text-center mt-[-8rem]">
+      <h1 class="hero font-secondary text-deep-ink text-center mt-[-8rem] z-0">
         {{ t('hero.titlePre') }} <span class="text-accent">{{ t('hero.titleHighlight') }}</span>
       </h1>
       <p class="mt-5 max-w-2xl text-l text-center font-semibold">{{ t('hero.subtitle') }}</p>
