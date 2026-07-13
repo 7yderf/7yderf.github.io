@@ -1,11 +1,587 @@
 {
   "nodes": [
     {
-      "id": "assets/landing.jpg",
-      "label": "landing.jpg",
-      "type": "module",
-      "language": "unknown"
+      "id": "src/app.vue",
+      "type": "component",
+      "layer": "structure",
+      "label": "app.vue",
+      "language": "vue",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/components/inputs/FieldWrapper.vue",
+      "type": "component",
+      "layer": "structure",
+      "label": "FieldWrapper.vue",
+      "language": "vue",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/components/inputs/types.ts",
+      "type": "unknown",
+      "layer": "structure",
+      "label": "types.ts",
+      "language": "typescript",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/components/inputs/index.ts",
+      "type": "unknown",
+      "layer": "structure",
+      "label": "index.ts",
+      "language": "typescript",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/components/inputs/VCheckbox.vue",
+      "type": "component",
+      "layer": "structure",
+      "label": "VCheckbox.vue",
+      "language": "vue",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/components/inputs/VDatePicker.vue",
+      "type": "component",
+      "layer": "structure",
+      "label": "VDatePicker.vue",
+      "language": "vue",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/components/inputs/VDateRangePicker.vue",
+      "type": "component",
+      "layer": "structure",
+      "label": "VDateRangePicker.vue",
+      "language": "vue",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/components/others/FieldLabel.vue",
+      "type": "component",
+      "layer": "structure",
+      "label": "FieldLabel.vue",
+      "language": "vue",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/assets/scss/inputs/Input.scss",
+      "type": "unknown",
+      "layer": "structure",
+      "label": "Input.scss",
+      "language": "unknown",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/components/inputs/VDateTimePicker.vue",
+      "type": "component",
+      "layer": "structure",
+      "label": "VDateTimePicker.vue",
+      "language": "vue",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/components/inputs/VDateWithTimePicker.vue",
+      "type": "component",
+      "layer": "structure",
+      "label": "VDateWithTimePicker.vue",
+      "language": "vue",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/components/inputs/VInput.vue",
+      "type": "component",
+      "layer": "structure",
+      "label": "VInput.vue",
+      "language": "vue",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/components/inputs/VMonthPicker.vue",
+      "type": "component",
+      "layer": "structure",
+      "label": "VMonthPicker.vue",
+      "language": "vue",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/components/inputs/VSelect.vue",
+      "type": "component",
+      "layer": "structure",
+      "label": "VSelect.vue",
+      "language": "vue",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/components/inputs/VTextArea.vue",
+      "type": "component",
+      "layer": "structure",
+      "label": "VTextArea.vue",
+      "language": "vue",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/assets/scss/custom/Input.scss",
+      "type": "unknown",
+      "layer": "structure",
+      "label": "Input.scss",
+      "language": "unknown",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/components/others/index.ts",
+      "type": "unknown",
+      "layer": "structure",
+      "label": "index.ts",
+      "language": "typescript",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/components/others/PasswordStrengthValidator.vue",
+      "type": "component",
+      "layer": "structure",
+      "label": "PasswordStrengthValidator.vue",
+      "language": "vue",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/components/sections/BlogGrid.vue",
+      "type": "component",
+      "layer": "structure",
+      "label": "BlogGrid.vue",
+      "language": "vue",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/components/sections/ContactSection.vue",
+      "type": "component",
+      "layer": "structure",
+      "label": "ContactSection.vue",
+      "language": "vue",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/schemas/contactSchema.ts",
+      "type": "schema",
+      "layer": "structure",
+      "label": "contactSchema.ts",
+      "language": "typescript",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/components/sections/FeatureCards.vue",
+      "type": "component",
+      "layer": "structure",
+      "label": "FeatureCards.vue",
+      "language": "vue",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/components/sections/FinalCta.vue",
+      "type": "component",
+      "layer": "structure",
+      "label": "FinalCta.vue",
+      "language": "vue",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/components/sections/Hero.vue",
+      "type": "component",
+      "layer": "structure",
+      "label": "Hero.vue",
+      "language": "vue",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/components/sections/LogosStrip.vue",
+      "type": "component",
+      "layer": "structure",
+      "label": "LogosStrip.vue",
+      "language": "vue",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/components/sections/ProcessCta.vue",
+      "type": "component",
+      "layer": "structure",
+      "label": "ProcessCta.vue",
+      "language": "vue",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/components/sections/SolutionFinder.vue",
+      "type": "component",
+      "layer": "structure",
+      "label": "SolutionFinder.vue",
+      "language": "vue",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/components/sections/SolutionsCarousel.vue",
+      "type": "component",
+      "layer": "structure",
+      "label": "SolutionsCarousel.vue",
+      "language": "vue",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/components/sections/StatsSection.vue",
+      "type": "component",
+      "layer": "structure",
+      "label": "StatsSection.vue",
+      "language": "vue",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/components/sections/StrategicServices.vue",
+      "type": "service",
+      "layer": "structure",
+      "label": "StrategicServices.vue",
+      "language": "vue",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/components/shared/LanguageSwitcher.vue",
+      "type": "component",
+      "layer": "structure",
+      "label": "LanguageSwitcher.vue",
+      "language": "vue",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/composables/useAlerts.ts",
+      "type": "logic",
+      "layer": "structure",
+      "label": "useAlerts.ts",
+      "language": "typescript",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/composables/useErrorHandler.ts",
+      "type": "logic",
+      "layer": "structure",
+      "label": "useErrorHandler.ts",
+      "language": "typescript",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/composables/useLocalizedList.ts",
+      "type": "logic",
+      "layer": "structure",
+      "label": "useLocalizedList.ts",
+      "language": "typescript",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/composables/useMedia.ts",
+      "type": "logic",
+      "layer": "structure",
+      "label": "useMedia.ts",
+      "language": "typescript",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/layouts/default.vue",
+      "type": "layout",
+      "layer": "structure",
+      "label": "default.vue",
+      "language": "vue",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/pages/contact.vue",
+      "type": "component",
+      "layer": "structure",
+      "label": "contact.vue",
+      "language": "vue",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/pages/index.vue",
+      "type": "component",
+      "layer": "structure",
+      "label": "index.vue",
+      "language": "vue",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/plugins/lightgallery.ts",
+      "type": "unknown",
+      "layer": "structure",
+      "label": "lightgallery.ts",
+      "language": "typescript",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/plugins/swiper.client.ts",
+      "type": "unknown",
+      "layer": "structure",
+      "label": "swiper.client.ts",
+      "language": "typescript",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/plugins/vue-query.ts",
+      "type": "unknown",
+      "layer": "structure",
+      "label": "vue-query.ts",
+      "language": "typescript",
+      "scope": "shared",
+      "flow": null,
+      "molecule": null
+    },
+    {
+      "id": "src/stores/app.ts",
+      "type": "state",
+      "layer": "structure",
+      "label": "app.ts",
+      "language": "typescript",
+      "scope": "shared",
+      "flow": null,
+      "molecule": "molecule:gestor-estado"
     }
   ],
-  "edges": []
+  "edges": [
+    {
+      "id": "e1",
+      "kind": "dependency",
+      "from": "src/components/inputs/FieldWrapper.vue",
+      "to": "src/components/inputs/types.ts",
+      "reason": "import"
+    },
+    {
+      "id": "e2",
+      "kind": "dependency",
+      "from": "src/components/inputs/VCheckbox.vue",
+      "to": "src/components/inputs/types.ts",
+      "reason": "import"
+    },
+    {
+      "id": "e3",
+      "kind": "dependency",
+      "from": "src/components/inputs/VDatePicker.vue",
+      "to": "src/components/inputs/FieldWrapper.vue",
+      "reason": "import"
+    },
+    {
+      "id": "e4",
+      "kind": "dependency",
+      "from": "src/components/inputs/VDatePicker.vue",
+      "to": "src/components/inputs/types.ts",
+      "reason": "import"
+    },
+    {
+      "id": "e5",
+      "kind": "dependency",
+      "from": "src/components/inputs/VDateRangePicker.vue",
+      "to": "src/components/others/FieldLabel.vue",
+      "reason": "import"
+    },
+    {
+      "id": "e6",
+      "kind": "dependency",
+      "from": "src/components/inputs/VDateRangePicker.vue",
+      "to": "src/assets/scss/inputs/Input.scss",
+      "reason": "import"
+    },
+    {
+      "id": "e7",
+      "kind": "dependency",
+      "from": "src/components/inputs/VDateTimePicker.vue",
+      "to": "src/components/others/FieldLabel.vue",
+      "reason": "import"
+    },
+    {
+      "id": "e8",
+      "kind": "dependency",
+      "from": "src/components/inputs/VDateTimePicker.vue",
+      "to": "src/assets/scss/inputs/Input.scss",
+      "reason": "import"
+    },
+    {
+      "id": "e9",
+      "kind": "dependency",
+      "from": "src/components/inputs/VDateWithTimePicker.vue",
+      "to": "src/components/others/FieldLabel.vue",
+      "reason": "import"
+    },
+    {
+      "id": "e10",
+      "kind": "dependency",
+      "from": "src/components/inputs/VDateWithTimePicker.vue",
+      "to": "src/assets/scss/inputs/Input.scss",
+      "reason": "import"
+    },
+    {
+      "id": "e11",
+      "kind": "dependency",
+      "from": "src/components/inputs/VInput.vue",
+      "to": "src/components/inputs/FieldWrapper.vue",
+      "reason": "import"
+    },
+    {
+      "id": "e12",
+      "kind": "dependency",
+      "from": "src/components/inputs/VInput.vue",
+      "to": "src/components/inputs/types.ts",
+      "reason": "import"
+    },
+    {
+      "id": "e13",
+      "kind": "dependency",
+      "from": "src/components/inputs/VMonthPicker.vue",
+      "to": "src/components/inputs/types.ts",
+      "reason": "import"
+    },
+    {
+      "id": "e14",
+      "kind": "dependency",
+      "from": "src/components/inputs/VSelect.vue",
+      "to": "src/components/inputs/FieldWrapper.vue",
+      "reason": "import"
+    },
+    {
+      "id": "e15",
+      "kind": "dependency",
+      "from": "src/components/inputs/VSelect.vue",
+      "to": "src/components/inputs/types.ts",
+      "reason": "import"
+    },
+    {
+      "id": "e16",
+      "kind": "dependency",
+      "from": "src/components/inputs/VTextArea.vue",
+      "to": "src/components/inputs/FieldWrapper.vue",
+      "reason": "import"
+    },
+    {
+      "id": "e17",
+      "kind": "dependency",
+      "from": "src/components/inputs/VTextArea.vue",
+      "to": "src/components/inputs/types.ts",
+      "reason": "import"
+    },
+    {
+      "id": "e18",
+      "kind": "dependency",
+      "from": "src/components/others/FieldLabel.vue",
+      "to": "src/assets/scss/custom/Input.scss",
+      "reason": "import"
+    },
+    {
+      "id": "e19",
+      "kind": "dependency",
+      "from": "src/components/others/index.ts",
+      "to": "src/components/others/PasswordStrengthValidator.vue",
+      "reason": "import"
+    },
+    {
+      "id": "e20",
+      "kind": "rationale",
+      "from": "src/components/sections/ContactSection.vue",
+      "to": "src/schemas/contactSchema.ts",
+      "reason": "La sección de contacto delega la validación a un schema declarativo externo, desacoplado del layout."
+    },
+    {
+      "id": "e21",
+      "kind": "dependency",
+      "from": "src/components/sections/ContactSection.vue",
+      "to": "src/components/inputs/types.ts",
+      "reason": "import"
+    }
+  ],
+  "synapses": [
+    {
+      "subtype": "instance-of",
+      "origin": "src/stores/app.ts",
+      "to": "molecule:gestor-estado",
+      "source": "derived"
+    },
+    {
+      "subtype": "governed-by",
+      "origin": "e20",
+      "to": "principle:6",
+      "source": "curated"
+    }
+  ]
 }

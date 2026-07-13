@@ -175,5 +175,44 @@
     "required": "Este campo es obligatorio",
     "email": "Ingresa un correo válido",
     "terms": "Debes aceptar los términos"
+  },
+  "contact": {
+    "meta": {
+      "title": "Contacto — Conecta",
+      "description": "Cuéntanos qué desafío quieres resolver y un especialista de Conecta te contactará para diseñar la mejor estrategia tecnológica para tu organización."
+    },
+    "title": "Hablemos de tu próximo proyecto",
+    "subtitle": "Cuéntanos qué desafío quieres resolver y un especialista de Conecta te contactará para diseñar la mejor estrategia tecnológica para tu organización.",
+    "info": {
+      "eyebrow": "Atención a clientes",
+      "name": "Conecta Soluciones",
+      "phone": "55 9418 0076",
+      "address": "Av. Álvaro Obregón 213, Roma Norte, Cuauhtémoc, 06700 CDMX",
+      "hours": "Lun – Vie · 9:00 – 18:00",
+      "responseTime": "Respuesta < 24 h hábiles"
+    },
+    "form": {
+      "title": "Hablemos de tus necesidades de infraestructura crítica.",
+      "name": "Nombre",
+      "namePlaceholder": "Tu nombre",
+      "company": "Empresa",
+      "companyPlaceholder": "Tu empresa",
+      "email": "Correo",
+      "service": "Servicio de interés",
+      "serviceOptions": [
+        "Criptografía y gestión de llaves",
+        "Pagos instantáneos SPEI",
+        "Infraestructura y nube segura",
+        "Consultoría estratégica",
+        "Soporte y monitoreo 24/7"
+      ],
+      "submit": "Enviar mensaje",
+      "success": "¡Mensaje enviado! Te contactaremos pronto.",
+      "error": "No pudimos enviar tu mensaje. Intenta de nuevo."
+    },
+    "validation": {
+      "required": "Este campo es obligatorio",
+      "email": "Ingresa un correo válido"
+    }
   }
 }

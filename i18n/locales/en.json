@@ -175,5 +175,44 @@
     "required": "This field is required",
     "email": "Enter a valid email",
     "terms": "You must accept the terms"
+  },
+  "contact": {
+    "meta": {
+      "title": "Contact — Conecta",
+      "description": "Tell us what challenge you want to solve and a Conecta specialist will reach out to design the best technology strategy for your organization."
+    },
+    "title": "Let's talk about your next project",
+    "subtitle": "Tell us what challenge you want to solve and a Conecta specialist will reach out to design the best technology strategy for your organization.",
+    "info": {
+      "eyebrow": "Customer care",
+      "name": "Conecta Soluciones",
+      "phone": "55 9418 0076",
+      "address": "Av. Álvaro Obregón 213, Roma Norte, Cuauhtémoc, 06700 CDMX",
+      "hours": "Mon – Fri · 9:00 – 18:00",
+      "responseTime": "Response < 24 business hours"
+    },
+    "form": {
+      "title": "Let's talk about your critical infrastructure needs.",
+      "name": "Name",
+      "namePlaceholder": "Your name",
+      "company": "Company",
+      "companyPlaceholder": "Your company",
+      "email": "Email",
+      "service": "Service of interest",
+      "serviceOptions": [
+        "Cryptography and key management",
+        "Instant SPEI payments",
+        "Secure infrastructure and cloud",
+        "Strategic consulting",
+        "24/7 support and monitoring"
+      ],
+      "submit": "Send message",
+      "success": "Message sent! We'll be in touch soon.",
+      "error": "We couldn't send your message. Please try again."
+    },
+    "validation": {
+      "required": "This field is required",
+      "email": "Enter a valid email"
+    }
   }
 }
