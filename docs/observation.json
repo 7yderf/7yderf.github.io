@@ -1,0 +1,47 @@
+{
+  "project": "frt-cnct-web",
+  "stack": "vue",
+  "modo": "germinal",
+  "patterns": [
+    {
+      "pattern": "pattern:forms-vee-validate-yup",
+      "evidencia": ["src/schemas/contactSchema.ts", "src/components/sections/ContactSection.vue"],
+      "proyeccion": "yup.object() en archivo separado (createContactSchema(t)), consumido via toTypedSchema + useForm en ContactSection.vue; los campos usan VInput/VSelect (ya envuelven useField internamente)",
+      "nota": "La receta del genoma para este patron esta 'referenciado, sin poblar' (madurez), inferida solo de 3 casos governed-by principle:6 en src/modules/clients/schemas/*.ts de otro proyecto (tesseracto-front). Lo nuevo aqui es contactSchema.ts, su factory-por-locale y ContactSection.vue completos. Lo heredado (no re-derivado) es la infra que lo hace posible: VInput/VSelect/FieldWrapper (useField), tokens de color anotados 'medido en contact.png', y las dependencias vee-validate/yup/@vee-validate/yup ya en package.json antes de este cambio. Este proyecto no tiene estructura src/modules/*/schemas/ como el proyecto semilla; se adapto a un src/schemas/ plano. Intento de harvest_propose para (este patron, frt-cnct-web) devolvio 'rechazado-antes' (estado previo del ledger, no revertible desde las tools disponibles) — no aplicado al ledger compartido, pero el match en codigo es real e independiente de ese estado."
+    },
+    {
+      "pattern": "pattern:visual-dos-columnas-responsive",
+      "evidencia": [
+        "src/components/sections/ContactSection.vue",
+        "src/components/sections/FeatureCards.vue",
+        "src/components/sections/ProcessCta.vue"
+      ],
+      "proyeccion": "sc-article con flex-wrap (sin md:) + gap; hijos sc-section/div con min-w-[Npx] + basis-* + grow (via flex-1 explicito o flex-grow:1 heredado de la clase sc-section) para que el colapso a una columna lo decida el ancho disponible, no el viewport",
+      "nota": "Refactor deliberado (no hallazgo pasivo): la primera auditoria de src/pages (2026-07-10) encontro este patron ausente porque todo el codigo usaba md:flex-row. Se reemplazo por flex-wrap organico en estos 3 archivos, verificado contra el HTML servido (sin md:flex-row en el output). Los 3 casos caen en la variante simetrica de case:ux-015 (grow-1 en ambas), ninguno en la asimetrica ancho-fijo+shrink-0 de case:ux-020. Solo ContactSection.vue usa items-stretch (receta completa); FeatureCards.vue y ProcessCta.vue preservan items-center del diseno original a proposito (evitar igualar la altura de bloques con contenido muy distinto) — desviacion de piel Tailwind, no del rol sc-*, por lo que no invalida el match. FinalCta.vue quedo fuera a proposito: su imagen usa relative/md:absolute atado al viewport, y desacoplar el wrap del breakpoint ahi desincronizaria la imagen del punto de colapso — ver docs/patterns/semantic-classes.md para la nota de excepcion. harvest_propose genero un reto real (combinacion nueva para este proyecto); respondido y aplicado via harvest_apply el 2026-07-13.",
+      "harvest": {
+        "estado": "aplicado",
+        "fecha_apply": "2026-07-13",
+        "n_contextos_ledger": 2,
+        "promovible": false,
+        "nota": "n_contextos_ledger es el contador del eje de polinizacion (Bucle 3, harvest_apply) — distinto de madurez.n_contextos (4, ya 'promovido' desde antes a nivel receta/genoma, heredado de tesseracto-front). Con 2 proyectos en el ledger, falta 1 para la regla de 3 de este eje."
+      }
+    }
+  ],
+  "patterns_evaluados_y_excluidos": [
+    {
+      "pattern": "pattern:visual-dos-columnas-responsive",
+      "archivo": "src/components/sections/FinalCta.vue",
+      "razon": "No convertido a flex-wrap organico: la imagen (chica.png) usa relative md:absolute + md:mb-[-80px] para sangrar fuera del contenedor solo en desktop, atado al viewport. Desacoplar el colapso de columnas del breakpoint desincronizaria el punto de wrap con el cambio de posicionamiento de la imagen. Arreglarlo bien pediria container queries (@container), no usadas en ningun otro lugar del proyecto — fuera de alcance de este refactor."
+    }
+  ],
+  "principios_evaluados_y_excluidos": [
+    {
+      "principle": "principle:5",
+      "razon": "Transformador Bidireccional exige un mapper de funciones puras cuando el submit va a una API con contrato propio. No existe backend real (no hay server/api/ en el repo); el payload que se envia desde ContactSection.vue es identico en forma a los campos del schema. Un mapper aqui seria una abstraccion inventada sobre una transformacion identidad — se omitio a proposito."
+    }
+  ],
+  "principios_usados": ["principle:6", "principle:v2", "principle:v5"],
+  "fecha": "2026-07-13",
+  "curador": "agente+humano",
+  "nota_modulo": "Este archivo ya no describe solo src/pages (auditoria somatica original, 2026-07-10, sin matches). Desde entonces el proyecto crecio con trabajo germinal real: la ruta /contact (src/pages/contact.vue + src/components/sections/ContactSection.vue + src/schemas/contactSchema.ts) y el refactor de colapso responsive en 3 secciones de la landing. Los matches aqui documentados son deliberados, no reconocimiento pasivo de codigo preexistente."
+}

@@ -5,9 +5,9 @@
     <h2 class="mx-auto max-w-2xl text-center font-secondary text-deep-ink">{{ t('contact.title') }}</h2>
     <p class="mx-auto mt-4 max-w-2xl text-center">{{ t('contact.subtitle') }}</p>
 
-    <div class="sc-article mx-auto mt-12 flex w-full max-w-5xl flex-col items-stretch gap-8 md:flex-row">
+    <div class="sc-article mx-auto mt-12 flex w-full max-w-5xl flex-wrap items-stretch gap-8">
       <!-- Tarjeta izquierda: datos de contacto (estatica) -->
-      <div class="sc-section flex flex-col rounded-3xl bg-primary-soft/40 p-8 md:w-2/5">
+      <div class="sc-section flex min-w-[280px] basis-80 flex-col rounded-3xl bg-primary-soft/40 p-8">
         <img src="/images/fox.svg" alt="" aria-hidden="true" class="h-16 w-16">
         <p class="mt-4 font-secondary text-sm text-ink-3">{{ t('contact.info.eyebrow') }}</p>
         <p class="font-secondary text-lg font-bold text-deep-ink">{{ t('contact.info.name') }}</p>
@@ -46,7 +46,7 @@
       </div>
 
       <!-- Tarjeta derecha: formulario -->
-      <div class="sc-section rounded-3xl bg-bg-second p-8 shadow-card md:flex-1">
+      <div class="sc-section min-w-[280px] basis-96 rounded-3xl bg-bg-second p-8 shadow-card">
         <h3 class="font-secondary text-deep-ink">{{ t('contact.form.title') }}</h3>
 
         <form class="mt-6 flex flex-col gap-4" @submit="onSubmit">

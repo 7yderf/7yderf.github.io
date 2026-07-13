@@ -245,11 +245,13 @@ Ejemplo de como una zona de landing se ve dentro de un SFC real de este proyecto
 <template>
   <section class="sc-section w-full bg-bg-second px-12 py-16 text-center">
     <h2>{{ t('features.title') }}</h2>
-    <article class="sc-article flex-col gap-4 mt-8 md:flex-row">
+    <!-- flex-wrap (sin md:) + min-w por hijo: el colapso a una columna lo decide
+         el ancho disponible, no el viewport — ver pattern:visual-dos-columnas-responsive -->
+    <article class="sc-article flex-wrap gap-4 mt-8">
       <section
         v-for="feature in features"
         :key="feature.id"
-        class="sc-section rounded-lg border border-line bg-bg-second p-6 shadow-flat"
+        class="sc-section min-w-[240px] rounded-lg border border-line bg-bg-second p-6 shadow-flat"
       >
         <h3>{{ feature.title }}</h3>
         <p>{{ feature.description }}</p>
@@ -263,6 +265,8 @@ const { t } = useI18n()
 const features = [/* ... */]
 </script>
 ```
+
+**Nota:** cuando el colapso a una sola columna depende de un elemento interno atado al breakpoint (ej. una imagen que cambia de `relative` a `absolute` con `md:`), forzar `flex-wrap` sin breakpoint puede desincronizar ambos — ahí es preferible mantener `md:flex-row` como excepción sancionada y documentarla, no forzar el patrón (ver `FinalCta.vue`).
 
 ---
 

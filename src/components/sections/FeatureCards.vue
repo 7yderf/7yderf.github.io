@@ -16,10 +16,10 @@
         :style="{ '--i': i, zIndex: i + 1 }"
       >
         <article
-          class="sc-article flex-col items-center gap-8 rounded-3xl border border-line-3 bg-bg-second p-6 shadow-[0_18px_44px_-12px_rgba(91,63,224,0.16)] md:flex-row md:gap-12 md:p-10"
-          :class="i % 2 === 1 ? 'md:flex-row-reverse' : ''"
+          class="sc-article flex-wrap items-center gap-8 rounded-3xl border border-line-3 bg-bg-second p-6 shadow-[0_18px_44px_-12px_rgba(91,63,224,0.16)] md:gap-12 md:p-10"
+          :class="i % 2 === 1 ? 'flex-row-reverse' : ''"
         >
-          <div class="aspect-[4/3] w-full shrink-0 overflow-hidden rounded-2xl bg-primary-soft md:w-2/5">
+          <div class="aspect-[4/3] min-w-[260px] shrink-0 grow basis-80 overflow-hidden rounded-2xl bg-primary-soft">
             <video
               :src="item.video"
               class="h-full w-full scale-105 object-cover"
@@ -31,7 +31,7 @@
               aria-hidden="true"
             ></video>
           </div>
-          <div class="sc-section">
+          <div class="sc-section min-w-[260px] basis-96">
             <h3 class="font-secondary text-[4.4rem] font-bold leading-tight text-deep-ink">{{ item.title }}</h3>
             <p class="mt-3 max-w-md text-ink-3">{{ item.description }}</p>
             <a
