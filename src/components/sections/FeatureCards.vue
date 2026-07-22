@@ -32,8 +32,8 @@
               aria-hidden="true"
             ></video>
           </div>
-          <div class="sc-section min-w-[260px] basis-96">
-            <h3 class="font-secondary text-[4.4rem] font-bold leading-tight text-deep-ink">{{ item.title }}</h3>
+          <div class="sc-section flex min-w-[260px] basis-96 flex-col items-center text-center md:items-start md:text-left">
+            <h3 class="font-secondary text-[2.6rem] font-bold leading-tight text-deep-ink md:text-[3.2rem] lg-2:text-[4.4rem]">{{ item.title }}</h3>
             <p class="mt-3 max-w-md text-ink-3">{{ item.description }}</p>
             <NuxtLink
               :to="localePath('/contact')"

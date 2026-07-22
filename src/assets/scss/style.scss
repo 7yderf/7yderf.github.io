@@ -98,6 +98,22 @@ html {
   }
 }
 
+// Titulos grandes (hero/h1/h2): el escalado proporcional del root de arriba
+// no alcanza — a 4.4-4.8rem siguen viendose enormes en mobile. Mismos
+// breakpoints (991/768) que las reglas globales de arriba, valores propios
+// por nivel. Sin @layer (como html{} arriba) para ganarle a cualquier
+// utility de Tailwind si algun dia compite en especificidad.
+@media screen and (max-width: 991px) {
+  .hero { font-size: 3.6rem; }
+  h1 { font-size: 2.8rem; }
+  h2 { font-size: 3.2rem; }
+}
+@media screen and (max-width: 768px) {
+  .hero { font-size: 2.8rem; }
+  h1 { font-size: 2.4rem; }
+  h2 { font-size: 2.6rem; }
+}
+
 .swal2-popup {
   font-family: var(--secondary-font);
   font-size: 1.4rem;
@@ -423,6 +439,28 @@ img{
 .btn-lg {
   padding: 18px 28px;
   border-radius: 16px;
+}
+
+// Botones: misma escala 991/768 que los titulos. .btn-lg converge hacia el
+// tamano compacto en mobile; el resto (ya partia del tamano compacto/nav)
+// baja un poco menos para no perder el piso accesible de ~40px de alto.
+@media screen and (max-width: 991px) {
+  .btn-primary, .btn-secondary, .btn-ghost, .btn-danger, .btn-custom {
+    padding: 11px 15px;
+  }
+  .btn-lg {
+    padding: 15px 22px;
+    border-radius: 14px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .btn-primary, .btn-secondary, .btn-ghost, .btn-danger, .btn-custom {
+    padding: 10px 14px;
+  }
+  .btn-lg {
+    padding: 13px 18px;
+    border-radius: 12px;
+  }
 }
 
 // Outline que vira a danger en hover — ej: "Desactivar"

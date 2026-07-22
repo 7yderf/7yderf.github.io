@@ -26,7 +26,6 @@
 
         <ul class="hidden items-center gap-8 font-secondary text-sm font-medium text-text lg:flex">
           <li><NuxtLink :to="`${localePath('/')}#soluciones`" class="hover:text-primary">{{ t('nav.solutions') }}</NuxtLink></li>
-          <li><a href="#" class="hover:text-primary">{{ t('nav.services') }}</a></li>
           <li><NuxtLink :to="`${localePath('/')}#fabricantes`" class="hover:text-primary">{{ t('nav.vendors') }}</NuxtLink></li>
           <li><NuxtLink :to="`${localePath('/')}#industrias`" class="hover:text-primary">{{ t('nav.industries') }}</NuxtLink></li>
           <li><NuxtLink :to="`${localePath('/')}#recursos`" class="hover:text-primary">{{ t('nav.resources') }}</NuxtLink></li>

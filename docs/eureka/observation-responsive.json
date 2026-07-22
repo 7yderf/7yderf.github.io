@@ -1,0 +1,87 @@
+{
+  "project": "frt-cnct-web",
+  "stack": "Nuxt 4 / Vue 3 / Tailwind CSS v4 / SCSS (Dart Sass)",
+  "modo": "incremental",
+  "fecha": "2026-07-21",
+  "curador": "agente+humano",
+  "nota_modo": "Incremental sobre observation-visual-baseline.json (germinal). Cubre una sesion de 3 fases guiadas por el usuario: (1) migracion de reticulas CSS Grid -> Flexbox, (2) breakpoints propios (escala tipografica + halving de padding), (3) normalizacion global de imagenes/texto en mobile. A diferencia del baseline, aqui SI hubo patron para instanciar: pattern:visual-dos-columnas-responsive ya estaba promovido (4 contextos) antes de esta sesion — se consulto adapt_pattern/find_cases_for_problem/find_by_principle ANTES de tocar codigo, y se aplico la receta tal cual. Lo nuevo de esta entrega no es el patron en si, sino friccion real no cubierta por su receta (ver formas_nuevas).",
+
+  "patterns": [
+    {
+      "id": "pattern:visual-dos-columnas-responsive",
+      "aplicado_en": [
+        "src/components/sections/IndustriesGrid.vue (variante simetrica: grow basis-64 en las 6 cards)",
+        "src/layouts/default.vue footer (variante asimetrica: grow-[2] marca / grow x3 columnas de links)",
+        "src/components/sections/ContactSection.vue (variante simetrica: 2 campos del form, grow basis-0)"
+      ],
+      "resultado": "Receta aplicada sin desviaciones. Confirma madurez del patron en un 5to contexto (Nuxt/Tailwind v4, ademas de los ya registrados)."
+    }
+  ],
+
+  "formas_nuevas": [
+    {
+      "nombre_propuesto": "reset-text-align-initial-en-mixin-tipografico-rompe-herencia-de-text-center",
+      "evidencia": [
+        "src/assets/scss/mixins/_typography-mixins.scss: @mixin text($size, $weight: initial, $line-height: initial, $align: initial) — $align default 'initial'",
+        "Fallo reportado por el usuario en IndustriesGrid.vue (h3/p no centrados pese a text-center en el div padre)",
+        "Fallo reportado por el usuario en StatsSection.vue (mismo sintoma)",
+        "Aplicado preventivamente (ya con la leccion aprendida) en Hero.vue, LogosStrip.vue, FeatureCards.vue, NewsletterBanner.vue, FinalCta.vue"
+      ],
+      "repeticiones": 2,
+      "resumen_forma": "style.scss llama @include text(...) en h1-h6 y p SIN el 4to argumento ($align), asi que TODOS esos tags reciben text-align:initial directo en el elemento, sitewide. 'initial' no es 'heredar' — es un reset duro al valor inicial de la propiedad (left/start). Por eso un text-center puesto en un DIV ANCESTOR nunca llega a los hijos h*/p: una propiedad fijada DIRECTO en el elemento siempre gana sobre la heredada desde un ancestro, sin importar comparacion de especificidad (no estan compitiendo por la misma regla). Fix: la clase de alineacion tiene que ir directo en el h*/p mismo, nunca asumida por herencia. Cuando_no: elementos sin ese reset (span, div, li en algunos casos) heredan con normalidad."
+    },
+    {
+      "nombre_propuesto": "flex-grow-supera-al-workaround-de-css-grid-bajo-root-62.5",
+      "evidencia": [
+        "src/components/sections/IndustriesGrid.vue (grid-cols-1 sm:2 lg:3 -> flex flex-wrap items-stretch + grow basis-64)",
+        "src/layouts/default.vue footer (grid md:grid-cols-[2fr_1fr_1fr_1fr] -> flex-wrap + grow-[2]/grow)",
+        "src/components/sections/ContactSection.vue (grid grid-cols-1 sm:grid-cols-2 -> flex-wrap + grow basis-0)"
+      ],
+      "repeticiones": 3,
+      "resumen_forma": "El baseline germinal ya documentaba 'columnas-con-css-grid-no-con-calc-porcentaje': bajo root 62.5%, w-[calc(33.333%-1rem)] no cubre el gap y las columnas suman >100%, lo que forzo adoptar CSS Grid como workaround en su momento. Al migrar estas mismas retriculas a pattern:visual-dos-columnas-responsive (flex-wrap + grow/basis, sin calc porcentual) se resuelve el mismo problema de raiz SIN heredar la necesidad de Grid: grow reparte el sobrante DESPUES del gap, nunca antes, asi que nunca puede sumar mas del 100% disponible. O sea: para este tipo de retricula, flex-grow no es solo 'otra forma de hacerlo' — evita por diseno el bug que origino el workaround de Grid. Cuando_no: layouts 2D genuinos (calendario VMonthPicker, tabla de permisos) siguen necesitando Grid real; ahi no aplica."
+    },
+    {
+      "nombre_propuesto": "breakpoint-de-escala-visual-separado-del-breakpoint-de-colapso-de-layout",
+      "evidencia": [
+        "src/assets/scss/style.scss: root font-size en dos pasos (58% <=991px, 55% <=768px)",
+        "~14 archivos (todas las secciones + footer): paddings grandes partidos a la mitad, mobile-first, unificados en el breakpoint lg-2 (992px) elegido por el usuario",
+        "El colapso de columnas (flex-wrap) de la fase 1 sigue sin usar ningun breakpoint"
+      ],
+      "repeticiones": 1,
+      "resumen_forma": "pattern:visual-dos-columnas-responsive es explicito en que el COLAPSO ESTRUCTURAL de columnas nunca debe depender de un breakpoint (lo decide flex-wrap segun el ancho disponible). Esta sesion aporta el matiz complementario: la ESCALA VISUAL (tamano de tipografia via % del root, padding de card/seccion) SI amerita un breakpoint discreto — no es una limitacion tecnica sin resolver, es una decision de diseno legitima y deliberada del usuario ('a mi me gusta hacer un ajuste porcentual en los 992'). Vale la pena registrar esto como un eje separado dentro del mismo problem-type (layout-responsive-sin-breakpoints), para que una futura consulta no generalice 'sin breakpoints' a TODO ajuste responsive — solo aplica al layout/colapso, no a la escala."
+    },
+    {
+      "nombre_propuesto": "exclusion-por-object-fit-semantico-en-reglas-globales-de-imagen",
+      "evidencia": [
+        "src/assets/scss/style.scss: regla global img en mobile (max-height:150px + object-fit:contain), corregida a img:not(.object-cover) tras romper IndustriesGrid.vue",
+        "Bug real reportado por el usuario con captura: hueco blanco debajo de la imagen en las cards de industrias"
+      ],
+      "repeticiones": 1,
+      "resumen_forma": "Una regla global de <img> en mobile (acotar alto a 150px para que ilustraciones sueltas no se vean gigantes) rompio las imagenes que usan object-cover para LLENAR un contenedor de proporcion fija (aspect-square + h-full/w-full): al acotar el alto de la imagen pero no el del contenedor, quedo hueco vacio debajo. Fix: excluir .object-cover de la regla global. El valor de object-fit que ya trae la imagen es una senal semantica confiable de su INTENCION (rellenar contenedor vs contenerse a si misma) y sirve como selector de exclusion sin tocar el marcado ni inventar una clase nueva. Cuando_no: si alguna vez una imagen object-cover necesitara acotarse en mobile, seria un caso puntual, no via la regla global."
+    },
+    {
+      "nombre_propuesto": "cascade-layers-mas-important-para-vencer-reset-tipografico-legacy-en-mobile",
+      "evidencia": [
+        "src/assets/scss/style.scss: @media (max-width:768px) { h1,h2,h3,h4,h5,h6,p,li,.hero { text-align:center !important } } dentro de @layer base",
+        "Correccion posterior del usuario: excluir el subarbol .input, .input * (labels/inputs del form) del centrado global"
+      ],
+      "repeticiones": 1,
+      "resumen_forma": "Centrar TODO el texto en mobile globalmente requiere vencer dos cosas a la vez: (a) el mismo reset text-align:initial de la forma #1 de esta entrega, y (b) cualquier text-left explicito de Tailwind. Con Tailwind v4 (cascade layers nativas), un !important dentro de @layer base gana incluso sobre las utilities de Tailwind (viven en su propia layer, posterior en la cascada pero sin !important) — no hace falta tocar componente por componente. Excepcion necesaria y NO trivial: los form controls deben quedar fuera del centrado global (se ajustan puntual por proyecto, nunca con una regla de texto global), y en este proyecto el label es un <p class='input__text'> DENTRO de <label class='input'> (FieldWrapper.vue) — la exclusion tiene que cubrir el SUBARBOL completo (.input, .input *), no alcanza con excluir el tag <input> suelto."
+    }
+  ],
+
+  "principios_usados": [
+    {
+      "id": "principle:v5",
+      "label": "Direccion y Tamano son Variaciones, no Roles",
+      "uso": "Confirmado en las 3 variantes instanciadas esta sesion (simetrica x2, asimetrica x1): la proporcion 2fr:1fr:1fr:1fr del footer se tradujo a grow-[2]/grow, nunca a un rol estructural distinto."
+    },
+    {
+      "id": "principle:v2",
+      "label": "Separacion Esqueleto / Piel",
+      "uso": "Las clases sc-article/sc-section (esqueleto) llevan el flex-wrap/items-stretch; las utilities Tailwind (piel) llevan grow/basis/min-w. Se mantuvo la separacion al migrar Grid->Flexbox."
+    }
+  ],
+
+  "nota_para_curacion_humana": "adapt_pattern(visual-dos-columnas-responsive) devolvio en su 'provenance' una atribucion previa a frt-cnct-web (case:ux-015, '3 secciones') fechada antes de esta sesion — pero la descripcion de ux-015 ('ClientResumenView: dos columnas form+sidebar') no corresponde a nada visible en este repo (que es un landing + /contact, sin vistas de tipo CRM). No pude reconciliar el origen de esa atribucion cruzada; lo dejo senalado en vez de inventar una explicacion, por si hay un mapeo de proyectos o un caso mal indexado que amerite revision humana."
+}
