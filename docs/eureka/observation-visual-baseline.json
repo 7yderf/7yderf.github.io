@@ -1,0 +1,76 @@
+{
+  "project": "frt-cnct-web",
+  "stack": "Nuxt 4 / Vue 3 / Tailwind CSS v4 / SCSS (Dart Sass)",
+  "modo": "germinal",
+  "fecha": "2026-07-15",
+  "curador": "agente+humano",
+  "nota_modo": "Germinal: primer baseline visual de un stack frontend. El genoma actual es de dominio CRM/negocio (detail-view-layout, clients, gestion-ciclo-vida-reglada). Busqueda find_node (tailwind / rem font-size / 62.5 / escala-spacing) = 0 patrones visuales para instanciar. Por eso 'patterns' va vacio y el valor esta en 'formas_nuevas' (candidatos de siembra). No se llamo harvest/apply/cultivate: la siembra/promocion es curacion humana.",
+
+  "patterns": [],
+
+  "baseline_visual": {
+    "estructura_html": "Vocabulario estructural semantico minimo definido en scss/style.scss: sc-header, sc-nav, sc-main, sc-aside, sc-article (AGRUPA: fila de cards, layout 2-col), sc-section (ES contenido: card, bloque atomico, zona full-width), sc-figure. Regla de anidado: sc-section dentro de sc-article; evitar sc-article dentro de sc-article. Composicion: layout persistente (layouts/default.vue = announcement bar + header/nav sticky + footer) envuelve pages/index.vue, que compone 10 componentes de seccion.",
+    "sistema_de_clases": "Hibrido Tailwind v4 + SCSS con DOS capas espejo de tokens que deben mantenerse en sync: (1) tailwind.css @theme (--color-*, --font-*, --spacing, --radius-*, --container-*, sombras) que genera las utilidades (bg-primary, text-accent, p-4, max-w-5xl); (2) scss/style.scss :root (--primary-color, --primary-font, sombras) para uso directo en SCSS/CSS nativo. Utilidades de fuente font-primary/font-secondary (misma Poppins). Componentes-clase en SCSS via @mixin button (.btn-primary solid con degradado, .btn-secondary outline, modificador .btn-pill) y escala tipografica h1-h6/.hero/p. GOTCHA de base: html{font-size:62.5%} (ver formas_nuevas).",
+    "catalogo_componentes": "10 secciones en components/sections/ (Hero, LogosStrip, SolutionFinder, FeatureCards, ProcessCta, StrategicServices, SolutionsCarousel, StatsSection, BlogGrid, FinalCta) compuestas en pages/index.vue. Inputs (VInput, VSelect, VTextArea, VDatePicker...) con label fijo (transition=false por default). Shared: LanguageSwitcher. i18n es/en via helpers useLocalizedStrings/useLocalizedItems (NO tm() directo, que vuelca el AST compilado). Assets reales servidos desde public/ (videos mp4, logos SVG monocromo, imagenes WebP optimizadas).",
+    "ejemplos": [
+      { "archivo": "src/assets/tailwind.css", "observacion": "@theme con las escalas rem-based recalibradas x1.6 para compensar el root 62.5% (--spacing:0.4rem, --text-*, --radius-*, --container-*). Comentario in-situ explica el porque." },
+      { "archivo": "src/assets/scss/style.scss", "observacion": "html{font-size:62.5%} + :root con tokens espejo + @mixin button + escala tipografica. Fuente del gotcha de escala." },
+      { "archivo": "src/components/sections/StrategicServices.vue", "observacion": "Grid 3-col via CSS Grid (grid-cols-1 sm:2 lg:3) tras fallar w-[calc(33.333%-1rem)]; icono con bevel interno (box-shadow inset) para volumen 3D." },
+      { "archivo": "src/components/sections/FeatureCards.vue", "observacion": "Efecto stacking-cards (sticky con top uniforme + padding-top escalonado + slots de altura fija). Videos con object-cover scale-105 (over-scan) para tapar marco negro horneado." },
+      { "archivo": "src/layouts/default.vue", "observacion": "Fondo decorativo (glow naranja) fijo con isolate + -z-10: queda tras el fondo blanco del root y delante del contenido de secciones transparentes." }
+    ]
+  },
+
+  "desbalse_local": [
+    { "doc": "memoria de proyecto (.claude/.../memory/proyecto-frt-cnct-web.md)", "en_genoma": false, "resumen_forma": "Gotchas tecnicos (62.5% rem, tm() de vue-i18n, tipografia), convenciones de assets (public/, WebP con sharp), estado y despliegue. Fuente primaria de estos candidatos de siembra." },
+    { "doc": "CONTEXT_FOR_AI.md (referenciado en style.scss)", "en_genoma": false, "resumen_forma": "Tabla de equivalencias de tokens: nomenclatura del proyecto (--primary-*) <-> referencia UI Kit (--sc-*)." },
+    { "doc": "context-map.json (raiz)", "en_genoma": false, "resumen_forma": "Mapa mecanico nodos+aristas de src/ (cultivado por Eureka bucle 2)." }
+  ],
+
+  "formas_nuevas": [
+    {
+      "nombre_propuesto": "compensar-escala-rem-de-tailwind-bajo-root-62.5",
+      "evidencia": ["src/assets/scss/style.scss: html{font-size:62.5%}", "src/assets/tailwind.css: @theme escalas x1.6"],
+      "repeticiones": 1,
+      "resumen_forma": "Un root 62.5% (rem=10px) encoge TODAS las utilidades rem de Tailwind, no solo text-*: tambien --spacing (p/m/gap/w/h), --radius-*, --container-* (max-w-*). Sintoma enganoso: los tamanos 'no cuadran' entre SCSS y Tailwind y parece que unos son mas grandes, cuando en realidad Tailwind esta encogido. Fix: recalibrar en @theme x1.6 (=100/62.5). Cuando_no: root en 100%/16px, o Tailwind en px. Detectar via el CSS compilado, no a ojo."
+    },
+    {
+      "nombre_propuesto": "columnas-con-css-grid-no-con-calc-porcentaje",
+      "evidencia": ["src/components/sections/StrategicServices.vue", "src/components/sections/StatsSection.vue", "src/components/sections/BlogGrid.vue"],
+      "repeticiones": 3,
+      "resumen_forma": "Corolario del 62.5%: w-[calc(33.333% - 1rem)] con rem=10px no cubre el gap-* -> las columnas suman >100% y saltan de fila (se ve 2-col en vez de 3). Fix estandar: CSS Grid (grid-cols-*), que maneja los gaps solo y ademas alinea la ultima fila a la izquierda."
+    },
+    {
+      "nombre_propuesto": "over-scan-para-tapar-marco-horneado-en-video-o-imagen",
+      "evidencia": ["src/components/sections/FeatureCards.vue (object-cover scale-105)", "src/components/sections/Hero.vue (overflow-hidden + scale-105)"],
+      "repeticiones": 2,
+      "resumen_forma": "Media exportada con un borde/marco negro horneado en el canto. Fix: contenedor overflow-hidden + scale (scale-105) en el media (sobre-escaneo) empuja el marco fuera del contenedor y lo recorta. Ajustar el scale segun el grosor del marco."
+    },
+    {
+      "nombre_propuesto": "stacking-cards-sticky-uniforme",
+      "evidencia": ["src/components/sections/FeatureCards.vue (cards-stack: sticky mismo top + padding-top creciente + slots de altura fija)"],
+      "repeticiones": 1,
+      "resumen_forma": "Cards que se apilan al hacer scroll y salen como bloque unico. Clave: slots de ALTURA UNIFORME (release simultaneo) + sticky al MISMO top + escalonado via padding-top. Evita el anti-patron de sticky con top incremental (la ultima no se sostiene y el release es desigual)."
+    },
+    {
+      "nombre_propuesto": "marquesina-css-infinita-con-mask-fade",
+      "evidencia": ["src/components/sections/LogosStrip.vue (dos grupos identicos + translateX(-50%), spacing por margin, mask-image en extremos)"],
+      "repeticiones": 1,
+      "resumen_forma": "Loop infinito de logos sin JS: dos grupos identicos + translateX(-50%); el espacio viaja con cada item via margin (no flex-gap) para que el empalme sea exacto; degradado en los extremos con mask-image. Mas ligero/fluido que Swiper para scroll continuo."
+    },
+    {
+      "nombre_propuesto": "optimizacion-webp-con-sharp-transitiva",
+      "evidencia": ["public/instituciones/*.webp (~2MB -> ~20KB)", "public/icons/*.webp (~70KB -> ~7KB)", "public/images/chica.webp (1MB -> 48KB)"],
+      "repeticiones": 3,
+      "resumen_forma": "sharp suele estar ya en node_modules como dep transitiva de Nuxt (sin figurar en package.json). Script .mjs efimero: resize fit:inside + webp quality ~85 baja renders 3D de 1-2MB a 7-50KB. Borrar el pesado de public/ y conservar el original en la carpeta de assets crudos (gitignored)."
+    },
+    {
+      "nombre_propuesto": "bevel-interno-con-box-shadow-inset-para-icono-3d",
+      "evidencia": ["src/components/sections/StrategicServices.vue (.service-icon: inset ring + highlight arriba + sombra abajo, gradiente vertical)"],
+      "repeticiones": 1,
+      "resumen_forma": "Volumen de 'boton glossy 3D' en un cuadro de icono: box-shadow con 3 capas inset (aro/borde inset + highlight blanco arriba + sombra oscura abajo) sobre un gradiente vertical (claro arriba)."
+    }
+  ],
+
+  "principios_usados": []
+}
