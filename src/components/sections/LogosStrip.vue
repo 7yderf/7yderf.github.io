@@ -3,7 +3,7 @@
      (margin, no flex-gap) para que el punto de empalme sea exacto. Degradado en
      los extremos vía mask-image. -->
 <template>
-  <section class="sc-section w-full py-7 text-center lg:px-8 lg-2:py-14">
+  <section :id="id" class="sc-section w-full scroll-mt-24 py-7 text-center lg:px-8 lg-2:py-14">
     <h2 class="mx-auto text-center text-deep-ink">
       <slot name="title">{{ title }}</slot>
     </h2>
@@ -46,6 +46,7 @@ interface Logo {
 }
 
 defineProps<{
+  id?: string
   title?: string
   logos: Logo[]
 }>()

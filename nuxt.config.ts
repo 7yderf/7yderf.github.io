@@ -12,7 +12,15 @@ export default defineNuxtConfig({
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
       link: [
+        // .ico = fallback legacy (navegadores/UIs viejas). Reemplazar
+        // public/favicon.ico por uno generado desde public/images/favicon-source.png
+        // (multi-size 16/32/48) cuando este listo — mientras tanto sigue
+        // siendo el icono default de Nuxt.
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        // PNG standalone — lo que usan los navegadores modernos en la practica
+        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
+        { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
         // Poppins (fuente del sitio) + Roboto Mono vía Google Fonts
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },

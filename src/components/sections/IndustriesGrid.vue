@@ -1,5 +1,5 @@
 <template>
-  <section class="sc-section w-full bg-cream px-4 py-8 text-center lg:px-8 lg-2:py-16">
+  <section id="industrias" class="sc-section w-full scroll-mt-24 bg-cream px-4 py-8 text-center lg:px-8 lg-2:py-16">
     <h2 class="mx-auto max-w-3xl text-center font-secondary text-deep-ink">
       <span class="font-bold">{{ t('industries.titlePre') }}</span><br>
       <span class="font-normal">{{ t('industries.titleHighlight') }}</span>

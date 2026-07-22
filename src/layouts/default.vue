@@ -20,17 +20,17 @@
     <!-- Header / Nav -->
     <header class="sc-header sticky top-0 z-40 flex-col border-b border-line bg-bg-second/95 backdrop-blur">
       <nav class="sc-nav mx-auto w-full max-w-7xl items-center justify-between gap-4 px-4 py-4 lg:px-8">
-        <NuxtLink :to="localePath('/')" class="font-secondary text-xl font-bold text-deep-ink">
-          CONECTA
+        <NuxtLink :to="localePath('/')" class="shrink-0">
+          <img src="/images/logo-conecta.png" alt="CONECTA" class="h-6 w-auto">
         </NuxtLink>
 
         <ul class="hidden items-center gap-8 font-secondary text-sm font-medium text-text lg:flex">
-          <li><a href="#" class="hover:text-primary">{{ t('nav.solutions') }}</a></li>
+          <li><NuxtLink :to="`${localePath('/')}#soluciones`" class="hover:text-primary">{{ t('nav.solutions') }}</NuxtLink></li>
           <li><a href="#" class="hover:text-primary">{{ t('nav.services') }}</a></li>
-          <li><a href="#" class="hover:text-primary">{{ t('nav.vendors') }}</a></li>
-          <li><a href="#" class="hover:text-primary">{{ t('nav.industries') }}</a></li>
-          <li><a href="#" class="hover:text-primary">{{ t('nav.resources') }}</a></li>
-          <li><a href="#" class="hover:text-primary">{{ t('nav.about') }}</a></li>
+          <li><NuxtLink :to="`${localePath('/')}#fabricantes`" class="hover:text-primary">{{ t('nav.vendors') }}</NuxtLink></li>
+          <li><NuxtLink :to="`${localePath('/')}#industrias`" class="hover:text-primary">{{ t('nav.industries') }}</NuxtLink></li>
+          <li><NuxtLink :to="`${localePath('/')}#recursos`" class="hover:text-primary">{{ t('nav.resources') }}</NuxtLink></li>
+          <li><NuxtLink :to="`${localePath('/')}#nosotros`" class="hover:text-primary">{{ t('nav.about') }}</NuxtLink></li>
         </ul>
 
         <div class="flex items-center gap-3">
@@ -50,7 +50,7 @@
     <footer class="sc-footer flex-col border-t border-line bg-bg-second">
       <div class="sc-article mx-auto flex w-full max-w-7xl flex-wrap gap-10 px-4 py-7 lg:px-8 lg-2:py-14">
         <div class="min-w-[16rem] grow-[2] basis-64">
-          <div class="font-secondary text-xl font-bold text-deep-ink">CONECTA</div>
+          <img src="/images/logo-conecta.png" alt="CONECTA" class="h-6 w-auto">
           <p class="mt-3 max-w-xs font-secondary text-sm text-ink-3">{{ t('footer.tagline') }}</p>
         </div>
 

@@ -78,6 +78,14 @@ html {
   font-size: 62.5%;
   font-family: var(--primary-font)!important;
 
+  // Scroll suave para el nav con anclas (Soluciones/Fabricantes/Industrias/
+  // Recursos/Nosotros -> secciones del home). El offset del header sticky lo
+  // da scroll-mt-* en cada seccion destino, no esto.
+  scroll-behavior: smooth;
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
+
   // Escala tipografica en dos pasos (fase 2). El root font-size es la perilla
   // global rem: baja proporcionalmente tipografia Y spacing/radios/max-w.
   // Sutil al entrar a tablet (992), mas marcado en mobile (768). El orden

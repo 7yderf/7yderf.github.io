@@ -1,5 +1,5 @@
 <template>
-  <section class="w-full bg-[linear-gradient(73.81deg,_#F6791F_10.65%,_#AD51F3_72.21%,_#6D48FF_117.68%)] px-4 py-8 text-center lg:px-8 lg-2:py-16">
+  <section id="nosotros" class="w-full scroll-mt-24 bg-[linear-gradient(73.81deg,_#F6791F_10.65%,_#AD51F3_72.21%,_#6D48FF_117.68%)] px-4 py-8 text-center lg:px-8 lg-2:py-16">
     <h2 class="mx-auto text-center text-3xl font-secondary text-text-invert">
       <span class="font-normal">{{ t('stats.titlePre') }}</span><br>
       <span class="font-bold">{{ t('stats.titleHighlight') }}</span>
@@ -22,6 +22,7 @@ interface StatText {
 
 const { t } = useI18n()
 
-const texts = useLocalizedItems<StatText>('stats.items', 4, ['value', 'label'])
+// Solo los primeros 3 (se oculta el 4to, "Países con presencia", a pedido)
+const texts = useLocalizedItems<StatText>('stats.items', 3, ['value', 'label'])
 const items = computed(() => texts.value)
 </script>

@@ -178,33 +178,13 @@
     "headingPre": "Let's talk about your",
     "headingHighlight": "critical infrastructure",
     "headingPost": "needs.",
-    "subtitle": "Complete the form and a Conecta expert will reach out in under 24 business hours.",
-    "form": {
-      "name": "Full name",
-      "namePlaceholder": "Your name",
-      "phone": "Phone",
-      "phonePlaceholder": "Contact number",
-      "email": "Email",
-      "company": "Company",
-      "companyPlaceholder": "Your company",
-      "service": "Service of interest",
-      "servicePlaceholder": "Select an option",
-      "serviceOptions": [
-        "Cryptography and key management",
-        "Instant SPEI payments",
-        "Secure infrastructure and cloud",
-        "Strategic consulting",
-        "24/7 support and monitoring"
-      ],
-      "message": "How can we help you?",
-      "messagePlaceholder": "Briefly describe your need...",
-      "submit": "Send message",
-      "success": "Message sent! We'll be in touch soon.",
-      "error": "We couldn't send your message. Please try again."
+    "subtitle": "Complete the form and a Conecta expert will reach out in under 24 business hours."
+  },
+  "underConstruction": {
+    "meta": {
+      "title": "Site under construction — Conecta",
+      "description": "This section is under construction. Check back soon for updates."
     },
-    "validation": {
-      "required": "This field is required",
-      "email": "Enter a valid email"
-    }
+    "title": "This website is currently under construction"
   }
 }

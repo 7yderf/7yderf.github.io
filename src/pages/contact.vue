@@ -1,7 +1,7 @@
 <!-- contact.vue — Ruta /contact. Fase 1: seccion unica (ContactSection), mismo patron
      que index.vue: pagina delgada, meta via t(), contenido en components/sections. -->
 <template>
-  <div>
+  <div class="p-4">
     <ContactSection />
   </div>
 </template>

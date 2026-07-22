@@ -1,5 +1,5 @@
 <template>
-  <section class="sc-section w-full px-4 py-8 text-center lg:px-8 lg-2:py-16">
+  <section id="soluciones" class="sc-section w-full scroll-mt-24 px-4 py-8 text-center lg:px-8 lg-2:py-16">
     <h2 class="mx-auto text-center font-secondary text-deep-ink">
       <span class="font-normal">{{ t('features.titlePre') }}</span><br>
       <span class="font-bold">{{ t('features.titleHighlight') }}</span>
@@ -59,9 +59,14 @@ interface FeatureText {
 const { t } = useI18n()
 const localePath = useLocalePath()
 
-// Videos por card (public/videos) — solo hay 3 piezas por ahora, se reciclan
-// para las 5 cards hasta contar con las animaciones finales de cada una.
-const videos = ['/videos/candado.mp4', '/videos/terminal.mp4', '/videos/cloud.mp4']
+// Videos por card (public/videos), uno dedicado por card en orden de aparicion.
+const videos = [
+  '/videos/pagos.mp4',
+  '/videos/criptografia.mp4',
+  '/videos/nube-hibrida.mp4',
+  '/videos/servicios-administrados.mp4',
+  '/videos/cumplimiento.mp4',
+]
 
 // Gradiente de fondo + color de botón por card, en orden de aparición (Figma).
 const cardStyles = [
@@ -75,7 +80,7 @@ const cardStyles = [
 const texts = useLocalizedItems<FeatureText>('features.items', cardStyles.length, ['title', 'description', 'link'])
 const items = computed(() => texts.value.map((text, i) => ({
   ...text,
-  video: videos[i % videos.length],
+  video: videos[i],
   gradient: cardStyles[i].gradient,
   button: cardStyles[i].button,
 })))

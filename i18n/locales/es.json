@@ -178,33 +178,13 @@
     "headingPre": "Hablemos de tus",
     "headingHighlight": "necesidades de infraestructura",
     "headingPost": "crítica.",
-    "subtitle": "Completa el formulario y un experto de Conecta te contactará en menos de 24 horas hábiles.",
-    "form": {
-      "name": "Nombre completo",
-      "namePlaceholder": "Tu nombre",
-      "phone": "Teléfono",
-      "phonePlaceholder": "Número de contacto",
-      "email": "Correo",
-      "company": "Empresa",
-      "companyPlaceholder": "Tu empresa",
-      "service": "Servicio de interés",
-      "servicePlaceholder": "Selecciona una opción",
-      "serviceOptions": [
-        "Criptografía y gestión de llaves",
-        "Pagos instantáneos SPEI",
-        "Infraestructura y nube segura",
-        "Consultoría estratégica",
-        "Soporte y monitoreo 24/7"
-      ],
-      "message": "¿Cómo podemos ayudarte?",
-      "messagePlaceholder": "Describe brevemente tu necesidad...",
-      "submit": "Enviar mensaje",
-      "success": "¡Mensaje enviado! Te contactaremos pronto.",
-      "error": "No pudimos enviar tu mensaje. Intenta de nuevo."
+    "subtitle": "Completa el formulario y un experto de Conecta te contactará en menos de 24 horas hábiles."
+  },
+  "underConstruction": {
+    "meta": {
+      "title": "Sitio en construcción — Conecta",
+      "description": "Esta sección está en construcción. Vuelve pronto para ver las novedades."
     },
-    "validation": {
-      "required": "Este campo es obligatorio",
-      "email": "Ingresa un correo válido"
-    }
+    "title": "Este sitio web se encuentra en construcción"
   }
 }

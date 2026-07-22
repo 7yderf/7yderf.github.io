@@ -1,5 +1,5 @@
 <template>
-  <section class="sc-section w-full px-4 py-8 lg:px-8 lg-2:py-16">
+  <section id="recursos" class="sc-section w-full scroll-mt-24 px-4 py-8 lg:px-8 lg-2:py-16">
     <div class="sc-article mx-auto flex w-full max-w-7xl flex-wrap items-center justify-center gap-8 rounded-3xl bg-[#865BDA] p-6 md:justify-between lg-2:p-12">
       <div class="flex items-center justify-center grow-1">
         <img
