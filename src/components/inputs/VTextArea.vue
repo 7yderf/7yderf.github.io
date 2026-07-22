@@ -17,6 +17,7 @@
         class="input__area"
         :value="value as string"
         :rows="rows"
+        :placeholder="placeholder"
         :data-error="hasError"
         :disabled="disabled"
         :readonly="readonly"

@@ -51,9 +51,9 @@
   --line-color:           #E0E2E7;   /* --sc-line */
   --line-3-color:         #E6E6E6;   /* --sc-line-3 */
   --line-soft-color:      #EFF1F5;   /* --sc-line-soft */
-  --accent-color:         #FF7A4D;   /* --sc-accent */
+  --accent-color:         #FF6700;   /* --sc-accent — naranja CTA exacto medido en Figma (botón "Hablar con un experto") */
   --accent-soft-color:    #FFE8DE;   /* --sc-accent-soft */
-  --accent-ink-color:     #B83A0E;   /* --sc-accent-ink */
+  --accent-ink-color:     #993E00;   /* --sc-accent-ink — hover/active, derivado del naranja CTA (darken 20%) */
   --success-soft-color:   #DCFBEA;   /* --sc-success-soft / --sc-mint-soft */
   --error-soft-color:     #FFDBDB;   /* --sc-danger-soft */
   --warning-2-color:      #FDB022;   /* --sc-warn-2 */
@@ -78,7 +78,14 @@ html {
   font-size: 62.5%;
   font-family: var(--primary-font)!important;
 
-  @media screen and (max-width: 900px) {
+  // Escala tipografica en dos pasos (fase 2). El root font-size es la perilla
+  // global rem: baja proporcionalmente tipografia Y spacing/radios/max-w.
+  // Sutil al entrar a tablet (992), mas marcado en mobile (768). El orden
+  // importa: ambas max-width matchean bajo 768, gana la ultima (cascada).
+  @media screen and (max-width: 991px) {
+    font-size: 58%;
+  }
+  @media screen and (max-width: 768px) {
     font-size: 55%;
   }
 }
@@ -321,6 +328,47 @@ img{
   width: 100%;
 }
 
+/* Fase 2 — normalizacion global de imagenes en mobile (<=768). Alto acotado a
+   150px para que las ilustraciones sueltas no se vean ni enormes ni diminutas;
+   object-fit contain para no deformar al acotar; centradas via object-position.
+   EXCLUYE .object-cover: esas imagenes estan hechas para LLENAR un contenedor de
+   proporcion fija (ej. el tile aspect-square de IndustriesGrid via h-full/w-full);
+   acotarlas dejaria hueco vacio en la card. Marquee-safe: NO toca margin/display,
+   asi que el margin-right de las clases de marquesina queda intacto. Los <video>
+   (hero, feature cards) no son <img>, quedan intactos. */
+@media screen and (max-width: 768px) {
+  img:not(.object-cover) {
+    width: 100%;
+    height: auto;
+    max-height: 150px;
+    object-fit: contain;
+    object-position: center;
+  }
+}
+
+/* Fase 2 — texto centrado global en mobile (<=768). Dos obstaculos que hay que
+   vencer: (1) el reset de arriba pone text-align:initial en p/h*, asi que centrar
+   el contenedor no basta; (2) las clases text-left de Tailwind ganarian por
+   especificidad. Ambos se vencen con !important DENTRO de @layer base: con cascade
+   layers, un !important en una capa temprana (base) gana incluso sobre las
+   utilidades de Tailwind. body{center} cubre el texto suelto en divs por herencia.
+   Los campos de formulario quedan fuera: se ajustan puntualmente por proyecto
+   (tamano de fuente / ancho del input), no con el centrado global. Se excluye el
+   SUBARBOL completo del campo — el label es un <p class="input__text"> dentro de
+   <label class="input"> (FieldWrapper), asi que sin esto la regla de p lo
+   centraria. La especificidad de .input * (0,1,1) vence a p!important (0,0,1). */
+@media screen and (max-width: 768px) {
+  body {
+    text-align: center;
+  }
+  h1, h2, h3, h4, h5, h6, p, li, .hero {
+    text-align: center !important;
+  }
+  .input, .input *, input, textarea, select {
+    text-align: left !important;
+  }
+}
+
 .btn-primary{
   @include button(solid);
   max-width: inherit;
@@ -333,6 +381,13 @@ img{
 
 .btn-ghost{
   @include button(ghost);
+  max-width: inherit;
+}
+
+// Color por instancia — pasar el color como "prop" via --btn-color inline,
+// ej: <a class="btn-custom" style="--btn-color: var(--color-info)">
+.btn-custom{
+  @include button(custom);
   max-width: inherit;
 }
 
@@ -353,6 +408,13 @@ img{
 .btn-sm {
   padding: 6px 12px;
   font-size: 1.2rem;
+}
+
+// Modificador tamaño grande — CTA de hero (264×56 en Figma). Combinable con
+// cualquier variante: .btn-primary.btn-lg | .btn-secondary.btn-lg
+.btn-lg {
+  padding: 18px 28px;
+  border-radius: 16px;
 }
 
 // Outline que vira a danger en hover — ej: "Desactivar"

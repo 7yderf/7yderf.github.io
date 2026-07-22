@@ -1,9 +1,9 @@
 <template>
-  <section class="sc-section w-full px-4 py-16 text-center lg:px-8">
+  <section class="sc-section w-full px-4 py-8 text-center lg:px-8 lg-2:py-16">
     <h2 class="mx-auto text-center font-secondary text-deep-ink">
-      {{ t('features.titlePre') }} <span class="text-primary">{{ t('features.titleHighlight') }}</span>
+      <span class="font-normal">{{ t('features.titlePre') }}</span><br>
+      <span class="font-bold">{{ t('features.titleHighlight') }}</span>
     </h2>
-    <p class="mx-auto mt-4 text-center">{{ t('features.subtitle') }}</p>
 
     <div
       class="cards-stack mx-auto mt-12 w-full max-w-5xl text-left"
@@ -16,13 +16,14 @@
         :style="{ '--i': i, zIndex: i + 1 }"
       >
         <article
-          class="sc-article flex-wrap items-center gap-8 rounded-3xl border border-line-3 bg-bg-second p-6 shadow-[0_18px_44px_-12px_rgba(91,63,224,0.16)] md:gap-12 md:p-10"
+          class="sc-article flex-wrap items-center gap-8 rounded-3xl border border-line-3 p-5 shadow-[0_18px_44px_-12px_rgba(91,63,224,0.16)] md:gap-12 lg-2:p-10"
           :class="i % 2 === 1 ? 'flex-row-reverse' : ''"
+          :style="{ background: item.gradient }"
         >
-          <div class="aspect-[4/3] min-w-[260px] shrink-0 grow basis-80 overflow-hidden rounded-2xl bg-primary-soft">
+          <div class="aspect-[4/3] min-w-[260px] shrink-0 grow basis-80 overflow-hidden rounded-2xl">
             <video
               :src="item.video"
-              class="h-full w-full scale-105 object-cover"
+              class="mix-blend-multiply h-full w-full scale-105 object-cover"
               autoplay
               loop
               muted
@@ -34,13 +35,13 @@
           <div class="sc-section min-w-[260px] basis-96">
             <h3 class="font-secondary text-[4.4rem] font-bold leading-tight text-deep-ink">{{ item.title }}</h3>
             <p class="mt-3 max-w-md text-ink-3">{{ item.description }}</p>
-            <a
-              href="#"
-              class="mt-5 inline-flex items-center gap-1.5 font-secondary text-base font-bold hover:underline"
-              :class="i === 1 ? 'text-accent' : 'text-primary'"
+            <NuxtLink
+              :to="localePath('/contact')"
+              class="btn-custom mt-5"
+              :style="{ '--btn-color': item.button, '--btn-text': 'var(--text-color)' }"
             >
               {{ item.link }} →
-            </a>
+            </NuxtLink>
           </div>
         </article>
       </div>
@@ -56,11 +57,28 @@ interface FeatureText {
 }
 
 const { t } = useI18n()
+const localePath = useLocalePath()
 
-// Videos por card, en orden de aparicion (public/videos)
+// Videos por card (public/videos) — solo hay 3 piezas por ahora, se reciclan
+// para las 5 cards hasta contar con las animaciones finales de cada una.
 const videos = ['/videos/candado.mp4', '/videos/terminal.mp4', '/videos/cloud.mp4']
-const texts = useLocalizedItems<FeatureText>('features.items', videos.length, ['title', 'description', 'link'])
-const items = computed(() => texts.value.map((text, i) => ({ ...text, video: videos[i] })))
+
+// Gradiente de fondo + color de botón por card, en orden de aparición (Figma).
+const cardStyles = [
+  { gradient: 'linear-gradient(180deg, #A9DCFB 0%, #FDFDFF 100%)', button: '#92CDF1' },
+  { gradient: 'linear-gradient(180deg, #DFCEFF 0%, #FDFDFF 100%)', button: '#D9C6FF' },
+  { gradient: 'linear-gradient(180deg, #FFCDAA 0%, #FFF2E8 100%)', button: '#FFB37C' },
+  { gradient: 'linear-gradient(180deg, #FFFAF7 0%, #FFFDF9 100%)', button: '#EEE0D8' },
+  { gradient: 'linear-gradient(180deg, #E1BBE1 0%, #FFF6FF 100%)', button: '#D9ADD9' },
+]
+
+const texts = useLocalizedItems<FeatureText>('features.items', cardStyles.length, ['title', 'description', 'link'])
+const items = computed(() => texts.value.map((text, i) => ({
+  ...text,
+  video: videos[i % videos.length],
+  gradient: cardStyles[i].gradient,
+  button: cardStyles[i].button,
+})))
 </script>
 
 <style scoped>

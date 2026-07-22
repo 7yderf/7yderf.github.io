@@ -1,7 +1,7 @@
 <!-- SolutionsCarousel.vue — usa Swiper Element (swiper-container). Los items "upcoming"
      se muestran atenuados, igual que en el diseño de referencia (landing.jpg). -->
 <template>
-  <section class="sc-section w-full px-4 py-16 text-center lg:px-8">
+  <section class="sc-section w-full px-4 py-8 text-center lg:px-8 lg-2:py-16">
     <h2 class="mx-auto text-center font-secondary text-deep-ink">
       {{ t('carousel.titlePre') }} <span class="text-primary">{{ t('carousel.titleHighlight') }}</span>
     </h2>

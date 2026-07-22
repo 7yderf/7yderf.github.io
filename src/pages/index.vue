@@ -3,15 +3,19 @@
 <template>
   <div>
     <Hero />
-    <LogosStrip :title="t('partners.title')" :logos="manufacturerLogos" />
-    <SolutionFinder />
+    <LogosStrip :logos="manufacturerLogos">
+      <template #title>
+        <span class="font-normal">{{ t('partners.titlePre') }}</span> <span class="font-bold">{{ t('partners.titleHighlight') }}</span>
+      </template>
+    </LogosStrip>
+    <!-- <SolutionFinder /> -->
     <FeatureCards />
+    <IndustriesGrid />
     <ProcessCta />
-    <StrategicServices />
-    <SolutionsCarousel />
+    <!-- <SolutionsCarousel /> -->
     <StatsSection />
-    <LogosStrip :title="t('trustedBy.title')" :logos="manufacturerLogos" />
-    <BlogGrid />
+    <AlliancesCarousel />
+    <NewsletterBanner />
     <FinalCta />
   </div>
 </template>

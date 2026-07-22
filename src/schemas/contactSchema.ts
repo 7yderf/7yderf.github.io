@@ -7,9 +7,11 @@ type Translate = (key: string) => string
 export function createContactSchema(t: Translate) {
   return yup.object({
     name: yup.string().trim().required(t('contact.validation.required')),
-    company: yup.string().trim().required(t('contact.validation.required')),
+    phone: yup.string().trim().required(t('contact.validation.required')),
     email: yup.string().trim().email(t('contact.validation.email')).required(t('contact.validation.required')),
+    company: yup.string().trim().required(t('contact.validation.required')),
     service: yup.string().required(t('contact.validation.required')),
+    message: yup.string().trim().required(t('contact.validation.required')),
   })
 }
 

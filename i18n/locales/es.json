@@ -18,14 +18,16 @@
     "cta": "Hablar con un experto"
   },
   "hero": {
-    "titlePre": "Conectamos tecnología con el",
-    "titleHighlight": "sector financiero.",
-    "subtitle": "Acercamos soluciones avanzadas de ciberseguridad, pagos e infraestructura, cloud a las instituciones que mueven el futuro de América Latina.",
+    "titlePre": "Conectamos",
+    "titleAccent": "tecnología",
+    "titlePost": "con el sector financiero.",
+    "subtitle": "Diseñamos, implementamos y operamos soluciones de pagos, ciberseguridad y nube soberana para instituciones",
     "ctaPrimary": "Hablar con un experto",
     "ctaSecondary": "Explorar soluciones"
   },
   "partners": {
-    "title": "Trabajamos con los líderes que marcan la diferencia",
+    "titlePre": "Tecnología respaldada",
+    "titleHighlight": "por líderes globales.",
     "logos": ["Thales", "Imperva", "Entrust", "Utimaco", "Tesseract"]
   },
   "finder": {
@@ -35,24 +37,33 @@
     "tags": ["Cumplimiento CNBV", "Conexión SPEI", "Cifrado de datos", "HSM Luna 700"]
   },
   "features": {
-    "titlePre": "Tecnologías que protegen, optimizan y",
-    "titleHighlight": "transforman.",
-    "subtitle": "Un portafolio de soluciones en ciberseguridad e infraestructura de pagos para el sector financiero.",
+    "titlePre": "Toda la infraestructura.",
+    "titleHighlight": "Una sola plataforma.",
     "items": [
       {
-        "title": "Protección de datos y criptografía",
-        "description": "HSM, gestión de llaves, autenticación y cifrado para proteger lo que más importa.",
-        "link": "Descubrir criptografía"
+        "title": "Infraestructura para Pagos",
+        "description": "Somos integradores certificados. Llevamos tu institución desde el onboarding con Banco de México hasta producción, con esquemas de alta disponibilidad y monitoreo 24/7.",
+        "link": "Iniciar conexión SPEI"
       },
       {
-        "title": "Pagos instantáneos SPEI",
-        "description": "Conectamos a las instituciones financieras con el Banco de México de forma segura y eficiente.",
-        "link": "Conectar al SPEI"
+        "title": "Criptografía y protección de datos",
+        "description": "Implementamos HSM Luna 700 de Thales, gestión completa del ciclo de vida de llaves criptográficas y autenticación reforzada. Cumplimiento con FIPS 140-2 Nivel 3",
+        "link": "Arquitectura de seguridad"
       },
       {
-        "title": "Infraestructura y nube segura",
-        "description": "Soluciones en la nube on-premise e híbridas con los más altos estándares en seguridad.",
-        "link": "Saber más de la nube"
+        "title": "Infraestructura soberana y nube híbrida",
+        "description": "Arquitectura on-premise, nube privada e híbrida con residencia de datos garantizada en México. Sin dependencia de hyperscalers extranjeros, tú controlas dónde residen tus datos",
+        "link": "Explorar infraestructura"
+      },
+      {
+        "title": "Servicios administrados",
+        "description": "Operación y monitoreo continuo de infraestructura crítica (HSM, SPEI, nube). Incluye consultoría de arquitectura, implementación, soporte NOC/SOC, y capacitación técnica a equipos internos.",
+        "link": "Descubrir servicios"
+      },
+      {
+        "title": "Cumplimiento regulatorio",
+        "description": "Adecuación a normativa CNBV, continuidad operativa y requisitos de seguridad para entidades financieras mexicanas.",
+        "link": "Explorar continuidad operativa"
       }
     ]
   },
@@ -66,35 +77,33 @@
       { "label": "Clientes y sociedad" }
     ]
   },
-  "strategic": {
-    "titlePre": "Más que tecnología somos tu aliado",
-    "titleHighlight": "estratégico.",
-    "subtitle": "Trabajamos contigo desde la estrategia hasta la implementación, acompañando cada etapa del proceso.",
+  "industries": {
+    "titlePre": "La confianza digital se construye",
+    "titleHighlight": "de forma diferente en cada industria.",
     "items": [
       {
-        "title": "Consultoría estratégica",
-        "description": "Diseñamos la mejor ruta tecnológica para tus objetivos.",
-        "link": "Quiero una consultoría"
+        "name": "Fintech y pagos",
+        "description": "Protege cada transacción con soluciones de criptografía, autenticación e infraestructura segura que garantizan velocidad, confianza y cumplimiento regulatorio."
       },
       {
-        "title": "Implementación y proyectos",
-        "description": "Ejecutamos soluciones de punta con metodología probada.",
-        "link": "Iniciar implementación"
+        "name": "Bancos y Finanzas",
+        "description": "Fortalece la seguridad de tus operaciones financieras con tecnologías diseñadas para proteger datos, identidades y procesos críticos frente a amenazas cada vez más sofisticadas."
       },
       {
-        "title": "Soporte 24/7 y monitoreo",
-        "description": "Acompañamiento continuo para asegurar la operación.",
-        "link": "Solicitar acompañamiento"
+        "name": "Aseguradoras",
+        "description": "Resguarda la información de tus asegurados y optimiza la seguridad de tus plataformas con soluciones que fortalecen la confianza y la continuidad del negocio."
       },
       {
-        "title": "Capacitación y transferencia",
-        "description": "Formamos a tu equipo para maximizar el valor de la tecnología.",
-        "link": "Solicitar una capacitación"
+        "name": "Gobierno",
+        "description": "Protege la información crítica y los servicios digitales con infraestructura criptográfica, gestión de identidades y tecnologías alineadas con los más altos estándares de seguridad."
       },
       {
-        "title": "Servicios administrados",
-        "description": "Operamos y monitoreamos tus soluciones para que tú te enfoques en crecer.",
-        "link": "Descubrir cómo operamos"
+        "name": "Retail y eCommerce",
+        "description": "Brinda experiencias de compra seguras protegiendo pagos, datos de clientes y operaciones omnicanal sin afectar la experiencia del usuario."
+      },
+      {
+        "name": "Salud",
+        "description": "Resguardamos la información clínica y los servicios digitales para ofrecer una atención segura, confiable y disponible en todo momento."
       }
     ]
   },
@@ -113,9 +122,8 @@
     ]
   },
   "stats": {
-    "titlePre": "Tecnología que impulsa negocios, personas que generan",
-    "titleHighlight": "confianza.",
-    "subtitle": "Combinamos experiencia, innovación y acompañamiento estratégico para transformar desafíos complejos en soluciones que impulsan el crecimiento con confianza.",
+    "titlePre": "Un vistazo rápido.",
+    "titleHighlight": "Un impacto duradero.",
     "items": [
       { "value": "120", "label": "Clientes en la región" },
       { "value": "+15", "label": "Años de experiencia" },
@@ -123,34 +131,20 @@
       { "value": "6", "label": "Países con presencia" }
     ]
   },
-  "trustedBy": {
-    "title": "Empresas que confían en nosotros.",
-    "logos": ["Banorte", "Scotiabank", "Walmart", "Nissan", "Actinver", "Afirme"]
+  "alliances": {
+    "titlePre": "Las alianzas que hacen",
+    "titleHighlight": "posible lo extraordinario."
   },
-  "blog": {
-    "eyebrow": "Recursos",
-    "title": "Lo nuevo en Conecta",
-    "tag": "Blog",
-    "readMore": "Leer más",
-    "posts": [
-      {
-        "title": "Soberanía y jurisdicción de datos: el nuevo desafío estratégico para las empresas digitales",
-        "excerpt": "La soberanía de datos ya no es opcional. Durante años, la conversación sobre infraestructura digital se centró en capacidad, almacenamiento..."
-      },
-      {
-        "title": "La confianza digital no se promete, se diseña, y empieza por el control criptográfico",
-        "excerpt": "El control criptográfico en servicios financieros se está convirtiendo en uno de los pilares de la confianza digital. En una..."
-      },
-      {
-        "title": "World Password Day: por qué las contraseñas ya no son seguridad y qué implica adoptar Zero Trust hoy",
-        "excerpt": "Cada año, el World Password Day nos recuerda la importancia de proteger nuestras credenciales. Sin embargo, en 2026 la conversación..."
-      }
-    ]
+  "newsletter": {
+    "title": "Tendencias en Ciberseguridad 2026",
+    "subtitle": "En los últimos años, el sector tecnológico ha vivido un punto de inflexión: más digitalización, más datos, más automatización y también más riesgo.",
+    "cta": "Descargar Whitepaper"
   },
   "finalCta": {
-    "title": "¿Listo para conectar tecnología con resultados?",
-    "subtitle": "Hablemos de cómo podemos ayudarte a proteger, optimizar y escalar tu institución.",
-    "cta": "Contáctanos"
+    "titlePre": "Tu infraestructura crítica merece un",
+    "titlePost": "equipo que la entienda",
+    "subtitle": "Agenda una sesión técnica con nuestros arquitectos de solución.",
+    "cta": "Agendar sesión técnica"
   },
   "footer": {
     "tagline": "Criptografía certificada, pagos SPEI y cloud regulado. Seguridad que conecta.",
@@ -181,24 +175,20 @@
       "title": "Contacto — Conecta",
       "description": "Cuéntanos qué desafío quieres resolver y un especialista de Conecta te contactará para diseñar la mejor estrategia tecnológica para tu organización."
     },
-    "title": "Hablemos de tu próximo proyecto",
-    "subtitle": "Cuéntanos qué desafío quieres resolver y un especialista de Conecta te contactará para diseñar la mejor estrategia tecnológica para tu organización.",
-    "info": {
-      "eyebrow": "Atención a clientes",
-      "name": "Conecta Soluciones",
-      "phone": "55 9418 0076",
-      "address": "Av. Álvaro Obregón 213, Roma Norte, Cuauhtémoc, 06700 CDMX",
-      "hours": "Lun – Vie · 9:00 – 18:00",
-      "responseTime": "Respuesta < 24 h hábiles"
-    },
+    "headingPre": "Hablemos de tus",
+    "headingHighlight": "necesidades de infraestructura",
+    "headingPost": "crítica.",
+    "subtitle": "Completa el formulario y un experto de Conecta te contactará en menos de 24 horas hábiles.",
     "form": {
-      "title": "Hablemos de tus necesidades de infraestructura crítica.",
-      "name": "Nombre",
+      "name": "Nombre completo",
       "namePlaceholder": "Tu nombre",
+      "phone": "Teléfono",
+      "phonePlaceholder": "Número de contacto",
+      "email": "Correo",
       "company": "Empresa",
       "companyPlaceholder": "Tu empresa",
-      "email": "Correo",
       "service": "Servicio de interés",
+      "servicePlaceholder": "Selecciona una opción",
       "serviceOptions": [
         "Criptografía y gestión de llaves",
         "Pagos instantáneos SPEI",
@@ -206,6 +196,8 @@
         "Consultoría estratégica",
         "Soporte y monitoreo 24/7"
       ],
+      "message": "¿Cómo podemos ayudarte?",
+      "messagePlaceholder": "Describe brevemente tu necesidad...",
       "submit": "Enviar mensaje",
       "success": "¡Mensaje enviado! Te contactaremos pronto.",
       "error": "No pudimos enviar tu mensaje. Intenta de nuevo."

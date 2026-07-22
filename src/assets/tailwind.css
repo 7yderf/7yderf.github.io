@@ -45,9 +45,9 @@
   --color-line-soft: #EFF1F5;     /* --sc-line-soft — divider deep surfaces */
 
   /* Colors — accent */
-  --color-accent: #FF7A4D;        /* --sc-accent — apricot */
+  --color-accent: #FF6700;        /* --sc-accent — naranja CTA exacto medido en Figma */
   --color-accent-soft: #FFE8DE;   /* --sc-accent-soft */
-  --color-accent-ink: #B83A0E;    /* --sc-accent-ink */
+  --color-accent-ink: #993E00;    /* --sc-accent-ink — hover/active, derivado del naranja CTA (darken 20%) */
 
   /* Colors — additional (from module audit) */
   --color-error-dark: #991B1B;    /* Status "vencido" — texto error oscuro */

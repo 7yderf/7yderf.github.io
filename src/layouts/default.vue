@@ -35,9 +35,9 @@
 
         <div class="flex items-center gap-3">
           <LanguageSwitcher />
-          <a href="#" class="btn-primary">
+          <NuxtLink :to="localePath('/contact')" class="btn-primary">
             {{ t('nav.cta') }} →
-          </a>
+          </NuxtLink>
         </div>
       </nav>
     </header>
@@ -48,13 +48,13 @@
 
     <!-- Footer -->
     <footer class="sc-footer flex-col border-t border-line bg-bg-second">
-      <div class="mx-auto grid w-full max-w-7xl gap-10 px-4 py-14 md:grid-cols-[2fr_1fr_1fr_1fr] lg:px-8">
-        <div>
+      <div class="sc-article mx-auto flex w-full max-w-7xl flex-wrap gap-10 px-4 py-7 lg:px-8 lg-2:py-14">
+        <div class="min-w-[16rem] grow-[2] basis-64">
           <div class="font-secondary text-xl font-bold text-deep-ink">CONECTA</div>
           <p class="mt-3 max-w-xs font-secondary text-sm text-ink-3">{{ t('footer.tagline') }}</p>
         </div>
 
-        <div v-for="column in footerColumns" :key="column.title">
+        <div v-for="column in footerColumns" :key="column.title" class="min-w-[10rem] grow basis-40">
           <h3 class="font-secondary text-sm font-bold text-deep-ink">{{ column.title }}</h3>
           <ul class="mt-4 flex flex-col gap-3 font-secondary text-sm text-ink-3">
             <li v-for="link in column.links" :key="link">

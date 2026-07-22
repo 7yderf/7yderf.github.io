@@ -3,32 +3,36 @@
      (margin, no flex-gap) para que el punto de empalme sea exacto. Degradado en
      los extremos vía mask-image. -->
 <template>
-  <section class="sc-section w-full px-4 py-14 text-center lg:px-8">
-    <h2 class="mx-auto text-center font-secondary text-deep-ink">{{ title }}</h2>
+  <section class="sc-section w-full py-7 text-center lg:px-8 lg-2:py-14">
+    <h2 class="mx-auto text-center text-deep-ink">
+      <slot name="title">{{ title }}</slot>
+    </h2>
 
-    <div class="logos-marquee mx-auto mt-10 w-full max-w-5xl">
-      <div class="logos-marquee__track">
-        <div class="logos-marquee__group">
-          <img
-            v-for="logo in logos"
-            :key="logo.src"
-            :src="logo.src"
-            :alt="logo.alt"
-            class="logos-marquee__logo"
-            loading="lazy"
-            decoding="async"
-          >
-        </div>
-        <div class="logos-marquee__group" aria-hidden="true">
-          <img
-            v-for="logo in logos"
-            :key="`dup-${logo.src}`"
-            :src="logo.src"
-            alt=""
-            class="logos-marquee__logo"
-            loading="lazy"
-            decoding="async"
-          >
+    <div class="mt-8 w-full border-y border-line py-5 lg-2:py-10">
+      <div class="logos-marquee mx-auto w-full max-w-5xl">
+        <div class="logos-marquee__track">
+          <div class="logos-marquee__group">
+            <img
+              v-for="logo in logos"
+              :key="logo.src"
+              :src="logo.src"
+              :alt="logo.alt"
+              class="logos-marquee__logo"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+          <div class="logos-marquee__group" aria-hidden="true">
+            <img
+              v-for="logo in logos"
+              :key="`dup-${logo.src}`"
+              :src="logo.src"
+              alt=""
+              class="logos-marquee__logo"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
         </div>
       </div>
     </div>
@@ -42,7 +46,7 @@ interface Logo {
 }
 
 defineProps<{
-  title: string
+  title?: string
   logos: Logo[]
 }>()
 </script>
@@ -79,15 +83,6 @@ defineProps<{
   margin-right: 6rem;
   flex-shrink: 0;
   object-fit: contain;
-  /* Silueta gris monocromo: unifica los colores mezclados de los SVG y hace
-     visible el logo blanco (utimaco) sobre fondo claro */
-  filter: brightness(0);
-  opacity: 0.42;
-  transition: opacity 200ms ease;
-}
-
-.logos-marquee:hover .logos-marquee__logo {
-  opacity: 0.55;
 }
 
 @keyframes logos-scroll {

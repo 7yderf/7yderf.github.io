@@ -1,6 +1,6 @@
 <template>
-  <section class="sc-section w-full px-4 py-20 lg:px-8">
-    <div class="relative mx-auto flex w-full max-w-5xl flex-col items-center rounded-3xl bg-surface-2 p-8 text-center md:p-12">
+  <section class="sc-section w-full px-4 py-10 lg:px-8 lg-2:py-20">
+    <div class="relative mx-auto flex w-full max-w-5xl flex-col items-center rounded-3xl bg-surface-2 p-6 text-center lg-2:p-12">
       <img
         src="/images/fox.svg"
         alt=""

@@ -18,6 +18,7 @@
         class="input__input"
         :type="resolvedType"
         :value="value"
+        :placeholder="placeholder"
         :data-error="hasError"
         :disabled="disabled"
         :readonly="isPasswordDefault || readonly"

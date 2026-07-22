@@ -18,14 +18,16 @@
     "cta": "Talk to an expert"
   },
   "hero": {
-    "titlePre": "We connect technology with the",
-    "titleHighlight": "financial sector.",
-    "subtitle": "We bring advanced cybersecurity, payments, infrastructure and cloud solutions to the institutions moving Latin America's future.",
+    "titlePre": "We connect",
+    "titleAccent": "technology",
+    "titlePost": "with the financial sector.",
+    "subtitle": "We design, implement and operate payment, cybersecurity and sovereign cloud solutions for institutions",
     "ctaPrimary": "Talk to an expert",
     "ctaSecondary": "Explore solutions"
   },
   "partners": {
-    "title": "We work with the leaders driving the difference",
+    "titlePre": "Technology backed",
+    "titleHighlight": "by global leaders.",
     "logos": ["Thales", "Imperva", "Entrust", "Utimaco", "Tesseract"]
   },
   "finder": {
@@ -35,24 +37,33 @@
     "tags": ["CNBV compliance", "SPEI connection", "Data encryption", "HSM Luna 700"]
   },
   "features": {
-    "titlePre": "Technologies that protect, optimize and",
-    "titleHighlight": "transform.",
-    "subtitle": "A portfolio of cybersecurity and payment infrastructure solutions for the financial sector.",
+    "titlePre": "All the infrastructure.",
+    "titleHighlight": "One single platform.",
     "items": [
       {
-        "title": "Data protection and cryptography",
-        "description": "HSM, key management, authentication and encryption to protect what matters most.",
-        "link": "Discover cryptography"
+        "title": "Payment Infrastructure",
+        "description": "We are certified integrators. We guide your institution from onboarding with Banco de México through to production, with high-availability schemes and 24/7 monitoring.",
+        "link": "Start SPEI connection"
       },
       {
-        "title": "Instant SPEI payments",
-        "description": "We connect financial institutions to Banco de México securely and efficiently.",
-        "link": "Connect to SPEI"
+        "title": "Cryptography and Data Protection",
+        "description": "We implement Thales Luna 700 HSMs, full cryptographic key lifecycle management, and reinforced authentication. Compliant with FIPS 140-2 Level 3",
+        "link": "Security architecture"
       },
       {
-        "title": "Secure infrastructure and cloud",
-        "description": "On-premise and hybrid cloud solutions with the highest security standards.",
-        "link": "Learn more about cloud"
+        "title": "Sovereign Infrastructure and Hybrid Cloud",
+        "description": "On-premise, private and hybrid cloud architecture with guaranteed data residency in Mexico. No dependency on foreign hyperscalers — you control where your data resides",
+        "link": "Explore infrastructure"
+      },
+      {
+        "title": "Managed Services",
+        "description": "Continuous operation and monitoring of critical infrastructure (HSM, SPEI, cloud). Includes architecture consulting, implementation, NOC/SOC support, and technical training for internal teams.",
+        "link": "Discover services"
+      },
+      {
+        "title": "Regulatory Compliance",
+        "description": "Compliance with CNBV regulations, operational continuity, and security requirements for Mexican financial institutions.",
+        "link": "Explore operational continuity"
       }
     ]
   },
@@ -66,35 +77,33 @@
       { "label": "Customers and society" }
     ]
   },
-  "strategic": {
-    "titlePre": "More than technology, we are your",
-    "titleHighlight": "strategic ally.",
-    "subtitle": "We work with you from strategy to implementation, supporting every step of the process.",
+  "industries": {
+    "titlePre": "Digital trust is built",
+    "titleHighlight": "differently in every industry.",
     "items": [
       {
-        "title": "Strategic consulting",
-        "description": "We design the best technology roadmap for your goals.",
-        "link": "I want consulting"
+        "name": "Fintech & Payments",
+        "description": "Protect every transaction with cryptography, authentication and secure infrastructure solutions that guarantee speed, trust and regulatory compliance."
       },
       {
-        "title": "Implementation and projects",
-        "description": "We execute end-to-end solutions with proven methodology.",
-        "link": "Start implementation"
+        "name": "Banking & Finance",
+        "description": "Strengthen the security of your financial operations with technologies designed to protect data, identities and critical processes against increasingly sophisticated threats."
       },
       {
-        "title": "24/7 support and monitoring",
-        "description": "Continuous support to ensure operations run smoothly.",
-        "link": "Request support"
+        "name": "Insurance",
+        "description": "Safeguard your policyholders' information and optimize the security of your platforms with solutions that strengthen trust and business continuity."
       },
       {
-        "title": "Training and knowledge transfer",
-        "description": "We train your team to maximize the value of your technology.",
-        "link": "Request training"
+        "name": "Government",
+        "description": "Protect critical information and digital services with cryptographic infrastructure, identity management and technologies aligned with the highest security standards."
       },
       {
-        "title": "Managed services",
-        "description": "We operate and monitor your solutions so you can focus on growing.",
-        "link": "Discover how we operate"
+        "name": "Retail & eCommerce",
+        "description": "Deliver secure shopping experiences protecting payments, customer data and omnichannel operations without compromising the user experience."
+      },
+      {
+        "name": "Healthcare",
+        "description": "We safeguard clinical information and digital services to deliver secure, reliable care that's available at all times."
       }
     ]
   },
@@ -113,9 +122,8 @@
     ]
   },
   "stats": {
-    "titlePre": "Technology that drives business, people who build",
-    "titleHighlight": "trust.",
-    "subtitle": "We combine experience, innovation and strategic support to turn complex challenges into solutions that drive growth with confidence.",
+    "titlePre": "A quick look.",
+    "titleHighlight": "A lasting impact.",
     "items": [
       { "value": "120", "label": "Clients in the region" },
       { "value": "+15", "label": "Years of experience" },
@@ -123,34 +131,20 @@
       { "value": "6", "label": "Countries with a presence" }
     ]
   },
-  "trustedBy": {
-    "title": "Companies that trust us.",
-    "logos": ["Banorte", "Scotiabank", "Walmart", "Nissan", "Actinver", "Afirme"]
+  "alliances": {
+    "titlePre": "The alliances that make",
+    "titleHighlight": "the extraordinary possible."
   },
-  "blog": {
-    "eyebrow": "Resources",
-    "title": "What's new at Conecta",
-    "tag": "Blog",
-    "readMore": "Read more",
-    "posts": [
-      {
-        "title": "Data sovereignty and jurisdiction: the new strategic challenge for digital businesses",
-        "excerpt": "Data sovereignty is no longer optional. For years, the conversation about digital infrastructure focused on capacity, storage..."
-      },
-      {
-        "title": "Digital trust isn't promised, it's designed, and it starts with cryptographic control",
-        "excerpt": "Cryptographic control in financial services is becoming one of the pillars of digital trust. In a..."
-      },
-      {
-        "title": "World Password Day: why passwords are no longer secure and what adopting Zero Trust means today",
-        "excerpt": "Every year, World Password Day reminds us of the importance of protecting our credentials. However, in 2026 the conversation..."
-      }
-    ]
+  "newsletter": {
+    "title": "Cybersecurity Trends 2026",
+    "subtitle": "In recent years, the tech sector has lived through a turning point: more digitalization, more data, more automation, and also more risk.",
+    "cta": "Download Whitepaper"
   },
   "finalCta": {
-    "title": "Ready to connect technology with results?",
-    "subtitle": "Let's talk about how we can help you protect, optimize and scale your institution.",
-    "cta": "Contact us"
+    "titlePre": "Your critical infrastructure deserves a",
+    "titlePost": "team that understands it",
+    "subtitle": "Schedule a technical session with our solution architects.",
+    "cta": "Schedule technical session"
   },
   "footer": {
     "tagline": "Certified cryptography, SPEI payments and regulated cloud. Security that connects.",
@@ -181,24 +175,20 @@
       "title": "Contact — Conecta",
       "description": "Tell us what challenge you want to solve and a Conecta specialist will reach out to design the best technology strategy for your organization."
     },
-    "title": "Let's talk about your next project",
-    "subtitle": "Tell us what challenge you want to solve and a Conecta specialist will reach out to design the best technology strategy for your organization.",
-    "info": {
-      "eyebrow": "Customer care",
-      "name": "Conecta Soluciones",
-      "phone": "55 9418 0076",
-      "address": "Av. Álvaro Obregón 213, Roma Norte, Cuauhtémoc, 06700 CDMX",
-      "hours": "Mon – Fri · 9:00 – 18:00",
-      "responseTime": "Response < 24 business hours"
-    },
+    "headingPre": "Let's talk about your",
+    "headingHighlight": "critical infrastructure",
+    "headingPost": "needs.",
+    "subtitle": "Complete the form and a Conecta expert will reach out in under 24 business hours.",
     "form": {
-      "title": "Let's talk about your critical infrastructure needs.",
-      "name": "Name",
+      "name": "Full name",
       "namePlaceholder": "Your name",
+      "phone": "Phone",
+      "phonePlaceholder": "Contact number",
+      "email": "Email",
       "company": "Company",
       "companyPlaceholder": "Your company",
-      "email": "Email",
       "service": "Service of interest",
+      "servicePlaceholder": "Select an option",
       "serviceOptions": [
         "Cryptography and key management",
         "Instant SPEI payments",
@@ -206,6 +196,8 @@
         "Strategic consulting",
         "24/7 support and monitoring"
       ],
+      "message": "How can we help you?",
+      "messagePlaceholder": "Briefly describe your need...",
       "submit": "Send message",
       "success": "Message sent! We'll be in touch soon.",
       "error": "We couldn't send your message. Please try again."

@@ -1,25 +1,49 @@
 // _component-mixins.scss
 
-// Degradado primario de CTAs — extremos definidos en :root
-// (--primary-light-color #6C46FB → --primary-dark-color #4E31DD).
-$primary-gradient: linear-gradient(135deg, var(--primary-light-color) 0%, var(--primary-dark-color) 100%);
-
 // Definición de tipos de botones
 // hover-transform: translateY(-1px) levanta el botón — solo solid y danger
 // shadow / hover-shadow: sombra base y su variante elevada en hover
 $button-types: (
   solid: (
-    bg-color:           $primary-gradient,
+    bg-color:           var(--accent-color),      // #FF6700 — CTA principal (medido en Figma)
     text-color:         var(--text-invert),
-    border-color:       transparent,            // el degradado no lleva borde visible
-    shadow:             0 4px 12px -2px rgba(174, 174, 192, 0.35),
-    hover-bg-color:     $primary-gradient,       // mismo degradado — solo sube la sombra
+    border-color:       transparent,
+    // Glow violeta bajo el botón naranja + filo superior brillante — ambos
+    // medidos en Figma (drop shadow #6D48FF 16% + inner shadow blanco 90%).
+    // Envuelto en parentesis: dentro de un mapa Sass, una lista con comas
+    // necesita sus propios parentesis para no leerse como pares clave:valor.
+    shadow:             (0 6px 22px 0 rgba(109, 72, 255, 0.16), inset 0 1px 1px rgba(255, 255, 255, 0.9)),
+    // Hover = mismo tono, un poco mas claro (no oscurecido) — mezcla en vivo
+    // con blanco, asi no depende de un segundo token fijo.
+    hover-bg-color:     color-mix(in srgb, var(--accent-color) 90%, white),
     hover-text-color:   var(--text-invert),
     hover-border-color: transparent,
-    hover-shadow:       0 8px 18px -4px rgba(174, 174, 192, 0.45),
+    hover-shadow:       (0 10px 28px -2px rgba(109, 72, 255, 0.24), inset 0 1px 1px rgba(255, 255, 255, 0.9)),
     hover-transform:    translateY(-1px),
-    active-bg:          var(--primary-dark-color),
+    active-bg:          var(--accent-ink-color),
     active-shadow:      inset 0 4px 8px rgba(0, 0, 0, 0.06)
+  ),
+  // Variante con color por instancia — pensada para botones cuyo color depende
+  // de la card/contexto que los envuelve (ej. cards de soluciones/industrias).
+  // El color (y opcionalmente el texto, para fondos claros) se pasa como "prop"
+  // vía custom properties inline:
+  //   <a class="btn-custom" style="--btn-color: #92CDF1; --btn-text: var(--text-color)">…</a>
+  // Sin definirlas, cae de vuelta al naranja de acento con texto blanco.
+  custom: (
+    bg-color:           var(--btn-color, var(--accent-color)),
+    text-color:         var(--btn-text, var(--text-invert)),
+    border-color:       transparent,
+    // Filo superior brillante (igual que solid) para el mismo volumen/relieve,
+    // independiente del color de fondo que reciba la instancia.
+    shadow:             (0 4px 12px -2px rgba(0, 0, 0, 0.16), inset 0 1px 1px rgba(255, 255, 255, 0.9)),
+    // Igual que solid: hover aclara el mismo --btn-color en vez de oscurecerlo.
+    hover-bg-color:     color-mix(in srgb, var(--btn-color, var(--accent-color)) 90%, white),
+    hover-text-color:   var(--btn-text, var(--text-invert)),
+    hover-border-color: transparent,
+    hover-shadow:       (0 8px 18px -4px rgba(0, 0, 0, 0.22), inset 0 1px 1px rgba(255, 255, 255, 0.9)),
+    hover-transform:    translateY(-1px),
+    active-bg:          var(--btn-color, var(--accent-color)),
+    active-shadow:      inset 0 4px 8px rgba(0, 0, 0, 0.12)
   ),
   outline: (
     bg-color:           #FFFFFF,
@@ -76,14 +100,15 @@ $button-types: (
 );
 
 // Mixin de botón principal
-// $border-radius: 14px es el radio base del diseño ("menos redondeado").
-// Para la variante pill usar el modificador .btn-pill (radius: 9999px).
+// $padding/$border-radius por defecto = tamaño compacto (nav, forms — 204×40
+// en Figma). Para el CTA grande de hero (264×56 en Figma) usar el modificador
+// .btn-lg. Para la variante pill usar el modificador .btn-pill (radius: 9999px).
 @mixin button(
   $type: solid,
   $width: auto,
   $max-width: 300px,
-  $padding: 14px 22px,
-  $border-radius: 14px
+  $padding: 12px 16px,
+  $border-radius: 8px
 ) {
   // Obtener configuración del tipo de botón
   $button-config: map-get($button-types, $type);
@@ -158,12 +183,12 @@ $button-types: (
   @include button(whatsapp);
 }
 
-// Ejemplo de personalización
-.button-custom {
+// Ejemplo de personalización de tamaño (no confundir con el tipo "custom" de color)
+.button-compact {
   @include button(
-    $type: solid, 
-    $width: 100%, 
-    $max-width: 250px, 
+    $type: solid,
+    $width: 100%,
+    $max-width: 250px,
     $padding: 12px 24px,
     $border-radius: 8px
   );
