@@ -61,13 +61,42 @@
             </li>
           </ul>
         </div>
+
+        <div class="min-w-[10rem] grow basis-40">
+          <h3 class="font-secondary text-sm font-bold text-deep-ink">{{ t('footer.contact.title') }}</h3>
+          <ul class="mt-4 flex flex-col gap-3 font-secondary text-sm text-ink-3">
+            <li>
+              {{ t('footer.contact.emailLabel') }}:
+              <a :href="`mailto:${t('footer.contact.email')}`" class="hover:text-primary">{{ t('footer.contact.email') }}</a>
+            </li>
+            <li>
+              {{ t('footer.contact.phoneLabel') }}:
+              <a :href="`tel:${t('footer.contact.phone').replace(/\s+/g, '')}`" class="hover:text-primary">{{ t('footer.contact.phone') }}</a>
+            </li>
+            <li>{{ t('footer.contact.address') }}</li>
+          </ul>
+
+          <div class="mt-5 flex gap-3">
+            <a
+              v-for="social in socialLinks"
+              :key="social.name"
+              :href="social.href"
+              :aria-label="social.name"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex h-9 w-9 items-center justify-center rounded-full border border-line text-deep-ink hover:border-primary hover:text-primary"
+            >
+              <Icon :icon="social.icon" width="18" height="18" />
+            </a>
+          </div>
+        </div>
       </div>
 
       <div class="border-t border-line">
         <div class="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 font-secondary text-sm text-ink-3 md:flex-row lg:px-8">
           <p>© {{ year }} Conecta. {{ t('footer.rights') }}</p>
           <div class="flex gap-6">
-            <a href="#" class="hover:text-primary">{{ t('footer.privacy') }}</a>
+            <NuxtLink :to="localePath('/privacy')" class="hover:text-primary">{{ t('footer.privacy') }}</NuxtLink>
             <a href="#" class="hover:text-primary">{{ t('footer.terms') }}</a>
             <a href="#" class="hover:text-primary">{{ t('footer.security') }}</a>
           </div>
@@ -85,13 +114,18 @@ const { t } = useI18n()
 
 const year = new Date().getFullYear()
 
-const companyLinks = useLocalizedStrings('footer.company.links', 4)
-const solutionsLinks = useLocalizedStrings('footer.solutions.links', 4)
 const complianceLinks = useLocalizedStrings('footer.compliance.links', 4)
 
+// Compañía y Soluciones ocultas por ahora (pedido explícito) — las traducciones
+// siguen en i18n/locales, solo falta agregarlas de vuelta a este array.
 const footerColumns = computed(() => [
-  { title: t('footer.company.title'), links: companyLinks.value },
-  { title: t('footer.solutions.title'), links: solutionsLinks.value },
   { title: t('footer.compliance.title'), links: complianceLinks.value },
 ])
+
+const socialLinks = [
+  { name: 'LinkedIn', icon: 'mdi:linkedin', href: 'https://www.linkedin.com/company/conectamx/' },
+  { name: 'TikTok', icon: 'simple-icons:tiktok', href: 'https://www.tiktok.com/@conectamx_soluciones' },
+  { name: 'Instagram', icon: 'mdi:instagram', href: 'https://www.instagram.com/conectamx_soluciones/' },
+  { name: 'Facebook', icon: 'mdi:facebook', href: 'https://www.facebook.com/ConectaSolucionesMX' },
+]
 </script>

@@ -136,7 +136,7 @@
     "titleHighlight": "posible lo extraordinario."
   },
   "newsletter": {
-    "title": "Tendencias en Ciberseguridad 2026",
+    "title": "Suscríbete a nuestro newsletter",
     "subtitle": "En los últimos años, el sector tecnológico ha vivido un punto de inflexión: más digitalización, más datos, más automatización y también más riesgo.",
     "cta": "Descargar Whitepaper"
   },
@@ -154,7 +154,15 @@
     "security": "Seguridad",
     "company": { "title": "Compañía", "links": ["Nosotros", "Partners", "Blog", "Eventos"] },
     "solutions": { "title": "Soluciones", "links": ["Criptografía", "Gateway SPEI", "IAM / CIAM", "Servicios"] },
-    "compliance": { "title": "Cumplimiento", "links": ["CNBV", "PCI-DSS", "Banxico", "ISO 27001"] }
+    "compliance": { "title": "Cumplimiento", "links": ["CNBV", "PCI-DSS", "Banxico", "ISO 27001"] },
+    "contact": {
+      "title": "Contacto",
+      "emailLabel": "Email",
+      "phoneLabel": "Tel",
+      "email": "contacto{'@'}conecta.mx",
+      "phone": "5594 1800 76",
+      "address": "Av. Álvaro Obregón 213, Roma Norte, Cuauhtémoc, 06700 Ciudad de México, CDMX"
+    }
   },
   "form": {
     "title": "Contáctanos",
@@ -186,5 +194,11 @@
       "description": "Esta sección está en construcción. Vuelve pronto para ver las novedades."
     },
     "title": "Este sitio web se encuentra en construcción"
+  },
+  "privacy": {
+    "meta": {
+      "title": "Aviso de Privacidad — Conecta",
+      "description": "Aviso de privacidad de Conecta Soluciones Tecnológicas conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares."
+    }
   }
 }

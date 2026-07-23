@@ -11,9 +11,14 @@
       <div class="max-w-md">
         <h2 class="font-secondary text-text-invert">{{ t('newsletter.title') }}</h2>
         <p class="mt-4 text-text-invert/85">{{ t('newsletter.subtitle') }}</p>
-        <NuxtLink :to="localePath('/contact')" class="btn-custom mt-6" :style="{ '--btn-color': '#3B1E73' }">
+        <a
+          href="/documents/whitepaper-tendencias-ciberseguridad-2026.pdf"
+          download
+          class="btn-custom mt-6"
+          :style="{ '--btn-color': '#3B1E73' }"
+        >
           {{ t('newsletter.cta') }} →
-        </NuxtLink>
+        </a>
       </div>
     </div>
   </section>
@@ -21,5 +26,4 @@
 
 <script setup lang="ts">
 const { t } = useI18n()
-const localePath = useLocalePath()
 </script>

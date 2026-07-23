@@ -15,6 +15,13 @@
         "src/components/sections/ContactSection.vue (variante simetrica: 2 campos del form, grow basis-0)"
       ],
       "resultado": "Receta aplicada sin desviaciones. Confirma madurez del patron en un 5to contexto (Nuxt/Tailwind v4, ademas de los ya registrados)."
+    },
+    {
+      "id": "pattern:visual-dos-columnas-responsive",
+      "aplicado_en": [
+        "src/components/sections/ProcessCta.vue (variante asimetrica: texto+boton flexible vs fila de iconos de ancho fijo ~664px)"
+      ],
+      "resultado": "Caso de CORRECCION, no aplicacion limpia: el par se habia tratado como simetrico (flex-1 basis-72 min-w-[240px] en ambos lados) pese a que un lado tiene contenido de ancho intrinsecamente fijo (4 iconos + 3 flechas + gaps, flex-nowrap). Sintoma: el flex-wrap no disparaba en el punto correcto — la fila de iconos se comprimia/recortaba en una ventana ancha (~604-831px, reportada por el usuario con captura) en vez de que la seccion completa saltara de fila. Fix: reclasificar como asimetrica (lado fijo -> shrink-0 sin basis/flex-1; lado flexible -> flex-1 min-w) + iconos responsivos (112px desktop / 80px tablet / 56px mobile) para que el 'lado fijo' tambien reduzca su ancho real en breakpoints menores, no solo a partir de un ancho de viewport arbitrario. 6to contexto de instanciacion, y el primero de este repo que documenta el MODO DE FALLA cuando el par se clasifica mal — complementa los casos ya registrados en el genoma (ux-015: compresion 50/50; ux-021: tabla mas ancha que el sidebar), aportando una TERCERA manifestacion del mismo anti-patron: wrap que dispara en el punto equivocado."
     }
   ],
 
@@ -67,6 +74,25 @@
       ],
       "repeticiones": 1,
       "resumen_forma": "Centrar TODO el texto en mobile globalmente requiere vencer dos cosas a la vez: (a) el mismo reset text-align:initial de la forma #1 de esta entrega, y (b) cualquier text-left explicito de Tailwind. Con Tailwind v4 (cascade layers nativas), un !important dentro de @layer base gana incluso sobre las utilities de Tailwind (viven en su propia layer, posterior en la cascada pero sin !important) — no hace falta tocar componente por componente. Excepcion necesaria y NO trivial: los form controls deben quedar fuera del centrado global (se ajustan puntual por proyecto, nunca con una regla de texto global), y en este proyecto el label es un <p class='input__text'> DENTRO de <label class='input'> (FieldWrapper.vue) — la exclusion tiene que cubrir el SUBARBOL completo (.input, .input *), no alcanza con excluir el tag <input> suelto."
+    },
+    {
+      "nombre_propuesto": "diagnostico-utility-de-tailwind-compitiendo-decide-el-mecanismo-de-fix-responsive",
+      "evidencia": [
+        "h1/h2/.hero SIN utility de tamano propia (Hero, IndustriesGrid, LogosStrip, NewsletterBanner, ContactSection, AlliancesCarousel, FinalCta, UnderConstructionSection): fix centralizado en style.scss (media query sobre el selector semantico, sin @layer)",
+        "h2/h3 CON utility de tamano propia (ProcessCta text-3xl, StatsSection text-3xl/text-4xl, FeatureCards text-[4.4rem]): el fix global NO llega — hubo que agregar clases responsive de Tailwind (base movil + md: + lg-2:) directo en cada componente, detectado recien cuando el usuario mostro captura de esas 3 secciones especificas todavia grandes tras el fix 'global'"
+      ],
+      "repeticiones": 4,
+      "resumen_forma": "Antes de decidir DONDE poner un fix de tamano responsive, hay que revisar si el heading tiene una clase Tailwind de tamano (text-*, text-[...]) puesta directo en el template: si la tiene, esa clase gana por especificidad sobre la regla semantica global (h1{...}/h2{...}) y el fix tiene que ir ahi mismo, mobile-first (base chico + md:/lg-2: restaurando el tamano grande, usando los tokens ya definidos en el theme en vez de arbitrarios nuevos). Si NO la tiene, el fix va centralizado en el stylesheet global y cubre todos esos casos de una. Mezclar los dos mecanismos por suponer 'ya lo arregle globalmente' deja instancias sin cubrir en silencio."
+    },
+    {
+      "nombre_propuesto": "mixin-button-display-flex-de-bloque-se-estira-full-width-fuera-de-un-flex-container",
+      "evidencia": [
+        "src/assets/scss/mixins/_layout-mixins.scss: @mixin flex() setea display:flex (de bloque, no inline-flex) incondicionalmente, usado por @mixin button() para centrar texto+flecha adentro",
+        "src/components/sections/FeatureCards.vue: el boton .btn-custom vive dentro de un <div class=\"sc-section ...\"> que NO es flex container para sus hijos -> el boton (caja de bloque, width:auto) se estira al 100% del ancho del padre en vez de encogerse a su contenido — reportado por el usuario como 'las cards no logran centrar el texto'",
+        "src/components/sections/ProcessCta.vue: el MISMO boton, mismo mixin, pero su padre SI es flex flex-col items-center -> ahi el boton se comporta como flex-item (shrink-to-fit) y ya queda centrado y compacto sin ningun ajuste extra"
+      ],
+      "repeticiones": 1,
+      "resumen_forma": "display:flex (a diferencia de inline-flex) crea una caja de nivel BLOQUE, y una caja de bloque con width:auto por default se estira para llenar el ancho disponible de su contenedor — salvo que ese contenedor sea el mismo un flex/grid container, en cuyo caso sus hijos (flex items) se encogen a su contenido (shrink-to-fit) por default en vez de estirarse. El mixin button() de este proyecto pone display:flex de forma incondicional para centrar su propio contenido interno, pero eso tiene una consecuencia lateral no evidente en el sitio de uso: el boton se ve compacto y centrado SOLO si el div que lo contiene tambien es flex container (como en ProcessCta); si es un div comun (como en FeatureCards), se estira full-width sin que nada en el markup lo pida explicitamente. Fix aplicado: replicar en FeatureCards el mismo contenedor flex flex-col items-center (mobile) / items-start (desktop) que ProcessCta ya tenia. Cuando_no: si en algun lugar se quiere el boton full-width a proposito, ya existe el modificador .btn-block — no depender de 'que el padre no sea flex' como mecanismo implicito para lograrlo."
     }
   ],
 
@@ -83,5 +109,12 @@
     }
   ],
 
-  "nota_para_curacion_humana": "adapt_pattern(visual-dos-columnas-responsive) devolvio en su 'provenance' una atribucion previa a frt-cnct-web (case:ux-015, '3 secciones') fechada antes de esta sesion — pero la descripcion de ux-015 ('ClientResumenView: dos columnas form+sidebar') no corresponde a nada visible en este repo (que es un landing + /contact, sin vistas de tipo CRM). No pude reconciliar el origen de esa atribucion cruzada; lo dejo senalado en vez de inventar una explicacion, por si hay un mapeo de proyectos o un caso mal indexado que amerite revision humana."
+  "nota_para_curacion_humana": "adapt_pattern(visual-dos-columnas-responsive) devolvio en su 'provenance' una atribucion previa a frt-cnct-web (case:ux-015, '3 secciones') fechada antes de esta sesion — pero la descripcion de ux-015 ('ClientResumenView: dos columnas form+sidebar') no corresponde a nada visible en este repo (que es un landing + /contact, sin vistas de tipo CRM). No pude reconciliar el origen de esa atribucion cruzada; lo dejo senalado en vez de inventar una explicacion, por si hay un mapeo de proyectos o un caso mal indexado que amerite revision humana.",
+  "_curado": {
+    "estado": "curacion_cerrada_con_conocimiento_local_en_espera",
+    "fecha_curacion": "2026-07-22",
+    "resultado": "Sembrados pattern:correccion-css-en-la-declaracion-ganadora (candidato, governed_by []) y case:frt-cnct-text-align-bloqueado-por-reset-local; ledger n=1 para frt-cnct-web. Afinado pattern:visual-dos-columnas-responsive (ancho intrinseco + escala visual separada del colapso) con case:frt-cnct-process-cta-wrap-tardio-por-ancho-intrinseco; corregida la trazabilidad ux-015/ux-020 sin cambiar la promocion ni n_contextos=3. Las formas object-fit/button-flex se cierran como conocimiento local en espera de contraste, con criterios de reapertura en la curacion amplia; no se siembran ni alteran el ledger.",
+    "copia_canonica": "C:\\Users\\Fredy\\Documents\\eure-k\\docs\\operacion\\siembra\\observation-correccion-css-declaracion-ganadora.json",
+    "curacion_amplia": "C:\\Users\\Fredy\\Documents\\eure-k\\docs\\operacion\\auditoria\\observation-frt-cnct-web-responsive-curada.json"
+  }
 }

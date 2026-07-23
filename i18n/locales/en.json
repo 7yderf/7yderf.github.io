@@ -136,7 +136,7 @@
     "titleHighlight": "the extraordinary possible."
   },
   "newsletter": {
-    "title": "Cybersecurity Trends 2026",
+    "title": "Subscribe to our newsletter",
     "subtitle": "In recent years, the tech sector has lived through a turning point: more digitalization, more data, more automation, and also more risk.",
     "cta": "Download Whitepaper"
   },
@@ -154,7 +154,15 @@
     "security": "Security",
     "company": { "title": "Company", "links": ["About us", "Partners", "Blog", "Events"] },
     "solutions": { "title": "Solutions", "links": ["Cryptography", "SPEI Gateway", "IAM / CIAM", "Services"] },
-    "compliance": { "title": "Compliance", "links": ["CNBV", "PCI-DSS", "Banxico", "ISO 27001"] }
+    "compliance": { "title": "Compliance", "links": ["CNBV", "PCI-DSS", "Banxico", "ISO 27001"] },
+    "contact": {
+      "title": "Contact",
+      "emailLabel": "Email",
+      "phoneLabel": "Phone",
+      "email": "contacto{'@'}conecta.mx",
+      "phone": "5594 1800 76",
+      "address": "Av. Álvaro Obregón 213, Roma Norte, Cuauhtémoc, 06700 Mexico City, CDMX"
+    }
   },
   "form": {
     "title": "Contact us",
@@ -186,5 +194,11 @@
       "description": "This section is under construction. Check back soon for updates."
     },
     "title": "This website is currently under construction"
+  },
+  "privacy": {
+    "meta": {
+      "title": "Privacy Notice — Conecta",
+      "description": "Conecta Soluciones Tecnológicas' privacy notice under Mexico's Federal Law on Protection of Personal Data Held by Private Parties. Notice available in Spanish."
+    }
   }
 }
