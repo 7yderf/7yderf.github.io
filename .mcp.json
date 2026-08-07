@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "eure-k": {
+      "type": "stdio",
+      "command": "eure-k",
+      "args": [
+        "mcp",
+        "--project",
+        "auto"
+      ]
+    }
+  }
+}

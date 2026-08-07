@@ -1,0 +1,677 @@
+{
+  "$schema": "https://eure-k.local/schemas/project-memory-v1.json",
+  "schema": "eure-k.project-memory/v1",
+  "revision": 1,
+  "project": {
+    "id": "frt-cnct-web",
+    "repository_fingerprint": "git-remote-v1:sha256:9cecfa5ed6040202f52f46768540e1b8a10fa6c11be8f5acbcaf8dbea368cb60",
+    "display_name": "Conecta Web",
+    "stack": [
+      "nuxt",
+      "vue",
+      "typescript"
+    ],
+    "created_at": "2026-08-07T05:13:10.718Z",
+    "bootstrap": {
+      "mode": "existing",
+      "strategy": null,
+      "scope": "src",
+      "source_kind": "context-map/v0",
+      "source_path": "context-map.json",
+      "source_hash": "sha256:ecb00be6e0208e34c84a7dd795b35a9c2f9e320af0c891cd789a7193223ad3e3",
+      "coverage": "source-only",
+      "historical_validation": "not-claimed"
+    }
+  },
+  "genome_baseline": {
+    "id": "eure-k",
+    "revision": null,
+    "server_version": null,
+    "schema_revision": null,
+    "last_consulted_at": null
+  },
+  "graph": {
+    "derived": {
+      "snapshot": {
+        "cultivator": "legacy-import",
+        "version": "v0",
+        "adapter": "legacy/unknown",
+        "target": "unknown",
+        "generated_at": "2026-08-07T05:13:10.718Z",
+        "content_hash": "sha256:bc654bdd866a8ab96371bba5abc228d160da1cf01a6b0791e34ddcc8cad2c1aa"
+      },
+      "nodes": [
+        {
+          "id": "src/app.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "app.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/inputs/FieldWrapper.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "FieldWrapper.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/inputs/types.ts",
+          "type": "unknown",
+          "layer": "structure",
+          "label": "types.ts",
+          "language": "typescript",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/inputs/index.ts",
+          "type": "unknown",
+          "layer": "structure",
+          "label": "index.ts",
+          "language": "typescript",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/inputs/VCheckbox.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "VCheckbox.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/inputs/VDatePicker.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "VDatePicker.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/inputs/VDateRangePicker.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "VDateRangePicker.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/others/FieldLabel.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "FieldLabel.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/assets/scss/inputs/Input.scss",
+          "type": "unknown",
+          "layer": "structure",
+          "label": "Input.scss",
+          "language": "unknown",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/inputs/VDateTimePicker.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "VDateTimePicker.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/inputs/VDateWithTimePicker.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "VDateWithTimePicker.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/inputs/VInput.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "VInput.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/inputs/VMonthPicker.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "VMonthPicker.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/inputs/VSelect.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "VSelect.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/inputs/VTextArea.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "VTextArea.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/assets/scss/custom/Input.scss",
+          "type": "unknown",
+          "layer": "structure",
+          "label": "Input.scss",
+          "language": "unknown",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/others/index.ts",
+          "type": "unknown",
+          "layer": "structure",
+          "label": "index.ts",
+          "language": "typescript",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/others/PasswordStrengthValidator.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "PasswordStrengthValidator.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/BlogGrid.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "BlogGrid.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/ContactSection.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "ContactSection.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/schemas/contactSchema.ts",
+          "type": "schema",
+          "layer": "structure",
+          "label": "contactSchema.ts",
+          "language": "typescript",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/FeatureCards.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "FeatureCards.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/FinalCta.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "FinalCta.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/Hero.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "Hero.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/LogosStrip.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "LogosStrip.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/ProcessCta.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "ProcessCta.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/SolutionFinder.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "SolutionFinder.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/SolutionsCarousel.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "SolutionsCarousel.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/StatsSection.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "StatsSection.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/StrategicServices.vue",
+          "type": "service",
+          "layer": "structure",
+          "label": "StrategicServices.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/shared/LanguageSwitcher.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "LanguageSwitcher.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/composables/useAlerts.ts",
+          "type": "logic",
+          "layer": "structure",
+          "label": "useAlerts.ts",
+          "language": "typescript",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/composables/useErrorHandler.ts",
+          "type": "logic",
+          "layer": "structure",
+          "label": "useErrorHandler.ts",
+          "language": "typescript",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/composables/useLocalizedList.ts",
+          "type": "logic",
+          "layer": "structure",
+          "label": "useLocalizedList.ts",
+          "language": "typescript",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/composables/useMedia.ts",
+          "type": "logic",
+          "layer": "structure",
+          "label": "useMedia.ts",
+          "language": "typescript",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/layouts/default.vue",
+          "type": "layout",
+          "layer": "structure",
+          "label": "default.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/pages/contact.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "contact.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/pages/index.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "index.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/plugins/lightgallery.ts",
+          "type": "unknown",
+          "layer": "structure",
+          "label": "lightgallery.ts",
+          "language": "typescript",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/plugins/swiper.client.ts",
+          "type": "unknown",
+          "layer": "structure",
+          "label": "swiper.client.ts",
+          "language": "typescript",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/plugins/vue-query.ts",
+          "type": "unknown",
+          "layer": "structure",
+          "label": "vue-query.ts",
+          "language": "typescript",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/stores/app.ts",
+          "type": "state",
+          "layer": "structure",
+          "label": "app.ts",
+          "language": "typescript",
+          "scope": "shared",
+          "flow": null,
+          "molecule": "molecule:gestor-estado"
+        }
+      ],
+      "edges": [
+        {
+          "id": "dep:c7b3f3e2996d",
+          "kind": "dependency",
+          "from": "src/components/inputs/FieldWrapper.vue",
+          "to": "src/components/inputs/types.ts",
+          "reason": "import",
+          "legacy_id": "e1"
+        },
+        {
+          "id": "dep:a6b4c54275ab",
+          "kind": "dependency",
+          "from": "src/components/inputs/VCheckbox.vue",
+          "to": "src/components/inputs/types.ts",
+          "reason": "import",
+          "legacy_id": "e2"
+        },
+        {
+          "id": "dep:c33888c7c94f",
+          "kind": "dependency",
+          "from": "src/components/inputs/VDatePicker.vue",
+          "to": "src/components/inputs/FieldWrapper.vue",
+          "reason": "import",
+          "legacy_id": "e3"
+        },
+        {
+          "id": "dep:7be3abc05f60",
+          "kind": "dependency",
+          "from": "src/components/inputs/VDatePicker.vue",
+          "to": "src/components/inputs/types.ts",
+          "reason": "import",
+          "legacy_id": "e4"
+        },
+        {
+          "id": "dep:eb2c2303a118",
+          "kind": "dependency",
+          "from": "src/components/inputs/VDateRangePicker.vue",
+          "to": "src/components/others/FieldLabel.vue",
+          "reason": "import",
+          "legacy_id": "e5"
+        },
+        {
+          "id": "dep:2c6907d8a40d",
+          "kind": "dependency",
+          "from": "src/components/inputs/VDateRangePicker.vue",
+          "to": "src/assets/scss/inputs/Input.scss",
+          "reason": "import",
+          "legacy_id": "e6"
+        },
+        {
+          "id": "dep:52693b8958ac",
+          "kind": "dependency",
+          "from": "src/components/inputs/VDateTimePicker.vue",
+          "to": "src/components/others/FieldLabel.vue",
+          "reason": "import",
+          "legacy_id": "e7"
+        },
+        {
+          "id": "dep:e6340058fe90",
+          "kind": "dependency",
+          "from": "src/components/inputs/VDateTimePicker.vue",
+          "to": "src/assets/scss/inputs/Input.scss",
+          "reason": "import",
+          "legacy_id": "e8"
+        },
+        {
+          "id": "dep:7e20d0769d3b",
+          "kind": "dependency",
+          "from": "src/components/inputs/VDateWithTimePicker.vue",
+          "to": "src/components/others/FieldLabel.vue",
+          "reason": "import",
+          "legacy_id": "e9"
+        },
+        {
+          "id": "dep:283ebbe53cf8",
+          "kind": "dependency",
+          "from": "src/components/inputs/VDateWithTimePicker.vue",
+          "to": "src/assets/scss/inputs/Input.scss",
+          "reason": "import",
+          "legacy_id": "e10"
+        },
+        {
+          "id": "dep:e0216b1d39dd",
+          "kind": "dependency",
+          "from": "src/components/inputs/VInput.vue",
+          "to": "src/components/inputs/FieldWrapper.vue",
+          "reason": "import",
+          "legacy_id": "e11"
+        },
+        {
+          "id": "dep:d966d8326d4e",
+          "kind": "dependency",
+          "from": "src/components/inputs/VInput.vue",
+          "to": "src/components/inputs/types.ts",
+          "reason": "import",
+          "legacy_id": "e12"
+        },
+        {
+          "id": "dep:cecd1afd202b",
+          "kind": "dependency",
+          "from": "src/components/inputs/VMonthPicker.vue",
+          "to": "src/components/inputs/types.ts",
+          "reason": "import",
+          "legacy_id": "e13"
+        },
+        {
+          "id": "dep:9f160a6ea451",
+          "kind": "dependency",
+          "from": "src/components/inputs/VSelect.vue",
+          "to": "src/components/inputs/FieldWrapper.vue",
+          "reason": "import",
+          "legacy_id": "e14"
+        },
+        {
+          "id": "dep:14809c8388f8",
+          "kind": "dependency",
+          "from": "src/components/inputs/VSelect.vue",
+          "to": "src/components/inputs/types.ts",
+          "reason": "import",
+          "legacy_id": "e15"
+        },
+        {
+          "id": "dep:7f0b6d7f9014",
+          "kind": "dependency",
+          "from": "src/components/inputs/VTextArea.vue",
+          "to": "src/components/inputs/FieldWrapper.vue",
+          "reason": "import",
+          "legacy_id": "e16"
+        },
+        {
+          "id": "dep:0c099799d931",
+          "kind": "dependency",
+          "from": "src/components/inputs/VTextArea.vue",
+          "to": "src/components/inputs/types.ts",
+          "reason": "import",
+          "legacy_id": "e17"
+        },
+        {
+          "id": "dep:1c290ae9e9b6",
+          "kind": "dependency",
+          "from": "src/components/others/FieldLabel.vue",
+          "to": "src/assets/scss/custom/Input.scss",
+          "reason": "import",
+          "legacy_id": "e18"
+        },
+        {
+          "id": "dep:3be84eaceff3",
+          "kind": "dependency",
+          "from": "src/components/others/index.ts",
+          "to": "src/components/others/PasswordStrengthValidator.vue",
+          "reason": "import",
+          "legacy_id": "e19"
+        },
+        {
+          "id": "dep:83f2052314ef",
+          "kind": "dependency",
+          "from": "src/components/sections/ContactSection.vue",
+          "to": "src/components/inputs/types.ts",
+          "reason": "import",
+          "legacy_id": "e21"
+        }
+      ],
+      "synapses": [
+        {
+          "subtype": "instance-of",
+          "origin": "src/stores/app.ts",
+          "to": "molecule:gestor-estado"
+        }
+      ]
+    },
+    "curated": {
+      "node_annotations": [],
+      "edges": [
+        {
+          "id": "e20",
+          "kind": "rationale",
+          "from": "src/components/sections/ContactSection.vue",
+          "to": "src/schemas/contactSchema.ts",
+          "reason": "La sección de contacto delega la validación a un schema declarativo externo, desacoplado del layout."
+        }
+      ],
+      "synapses": [
+        {
+          "subtype": "governed-by",
+          "origin": "e20",
+          "to": "principle:6"
+        }
+      ],
+      "patterns": [],
+      "cases": [],
+      "exceptions": []
+    }
+  },
+  "worklog": {
+    "tasks": [],
+    "checkpoints": [
+      {
+        "id": "checkpoint:0",
+        "parent": null,
+        "task": null,
+        "kind": "legacy-import",
+        "created_at": "2026-08-07T05:13:10.718Z",
+        "graph_hash": "sha256:aa9f97f0b315bba34ac7887787a494b1209d37c2a2240da8131376baa6e2c50e",
+        "curated_hash": "sha256:27f00b132c4f9ff51b084b78def5bf45a6bb1a7e36e7475606445c3e84219194",
+        "delta": {
+          "kind": "legacy-import",
+          "source": "context-map.json"
+        }
+      }
+    ]
+  },
+  "observations": []
+}
