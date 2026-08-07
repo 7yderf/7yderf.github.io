@@ -27,3 +27,6 @@ logs
 
 # Raw design assets (Drive export) — no confundir con src/assets (codigo)
 /assets
+
+# Respaldo que Eureka reescribe en cada mutacion de project-memory
+project-memory-v1.json.bak

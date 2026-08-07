@@ -1,0 +1,51 @@
+{
+  "schema": "eure-k.observation/v1",
+  "id": "observation:frt-cnct-web:checkpoint-base-1-checkpoint-1",
+  "generated_at": "2026-08-07T22:22:52.947Z",
+  "project": {
+    "id": "frt-cnct-web",
+    "display_name": "Conecta Web",
+    "stack": [
+      "nuxt",
+      "vue",
+      "typescript"
+    ]
+  },
+  "range": {
+    "from_checkpoint": "checkpoint:base:1",
+    "to_checkpoint": "checkpoint:1",
+    "checkpoints": [
+      "checkpoint:1"
+    ],
+    "tasks": [
+      "task:frt-cnct-web:1"
+    ],
+    "checkpoint_hashes": {
+      "checkpoint:1": {
+        "graph": "sha256:84df3472f0a4f2c8c081ce9091821f484c9f15891d4f88f733a27f66ed966ceb",
+        "curated": "sha256:e98e8253e2728a4c0da4e5f4f0fc8daee8f071d30cb8cce49898aede64f8bc88"
+      }
+    }
+  },
+  "instances_of_genome": [
+    {
+      "source": "decision",
+      "kind": "adopt",
+      "pattern": "pattern:visual-dos-columnas-responsive",
+      "decision": "decision:1:1",
+      "task": "task:frt-cnct-web:1",
+      "rationale": "Todas las zonas multi-columna de la vista HSM colapsan por ancho disponible (flex-wrap + grow/basis + min-w) en vez de atarse a un breakpoint, respetando el invariante del patron sin modificarlo.",
+      "evidence": [
+        "src/components/sections/HsmBeyond.vue",
+        "src/components/sections/HsmHero.vue",
+        "src/components/sections/HsmOrgMosaic.vue",
+        "src/components/sections/HsmTechDiagram.vue",
+        "src/components/sections/HsmUseCases.vue"
+      ]
+    }
+  ],
+  "local_patterns": [],
+  "new_repeated_forms": [],
+  "excluded_matches": [],
+  "frictions": []
+}

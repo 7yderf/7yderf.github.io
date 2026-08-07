@@ -1,7 +1,7 @@
 {
   "$schema": "https://eure-k.local/schemas/project-memory-v1.json",
   "schema": "eure-k.project-memory/v1",
-  "revision": 1,
+  "revision": 17,
   "project": {
     "id": "frt-cnct-web",
     "repository_fingerprint": "git-remote-v1:sha256:9cecfa5ed6040202f52f46768540e1b8a10fa6c11be8f5acbcaf8dbea368cb60",
@@ -25,20 +25,21 @@
   },
   "genome_baseline": {
     "id": "eure-k",
-    "revision": null,
-    "server_version": null,
-    "schema_revision": null,
-    "last_consulted_at": null
+    "revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+    "server_version": "0.19.1",
+    "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+    "last_consulted_at": "2026-08-07T23:08:25.182Z",
+    "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7"
   },
   "graph": {
     "derived": {
       "snapshot": {
-        "cultivator": "legacy-import",
-        "version": "v0",
-        "adapter": "legacy/unknown",
-        "target": "unknown",
-        "generated_at": "2026-08-07T05:13:10.718Z",
-        "content_hash": "sha256:bc654bdd866a8ab96371bba5abc228d160da1cf01a6b0791e34ddcc8cad2c1aa"
+        "cultivator": "context-graph",
+        "version": "headless-v1",
+        "adapter": "legacy-front",
+        "target": "src",
+        "generated_at": "2026-08-07T22:28:09.964Z",
+        "content_hash": "sha256:53cd42958dba66b497941f07df2778d66f7d7993e72b802d9d94c7bbafe3f035"
       },
       "nodes": [
         {
@@ -66,16 +67,6 @@
           "type": "unknown",
           "layer": "structure",
           "label": "types.ts",
-          "language": "typescript",
-          "scope": "shared",
-          "flow": null,
-          "molecule": null
-        },
-        {
-          "id": "src/components/inputs/index.ts",
-          "type": "unknown",
-          "layer": "structure",
-          "label": "index.ts",
           "language": "typescript",
           "scope": "shared",
           "flow": null,
@@ -192,21 +183,21 @@
           "molecule": null
         },
         {
-          "id": "src/assets/scss/custom/Input.scss",
+          "id": "src/components/inputs/index.ts",
           "type": "unknown",
           "layer": "structure",
-          "label": "Input.scss",
-          "language": "unknown",
+          "label": "index.ts",
+          "language": "typescript",
           "scope": "shared",
           "flow": null,
           "molecule": null
         },
         {
-          "id": "src/components/others/index.ts",
+          "id": "src/assets/scss/custom/Input.scss",
           "type": "unknown",
           "layer": "structure",
-          "label": "index.ts",
-          "language": "typescript",
+          "label": "Input.scss",
+          "language": "unknown",
           "scope": "shared",
           "flow": null,
           "molecule": null
@@ -222,10 +213,20 @@
           "molecule": null
         },
         {
-          "id": "src/components/sections/BlogGrid.vue",
+          "id": "src/components/others/index.ts",
+          "type": "unknown",
+          "layer": "structure",
+          "label": "index.ts",
+          "language": "typescript",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/AlliancesCarousel.vue",
           "type": "component",
           "layer": "structure",
-          "label": "BlogGrid.vue",
+          "label": "AlliancesCarousel.vue",
           "language": "vue",
           "scope": "shared",
           "flow": null,
@@ -237,16 +238,6 @@
           "layer": "structure",
           "label": "ContactSection.vue",
           "language": "vue",
-          "scope": "shared",
-          "flow": null,
-          "molecule": null
-        },
-        {
-          "id": "src/schemas/contactSchema.ts",
-          "type": "schema",
-          "layer": "structure",
-          "label": "contactSchema.ts",
-          "language": "typescript",
           "scope": "shared",
           "flow": null,
           "molecule": null
@@ -282,10 +273,170 @@
           "molecule": null
         },
         {
+          "id": "src/components/sections/HsmBeyond.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "HsmBeyond.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/HsmDataLocation.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "HsmDataLocation.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/HsmFaq.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "HsmFaq.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/HsmFinalCta.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "HsmFinalCta.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/HsmHero.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "HsmHero.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/HsmOrgCard.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "HsmOrgCard.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/HsmOrgMosaic.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "HsmOrgMosaic.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/HsmPains.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "HsmPains.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/HsmSteps.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "HsmSteps.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/HsmSupport.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "HsmSupport.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/HsmTechCard.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "HsmTechCard.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/HsmTechDiagram.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "HsmTechDiagram.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/HsmUseCases.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "HsmUseCases.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/IndustriesGrid.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "IndustriesGrid.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
           "id": "src/components/sections/LogosStrip.vue",
           "type": "component",
           "layer": "structure",
           "label": "LogosStrip.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/NewsletterBanner.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "NewsletterBanner.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/PrivacyNoticeSection.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "PrivacyNoticeSection.vue",
           "language": "vue",
           "scope": "shared",
           "flow": null,
@@ -332,10 +483,10 @@
           "molecule": null
         },
         {
-          "id": "src/components/sections/StrategicServices.vue",
-          "type": "service",
+          "id": "src/components/sections/UnderConstructionSection.vue",
+          "type": "component",
           "layer": "structure",
-          "label": "StrategicServices.vue",
+          "label": "UnderConstructionSection.vue",
           "language": "vue",
           "scope": "shared",
           "flow": null,
@@ -412,10 +563,40 @@
           "molecule": null
         },
         {
+          "id": "src/pages/hardware-criptografico.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "hardware-criptografico.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
           "id": "src/pages/index.vue",
           "type": "component",
           "layer": "structure",
           "label": "index.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/pages/privacy.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "privacy.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/pages/under-construction.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "under-construction.vue",
           "language": "vue",
           "scope": "shared",
           "flow": null,
@@ -614,14 +795,6 @@
           "to": "src/components/others/PasswordStrengthValidator.vue",
           "reason": "import",
           "legacy_id": "e19"
-        },
-        {
-          "id": "dep:83f2052314ef",
-          "kind": "dependency",
-          "from": "src/components/sections/ContactSection.vue",
-          "to": "src/components/inputs/types.ts",
-          "reason": "import",
-          "legacy_id": "e21"
         }
       ],
       "synapses": [
@@ -640,7 +813,8 @@
           "kind": "rationale",
           "from": "src/components/sections/ContactSection.vue",
           "to": "src/schemas/contactSchema.ts",
-          "reason": "La sección de contacto delega la validación a un schema declarativo externo, desacoplado del layout."
+          "reason": "La sección de contacto delega la validación a un schema declarativo externo, desacoplado del layout.",
+          "integrity": "orphaned"
         }
       ],
       "synapses": [
@@ -656,7 +830,764 @@
     }
   },
   "worklog": {
-    "tasks": [],
+    "tasks": [
+      {
+        "id": "task:frt-cnct-web:1",
+        "sequence": 1,
+        "intent": "Maquetar la nueva vista completa de Hardware Criptografico (HSM) a partir de referencia visual, reutilizando tokens, componentes y base responsive ya definidos en el home; solo se crean tokens nuevos si no existe equivalente y quedan documentados. Alcance exclusivamente visual y responsive: sin integracion API ni logica de negocio.",
+        "status": "recorded",
+        "opened_at": "2026-08-07T17:40:21.158Z",
+        "closed_at": "2026-08-07T22:22:52.947Z",
+        "consultations": [
+          {
+            "id": "consult:1:1",
+            "at": "2026-08-07T17:40:44.533Z",
+            "intent": "Recuperar patrones de layout responsive y de clases semanticas ya vigentes en el proyecto, mas el inventario de secciones existentes del home, para maquetar la vista de Hardware Criptografico reutilizando formas ya definidas en lugar de inventar nuevas.",
+            "tool": "find_by_pattern",
+            "arguments": {
+              "name": "visual-dos-columnas-responsive"
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "case:frt-cnct-process-cta-wrap-tardio-por-ancho-intrinseco",
+              "case:ux-002",
+              "case:ux-015",
+              "case:ux-016",
+              "case:ux-020",
+              "case:ux-021",
+              "pattern:visual-dos-columnas-responsive",
+              "principle:v2",
+              "principle:v5"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:8f1de60f-46c0-4c61-827b-febf0fd3b306",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.19.1",
+              "overlay_revision": 2,
+              "overlay_graph_hash": "sha256:50c683b99be7ca47f65e062c5fda3fcae97ed11e63c849bca24a59d18d753620",
+              "overlay_curated_hash": "sha256:e98e8253e2728a4c0da4e5f4f0fc8daee8f071d30cb8cce49898aede64f8bc88",
+              "output_hash": "sha256:1f9cd2681e864038d9382d481a0e6d796741f8c0813879a6025084bfda51ec5e",
+              "candidate_sources": [
+                {
+                  "id": "case:frt-cnct-process-cta-wrap-tardio-por-ancho-intrinseco",
+                  "source": "genome"
+                },
+                {
+                  "id": "case:ux-002",
+                  "source": "genome"
+                },
+                {
+                  "id": "case:ux-015",
+                  "source": "genome"
+                },
+                {
+                  "id": "case:ux-016",
+                  "source": "genome"
+                },
+                {
+                  "id": "case:ux-020",
+                  "source": "genome"
+                },
+                {
+                  "id": "case:ux-021",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:visual-dos-columnas-responsive",
+                  "source": "genome"
+                },
+                {
+                  "id": "principle:v2",
+                  "source": "genome"
+                },
+                {
+                  "id": "principle:v5",
+                  "source": "genome"
+                }
+              ]
+            }
+          },
+          {
+            "id": "consult:1:2",
+            "at": "2026-08-07T17:40:46.094Z",
+            "intent": "Recuperar patrones de layout responsive y de clases semanticas ya vigentes en el proyecto, mas el inventario de secciones existentes del home, para maquetar la vista de Hardware Criptografico reutilizando formas ya definidas en lugar de inventar nuevas.",
+            "tool": "find_node",
+            "arguments": {
+              "query": "sections",
+              "limit": 20
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "frt-cnct-web::src/components/sections/AlliancesCarousel.vue",
+              "frt-cnct-web::src/components/sections/ContactSection.vue",
+              "frt-cnct-web::src/components/sections/FeatureCards.vue",
+              "frt-cnct-web::src/components/sections/FinalCta.vue",
+              "frt-cnct-web::src/components/sections/Hero.vue",
+              "frt-cnct-web::src/components/sections/IndustriesGrid.vue",
+              "frt-cnct-web::src/components/sections/LogosStrip.vue",
+              "frt-cnct-web::src/components/sections/NewsletterBanner.vue",
+              "frt-cnct-web::src/components/sections/PrivacyNoticeSection.vue",
+              "frt-cnct-web::src/components/sections/ProcessCta.vue",
+              "frt-cnct-web::src/components/sections/SolutionFinder.vue",
+              "frt-cnct-web::src/components/sections/SolutionsCarousel.vue",
+              "frt-cnct-web::src/components/sections/StatsSection.vue",
+              "frt-cnct-web::src/components/sections/UnderConstructionSection.vue"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:4efcd914-a296-47e0-ab21-dbaaf74c572d",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.19.1",
+              "overlay_revision": 2,
+              "overlay_graph_hash": "sha256:50c683b99be7ca47f65e062c5fda3fcae97ed11e63c849bca24a59d18d753620",
+              "overlay_curated_hash": "sha256:e98e8253e2728a4c0da4e5f4f0fc8daee8f071d30cb8cce49898aede64f8bc88",
+              "output_hash": "sha256:66ad75888d0c8c22e65ba7fd8e79b8e0a21d70504f2b0ae417d742cc245169c7",
+              "candidate_sources": [
+                {
+                  "id": "frt-cnct-web::src/components/sections/AlliancesCarousel.vue",
+                  "source": "overlay"
+                },
+                {
+                  "id": "frt-cnct-web::src/components/sections/ContactSection.vue",
+                  "source": "overlay"
+                },
+                {
+                  "id": "frt-cnct-web::src/components/sections/FeatureCards.vue",
+                  "source": "overlay"
+                },
+                {
+                  "id": "frt-cnct-web::src/components/sections/FinalCta.vue",
+                  "source": "overlay"
+                },
+                {
+                  "id": "frt-cnct-web::src/components/sections/Hero.vue",
+                  "source": "overlay"
+                },
+                {
+                  "id": "frt-cnct-web::src/components/sections/IndustriesGrid.vue",
+                  "source": "overlay"
+                },
+                {
+                  "id": "frt-cnct-web::src/components/sections/LogosStrip.vue",
+                  "source": "overlay"
+                },
+                {
+                  "id": "frt-cnct-web::src/components/sections/NewsletterBanner.vue",
+                  "source": "overlay"
+                },
+                {
+                  "id": "frt-cnct-web::src/components/sections/PrivacyNoticeSection.vue",
+                  "source": "overlay"
+                },
+                {
+                  "id": "frt-cnct-web::src/components/sections/ProcessCta.vue",
+                  "source": "overlay"
+                },
+                {
+                  "id": "frt-cnct-web::src/components/sections/SolutionFinder.vue",
+                  "source": "overlay"
+                },
+                {
+                  "id": "frt-cnct-web::src/components/sections/SolutionsCarousel.vue",
+                  "source": "overlay"
+                },
+                {
+                  "id": "frt-cnct-web::src/components/sections/StatsSection.vue",
+                  "source": "overlay"
+                },
+                {
+                  "id": "frt-cnct-web::src/components/sections/UnderConstructionSection.vue",
+                  "source": "overlay"
+                }
+              ]
+            }
+          },
+          {
+            "id": "consult:1:3",
+            "at": "2026-08-07T17:40:55.745Z",
+            "intent": "Recuperar patrones de layout responsive y de clases semanticas ya vigentes en el proyecto, mas el inventario de secciones existentes del home, para maquetar la vista de Hardware Criptografico reutilizando formas ya definidas en lugar de inventar nuevas.",
+            "tool": "find_node",
+            "arguments": {
+              "query": "pattern",
+              "limit": 30
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "pattern:aislamiento-apilamiento-popover-junto-a-svg",
+              "pattern:catalog-composable",
+              "pattern:columnas-por-css-grid-no-calc",
+              "pattern:contencion-flex-anidada-explicita",
+              "pattern:correccion-css-en-la-declaracion-ganadora",
+              "pattern:detail-view-layout",
+              "pattern:dto-contrato-por-operacion",
+              "pattern:envelope-respuesta-estandar",
+              "pattern:estado-sesion-reactivo-semilla-unica-storage",
+              "pattern:fan-out-priorizado-por-superficie-visible",
+              "pattern:forms-vee-validate-yup",
+              "pattern:guard-permiso-centralizado",
+              "pattern:list-view-layout",
+              "pattern:migracion-de-filtros-con-alcance-explicito",
+              "pattern:modulo-backend-por-dominio",
+              "pattern:overlay-scroll-lock-contador-compartido",
+              "pattern:placeholder-contenido-vs-bloqueo-accion",
+              "pattern:polling-condicional-por-rango-explicito",
+              "pattern:reporte-multivista-desde-agregado-unico",
+              "pattern:riel-doble-de-navegacion-contextual",
+              "pattern:sistema-clases-semanticas-rol",
+              "pattern:tailwind-recalibrado-bajo-raiz-62-5",
+              "pattern:transaccion-en-el-orquestador",
+              "pattern:validacion-multicapa-forma-negocio",
+              "pattern:visual-cadena-min-w-0",
+              "pattern:visual-control-anclado-estado-real",
+              "pattern:visual-dos-columnas-responsive",
+              "pattern:visual-overflow-bifurcado",
+              "pattern:visual-tercero-bajo-design-system",
+              "pattern:wrapper-composables"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:09adedea-9bac-424e-a54d-919682e4afdf",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.19.1",
+              "overlay_revision": 2,
+              "overlay_graph_hash": "sha256:50c683b99be7ca47f65e062c5fda3fcae97ed11e63c849bca24a59d18d753620",
+              "overlay_curated_hash": "sha256:e98e8253e2728a4c0da4e5f4f0fc8daee8f071d30cb8cce49898aede64f8bc88",
+              "output_hash": "sha256:b712da96768e8d807b6f3578bdaa9dd904c3b0c1cfa95e9d4624918ee2a0fe8c",
+              "candidate_sources": [
+                {
+                  "id": "pattern:aislamiento-apilamiento-popover-junto-a-svg",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:catalog-composable",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:columnas-por-css-grid-no-calc",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:contencion-flex-anidada-explicita",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:correccion-css-en-la-declaracion-ganadora",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:detail-view-layout",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:dto-contrato-por-operacion",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:envelope-respuesta-estandar",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:estado-sesion-reactivo-semilla-unica-storage",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:fan-out-priorizado-por-superficie-visible",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:forms-vee-validate-yup",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:guard-permiso-centralizado",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:list-view-layout",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:migracion-de-filtros-con-alcance-explicito",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:modulo-backend-por-dominio",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:overlay-scroll-lock-contador-compartido",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:placeholder-contenido-vs-bloqueo-accion",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:polling-condicional-por-rango-explicito",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:reporte-multivista-desde-agregado-unico",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:riel-doble-de-navegacion-contextual",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:sistema-clases-semanticas-rol",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:tailwind-recalibrado-bajo-raiz-62-5",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:transaccion-en-el-orquestador",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:validacion-multicapa-forma-negocio",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:visual-cadena-min-w-0",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:visual-control-anclado-estado-real",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:visual-dos-columnas-responsive",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:visual-overflow-bifurcado",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:visual-tercero-bajo-design-system",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:wrapper-composables",
+                  "source": "genome"
+                }
+              ]
+            }
+          }
+        ],
+        "decisions": [
+          {
+            "id": "decision:1:1",
+            "kind": "adopt",
+            "target": "pattern:visual-dos-columnas-responsive",
+            "rationale": "Todas las zonas multi-columna de la vista HSM colapsan por ancho disponible (flex-wrap + grow/basis + min-w) en vez de atarse a un breakpoint, respetando el invariante del patron sin modificarlo.",
+            "evidence": [
+              "src/components/sections/HsmHero.vue",
+              "src/components/sections/HsmUseCases.vue",
+              "src/components/sections/HsmBeyond.vue",
+              "src/components/sections/HsmOrgMosaic.vue",
+              "src/components/sections/HsmTechDiagram.vue"
+            ],
+            "consultations": [
+              "consult:1:1"
+            ],
+            "status": "validated"
+          },
+          {
+            "id": "decision:1:2",
+            "kind": "local",
+            "rationale": "Los componentes de cierre y de logos de la vista HSM se escriben nuevos (HsmFinalCta, logos estaticos dentro de HsmHero) en vez de reutilizar FinalCta.vue y LogosStrip.vue del home: FinalCta lee t('finalCta.*') fijo y LogosStrip es una marquesina animada, mientras la referencia pide copy propio y tres logos estaticos. Parametrizarlos habria modificado el home, que esta fuera del alcance visual declarado.",
+            "projection": "Se copia la forma (panel con gradiente crema, titular en gradiente violeta-naranja, CTA centrado) sin tocar los componentes del home.",
+            "evidence": [
+              "src/components/sections/HsmFinalCta.vue",
+              "src/components/sections/HsmHero.vue",
+              "src/components/sections/FinalCta.vue",
+              "src/components/sections/LogosStrip.vue"
+            ],
+            "status": "validated"
+          }
+        ],
+        "validation": {
+          "actor": "human",
+          "at": "2026-08-07T22:22:52.947Z",
+          "outcome": "approved",
+          "approval_ref": "fredy-nazario/2026-08-07/chat",
+          "note": "OK explicito de Fredy: \"ok pero toma en cuenta todo inclusive nuestros acuerdos sobre la distribucion y como resolvimos las imperfecciones pues seguiremos con otra seccion\". Aprueba el cierre de la vista /hardware-criptografico y pide que los acuerdos de composicion queden asentados para la siguiente seccion."
+        },
+        "change_set": {
+          "base_checkpoint": "checkpoint:base:1",
+          "files": {
+            "added": [],
+            "modified": [],
+            "removed": []
+          }
+        },
+        "result": {
+          "summary": "Vista /hardware-criptografico maquetada como pagina delgada que compone 11 zonas full-width en src/components/sections/ con prefijo Hsm, mas la clave i18n hsm en es.json y en.json. Reutiliza integramente los tokens, botones y base responsive del home; no se creo ningun token nuevo.",
+          "verification": "npm run build exitoso (chunk hardware-criptografico generado); npm run lint con 0 errores (2 warnings preexistentes en FeatureCards.vue y default.vue, archivos no tocados).",
+          "scope_respected": "Solo visual y responsive: sin integracion API ni logica de negocio. El acordeon de FAQ usa details/summary nativos, sin estado propio.",
+          "pending_human_review": "Revision visual de Fredy contra la referencia; copy de las respuestas de FAQ 2-5 es provisional (la referencia solo mostraba la primera abierta); assets apuntan a recursos del home como placeholder."
+        },
+        "boundary": {
+          "mode": "normal",
+          "declared_at": "2026-08-07T17:40:21.158Z",
+          "measurement_eligible": true,
+          "prior_work": null,
+          "base": {
+            "status": "fresh",
+            "target": "src",
+            "captured_at": "2026-08-07T17:40:20.083Z",
+            "source_hash": "sha256:b7a5d533fb08448e0b17d9406ef96397e5c7e15293f09e713d3bc47dad4c6bd2",
+            "graph_hash": "sha256:50c683b99be7ca47f65e062c5fda3fcae97ed11e63c849bca24a59d18d753620",
+            "preexisting_delta": {
+              "nodes": {
+                "added": [
+                  "src/components/sections/AlliancesCarousel.vue",
+                  "src/components/sections/IndustriesGrid.vue",
+                  "src/components/sections/NewsletterBanner.vue",
+                  "src/components/sections/PrivacyNoticeSection.vue",
+                  "src/components/sections/UnderConstructionSection.vue",
+                  "src/pages/privacy.vue",
+                  "src/pages/under-construction.vue"
+                ],
+                "changed": [],
+                "removed": [
+                  "src/components/sections/BlogGrid.vue",
+                  "src/schemas/contactSchema.ts",
+                  "src/components/sections/StrategicServices.vue"
+                ]
+              },
+              "edges": {
+                "added": [],
+                "changed": [],
+                "removed": [
+                  "dep:83f2052314ef"
+                ]
+              },
+              "synapses": {
+                "added": [],
+                "changed": [],
+                "removed": []
+              },
+              "curated_preserved": {
+                "node_annotations": 0,
+                "edges": 1,
+                "synapses": 1,
+                "patterns": 0,
+                "cases": 0,
+                "exceptions": 0
+              },
+              "orphans": [
+                {
+                  "kind": "rationale",
+                  "id": "e20",
+                  "from": "src/components/sections/ContactSection.vue",
+                  "to": "src/schemas/contactSchema.ts"
+                }
+              ],
+              "orphans_resolved": []
+            },
+            "excluded_from_task": true
+          },
+          "close": {
+            "status": "fresh",
+            "target": "src",
+            "captured_at": "2026-08-07T22:22:52.492Z",
+            "source_hash": "sha256:3ce9927ccc8865b23ad9f2005d085cd67c70ab736fd2f78386775899ea43f3aa",
+            "graph_hash": "sha256:84df3472f0a4f2c8c081ce9091821f484c9f15891d4f88f733a27f66ed966ceb",
+            "attribution": "task"
+          }
+        },
+        "submitted_at": "2026-08-07T17:57:30.832Z"
+      },
+      {
+        "id": "task:frt-cnct-web:2",
+        "sequence": 2,
+        "intent": "Maquetar la vista completa de SPEI 2.0 / Hermes a partir de referencia visual, reutilizando la estructura sc-*, los tokens y los patrones ya asentados en la vista de Hardware Criptografico; los tokens nuevos solo se asumen si no existe equivalente y quedan documentados antes de crearse. Alcance exclusivamente visual y responsive: sin integracion API ni logica de negocio.",
+        "status": "open",
+        "opened_at": "2026-08-07T22:28:09.964Z",
+        "closed_at": null,
+        "consultations": [
+          {
+            "id": "consult:2:1",
+            "at": "2026-08-07T22:28:22.572Z",
+            "intent": "Confirmar el contrato del sistema de clases semanticas sc-* y los principios que lo gobiernan antes de descomponer la vista SPEI 2.0, para reutilizar la misma estructura ya aplicada en Hardware Criptografico.",
+            "tool": "find_by_pattern",
+            "arguments": {
+              "name": "sistema-clases-semanticas-rol"
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "pattern:sistema-clases-semanticas-rol",
+              "principle:v1",
+              "principle:v2",
+              "principle:v3"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:7c2af5f0-5590-48b3-91ac-b8ccfaddc30d",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.19.1",
+              "overlay_revision": 8,
+              "overlay_graph_hash": "sha256:0d52c55ba3605499e5fec8e6cb8eeb931ade68be66237afa6d1075692ab4f041",
+              "overlay_curated_hash": "sha256:e98e8253e2728a4c0da4e5f4f0fc8daee8f071d30cb8cce49898aede64f8bc88",
+              "output_hash": "sha256:18c03434b28c3fb5b5b23ba045c85338d5b8ca4fe307099c3741f28802de8922",
+              "candidate_sources": [
+                {
+                  "id": "pattern:sistema-clases-semanticas-rol",
+                  "source": "genome"
+                },
+                {
+                  "id": "principle:v1",
+                  "source": "genome"
+                },
+                {
+                  "id": "principle:v2",
+                  "source": "genome"
+                },
+                {
+                  "id": "principle:v3",
+                  "source": "genome"
+                }
+              ]
+            }
+          },
+          {
+            "id": "consult:2:2",
+            "at": "2026-08-07T22:55:34.003Z",
+            "intent": "Recuperar el caso ya sembrado sobre el reset text-align:initial del mixin tipografico antes de maquetar SPEI, para aplicar la correccion de forma preventiva en cada h*/p en vez de redescubrirla como en la vista anterior.",
+            "tool": "find_node",
+            "arguments": {
+              "query": "text-align",
+              "limit": 10
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "case:frt-cnct-text-align-bloqueado-por-reset-local"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:50009b50-3de2-4c11-be01-7b41c1e0c657",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.19.1",
+              "overlay_revision": 10,
+              "overlay_graph_hash": "sha256:0d52c55ba3605499e5fec8e6cb8eeb931ade68be66237afa6d1075692ab4f041",
+              "overlay_curated_hash": "sha256:e98e8253e2728a4c0da4e5f4f0fc8daee8f071d30cb8cce49898aede64f8bc88",
+              "output_hash": "sha256:a8afaaae63e5d000ec88b41b517892c674d740740a1907da816590c1a2943f2e",
+              "candidate_sources": [
+                {
+                  "id": "case:frt-cnct-text-align-bloqueado-por-reset-local",
+                  "source": "genome"
+                }
+              ]
+            }
+          },
+          {
+            "id": "consult:2:3",
+            "at": "2026-08-07T23:08:25.182Z",
+            "intent": "Recuperar el patron de dos columnas responsive antes de instanciarlo en las zonas multi-columna de SPEI, para aplicar la receta tal cual en vez de improvisar el colapso.",
+            "tool": "find_by_pattern",
+            "arguments": {
+              "name": "visual-dos-columnas-responsive"
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "case:frt-cnct-process-cta-wrap-tardio-por-ancho-intrinseco",
+              "case:ux-002",
+              "case:ux-015",
+              "case:ux-016",
+              "case:ux-020",
+              "case:ux-021",
+              "pattern:visual-dos-columnas-responsive",
+              "principle:v2",
+              "principle:v5"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:410b04cd-4ab8-4f2d-a868-e30ca2dc74e4",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.19.1",
+              "overlay_revision": 12,
+              "overlay_graph_hash": "sha256:0d52c55ba3605499e5fec8e6cb8eeb931ade68be66237afa6d1075692ab4f041",
+              "overlay_curated_hash": "sha256:e98e8253e2728a4c0da4e5f4f0fc8daee8f071d30cb8cce49898aede64f8bc88",
+              "output_hash": "sha256:1f9cd2681e864038d9382d481a0e6d796741f8c0813879a6025084bfda51ec5e",
+              "candidate_sources": [
+                {
+                  "id": "case:frt-cnct-process-cta-wrap-tardio-por-ancho-intrinseco",
+                  "source": "genome"
+                },
+                {
+                  "id": "case:ux-002",
+                  "source": "genome"
+                },
+                {
+                  "id": "case:ux-015",
+                  "source": "genome"
+                },
+                {
+                  "id": "case:ux-016",
+                  "source": "genome"
+                },
+                {
+                  "id": "case:ux-020",
+                  "source": "genome"
+                },
+                {
+                  "id": "case:ux-021",
+                  "source": "genome"
+                },
+                {
+                  "id": "pattern:visual-dos-columnas-responsive",
+                  "source": "genome"
+                },
+                {
+                  "id": "principle:v2",
+                  "source": "genome"
+                },
+                {
+                  "id": "principle:v5",
+                  "source": "genome"
+                }
+              ]
+            }
+          }
+        ],
+        "decisions": [
+          {
+            "id": "decision:2:1",
+            "kind": "local",
+            "rationale": "Se crea el token --color-info-soft (#E8F4FD) para la superficie azul palida que la vista SPEI usa en tres lugares. No habia equivalente en @theme: --color-info (#36BFFA) es demasiado saturado para fondo y --color-scheduled (#DBEAFE) tiene el tono pero esta reservado al estado \"programada\" de campañas de email, asi que reusarlo como superficie de marca desvirtuaria su semantica. Es el unico token creado en toda la maquetacion de las dos vistas.",
+            "projection": "Vive en src/assets/tailwind.css dentro de @theme, con el comentario que explica por que no se reuso ninguno existente y que el hex esta medido sobre la referencia a falta del valor de Figma.",
+            "evidence": [
+              "src/assets/tailwind.css"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:2:2",
+            "kind": "adopt",
+            "target": "pattern:visual-dos-columnas-responsive",
+            "rationale": "Todas las zonas multi-columna de SPEI colapsan por ancho disponible (flex-wrap + grow/basis + min-w) sin atarse a breakpoints, respetando el invariante del patron. Septimo contexto de instanciacion en este repo.",
+            "evidence": [
+              "src/components/sections/SpeiHero.vue",
+              "src/components/sections/SpeiRisks.vue",
+              "src/components/sections/SpeiEvolve.vue",
+              "src/components/sections/SpeiOperate.vue",
+              "src/components/sections/SpeiIntelligence.vue"
+            ],
+            "consultations": [
+              "consult:2:3"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:2:3",
+            "kind": "adopt",
+            "target": "case:frt-cnct-text-align-bloqueado-por-reset-local",
+            "rationale": "Se aplico la correccion de forma PREVENTIVA: text-center va escrito en cada h*/p de la vista SPEI desde el primer archivo, nunca heredado del contenedor. El mixin text() del proyecto pone text-align:initial como propiedad propia del elemento y una declaracion directa siempre gana a la heredada. En la vista anterior se redescubrio este fallo en cinco secciones por no haber consultado el caso; aqui se consulto antes de escribir (consult:2:2).",
+            "evidence": [
+              "src/components/sections/SpeiEvolve.vue",
+              "src/components/sections/SpeiOperate.vue",
+              "src/components/sections/SpeiStats.vue",
+              "src/components/sections/SpeiShared.vue",
+              "src/components/sections/SpeiFinalCta.vue"
+            ],
+            "consultations": [
+              "consult:2:2"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:2:4",
+            "kind": "novel",
+            "rationale": "CONTRASTE de una forma que quedo en julio como conocimiento local en espera: el mixin button() de este proyecto pone display:flex incondicional, que crea una caja de nivel BLOQUE; suelta dentro de un contenedor no-flex se estira al 100% del ancho en vez de encogerse a su contenido. En la vista HSM el fallo reaparecio en tres secciones centradas y lo detecto el humano por captura. En SPEI se aplico preventivamente: cada .btn-* vive dentro de un flex container explicito. Segunda manifestacion independiente en el mismo repo, que es el criterio de reapertura que la curacion de julio dejo escrito.",
+            "projection": "Regla de uso: .btn-* nunca va suelto como hijo directo de un bloque; si la seccion es centrada, se envuelve en un div flex justify-center. Si se quiere ancho completo a proposito, existe el modificador .btn-block.",
+            "evidence": [
+              "src/components/sections/SpeiHero.vue",
+              "src/components/sections/SpeiRisks.vue",
+              "src/components/sections/SpeiIntelligence.vue",
+              "src/assets/scss/mixins/_component-mixins.scss"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:2:5",
+            "kind": "novel",
+            "rationale": "Riel de celdas derivadas del conteo, con su condicion de frontera. Para alinear una fila auxiliar sobre otra de n celdas iguales hay DOS casos y confundirlos desborda: si los elementos auxiliares son n-1 (conectores que van de centro a centro), la fila abre y cierra con media celda de 50/n y suma 100%; si son n (etiquetas 1:1 con las celdas), NO llevan medias celdas. Se detecto al escribir SpeiWhy: arrastrar las medias celdas de HsmSteps a un caso 1:1 daba 50/3 + 3x100/3 + 50/3 = 133% de ancho. Ademas el ancho se deriva del largo de los datos, no se escribe a mano, asi que el reparto sobrevive a un cambio de copy.",
+            "projection": "HsmSteps aplica el caso n-1 (cinco pasos, cuatro arcos, medias celdas). SpeiWhy aplica el caso 1:1 (tres nodos, tres etiquetas, sin medias celdas). En ambos el ancho sale de computed sobre length, nunca de un porcentaje literal.",
+            "evidence": [
+              "src/components/sections/SpeiWhy.vue",
+              "src/components/sections/SpeiStages.vue",
+              "src/components/sections/HsmSteps.vue"
+            ],
+            "status": "proposed"
+          }
+        ],
+        "validation": {},
+        "change_set": {
+          "base_checkpoint": "checkpoint:base:2",
+          "files": {
+            "added": [],
+            "modified": [],
+            "removed": []
+          }
+        },
+        "result": {},
+        "boundary": {
+          "mode": "normal",
+          "declared_at": "2026-08-07T22:28:09.964Z",
+          "measurement_eligible": true,
+          "prior_work": null,
+          "base": {
+            "status": "fresh",
+            "target": "src",
+            "captured_at": "2026-08-07T22:28:09.781Z",
+            "source_hash": "sha256:3ce9927ccc8865b23ad9f2005d085cd67c70ab736fd2f78386775899ea43f3aa",
+            "graph_hash": "sha256:0d52c55ba3605499e5fec8e6cb8eeb931ade68be66237afa6d1075692ab4f041",
+            "preexisting_delta": {
+              "nodes": {
+                "added": [],
+                "changed": [],
+                "removed": []
+              },
+              "edges": {
+                "added": [],
+                "changed": [],
+                "removed": []
+              },
+              "synapses": {
+                "added": [],
+                "changed": [],
+                "removed": []
+              },
+              "curated_preserved": {
+                "node_annotations": 0,
+                "edges": 1,
+                "synapses": 1,
+                "patterns": 0,
+                "cases": 0,
+                "exceptions": 0
+              },
+              "orphans": [
+                {
+                  "kind": "rationale",
+                  "id": "e20",
+                  "from": "src/components/sections/ContactSection.vue",
+                  "to": "src/schemas/contactSchema.ts"
+                }
+              ],
+              "orphans_resolved": []
+            },
+            "excluded_from_task": true
+          },
+          "close": null
+        }
+      }
+    ],
     "checkpoints": [
       {
         "id": "checkpoint:0",
@@ -670,8 +1601,131 @@
           "kind": "legacy-import",
           "source": "context-map.json"
         }
+      },
+      {
+        "id": "checkpoint:base:1",
+        "parent": "checkpoint:0",
+        "task": "task:frt-cnct-web:1",
+        "kind": "task-baseline",
+        "created_at": "2026-08-07T17:40:21.158Z",
+        "graph_hash": "sha256:50c683b99be7ca47f65e062c5fda3fcae97ed11e63c849bca24a59d18d753620",
+        "curated_hash": "sha256:e98e8253e2728a4c0da4e5f4f0fc8daee8f071d30cb8cce49898aede64f8bc88",
+        "delta": {
+          "kind": "task-baseline",
+          "excluded_from_task": true,
+          "derived": {
+            "attribution": "preexisting",
+            "verified": true,
+            "nodes_added": [
+              "src/components/sections/AlliancesCarousel.vue",
+              "src/components/sections/IndustriesGrid.vue",
+              "src/components/sections/NewsletterBanner.vue",
+              "src/components/sections/PrivacyNoticeSection.vue",
+              "src/components/sections/UnderConstructionSection.vue",
+              "src/pages/privacy.vue",
+              "src/pages/under-construction.vue"
+            ],
+            "nodes_changed": [],
+            "nodes_removed": [
+              "src/components/sections/BlogGrid.vue",
+              "src/schemas/contactSchema.ts",
+              "src/components/sections/StrategicServices.vue"
+            ],
+            "edges_added": [],
+            "edges_changed": [],
+            "edges_removed": [
+              "dep:83f2052314ef"
+            ],
+            "synapses_added": [],
+            "synapses_changed": [],
+            "synapses_removed": []
+          }
+        }
+      },
+      {
+        "id": "checkpoint:1",
+        "parent": "checkpoint:base:1",
+        "task": "task:frt-cnct-web:1",
+        "kind": "task-recorded",
+        "created_at": "2026-08-07T22:22:52.947Z",
+        "graph_hash": "sha256:84df3472f0a4f2c8c081ce9091821f484c9f15891d4f88f733a27f66ed966ceb",
+        "curated_hash": "sha256:e98e8253e2728a4c0da4e5f4f0fc8daee8f071d30cb8cce49898aede64f8bc88",
+        "delta": {
+          "derived": {
+            "attribution": "task",
+            "verified": true,
+            "nodes_added": [
+              "src/components/sections/HsmBeyond.vue",
+              "src/components/sections/HsmDataLocation.vue",
+              "src/components/sections/HsmFaq.vue",
+              "src/components/sections/HsmFinalCta.vue",
+              "src/components/sections/HsmHero.vue",
+              "src/components/sections/HsmOrgCard.vue",
+              "src/components/sections/HsmOrgMosaic.vue",
+              "src/components/sections/HsmPains.vue",
+              "src/components/sections/HsmSteps.vue",
+              "src/components/sections/HsmSupport.vue",
+              "src/components/sections/HsmTechCard.vue",
+              "src/components/sections/HsmTechDiagram.vue",
+              "src/components/sections/HsmUseCases.vue",
+              "src/pages/hardware-criptografico.vue"
+            ],
+            "nodes_changed": [],
+            "nodes_removed": [],
+            "edges_added": [],
+            "edges_changed": [],
+            "edges_removed": [],
+            "synapses_added": [],
+            "synapses_changed": [],
+            "synapses_removed": []
+          },
+          "curated": {
+            "annotations_added": [],
+            "edges_added": [],
+            "synapses_added": [],
+            "cases_added": [],
+            "patterns_added": [],
+            "exceptions_added": []
+          }
+        }
+      },
+      {
+        "id": "checkpoint:base:2",
+        "parent": "checkpoint:1",
+        "task": "task:frt-cnct-web:2",
+        "kind": "task-baseline",
+        "created_at": "2026-08-07T22:28:09.964Z",
+        "graph_hash": "sha256:0d52c55ba3605499e5fec8e6cb8eeb931ade68be66237afa6d1075692ab4f041",
+        "curated_hash": "sha256:e98e8253e2728a4c0da4e5f4f0fc8daee8f071d30cb8cce49898aede64f8bc88",
+        "delta": {
+          "kind": "task-baseline",
+          "excluded_from_task": true,
+          "derived": {
+            "attribution": "preexisting",
+            "verified": true,
+            "nodes_added": [],
+            "nodes_changed": [],
+            "nodes_removed": [],
+            "edges_added": [],
+            "edges_changed": [],
+            "edges_removed": [],
+            "synapses_added": [],
+            "synapses_changed": [],
+            "synapses_removed": []
+          }
+        }
       }
     ]
   },
-  "observations": []
+  "observations": [
+    {
+      "id": "observation:frt-cnct-web:checkpoint-base-1-checkpoint-1",
+      "from_checkpoint": "checkpoint:base:1",
+      "to_checkpoint": "checkpoint:1",
+      "path": "docs/eureka/observation-frt-cnct-web-checkpoint-base-1-checkpoint-1.json",
+      "status": "draft",
+      "generated_at": "2026-08-07T22:22:52.947Z",
+      "content_hash": "sha256:bb76485257c088e390a25e0d12e446890772987e1bb5811f2c70181c9eb3aedb"
+    }
+  ]
 }

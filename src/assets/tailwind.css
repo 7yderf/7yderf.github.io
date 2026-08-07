@@ -34,6 +34,13 @@
   --color-warning: #FEC84B;       /* --sc-warn */
   --color-warning-2: #FDB022;     /* --sc-warn-2 */
   --color-info: #36BFFA;          /* --sc-info */
+  /* Superficie azul palida de la vista SPEI (card del hero, card "Ya soy
+     Participante Directo", banda "Compartimos el objetivo"). Token NUEVO: no
+     habia equivalente. --color-info (#36BFFA) es demasiado saturado para fondo,
+     y --color-scheduled (#DBEAFE) tiene el tono pero es el estado "programada"
+     de campañas de email — usarlo como superficie de marca lo desvirtuaria.
+     Hex medido sobre la referencia, pendiente de confirmar contra Figma. */
+  --color-info-soft: #E8F4FD;
   --color-violet: #7A5AF8;        /* --sc-violet — chips, uso esporádico */
   --color-pink: #EE46BC;          /* --sc-pink — chips, uso esporádico */
   --color-disabled: #D1D5DB;      /* Borders/text disabled, placeholders claros */

@@ -200,5 +200,335 @@
       "title": "Aviso de Privacidad — Conecta",
       "description": "Aviso de privacidad de Conecta Soluciones Tecnológicas conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares."
     }
+  },
+  "hsm": {
+    "meta": {
+      "title": "Hardware Criptográfico (HSM) — Conecta",
+      "description": "Infraestructura criptográfica que protege cada dato y transacción con HSM certificado: control de llaves, cumplimiento regulatorio y preparación post-cuántica."
+    },
+    "hero": {
+      "eyebrow": "Hardware Criptográfico",
+      "titlePre": "Tus datos siempre",
+      "titleHighlight": "protegidos.",
+      "subtitle": "La infraestructura criptográfica que protege cada dato y transacción con HSM certificado.",
+      "cta": "Agenda una evaluación técnica"
+    },
+    "pains": {
+      "cta": "Resolvamos tu entorno",
+      "items": [
+        { "label": "No sabes qué tan seguro están tus datos" },
+        { "label": "No tienes el control de las llaves" },
+        { "label": "No tienes claro si cumples con regulación" }
+      ]
+    },
+    "dataLocation": {
+      "titlePre": "¿Dónde viven",
+      "titleHighlight": "tus datos?",
+      "description": "Nosotros implementamos una infraestructura donde las llaves permanecen protegidas todo su ciclo de vida.",
+      "cta": "Conoce cómo protegemos tus llaves"
+    },
+    "org": {
+      "titlePre": "Mejora tu",
+      "titleHighlight": "organización",
+      "description": "Todo respaldado por una infraestructura especializada.",
+      "cta": "Entender si necesito un HSM",
+      "items": [
+        { "label": "Protección completa" },
+        { "label": "Cumplimiento simplificado" },
+        { "label": "Menor riesgo" },
+        { "label": "Mayor confianza" },
+        { "label": "Operación continua" },
+        { "label": "Mayor control" }
+      ]
+    },
+    "tech": {
+      "title": "La tecnología que hace posible todo.",
+      "subtitle": "Construimos la capa criptográfica completa de tu institución.",
+      "cta": "Descubre la arquitectura",
+      "items": [
+        { "label": "Protege base de datos" },
+        { "label": "Protege firmas digitales" },
+        { "label": "Protege aplicaciones" },
+        { "label": "Protege Pagos" },
+        { "label": "Protege Identidades" },
+        { "label": "Protege certificados" }
+      ]
+    },
+    "useCases": {
+      "title": "¿Para qué lo usan nuestros clientes?",
+      "subtitle": "Cada organización utiliza la criptografía de forma diferente y nosotros la adaptamos a su operación.",
+      "cta": "Encuentra la solución para tu operación",
+      "items": [
+        {
+          "title": "Pagos seguros",
+          "description": "Protege las llaves que autorizan cada transacción y reduce el riesgo de fraude."
+        },
+        {
+          "title": "Firma digital",
+          "description": "Seguridad y estabilidad en la administración y protección de tus activos."
+        },
+        {
+          "title": "Datos en la nube",
+          "description": "Mantén el control de tus llaves, incluso cuando la información está en la nube."
+        },
+        {
+          "title": "Base de datos",
+          "description": "Si alguien accede a tus datos, seguirá sin poder leerlos."
+        },
+        {
+          "title": "Identidad digital",
+          "description": "Emite certificados, accesos y servicios críticos desde un solo lugar."
+        },
+        {
+          "title": "Medios de pago",
+          "description": "Protege PIN, tarjetas y credenciales con los estándares que exige la industria."
+        }
+      ]
+    },
+    "beyond": {
+      "title": "Mucho más que un HSM.",
+      "subtitle": "Infraestructura lista para los nuevos retos de la criptografía.",
+      "pqcTitle": "Preparación Post-Cuántica (PQC)",
+      "pqcDescription": "Garantiza la invulnerabilidad de tus activos digitales frente a las amenazas del mañana integrando hoy algoritmos de criptografía post-cuántica.",
+      "physicalTitle": "Seguridad física",
+      "physicalDescription": "Blinda tus claves en una bóveda capaz de detectar cualquier sabotaje físico y autodestruir la información antes de caer en manos equivocadas.",
+      "deployTitle": "Flexibilidad de despliegue",
+      "deployDescription": "Adapta la seguridad a la arquitectura de tu negocio, manteniendo el control absoluto en tu centro de datos o escalando con agilidad en la nube."
+    },
+    "steps": {
+      "titlePre": "Implementar no debería ser",
+      "titleHighlight": "complicado.",
+      "subtitle": "Nosotros te ayudamos a resolverlo en cinco pasos.",
+      "items": [
+        { "label": "Diagnóstico." },
+        { "label": "Diseño." },
+        { "label": "Implementación." },
+        { "label": "Integración." },
+        { "label": "Soporte." }
+      ]
+    },
+    "support": {
+      "title": "Seguimos contigo.",
+      "description": "La seguridad y tu infraestructura cambian todos los días, por eso seguimos apoyando tu operación.",
+      "cta": "Conoce nuestro soporte",
+      "items": [
+        { "label": "Atención especializada y certificada." },
+        { "label": "Gestión de casos con el fabricante." },
+        { "label": "Revisión periódica de salud del equipo." },
+        { "label": "Manuales de operación de llaves y planes de recuperación." },
+        { "label": "Reporte mensual." }
+      ]
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "items": [
+        {
+          "question": "¿Necesito un HSM?",
+          "answer": "Si procesas pagos, datos sensibles, identidades digitales o información regulada, probablemente sí."
+        },
+        {
+          "question": "¿Puedo usar un HSM en la nube?",
+          "answer": "Sí. Te ayudamos a elegir entre modelos físicos, virtuales o dedicados según tus requisitos de seguridad y cumplimiento."
+        },
+        {
+          "question": "¿Es complicado integrar un HSM a mi infraestructura?",
+          "answer": "No. Planeamos y te acompañamos durante la migración y la implementación para minimizar riesgos y evitar interrupciones."
+        },
+        {
+          "question": "¿Mi equipo podrá administrarlo?",
+          "answer": "Sí. Capacitamos y acompañamos la operación hasta que tu equipo esté listo."
+        },
+        {
+          "question": "¿Con qué normativas y regulaciones me ayudan a cumplir?",
+          "answer": "FIPS 140-2 y 140-3 Nivel 3 • PCI DSS • ISO 27001 • CNBV • LFPDPPP • FIPS 203, 204 y 205 (PQC)"
+        }
+      ]
+    },
+    "finalCta": {
+      "eyebrow": "Descubre cómo proteger la infraestructura que sostiene toda tu operación.",
+      "titlePre": "La confianza empieza",
+      "titlePost": "donde viven tus datos.",
+      "cta": "Agendar diagnóstico de seguridad"
+    }
+  },
+  "spei": {
+    "meta": {
+      "title": "Infraestructura SPEI 2.0 — Conecta",
+      "description": "Hermes conecta tu institución con el nuevo estándar de Banco de México: conexión directa, certificación, alta disponibilidad y acompañamiento integral."
+    },
+    "hero": {
+      "brand": "Hermes",
+      "eyebrow": "Infraestructura SPEI",
+      "titlePre": "Prepárate para",
+      "titleHighlight": "SPEI 2.0.",
+      "subtitle": "Hermes conecta tu institución con el nuevo estándar de Banco de México.",
+      "cta": "Agenda una evaluación técnica"
+    },
+    "risks": {
+      "cta": "Descubre cómo eliminar estos riesgos",
+      "items": [
+        { "label": "Tu operación depende de un solo nodo" },
+        { "label": "Cada cambio de Banxico genera incertidumbre" },
+        { "label": "Un incidente tarda horas en identificarse" },
+        { "label": "Quieres ofrecer SPEI sin empezar desde cero" }
+      ]
+    },
+    "evolve": {
+      "title": "Evoluciona tu operación.",
+      "subtitle": "Ya sea que estés construyendo una conexión directa o buscando fortalecer la que ya tienes, este es el momento de dar el siguiente paso.",
+      "startTitle": "Aún no opero SPEI directamente",
+      "startCta": "Conectarme a SPEI",
+      "startItems": [
+        { "label": "Conexión directa con Banxico" },
+        { "label": "Implementación y Certificación" },
+        { "label": "Diseño de Arquitectura" },
+        { "label": "Cumplimiento Regulatorio" },
+        { "label": "Acompañamiento integral" }
+      ],
+      "directTitle": "Ya soy Participante Directo",
+      "directCta": "Explorar capacidades de visibilidad",
+      "directItems": [
+        { "label": "Modernización de infraestructura" },
+        { "label": "Migración a SPEI 2.0" },
+        { "label": "Alta Disponibilidad" },
+        { "label": "Optimización y Monitoreo" },
+        { "label": "Acompañamiento integral" }
+      ]
+    },
+    "stages": {
+      "titlePre": "Cinco pasos.",
+      "titlePost": "Una sola meta.",
+      "items": [
+        {
+          "stage": "Etapa 1",
+          "title": "El umbral legal y estratégico",
+          "steps": ["Diagnóstico de identidad", "Contacto con el regulador", "Nombramiento de responsables"]
+        },
+        {
+          "stage": "Etapa 2",
+          "title": "La construcción del puente",
+          "steps": ["Despliegue de ambientes", "Componentes de software", "Canal criptográfico"]
+        },
+        {
+          "stage": "Etapa 3",
+          "title": "El perímetro de la certificación",
+          "steps": ["Pruebas de certificación SPEI", "Pruebas de continuidad operativa SPEI", "Pruebas de estrés", "Certificación CoDi"]
+        },
+        {
+          "stage": "Etapa 4",
+          "title": "Los caminos paralelos de Riesgo y continuidad",
+          "steps": ["Blindaje de ciberresiliencia", "Auditoría"]
+        },
+        {
+          "stage": "Etapa 5",
+          "title": "El veredicto final",
+          "steps": ["Firma de convenio", "Go-Live", "El destino"]
+        }
+      ]
+    },
+    "operate": {
+      "title": "Diseñado para seguir operando.",
+      "subtitle": "Un minuto sin SPEI cuesta mucho más que un minuto de infraestructura.",
+      "items": [
+        {
+          "title": "Visibilidad",
+          "description": "Sabes qué ocurre con cada transacción en tiempo real.",
+          "link": "Explorar capacidades de visibilidad"
+        },
+        {
+          "title": "Auditoría",
+          "description": "La evidencia está lista cuando la necesitas.",
+          "link": "Ver estándares de la auditoría"
+        },
+        {
+          "title": "Prevención",
+          "description": "Detecta riesgos antes de que afecten la operación.",
+          "link": "Conocer cómo opera la prevención"
+        },
+        {
+          "title": "Disponibilidad",
+          "description": "Preparado para los momentos de mayor demanda y sin interrupciones.",
+          "link": "Conocer la disponibilidad"
+        }
+      ]
+    },
+    "why": {
+      "title": "¿Por qué Hermes?",
+      "subtitle": "No solo implementamos SPEI, sino que lo operamos diariamente para garantizar la continuidad operativa.",
+      "flow": [
+        { "label": "Recepción de datos" },
+        { "label": "Proceso y traducción" },
+        { "label": "Envío de mensaje y notificación" }
+      ],
+      "nodes": [
+        { "label": "Core Bancario" },
+        { "label": "Hermes" },
+        { "label": "Banxico 2.0" }
+      ]
+    },
+    "intelligence": {
+      "title": "Inteligencia que acelera.",
+      "subtitle": "Hermes incorpora agentes de inteligencia artificial que automatizan las tareas que más tiempo consumen.",
+      "cta": "Explorar la automatización",
+      "items": [
+        {
+          "title": "Cumplimiento",
+          "description": "Mantiene tu normativa cruzada con tus registros y genera los reportes regulatorios sin extracciones manuales."
+        },
+        {
+          "title": "Validación",
+          "description": "Revisa cuentas y patrones de riesgo antes de firmar el pago, para que tengas menos devoluciones."
+        },
+        {
+          "title": "Integración",
+          "description": "Reduce el tiempo de integración técnica entre 40% y 60%, sin que tu equipo programe la conexión a mano."
+        }
+      ]
+    },
+    "stats": {
+      "title": "Lo que ofrecemos",
+      "subtitle": "Con Hermes II tienes una plataforma probada y un equipo experimentado.",
+      "items": [
+        { "value": "1M", "label": "De transacciones por hora" },
+        { "value": "99.9%", "label": "Disponibilidad" },
+        { "value": "24/7", "label": "Soporte especializado" },
+        { "value": "18", "label": "Meses de implementación" }
+      ]
+    },
+    "shared": {
+      "title": "Compartimos el objetivo.",
+      "description": "Nuestro trabajo no termina con la implementación. Te acompañamos durante todo el proceso, hasta que tu institución opere en producción. Porque tu éxito también es el nuestro."
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "items": [
+        {
+          "question": "¿Debo cambiar toda mi infraestructura?",
+          "answer": "No. Integramos Hermes II con tu entorno actual."
+        },
+        {
+          "question": "¿La migración interrumpe la operación?",
+          "answer": "PENDIENTE DE COPY APROBADO."
+        },
+        {
+          "question": "¿También apoyan la certificación?",
+          "answer": "PENDIENTE DE COPY APROBADO."
+        },
+        {
+          "question": "¿Qué ocurre cuando cambian los requisitos?",
+          "answer": "PENDIENTE DE COPY APROBADO."
+        },
+        {
+          "question": "¿Mi equipo podrá administrarla?",
+          "answer": "PENDIENTE DE COPY APROBADO."
+        }
+      ]
+    },
+    "finalCta": {
+      "eyebrow": "Conoce qué necesita tu institución para migrar a SPEI 2.0.",
+      "titlePre": "El mejor momento para",
+      "titlePost": "comenzar es ahora.",
+      "cta": "Agenda una evaluación técnica"
+    }
   }
 }
