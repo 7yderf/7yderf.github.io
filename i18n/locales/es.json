@@ -357,7 +357,8 @@
       "description": "Hermes conecta tu institución con el nuevo estándar de Banco de México: conexión directa, certificación, alta disponibilidad y acompañamiento integral."
     },
     "hero": {
-      "brand": "Hermes",
+      "trustedBy": "Trusted by:",
+      "brandAlt": "Hermes",
       "eyebrow": "Infraestructura SPEI",
       "titlePre": "Prepárate para",
       "titleHighlight": "SPEI 2.0.",
@@ -367,10 +368,10 @@
     "risks": {
       "cta": "Descubre cómo eliminar estos riesgos",
       "items": [
-        { "label": "Tu operación depende de un solo nodo" },
-        { "label": "Cada cambio de Banxico genera incertidumbre" },
-        { "label": "Un incidente tarda horas en identificarse" },
-        { "label": "Quieres ofrecer SPEI sin empezar desde cero" }
+        { "label": "Tu operación depende de un solo nodo." },
+        { "label": "Cada cambio de Banxico genera incertidumbre." },
+        { "label": "Un incidente tarda horas en identificarse." },
+        { "label": "Quieres ofrecer SPEI sin empezar desde cero." }
       ]
     },
     "evolve": {
@@ -463,7 +464,7 @@
       "nodes": [
         { "label": "Core Bancario" },
         { "label": "Hermes" },
-        { "label": "Banxico 2.0" }
+        { "label": "BANXICO 2.0" }
       ]
     },
     "intelligence": {
@@ -473,7 +474,7 @@
       "items": [
         {
           "title": "Cumplimiento",
-          "description": "Mantiene tu normativa cruzada con tus registros y genera los reportes regulatorios sin extracciones manuales."
+          "description": "Mantiene la normativa cruzada con tus registros y genera los reportes regulatorios sin extracciones manuales."
         },
         {
           "title": "Validación",
@@ -481,7 +482,11 @@
         },
         {
           "title": "Integración",
-          "description": "Reduce el tiempo de integración técnica entre 40% y 60%, sin que tu equipo programe la conexión a mano."
+          "description": "Reduce el tiempo de integración técnica **entre 40% y 60%**, sin que tu equipo programe la conexión a mano."
+        },
+        {
+          "title": "Certificación",
+          "description": "Ejecuta y documenta cada escenario de prueba que Banxico va a pedir."
         }
       ]
     },

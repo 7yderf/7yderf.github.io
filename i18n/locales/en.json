@@ -357,7 +357,8 @@
       "description": "Hermes connects your institution to Banco de México's new standard: direct connection, certification, high availability and end-to-end support."
     },
     "hero": {
-      "brand": "Hermes",
+      "trustedBy": "Trusted by:",
+      "brandAlt": "Hermes",
       "eyebrow": "SPEI Infrastructure",
       "titlePre": "Get ready for",
       "titleHighlight": "SPEI 2.0.",
@@ -367,10 +368,10 @@
     "risks": {
       "cta": "See how to remove these risks",
       "items": [
-        { "label": "Your operation depends on a single node" },
-        { "label": "Every Banxico change brings uncertainty" },
-        { "label": "An incident takes hours to identify" },
-        { "label": "You want to offer SPEI without starting from scratch" }
+        { "label": "Your operation depends on a single node." },
+        { "label": "Every Banxico change brings uncertainty." },
+        { "label": "An incident takes hours to identify." },
+        { "label": "You want to offer SPEI without starting from scratch." }
       ]
     },
     "evolve": {
@@ -463,7 +464,7 @@
       "nodes": [
         { "label": "Banking Core" },
         { "label": "Hermes" },
-        { "label": "Banxico 2.0" }
+        { "label": "BANXICO 2.0" }
       ]
     },
     "intelligence": {
@@ -473,7 +474,7 @@
       "items": [
         {
           "title": "Compliance",
-          "description": "Keeps your regulation cross-checked against your records and generates regulatory reports without manual extractions."
+          "description": "Keeps regulation cross-checked against your records and generates regulatory reports without manual extractions."
         },
         {
           "title": "Validation",
@@ -481,7 +482,11 @@
         },
         {
           "title": "Integration",
-          "description": "Cuts technical integration time by 40% to 60%, without your team hand-coding the connection."
+          "description": "Cuts technical integration time **by 40% to 60%**, without your team hand-coding the connection."
+        },
+        {
+          "title": "Certification",
+          "description": "Runs and documents every test scenario Banxico is going to ask for."
         }
       ]
     },

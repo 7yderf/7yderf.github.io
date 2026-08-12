@@ -1,7 +1,7 @@
 {
   "$schema": "https://eure-k.local/schemas/project-memory-v1.json",
   "schema": "eure-k.project-memory/v1",
-  "revision": 17,
+  "revision": 42,
   "project": {
     "id": "frt-cnct-web",
     "repository_fingerprint": "git-remote-v1:sha256:9cecfa5ed6040202f52f46768540e1b8a10fa6c11be8f5acbcaf8dbea368cb60",
@@ -26,9 +26,9 @@
   "genome_baseline": {
     "id": "eure-k",
     "revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
-    "server_version": "0.19.1",
+    "server_version": "0.30.3",
     "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
-    "last_consulted_at": "2026-08-07T23:08:25.182Z",
+    "last_consulted_at": "2026-08-12T05:24:11.785Z",
     "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7"
   },
   "graph": {
@@ -826,7 +826,8 @@
       ],
       "patterns": [],
       "cases": [],
-      "exceptions": []
+      "exceptions": [],
+      "projections": []
     }
   },
   "worklog": {
@@ -1454,6 +1455,213 @@
                 }
               ]
             }
+          },
+          {
+            "id": "consult:2:4",
+            "at": "2026-08-12T04:05:35.285Z",
+            "intent": "Buscar si el genoma ya cubre la eleccion de token por rol semantico frente a medicion del diseño, antes de levantar como forma nueva las dos correcciones repetidas de color y radio en el pulido de SPEI.",
+            "tool": "find_node",
+            "arguments": {
+              "query": "token",
+              "limit": 15
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "pattern:tailwind-recalibrado-bajo-raiz-62-5",
+              "problem:gestion-tokens",
+              "rule:RN-01",
+              "rule:RN-11",
+              "rule:RN-12"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:3df6e378-bc34-42b4-b0f9-c6c2f8ab5970",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.3",
+              "overlay_revision": 25,
+              "overlay_graph_hash": "sha256:0d52c55ba3605499e5fec8e6cb8eeb931ade68be66237afa6d1075692ab4f041",
+              "overlay_curated_hash": "sha256:a1eafca639aa0bc2085acdcf133dd2591163c10e5133973c4928cb7d42fd3f19",
+              "overlay_projections_revision": null,
+              "output_hash": "sha256:43465a767cb7c327c212a2f97eb9243ffa24a3866e4621597c00ba00b0ab3f8d",
+              "candidate_sources": [
+                {
+                  "id": "pattern:tailwind-recalibrado-bajo-raiz-62-5",
+                  "source": "genome",
+                  "candidate_revision": "sha256:6d5fe11d46dd2df8da0c215088bd82f576c619c807d755fa0b9e165a08d6d38f"
+                },
+                {
+                  "id": "problem:gestion-tokens",
+                  "source": "genome",
+                  "candidate_revision": "sha256:1d325637fbe299605c0bcf87a519a148603bdd7e85af84989436319036f9be21"
+                },
+                {
+                  "id": "rule:RN-01",
+                  "source": "genome",
+                  "candidate_revision": "sha256:35fa954949cc842e9d49fc980933f941d4b32b227d677bfce1bf15bf4ba0c01a"
+                },
+                {
+                  "id": "rule:RN-11",
+                  "source": "genome",
+                  "candidate_revision": "sha256:932f451b6d2c703d8d81fcc81081d6b9e1a1126b639bd069f1446d8ad1910630"
+                },
+                {
+                  "id": "rule:RN-12",
+                  "source": "genome",
+                  "candidate_revision": "sha256:f7f367491f57084edb579f846f63202c8469f75c8aef2edba2c1982671721f7d"
+                }
+              ],
+              "output_bytes": 807
+            }
+          },
+          {
+            "id": "consult:2:5",
+            "at": "2026-08-12T04:33:24.390Z",
+            "intent": "Abrir el patron de correccion en la declaracion ganadora antes de escribir el CSS de las cards de la zona 5, para ubicar la regla que realmente gana antes de agregar estilos propios. Es el patron que estaba disponible en las dos tareas anteriores y nunca abri.",
+            "tool": "find_by_pattern",
+            "arguments": {
+              "name": "correccion-css-en-la-declaracion-ganadora"
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "case:frt-cnct-text-align-bloqueado-por-reset-local",
+              "pattern:correccion-css-en-la-declaracion-ganadora"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:f1fc7f24-e5c2-4219-9ecd-65bcc6577ac2",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.3",
+              "overlay_revision": 28,
+              "overlay_graph_hash": "sha256:0d52c55ba3605499e5fec8e6cb8eeb931ade68be66237afa6d1075692ab4f041",
+              "overlay_curated_hash": "sha256:a1eafca639aa0bc2085acdcf133dd2591163c10e5133973c4928cb7d42fd3f19",
+              "overlay_projections_revision": null,
+              "output_hash": "sha256:1bd88bd2e7a08f2d5071b4debcb7d51bce80a80bcd225937e7b7f6cf19eb01af",
+              "candidate_sources": [
+                {
+                  "id": "case:frt-cnct-text-align-bloqueado-por-reset-local",
+                  "source": "genome",
+                  "candidate_revision": "sha256:0b141f0a3ae1bee71a2d2703a0509f3db56ead7a81db17a90d31675d2bc66914"
+                },
+                {
+                  "id": "pattern:correccion-css-en-la-declaracion-ganadora",
+                  "source": "genome",
+                  "candidate_revision": "sha256:081be3e29e2fe1ddd6ea56dfab7e77d89bd2ce33ef39de4bb7a0f0361e23268b"
+                }
+              ],
+              "output_bytes": 247
+            }
+          },
+          {
+            "id": "consult:2:6",
+            "at": "2026-08-12T04:59:13.582Z",
+            "intent": "Disparador de repeticion: la trampa del flex-grow implicito de sc-section aparecio por segunda vez, en la cadena de nodos de la zona 6, despues de haberla neutralizado en la card del diagrama de la vista anterior. Se consulta el patron de contencion de tamaño flex antes de decidir si la forma es adopcion o candidata nueva.",
+            "tool": "find_by_pattern",
+            "arguments": {
+              "name": "contencion-flex-anidada-explicita"
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "pattern:contencion-flex-anidada-explicita",
+              "principle:v2"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:8820f4ba-1767-4de5-91cb-58359ce9e96a",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.3",
+              "overlay_revision": 30,
+              "overlay_graph_hash": "sha256:0d52c55ba3605499e5fec8e6cb8eeb931ade68be66237afa6d1075692ab4f041",
+              "overlay_curated_hash": "sha256:a1eafca639aa0bc2085acdcf133dd2591163c10e5133973c4928cb7d42fd3f19",
+              "overlay_projections_revision": null,
+              "output_hash": "sha256:337a20e4e1bfb831a7e7afa641e532ba4eb631dd469ee41c43e9d7ceacd3ec65",
+              "candidate_sources": [
+                {
+                  "id": "pattern:contencion-flex-anidada-explicita",
+                  "source": "genome",
+                  "candidate_revision": "sha256:306a78727ba4b7680a98c6efddb2b6e01ce68f0c07d620287840a8bc655c4c06"
+                },
+                {
+                  "id": "principle:v2",
+                  "source": "genome",
+                  "candidate_revision": "sha256:0c12be9fda75ce726b3d1246691258181dc46512d59a18160aa81b2b489231ac"
+                }
+              ],
+              "output_bytes": 245
+            }
+          },
+          {
+            "id": "consult:2:7",
+            "at": "2026-08-12T05:07:56.590Z",
+            "intent": "Antes de agregar el filete divisorio bajo la zona 6: averiguar si el genoma ya define de quien es la responsabilidad de una frontera compartida entre dos secciones adyacentes, para no dejar el criterio al azar y terminar con fronteras de doble borde y otras sin ninguno. Sin resultados: candidato de siembra.",
+            "tool": "find_node",
+            "arguments": {
+              "query": "seccion",
+              "limit": 15
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [],
+            "receipt": {
+              "id": "consultation-receipt:5ec70bbe-bb48-4bff-baa4-0639c8fff86e",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.3",
+              "overlay_revision": 33,
+              "overlay_graph_hash": "sha256:0d52c55ba3605499e5fec8e6cb8eeb931ade68be66237afa6d1075692ab4f041",
+              "overlay_curated_hash": "sha256:a1eafca639aa0bc2085acdcf133dd2591163c10e5133973c4928cb7d42fd3f19",
+              "overlay_projections_revision": null,
+              "output_hash": "sha256:dd0af2af6d673092bc9f72347272f717cb8909ad161dfb438a294d6a218a1a4e",
+              "candidate_sources": [],
+              "output_bytes": 55
+            }
+          },
+          {
+            "id": "consult:2:8",
+            "at": "2026-08-12T05:10:55.493Z",
+            "intent": "Antes de maquetar el carrusel de la zona 7: recuperar el patron de someter un componente de terceros al sistema de diseño, ya que el carrusel introduce una dependencia externa que trae su propia piel y su propio marcado. La consulta devuelve el patron como candidato sin casos ni principios asociados, asi que la instanciacion de esta vista seria su primer caso registrado.",
+            "tool": "find_by_pattern",
+            "arguments": {
+              "name": "visual-tercero-bajo-design-system"
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [],
+            "receipt": {
+              "id": "consultation-receipt:b2f4685b-59e9-4400-8e4a-2b2cc730885f",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.3",
+              "overlay_revision": 35,
+              "overlay_graph_hash": "sha256:0d52c55ba3605499e5fec8e6cb8eeb931ade68be66237afa6d1075692ab4f041",
+              "overlay_curated_hash": "sha256:a1eafca639aa0bc2085acdcf133dd2591163c10e5133973c4928cb7d42fd3f19",
+              "overlay_projections_revision": null,
+              "output_hash": "sha256:edd8c4e86cbeebe21be0c1d8b50c3cd2de4b1d079502e494f175aefd304b4c64",
+              "candidate_sources": [],
+              "output_bytes": 115
+            }
+          },
+          {
+            "id": "consult:2:9",
+            "at": "2026-08-12T05:24:11.785Z",
+            "intent": "Disparador de repeticion: tercera vez que escribo un valor visible sin derivarlo de medir la referencia, ahora el tamaño de la ilustracion dentro de la card del carrusel. Se busca en el genoma si existe algo sobre dimensionar media contra el diseño antes de levantarlo como forma. Sin resultados: candidato de siembra.",
+            "tool": "find_node",
+            "arguments": {
+              "query": "imagen",
+              "limit": 10
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [],
+            "receipt": {
+              "id": "consultation-receipt:5d22e6ee-531e-40c2-95fd-fb348e00e20e",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.3",
+              "overlay_revision": 37,
+              "overlay_graph_hash": "sha256:0d52c55ba3605499e5fec8e6cb8eeb931ade68be66237afa6d1075692ab4f041",
+              "overlay_curated_hash": "sha256:a1eafca639aa0bc2085acdcf133dd2591163c10e5133973c4928cb7d42fd3f19",
+              "overlay_projections_revision": null,
+              "output_hash": "sha256:de5b8e9d1e60c7da9fecc8d76f9d93de5925bdb5507e0f98f3cd279f60e0c768",
+              "candidate_sources": [],
+              "output_bytes": 54
+            }
           }
         ],
         "decisions": [
@@ -1523,6 +1731,229 @@
               "src/components/sections/SpeiWhy.vue",
               "src/components/sections/SpeiStages.vue",
               "src/components/sections/HsmSteps.vue"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:2:6",
+            "kind": "novel",
+            "rationale": "Un asset de media que trae un filo o borde horneado se recorta desde el layout, no editando el archivo: se le da una escala ligeramente mayor a 1 dentro de un contenedor con overflow oculto y ajuste por cobertura, de modo que el sobrante queda fuera del recorte. Evita reexportar el asset y funciona igual con video o imagen. La razon por la que funciona es puramente de modelo de caja y recorte, no depende del framework ni del arte concreto.",
+            "projection": "etiqueta: media-con-filo-recortado-por-escala-en-contenedor-oculto — aqui se aplica como scale-105 + object-cover dentro de un figure con overflow-hidden y aspect ratio fijo. Sin la escala, los videos del set criptografico mostraban un marco negro de un par de pixeles; el video del home no lo traia y por eso la forma copiada de el fallaba en silencio.",
+            "evidence": [
+              "src/components/sections/SpeiHero.vue",
+              "src/components/sections/SpeiStages.vue",
+              "src/components/sections/SpeiWhy.vue",
+              "src/components/sections/HsmHero.vue",
+              "src/components/sections/FeatureCards.vue"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:2:7",
+            "kind": "novel",
+            "rationale": "Las propiedades individuales de transformacion (translate, rotate, scale) se acumulan entre si, mientras que la propiedad abreviada transform se sobrescribe por completo en cada declaracion. Por eso, cuando dos capas de estilo distintas necesitan transformar el mismo elemento — una el desplazamiento estructural en reposo y otra el crecimiento en hover — deben usar propiedades individuales; con la abreviada, la segunda anula la primera y el elemento salta a su posicion sin desplazar. Es una regla del modelo de cascada de CSS, independiente del framework.",
+            "projection": "etiqueta: propiedades-de-transform-independientes-componen-sin-pisarse — aqui la card del abanico recibe su desplazamiento por una utilidad de translate y su crecimiento por un scale en :hover escrito en CSS propio; ambas conviven. Con transform en la regla de hover, la card de en medio habria vuelto de golpe al centro al pasar el mouse.",
+            "evidence": [
+              "src/components/sections/HsmOrgCard.vue",
+              "src/components/sections/HsmUseCases.vue"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:2:8",
+            "kind": "novel",
+            "rationale": "Un fondo solo puede animarse entre dos estados si ambos tienen la MISMA forma: gradiente contra gradiente del mismo tipo y mismo numero de paradas, o color contra color. Si un estado es gradiente y el otro un color plano, el navegador no puede interpolar y el fondo salta de golpe mientras el resto de la transicion corre suave. La solucion es expresar el estado plano como un gradiente de un solo color repetido, visualmente identico pero interpolable. Es una regla de animacion de CSS, no depende del framework ni de la paleta.",
+            "projection": "etiqueta: transicion-de-fondo-exige-misma-forma-de-gradiente-en-ambos-estados — aqui la card en reposo tiene un gradiente vertical gris a blanco y en hover un gradiente blanco a blanco, en vez de background:white. Se ve igual que el color plano pero permite que fondo, escala y sombra animen juntos.",
+            "evidence": [
+              "src/components/sections/HsmUseCases.vue"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:2:9",
+            "kind": "novel",
+            "rationale": "Cuando un diseño escalona o abanica un conjunto de piezas, el desplazamiento debe salir de EN QUE CONTENEDOR vive cada pieza, no de una transformacion decorativa aplicada sobre una reticula regular. Con la transformacion, el desplazamiento es una capa aparte que no participa del flujo: sobrevive mientras la reticula no cambie, pero al colapsar por ancho las piezas quedan desalineadas y ademas compite con cualquier otra transformacion que el elemento reciba. Expresado como estructura, la posicion es consecuencia del layout y se conserva en todos los anchos. Es un criterio de modelado de layout, independiente del framework.",
+            "projection": "etiqueta: desplazamiento-posicional-como-estructura-no-como-transform — aqui el abanico se rearmo como un padre con tres bloques donde cada lado se parte en columna externa e interna; la card que sobresale vive en la externa. Sustituyo una version previa con translate por breakpoint que se desalineaba al envolver.",
+            "evidence": [
+              "src/components/sections/HsmOrgMosaic.vue",
+              "src/components/sections/SpeiStages.vue"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:2:10",
+            "kind": "novel",
+            "rationale": "Cuando un diseño necesita revelar por partes una misma ilustracion, conviene una sola imagen completa recortada N veces por CSS en vez de N archivos exportados por el diseñador. Los recortes exportados hornean la decision de corte en el binario: obligan a conocer el desplazamiento de cada fragmento dentro del lienzo original, ese dato no viaja con el archivo, y cualquier ajuste del limite exige reexportar el arte. Con un solo archivo y regiones de recorte declaradas en CSS, la alineacion queda garantizada por construccion (mismo lienzo, mismo ajuste), los limites pasan a ser numeros editables y el navegador descarga el recurso una sola vez aunque se instancie N veces.",
+            "projection": "etiqueta: una-imagen-mas-recorte-css-en-vez-de-n-fragmentos-exportados — aqui las cinco etapas se revelan con clip-path sobre una unica ilustracion a color superpuesta a la version en gris. Sustituye a cinco PNG de 2 a 3.5 MB cuyos anchos sumaban 7664 px contra un lienzo de 5000, es decir, se solapaban sin offset declarado y eran imposibles de posicionar.",
+            "evidence": [
+              "assets/Micrositio Hermes/etapas SPE Color.png",
+              "assets/Micrositio Hermes/etapas SPEI BN.png",
+              "src/components/sections/SpeiStages.vue"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:2:11",
+            "kind": "novel",
+            "rationale": "Antes de sustituir una variante de un asset por un filtro equivalente en CSS, hay que verificar por medicion que el filtro la reproduce. Una version en escala de grises entregada por diseño puede estar dirigida a mano — con la luminosidad, el contraste o canales concretos retocados — y en ese caso no coincide con la conversion por coeficientes de luma que aplica el filtro estandar. La verificacion es barata: muestrear los mismos puntos en ambas versiones y comparar la luminancia calculada contra la real. Si divergen, el asset no es sustituible y hay que conservarlo.",
+            "projection": "etiqueta: variante-art-dirigida-no-se-sustituye-por-filtro-sin-medir — aqui se comparo la ilustracion a color contra su version en gris en ocho puntos: la diferencia va de -5 a -48 niveles y se dispara en los verdes, asi que un filter:grayscale habria oscurecido el pasto. Se conservan los dos archivos en vez de generar el gris por CSS.",
+            "evidence": [
+              "assets/Micrositio Hermes/etapas SPE Color.png",
+              "assets/Micrositio Hermes/etapas SPEI BN.png"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:2:12",
+            "kind": "novel",
+            "rationale": "Reutilizar la disposicion concreta de una seccion hermana como punto de partida importa decisiones que nadie tomo para el nuevo contexto. Lo reutilizable de una seccion previa son sus invariantes — como colapsa, de donde salen sus medidas, que separa esqueleto de piel — no su arreglo particular de bloques ni su piel. Al transplantar el arreglo, las elecciones visuales de la seccion origen viajan sin justificacion y aparecen como si fueran del diseño nuevo. El sintoma tipico es un valor que no existe en la referencia y que nadie sabe de donde salio. La verificacion es preguntarse, por cada valor visible, de que medicion del diseño nuevo proviene.",
+            "projection": "etiqueta: estructura-transplantada-de-seccion-hermana-importa-decisiones-no-justificadas — aqui la seccion de etapas se escribio copiando la disposicion de la seccion de pasos de la vista anterior, y con ella viajo un fondo crema que la referencia no tiene: el diseño nuevo es blanco. Lo detecto el humano al contrastar contra el diseño, no el build ni el linter.",
+            "evidence": [
+              "src/components/sections/SpeiStages.vue",
+              "src/components/sections/HsmSteps.vue"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:2:13",
+            "kind": "local",
+            "rationale": "Los componentes de seccion se nombran con el prefijo de su vista (Hsm*, Spei*) en un unico directorio plano. La razon es una configuracion propia de este proyecto: el auto-import de componentes esta declarado sin prefijo de ruta, asi que anidar por carpeta NO desambigua y dos vistas con un Hero cada una colisionarian. Muere fuera de este producto: depende del framework y de como esta configurado aqui, no de una propiedad general del diseño.",
+            "projection": "Prefijo por vista en src/components/sections/, sin subcarpetas. Si algun dia se activara el prefijo de ruta en la configuracion, la convencion se vuelve innecesaria y conviene anidar.",
+            "evidence": [
+              "nuxt.config.ts",
+              "src/components/sections/SpeiHero.vue",
+              "src/components/sections/HsmHero.vue"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:2:14",
+            "kind": "novel",
+            "rationale": "Al maquetar desde una referencia, el rol que el implementador ASUME para un elemento no es necesariamente el que el diseño le asigna. Clasificar mentalmente un parrafo como texto de apoyo lleva a aplicarle el token atenuado y un tamaño reducido por defecto, pero un diseño puede darle a ese mismo parrafo casi el peso del titular. El error no lo detecta ninguna herramienta: compila, pasa el analizador estatico y el color proviene del sistema de diseño, asi que parece correcto. Solo aparece al contrastar contra la referencia. La verificacion es leer del diseño el contraste y el tamaño de CADA elemento en vez de derivarlos del rol que uno le supone.",
+            "projection": "etiqueta: rol-visual-asumido-en-vez-de-medido-del-diseño — aqui el parrafo del hero y las etiquetas de los cuatro riesgos se escribieron con el token de tinta atenuada y un tamaño menor; la referencia los tiene en tinta oscura y un escalon mas grandes. Dos instancias en dos secciones consecutivas, ambas corregidas por el humano y no por el build.",
+            "evidence": [
+              "src/components/sections/SpeiHero.vue",
+              "src/components/sections/SpeiRisks.vue"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:2:15",
+            "kind": "novel",
+            "rationale": "TERCERA Y CUARTA instancia de la misma forma ya levantada en esta tarea: reutilizar la disposicion o la piel de una vista hermana importa decisiones que nadie tomo para el contexto nuevo. Aqui viajo el modificador de radio tipo pildora de los botones, que la vista anterior si usa y esta referencia no: la suya lleva el radio base. Aparecio en el hero y en la banda de riesgos. Se suma a las dos instancias ya registradas de superficie inventada — el fondo crema de la seccion de etapas y la superficie gris bajo el diagrama — lo que da cuatro manifestaciones del mismo mecanismo en una sola vista. El sintoma es siempre el mismo: un valor visible que no proviene de ninguna medicion del diseño nuevo.",
+            "projection": "etiqueta: estructura-transplantada-de-seccion-hermana-importa-decisiones-no-justificadas — instancias en esta vista: fondo crema en etapas, superficie gris bajo el diagrama, y modificador de pildora en los botones del hero y de riesgos. Las cuatro las detecto el humano al contrastar, ninguna el build ni el analizador estatico.",
+            "evidence": [
+              "src/components/sections/SpeiHero.vue",
+              "src/components/sections/SpeiRisks.vue",
+              "src/components/sections/SpeiStages.vue",
+              "src/components/sections/SpeiWhy.vue"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:2:16",
+            "kind": "novel",
+            "rationale": "Un archivo con extension de formato vectorial puede no contener geometria: puede ser un envoltorio con un mapa de bits incrustado en base64. Dos señales lo delatan sin abrirlo del todo: un peso de ordenes de magnitud por encima de lo que costaria ese dibujo en trazos, y cero elementos de trazo en el documento. Cuando ademas varias variantes pesan EXACTAMENTE lo mismo, es que todas incrustan el mismo mapa de bits y lo unico que cambia entre ellas es la transformacion que lo recorta. En ese caso no hace falta pedir reexportacion: la ventana de cada variante se despeja de su propia matriz, porque bajo un sistema de coordenadas normalizado un punto del mapa cae en coordenada = escala*punto + desplazamiento, y la region visible es la que queda dentro del intervalo unitario. De ahi salen el origen del recorte y su tamaño sin medir a ojo.",
+            "projection": "etiqueta: envoltorio-vectorial-con-raster-incrustado-y-recorte-en-la-transformacion — aqui cuatro archivos de extension vectorial de 1017.4 KB cada uno, sin un solo trazo, envolvian la misma tira de 2000x401. De cada matriz se despejo su ventana (origen = -desplazamiento/escala, tamaño = 1/escala) dando cuatro recortes de 372x376 en x = 0, 527, 1091 y 1622. Reencodeados sin perdida, los cuatro iconos pasaron de 4069 KB a 119 KB.",
+            "evidence": [
+              "public/images/operando/1.webp",
+              "public/images/operando/2.webp",
+              "public/images/operando/3.webp",
+              "public/images/operando/4.webp",
+              "src/components/sections/SpeiOperate.vue"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:2:17",
+            "kind": "adopt",
+            "target": "pattern:contencion-flex-anidada-explicita",
+            "rationale": "El patron exige que cada nodo de una cadena flex anidada declare su contrato de tamaño en vez de heredarlo. En este proyecto la clase de rol estructural trae flex-grow:1 de fabrica, asi que un elemento que la lleve dentro de un contenedor flex crece aunque el diseño lo quiera del tamaño de su contenido: el contrato existe pero es implicito y contrario a lo que se necesita. Se adopta declarandolo explicito en cada nodo. Segunda instancia en dos vistas: en la card del diagrama se neutralizo de forma preventiva, y en la cadena de nodos aparecio el fallo real — las tres cajas se estiraban hasta llenar la fila y empujaban la ultima al renglon siguiente.",
+            "evidence": [
+              "src/components/sections/SpeiWhy.vue",
+              "src/components/sections/HsmTechCard.vue",
+              "src/assets/scss/style.scss"
+            ],
+            "consultations": [
+              "consult:2:6"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:2:18",
+            "kind": "novel",
+            "rationale": "Una puerta de proceso atada a una unidad de trabajo se evade sola reclasificando el trabajo como algo menor que esa unidad. Si la regla dice \"consultar antes de tocar cada seccion\", basta con pensar \"esto no es una seccion, es un ajuste chico\" para que la puerta no se active, sin haber decidido conscientemente saltarsela. El agente cumple la regla como la entiende y aun asi la incumple, porque el que clasifica el tamaño del trabajo es el mismo que debe atravesar la puerta. Dos consecuencias practicas: la unidad que dispara la puerta tiene que definirse por el ARTEFACTO tocado —un archivo de seccion— y no por el tamaño percibido del cambio; y enunciar en voz alta que algo ya paso antes debe tratarse como la señal misma, no como un comentario de color.",
+            "projection": "etiqueta: puerta-atada-a-unidad-de-trabajo-se-evade-reclasificando-el-tamaño — aqui dos ediciones seguidas sobre archivos de seccion se trataron como ajustes menores y no dispararon consulta ni registro. En la segunda ademas se escribio en la respuesta al humano que la falla era la misma ya vista en otra vista, y ni asi se acciono el disparador de repeticion.",
+            "evidence": [
+              "src/components/sections/SpeiWhy.vue",
+              "src/components/sections/SpeiOperate.vue"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:2:19",
+            "kind": "novel",
+            "rationale": "Una linea divisoria entre dos bloques adyacentes no pertenece a la frontera sino a uno de los dos vecinos, y hay que elegir cual ANTES de dibujar la primera. Si cada bloque decide por su cuenta, el mismo separador puede quedar declarado por los dos —borde doble, del grosor equivocado— o por ninguno, y el defecto solo aparece al reordenar la pagina o al insertar un bloque en medio. La regla que lo resuelve es asignar la frontera siempre al mismo lado: el bloque que SIGUE declara su borde superior, y ninguno declara borde inferior. Asi cada frontera tiene exactamente un dueño, insertar o mover un bloque no deja lineas huerfanas ni duplicadas, y el primero de la secuencia no dibuja nada, que es lo correcto porque arriba no tiene vecino.",
+            "projection": "etiqueta: frontera-compartida-con-dueño-unico-el-bloque-siguiente — aqui las secciones de la vista declaran border-t y nunca border-b. La banda de riesgos ya lo hacia, y la linea que la referencia muestra DEBAJO del diagrama se implementa como borde superior de la seccion de inteligencia, no como borde inferior del diagrama.",
+            "evidence": [
+              "src/components/sections/SpeiIntelligence.vue",
+              "src/components/sections/SpeiRisks.vue",
+              "src/pages/infraestructura-spei.vue"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:2:20",
+            "kind": "novel",
+            "rationale": "Un fragmento resaltado dentro de un texto traducible no debe resolverse ni partiendo la frase en varias claves ni inyectando marcado desde el archivo de textos. Partirla obliga a que cada variante del texto tenga el mismo numero de tramos, deja claves vacias donde no hay resalte y rompe el orden natural de la frase en idiomas que la reordenan. Inyectar marcado mete presentacion en los contenidos y abre una via de renderizado sin escapar. La forma que resuelve ambas es marcar el fragmento con un delimitador dentro del propio texto y partirlo en el consumidor: los segmentos en posicion impar son los resaltados. Una sola clave por frase, el traductor mueve el delimitador junto con las palabras, y el resalte se pinta con un elemento real sin renderizar marcado arbitrario.",
+            "projection": "etiqueta: resalte-dentro-de-texto-traducible-por-delimitador-y-segmentos-alternos — aqui la descripcion de una de las cuatro cards lleva su porcentaje entre dobles asteriscos y el componente parte por ese delimitador; las otras tres no tienen delimitador y devuelven un unico segmento, sin claves vacias ni ramas especiales.",
+            "evidence": [
+              "src/components/sections/SpeiIntelligence.vue",
+              "i18n/locales/es.json",
+              "i18n/locales/en.json"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:2:21",
+            "kind": "novel",
+            "rationale": "Cuando la hoja de estilos global fija que toda imagen ocupe el ancho de su contenedor, la AUSENCIA de restriccion deja de significar \"tamaño natural\" y pasa a significar \"llenar\". Eso invierte el default seguro: omitir una medida ya no produce un elemento pequeño y evidentemente sin terminar, sino uno que ocupa todo y arrastra consigo la altura del contenedor que lo aloja. El sintoma no se lee como error —la imagen se ve nitida y bien puesta— sino como una tarjeta desproporcionadamente alta, y el origen queda a dos saltos de distancia, en un reset global que nadie recuerda al escribir el componente. Por eso, bajo un reset asi, toda media incrustada en un contenedor de tamaño flexible debe declarar su tope explicito, y ese tope tiene que salir de medir la referencia, no de lo que el contenedor permita.",
+            "projection": "etiqueta: reset-global-de-ancho-convierte-la-medida-omitida-en-llenar-el-contenedor — aqui las cuatro ilustraciones del carrusel se escribieron sin tope y crecieron hasta el ancho completo de la card, estirandola a lo alto muy por encima de la referencia. El tope quedo en 22rem, medido del diseño: la ilustracion ocupa alrededor del 56% del ancho de la card. Es la tercera vez en esta vista que un valor visible no proviene de medir la referencia.",
+            "evidence": [
+              "src/components/sections/SpeiIntelligence.vue",
+              "src/assets/scss/style.scss"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:2:22",
+            "kind": "novel",
+            "rationale": "Un elemento personalizado que define una propiedad por cada uno de sus parametros crea una via de configuracion silenciosamente distinta de la via de atributos. El framework anfitrion, ante un elemento personalizado, decide entre asignar propiedad o atributo segun si el nombre EXISTE en el elemento; si existe, asigna propiedad. Y el setter de la propiedad suele guardar el valor tal cual, mientras que la coercion —convertir cadenas a numero, booleano u objeto— vive solo en el camino de atributos. Consecuencia: un parametro cuyo nombre es una sola palabra coincide con la propiedad y llega crudo, mientras que uno con nombre compuesto en guiones no coincide con nada y si pasa por la coercion. El sintoma es cruel porque discrimina por la FORMA DEL NOMBRE y no por el tipo del valor: los booleanos crudos siguen funcionando por ser cadenas no vacias, asi que el fallo solo se manifiesta en los parametros que esperan un objeto, y en silencio. La regla es enviar explicitamente como valor tipado —no como cadena— todo parametro cuyo nombre sea una sola palabra.",
+            "projection": "etiqueta: elemento-personalizado-con-propiedad-por-parametro-saltea-la-coercion-de-atributos — aqui la configuracion responsive del carrusel se paso como objeto serializado en un atributo de una sola palabra; llego como cadena y quedo ignorada, dejando activo el valor base y cards de ancho casi completo. Los parametros con nombre en guiones del mismo elemento si funcionaban. Se resolvio sacando esa responsabilidad de la libreria: el ancho de cada slide lo fija el CSS del proyecto y el parametro pasa a un valor plano.",
+            "evidence": [
+              "src/components/sections/SpeiIntelligence.vue",
+              "node_modules/swiper/shared/get-element-params.mjs",
+              "node_modules/swiper/swiper-element-bundle.mjs"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:2:23",
+            "kind": "novel",
+            "rationale": "Un objeto de configuracion que se entrega a un componente que reacciona a cambios de sus parametros debe tener referencia ESTABLE. Si se escribe como literal en la plantilla, cada render produce un objeto nuevo; el componente compara por identidad, concluye que su configuracion cambio y se reinicia, aunque ningun valor sea distinto. El sintoma no es un error sino un comportamiento que se corta solo de forma intermitente y sin causa aparente, y no aparece hasta que algo mas provoca un re-render, asi que puede pasar toda la implementacion sin manifestarse. La regla es declarar el objeto una sola vez fuera del ciclo de render y entregar esa referencia; si depende de estado, derivarlo con un calculo memoizado, nunca inline.",
+            "projection": "etiqueta: objeto-de-configuracion-con-referencia-estable-para-componente-reactivo — aqui la configuracion de avance automatico del carrusel vive como constante fuera del render y la variante que la anula bajo preferencia de menos movimiento se deriva con un calculo memoizado; escrita como literal en la plantilla, cada render habria reiniciado el ciclo del carrusel.",
+            "evidence": [
+              "src/components/sections/SpeiIntelligence.vue"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:2:24",
+            "kind": "novel",
+            "rationale": "Un recorrido que avanza solo compite directamente con la lectura del contenido que transporta. Si el contenido es texto que hay que leer, el avance automatico solo es aceptable con dos cesiones: ceder ante la señal de intencion de lectura —el puntero detenido encima— y ceder ante la preferencia declarada de menos movimiento. Sin la primera, el texto se va justo cuando alguien esta leyendolo, y el visitante queda persiguiendo el contenido. Sin la segunda, se ignora una preferencia explicita del sistema en el caso exacto que esa preferencia existe para cubrir. Ademas, el reparto entre espera y desplazamiento debe favorecer con holgura a la espera: lo que hace legible el recorrido no es que el movimiento sea lento, sino que la pausa dure lo que toma leer.",
+            "projection": "etiqueta: recorrido-automatico-cede-ante-lectura-y-preferencia-de-menos-movimiento — aqui el carrusel espera 4500 ms por card contra 900 ms de transicion, se pausa al entrar el puntero, no se cancela al arrastrar para que el recorrido continue despues, y queda desactivado por completo si el visitante pidio menos movimiento.",
+            "evidence": [
+              "src/components/sections/SpeiIntelligence.vue"
             ],
             "status": "proposed"
           }

@@ -21,10 +21,11 @@
         >{{ leg.label }}</span>
       </div>
 
-      <figure class="sc-figure mt-4 overflow-hidden rounded-3xl bg-surface-2">
+      <!-- Fondo blanco, como la referencia: no lleva superficie propia. -->
+      <figure class="sc-figure mt-4 overflow-hidden rounded-3xl">
         <video
-          class="mix-blend-multiply block aspect-[16/6] w-full scale-105 object-cover"
-          src="/videos/nube-hibrida.mp4"
+          class="mix-blend-multiply block w-full scale-105"
+          src="/videos/porque-hermes.mp4"
           autoplay
           loop
           muted
@@ -34,19 +35,33 @@
         />
       </figure>
 
-      <article class="sc-article mt-6 w-full flex-wrap justify-center gap-4">
-        <div
-          v-for="(node, i) in nodes"
-          :key="node.label"
-          class="sc-section flex min-w-[16rem] grow flex-col items-center rounded-xl px-5 py-4"
-          :class="i === 1 ? 'bg-primary text-text-invert' : 'bg-surface-2'"
-          :style="{ flexBasis: cell }"
-        >
+      <!-- Cadena de nodos: n cajas de ancho segun su contenido con n-1
+           conectores intercalados, mismo interleave que ProcessCta
+           (v-if="i < n - 1" omite el conector tras el ultimo). Las cajas llevan
+           grow-0 porque sc-section trae flex-grow:1 y sin eso se estiran hasta
+           llenar la fila y empujan la ultima al renglon siguiente. -->
+      <article class="sc-article mt-8 w-full flex-wrap items-center justify-center gap-y-4">
+        <template v-for="(node, i) in nodes" :key="node.label">
+          <div
+            class="sc-section grow-0 rounded-xl px-10 py-4"
+            :class="i === 1 ? 'bg-violet' : 'bg-surface-2'"
+          >
+            <span
+              class="text-center text-base font-bold"
+              :class="i === 1 ? 'text-text-invert' : 'text-deep-ink'"
+            >{{ node.label }}</span>
+          </div>
+
           <span
-            class="text-center text-sm font-bold"
-            :class="i === 1 ? 'text-text-invert' : 'text-deep-ink'"
-          >{{ node.label }}</span>
-        </div>
+            v-if="i < nodes.length - 1"
+            class="hidden shrink-0 items-center lg-2:flex"
+            aria-hidden="true"
+          >
+            <span class="h-px w-10 bg-line-2" />
+            <span class="h-2 w-2 shrink-0 rounded-full bg-violet" />
+            <span class="h-px w-10 bg-line-2" />
+          </span>
+        </template>
       </article>
     </div>
   </section>

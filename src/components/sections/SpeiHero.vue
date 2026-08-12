@@ -8,19 +8,28 @@
   <section class="sc-section w-full px-4 py-8 lg:px-8 lg-2:py-16">
     <article class="sc-article mx-auto w-full max-w-7xl flex-wrap items-center gap-10 lg-2:gap-16">
       <div class="sc-section flex min-w-[28rem] basis-[34rem] flex-col items-center text-center md:items-start md:text-left">
-        <span class="font-secondary text-lg font-bold tracking-wide text-primary">{{ t('spei.hero.brand') }}</span>
-        <p class="mt-2 text-center text-sm font-medium text-ink-3 md:text-left">{{ t('spei.hero.eyebrow') }}</p>
+        <!-- La marca es el logo real de public/logos, el mismo que usa el strip
+             de fabricantes del home; atenuado como en la referencia. -->
+        <span class="text-center text-xs font-medium text-ink-3 md:text-left">{{ t('spei.hero.trustedBy') }}</span>
+        <img
+          src="/logos/hermes.svg"
+          :alt="t('spei.hero.brandAlt')"
+          class="mt-1 h-6 w-auto object-contain opacity-45 grayscale"
+        >
+
+        <p class="mt-8 text-center text-base font-medium text-text md:text-left">{{ t('spei.hero.eyebrow') }}</p>
 
         <h1 class="hero mt-2 text-center font-secondary text-deep-ink md:text-left">
           {{ t('spei.hero.titlePre') }}<br>
           {{ t('spei.hero.titleHighlight') }}
         </h1>
-        <p class="mt-5 max-w-md text-center text-ink-3 md:text-left">{{ t('spei.hero.subtitle') }}</p>
+        <p class="mt-5 max-w-md text-center text-2xl font-medium text-text md:text-left">{{ t('spei.hero.subtitle') }}</p>
 
         <!-- El boton va envuelto en un flex container: .btn-* es display:flex con
              max-width:inherit, asi que suelto en un bloque se estira al 100%. -->
         <div class="mt-8 flex flex-wrap items-center justify-center gap-4 md:justify-start">
-          <NuxtLink :to="localePath('/contact')" class="btn-primary btn-lg btn-pill">
+          <!-- Radio base del boton: la referencia no usa pildora aqui. -->
+          <NuxtLink :to="localePath('/contact')" class="btn-primary">
             {{ t('spei.hero.cta') }}
           </NuxtLink>
         </div>
@@ -28,10 +37,12 @@
 
       <div class="sc-section min-w-[28rem] basis-[38rem]">
         <figure class="sc-figure overflow-hidden rounded-3xl bg-info-soft">
-          <!-- scale-105 + object-cover recorta el filo negro que traen los videos -->
+          <!-- Sin aspect fijo: el video declara su propia proporcion. La escala
+               no participa del layout, asi que el figure mide el alto natural y
+               recorta el 5% sobrante — que es lo que se lleva el filo negro. -->
           <video
-            class="mix-blend-multiply block aspect-[4/3] w-full scale-105 object-cover"
-            src="/videos/pagos.mp4"
+            class="mix-blend-multiply block w-full scale-105"
+            src="/videos/monedas.mp4"
             autoplay
             loop
             muted

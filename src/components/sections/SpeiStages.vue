@@ -1,52 +1,121 @@
-<!-- SpeiStages.vue — Zona 4. Ilustracion isometrica del recorrido y, debajo, una
-     columna por etapa con sus pasos.
+<!-- SpeiStages.vue — Zona 4. Tres filas apiladas sobre la MISMA reticula de 7
+     fracciones iguales: las dos de los extremos solo dan aire, las 5 del medio
+     son las etapas. Asi el titulo, su tramo de ilustracion y su lista caen
+     siempre en la misma columna.
 
-     El ancho de columna se deriva del numero de etapas (100/n) en vez de
-     escribirse a mano, igual que el riel de HsmSteps: si el copy cambia de
-     cinco etapas a seis, el reparto se mantiene solo. Las columnas envuelven
-     por min-width cuando el porcentaje ya no alcanza.
+       fila A  titulos + flecha que baja
+       fila B  ilustracion: BN de base y la version a color recortada en bandas
+       fila C  listas de pasos
 
-     PLACEHOLDER: la ilustracion sale de public/videos del home hasta tener el
-     arte isometrico propio de SPEI. -->
+     La fila B sube con un margen negativo para montarse bajo la A: eso es lo
+     que permite que las flechas entren en la ilustracion en vez de morir en el
+     borde. La fila A va en un plano superior para que la flecha se vea encima.
+
+     La ilustracion NO se recorta en archivos: es una sola imagen a color
+     instanciada 5 veces, cada una con su clip-path. El navegador la descarga
+     una vez, la alineacion sale gratis (mismo lienzo, mismo object-contain) y
+     los limites de banda son numeros editables, no arte reexportado.
+
+     La seleccion cruza las tres filas, asi que vive en un estado del componente
+     y no en un :hover de CSS: un :hover no alcanza de una fila hermana a otra. -->
 <template>
-  <section class="sc-section w-full bg-cream px-4 py-8 lg:px-8 lg-2:py-16">
+  <section class="sc-section w-full px-4 py-8 lg:px-8 lg-2:py-16">
     <h2 class="mx-auto max-w-2xl text-center font-secondary font-bold bg-gradient-to-r from-accent to-[#865BDA] bg-clip-text text-transparent">
       {{ t('spei.stages.titlePre') }}<br>
       {{ t('spei.stages.titlePost') }}
     </h2>
 
-    <div class="mx-auto mt-12 w-full max-w-6xl">
-      <figure class="sc-figure overflow-hidden rounded-3xl">
-        <video
-          class="mix-blend-multiply block aspect-[16/7] w-full scale-105 object-cover"
-          src="/videos/home-animation.mp4"
-          autoplay
-          loop
-          muted
-          playsinline
-          preload="auto"
-          aria-hidden="true"
-        />
-      </figure>
-
-      <article class="sc-article mt-10 w-full flex-wrap items-start gap-y-10">
+    <div class="mx-auto mt-12 w-full max-w-7xl" @mouseleave="active = null">
+      <!-- Fila A — titulos. Cada celda apila el titulo arriba y deja que la
+           flecha crezca hasta el borde inferior, asi todas terminan en la misma
+           linea aunque los titulos arranquen a distinta altura. -->
+      <div class="relative z-10 hidden min-h-[15rem] w-full lg-2:flex">
+        <span class="shrink-0" :style="{ width: cell }" />
         <div
-          v-for="stage in stages"
-          :key="stage.stage"
-          class="sc-section flex min-w-[18rem] grow flex-col px-3"
-          :style="{ flexBasis: column }"
+          v-for="(stage, i) in stages"
+          :key="`title-${i}`"
+          class="flex shrink-0 flex-col px-3"
+          :style="{ width: cell }"
+          @mouseenter="active = i"
         >
-          <span class="text-xs font-bold uppercase tracking-wide text-primary">{{ stage.stage }}</span>
-          <span class="mt-2 font-secondary text-base font-bold leading-snug text-deep-ink">{{ stage.title }}</span>
+          <div :style="{ paddingTop: `${titleOffsets[i]}rem` }">
+            <span
+              class="block text-xs font-bold uppercase tracking-wide transition-colors duration-200"
+              :class="active === i ? 'text-accent' : 'text-ink-3'"
+            >{{ stage.stage }}</span>
+            <span
+              class="mt-1 block font-secondary text-base font-bold leading-snug transition-colors duration-200"
+              :class="active === i ? 'text-deep-ink' : 'text-ink-3'"
+            >{{ stage.title }}</span>
+          </div>
 
-          <ul class="mt-4 flex flex-col gap-2">
-            <li v-for="step in stage.steps" :key="step" class="flex items-start gap-2">
-              <span class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-ink-3" aria-hidden="true" />
-              <span class="text-xs font-medium text-ink-3">{{ step }}</span>
+          <span class="mt-3 flex flex-1 flex-col items-center" aria-hidden="true">
+            <span
+              class="w-px flex-1 transition-colors duration-200"
+              :class="active === i ? 'bg-accent' : 'bg-line-2'"
+            />
+            <span
+              class="h-1.5 w-1.5 rotate-45 border-b border-r transition-colors duration-200"
+              :class="active === i ? 'border-accent' : 'border-line-2'"
+            />
+          </span>
+        </div>
+        <span class="shrink-0" :style="{ width: cell }" />
+      </div>
+
+      <!-- Fila B — ilustracion. Las imagenes van en absolute y no reciben
+           puntero; las zonas sensibles son las 7 celdas de arriba. -->
+      <div class="relative w-full lg-2:-mt-10" :style="{ aspectRatio: '2500 / 809' }">
+        <img
+          src="/images/spei/etapas-bn.webp"
+          alt=""
+          aria-hidden="true"
+          class="pointer-events-none absolute inset-0 h-full w-full object-contain"
+        >
+        <img
+          v-for="(stage, i) in stages"
+          :key="`band-${i}`"
+          src="/images/spei/etapas-color.webp"
+          alt=""
+          aria-hidden="true"
+          class="pointer-events-none absolute inset-0 h-full w-full object-contain transition-opacity duration-300"
+          :style="{ clipPath: bands[i], opacity: active === i ? 1 : 0 }"
+        >
+
+        <div class="absolute inset-0 hidden lg-2:flex">
+          <span class="shrink-0" :style="{ width: cell }" />
+          <span
+            v-for="(stage, i) in stages"
+            :key="`hit-${i}`"
+            class="shrink-0"
+            :style="{ width: cell }"
+            @mouseenter="active = i"
+          />
+          <span class="shrink-0" :style="{ width: cell }" />
+        </div>
+      </div>
+
+      <!-- Fila C — listas de pasos, en la misma reticula. -->
+      <div class="hidden w-full lg-2:flex">
+        <span class="shrink-0" :style="{ width: cell }" />
+        <div
+          v-for="(stage, i) in stages"
+          :key="`steps-${i}`"
+          class="shrink-0 px-3"
+          :style="{ width: cell }"
+          @mouseenter="active = i"
+        >
+          <ul class="flex flex-col gap-3">
+            <li v-for="step in stage.steps" :key="step">
+              <span
+                class="text-sm font-semibold leading-snug transition-colors duration-200"
+                :class="active === i ? 'text-deep-ink' : 'text-ink-3'"
+              >{{ step }}</span>
             </li>
           </ul>
         </div>
-      </article>
+        <span class="shrink-0" :style="{ width: cell }" />
+      </div>
     </div>
   </section>
 </template>
@@ -67,5 +136,24 @@ const stages = computed(() =>
   })),
 )
 
-const column = computed(() => `${100 / stages.value.length}%`)
+const active = ref<number | null>(null)
+
+// 7 fracciones iguales: 1 de aire + 5 etapas + 1 de aire.
+const COLUMNS = computed(() => stages.value.length + 2)
+const cell = computed(() => `${100 / COLUMNS.value}%`)
+
+// Cada banda descubre su fraccion de la ilustracion. Se derivan del mismo
+// conteo que la reticula, asi que banda y celda no se pueden desincronizar.
+const bands = computed(() =>
+  stages.value.map((_, i) => {
+    const left = ((i + 1) / COLUMNS.value) * 100
+    const right = 100 - ((i + 2) / COLUMNS.value) * 100
+    return `inset(0 ${right.toFixed(4)}% 0 ${left.toFixed(4)}%)`
+  }),
+)
+
+// Altura de arranque de cada titulo, en rem. Es direccion de arte medida sobre
+// la referencia: sigue la silueta del terreno y no se puede derivar. La flecha
+// se estira sola hasta el borde de la fila, asi que solo hay que ajustar esto.
+const titleOffsets = [4.5, 2.5, 0, 2, 5]
 </script>
