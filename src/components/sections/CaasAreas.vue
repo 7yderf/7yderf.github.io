@@ -20,10 +20,19 @@
     </div>
 
     <div class="mx-auto mt-12 w-full max-w-6xl">
+      <!-- centered-slides va como ATRIBUTO, no como propiedad enlazada: getParams
+           lee primero las propiedades y despues los atributos, y solo el camino
+           del atributo pasa por el conversor que interpreta el texto. Mismo
+           camino que slides-per-view, ya probado aqui.
+           Precondicion del modo circular, verificada y no asumida: el total de
+           piezas debe ser >= visibles + grupo + 1 cuando se centra. Son 5 piezas
+           contra 2 visibles + 1 + 1 = 4 en el corte mas ancho, y menos exigente
+           en los angostos. -->
       <swiper-container
         class="areas-swiper block"
         slides-per-view="auto"
         space-between="32"
+        centered-slides="true"
         :loop="true"
         :keyboard="true"
         :speed="600"
