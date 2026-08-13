@@ -12,11 +12,28 @@
   --color-primary-light: #6C46FB;     /* extremo claro del gradiente en botones/CTAs */
   --color-primary-dark: #4E31DD;      /* extremo oscuro del gradiente en botones/CTAs */
   --color-primary-soft: #F0E4FC;      /* fondo lavanda de tarjetas y pills (contact.png) */
+  /* Violeta de marca. NO es --color-primary (#5B3FE0) ni --color-violet (#7A5AF8):
+     es el tono que ya estaba hardcodeado en los gradientes del hero y del CTA final
+     del home, en los titulares en gradiente de las vistas HSM y SPEI, y que en la
+     vista Cripto as a Service aparece como fondo de la banda de cierre y como borde
+     del hover de las cards. Tres paginas usandolo lo vuelven color de marca, no un
+     valor suelto. Medido sobre la referencia. */
+  --color-brand-violet: #865BDA;
+  /* Su superficie palida: cards de "ya tienes HSM", card activa de "todo desde un
+     solo lugar" y banda post-cuantica. Mas frio y saturado que --color-primary-soft. */
+  --color-brand-violet-soft: #E5E1F9;
+  /* Rosa palido de la card del hero de Cripto as a Service. Se distingue a simple
+     vista del lavanda: no es sustituible por --color-primary-soft. */
+  --color-brand-blush: #F2DBF3;
   --color-bg: #F0F0F3;            /* --sc-bg */
   --color-bg-second: #FFFFFF;     /* --sc-surface */
   --color-surface-2: #F7F7F9;     /* --sc-surface-2 — tonal surface */
   --color-surface-3: #F5F5F5;     /* --sc-surface-3 — notification bg */
   --color-cream: #F5F1E6;         /* fondo crema cálido del hero — se funde con el video (medido en Figma) */
+  /* Crema casi blanco de los paneles de Cripto as a Service. --color-cream es mucho
+     mas calido y saturado: puesto aqui se leeria como beige, no como el blanco
+     templado que pide la referencia. */
+  --color-cream-soft: #FFFDF9;
   --color-text: #242636;          /* --sc-ink */
   --color-text-custom: #2E65F3;   /* --sc-link */
   --color-text-invert: #FFFFFF;   /* --sc-ink-on-dark */
@@ -54,6 +71,10 @@
   /* Colors — accent */
   --color-accent: #FF6700;        /* --sc-accent — naranja CTA exacto medido en Figma */
   --color-accent-soft: #FFE8DE;   /* --sc-accent-soft */
+  /* Durazno intermedio entre --color-accent-soft y --color-accent: es el relleno de
+     las filas alternas de la tabla comparativa. Demasiado oscuro para confundirse
+     con accent-soft y demasiado claro para llevar texto en blanco. */
+  --color-accent-mid: #FFCAA6;
   --color-accent-ink: #993E00;    /* --sc-accent-ink — hover/active, derivado del naranja CTA (darken 20%) */
 
   /* Colors — additional (from module audit) */

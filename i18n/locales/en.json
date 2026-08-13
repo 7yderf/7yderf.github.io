@@ -492,7 +492,7 @@
     },
     "stats": {
       "title": "What we offer",
-      "subtitle": "With Hermes II you get a proven platform and an experienced team.",
+      "subtitle": "With Hermes you get a proven platform and an experienced team.",
       "items": [
         { "value": "1M", "label": "Transactions per hour" },
         { "value": "99.9%", "label": "Availability" },
@@ -509,23 +509,23 @@
       "items": [
         {
           "question": "Do I have to change my whole infrastructure?",
-          "answer": "No. We integrate Hermes II with your current environment."
+          "answer": "No. We integrate Hermes with your current environment."
         },
         {
           "question": "Does the migration interrupt the operation?",
-          "answer": "PENDING APPROVED COPY."
+          "answer": "No. We design a plan to keep the service running."
         },
         {
           "question": "Do you also support certification?",
-          "answer": "PENDING APPROVED COPY."
+          "answer": "Yes. We support the process through to approval by Banco de México."
         },
         {
           "question": "What happens when requirements change?",
-          "answer": "PENDING APPROVED COPY."
+          "answer": "We update the platform and support you through the transition."
         },
         {
           "question": "Will my team be able to manage it?",
-          "answer": "PENDING APPROVED COPY."
+          "answer": "Yes. We transfer knowledge so you have autonomy whenever you decide."
         }
       ]
     },
@@ -534,6 +534,155 @@
       "titlePre": "The best moment to",
       "titlePost": "start is now.",
       "cta": "Schedule a technical assessment"
+    }
+  },
+  "caas": {
+    "meta": {
+      "title": "Crypto as a Service — Conecta",
+      "description": "Control your cryptography with your hardware or with ours. Cryptographic vault, key and certificate management in a single console."
+    },
+    "hero": {
+      "brandAlt": "Tesseract",
+      "eyebrow": "Cryptography (SaaS)",
+      "titlePre": "Control your cryptography,",
+      "titleMid": "with your hardware",
+      "titlePost": "or with ours.",
+      "subtitle": "Your keys, wherever they live, always under your control.",
+      "cta": "Schedule a technical assessment"
+    },
+    "paths": {
+      "title": "Two paths, the same goal.",
+      "subtitle": "Every organization starts from a different place and we adapt to yours.",
+      "startTitle": "You don't have an HSM yet",
+      "startCta": "See the cloud model",
+      "startItems": [
+        { "label": "Start without buying hardware." },
+        { "label": "Get a dedicated partition, managed by specialists and ready to operate from day one." }
+      ],
+      "ownTitle": "You already have an HSM",
+      "ownCta": "See how it works",
+      "ownItems": [
+        { "label": "Build on the infrastructure you already have." },
+        { "label": "We add the visibility, governance and automation you're missing today." }
+      ]
+    },
+    "scattered": {
+      "title": "Are your keys scattered and your certificates out of control?",
+      "subtitle": "Centralize cryptographic management before it hits your operation.",
+      "cta": "Talk to sales"
+    },
+    "onePlace": {
+      "title": "Everything from one place.",
+      "subtitle": "Centralize your whole operation in a single view: one platform and one console designed to give you absolute command of your infrastructure.",
+      "cta": "Talk to sales",
+      "cards": [
+        {
+          "title": "Cloud Ecosystem",
+          "subtitle": "",
+          "link": "Explore the cloud ecosystem",
+          "items": [
+            "2FA authentication.",
+            "Cryptographic Vault (HSM as a Service).",
+            "Identity management (IAM /CIAM).",
+            "HSM monitoring.",
+            "On-prem and multicloud key administration.",
+            "SDKs"
+          ]
+        },
+        {
+          "title": "HSM Control Security",
+          "subtitle": "On-Premise",
+          "link": "Learn about HSM Control Security",
+          "items": [
+            "**Monitor HSM:** Watches the state of your equipment in real time.",
+            "**Key Manager:** Centralizes and administers the keys in your cryptographic vault.",
+            "**Key Scan:** Locates and monitors the keys across your whole infrastructure.",
+            "**Keyos:** Connects Key Manager to any of the major clouds.",
+            "**Cryptographic bus:** Integrates your applications simply."
+          ]
+        },
+        {
+          "title": "Auth",
+          "subtitle": "",
+          "link": "Learn about authentication",
+          "items": [
+            "**Cryptographic 2FA:** Protects access and critical operations with dynamic OTP codes tied to the user's identity.",
+            "**Secure PINPad:** Protects the PIN with advanced cryptography and secure communication, reducing exposure risk."
+          ]
+        }
+      ]
+    },
+    "adapts": {
+      "title": "It adapts to your operation.",
+      "subtitle": "Not the other way around. Choose the model that works best for your organization.",
+      "cta": "Compare models",
+      "colOwn": "With your hardware",
+      "colCloud": "In our cloud",
+      "rows": [
+        { "label": "Initial investment", "own": "Your own hardware", "cloud": "No hardware to buy" },
+        { "label": "Implementation", "own": "On your infrastructure", "cloud": "Initial investment" },
+        { "label": "Operation", "own": "Your team", "cloud": "Tesseract" },
+        { "label": "Scalability", "own": "Bound to your infrastructure", "cloud": "On demand" },
+        { "label": "Support", "own": "Specialized", "cloud": "Specialized" },
+        { "label": "Best for", "own": "Maximum control", "cloud": "Speed and simplicity" }
+      ]
+    },
+    "areas": {
+      "title": "Built for the whole organization.",
+      "subtitle": "Every area gets something different.",
+      "cta": "See benefits by area",
+      "items": [
+        { "title": "Leadership", "first": "More control", "second": "Less risk" },
+        { "title": "Technology", "first": "Less manual work", "second": "More automation" },
+        { "title": "Security", "first": "Greater visibility", "second": "Fewer blind spots" },
+        { "title": "Development", "first": "Simple integrations", "second": "Less implementation time" },
+        { "title": "Compliance", "first": "Faster audits", "second": "Evidence ready when you need it" }
+      ]
+    },
+    "postQuantum": {
+      "titlePre": "Post-Quantum",
+      "titlePost": "Readiness",
+      "body": "Cryptography is evolving and your infrastructure should evolve with it.",
+      "cta": "Talk to a specialist"
+    },
+    "compliance": {
+      "titlePre": "Compliance can",
+      "titlePost": "also be simple.",
+      "body": "When the audit arrives, just export the information — no starting from scratch.",
+      "cta": "See how it works"
+    },
+    "start": {
+      "titlePre": "Getting started is simpler",
+      "titlePost": "than it looks.",
+      "cta": "Schedule a session",
+      "steps": [
+        { "label": "We understand your situation" },
+        { "label": "We define the right model" },
+        { "label": "We configure the platform" },
+        { "label": "We integrate your infrastructure" },
+        { "label": "We stay with you throughout the operation" }
+      ]
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "items": [
+        {
+          "question": "Do I have to buy hardware?",
+          "answer": "Only if you want to. You can rent a dedicated partition on our certified equipment or purchase the equipment. We define it according to your regulation and budget."
+        },
+        { "question": "I already have an HSM. Do I have to replace it?", "answer": "PENDING APPROVED COPY." },
+        { "question": "Does it work with the equipment I already bought?", "answer": "PENDING APPROVED COPY." },
+        { "question": "Can I start in the cloud and migrate to my own equipment later?", "answer": "PENDING APPROVED COPY." },
+        { "question": "Where do my keys live?", "answer": "PENDING APPROVED COPY." },
+        { "question": "How complicated is it to integrate?", "answer": "PENDING APPROVED COPY." },
+        { "question": "Can I contract just one module?", "answer": "PENDING APPROVED COPY." },
+        { "question": "How much does it cost?", "answer": "PENDING APPROVED COPY." }
+      ]
+    },
+    "finalCta": {
+      "eyebrow": "We analyze your infrastructure, spot opportunities and recommend the service level that fits your operation.",
+      "title": "Take back control of your cryptography.",
+      "cta": "Schedule a demo"
     }
   }
 }

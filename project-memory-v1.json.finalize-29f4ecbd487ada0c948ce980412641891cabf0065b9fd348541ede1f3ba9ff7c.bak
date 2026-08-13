@@ -1,7 +1,7 @@
 {
   "$schema": "https://eure-k.local/schemas/project-memory-v1.json",
   "schema": "eure-k.project-memory/v1",
-  "revision": 58,
+  "revision": 48,
   "project": {
     "id": "frt-cnct-web",
     "repository_fingerprint": "git-remote-v1:sha256:9cecfa5ed6040202f52f46768540e1b8a10fa6c11be8f5acbcaf8dbea368cb60",
@@ -28,7 +28,7 @@
     "revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
     "server_version": "0.30.6",
     "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
-    "last_consulted_at": "2026-08-13T02:41:49.835Z",
+    "last_consulted_at": "2026-08-13T01:20:05.560Z",
     "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7"
   },
   "graph": {
@@ -38,8 +38,8 @@
         "version": "headless-v1",
         "adapter": "legacy-front",
         "target": "src",
-        "generated_at": "2026-08-13T01:53:34.984Z",
-        "content_hash": "sha256:8297fc0cc89b485862f2ac62a3cd4ed5b36f68fd233ac730adc13fe94790d56b"
+        "generated_at": "2026-08-07T22:28:09.964Z",
+        "content_hash": "sha256:53cd42958dba66b497941f07df2778d66f7d7993e72b802d9d94c7bbafe3f035"
       },
       "nodes": [
         {
@@ -473,116 +473,6 @@
           "molecule": null
         },
         {
-          "id": "src/components/sections/SpeiEvolve.vue",
-          "type": "component",
-          "layer": "structure",
-          "label": "SpeiEvolve.vue",
-          "language": "vue",
-          "scope": "shared",
-          "flow": null,
-          "molecule": null
-        },
-        {
-          "id": "src/components/sections/SpeiFaq.vue",
-          "type": "component",
-          "layer": "structure",
-          "label": "SpeiFaq.vue",
-          "language": "vue",
-          "scope": "shared",
-          "flow": null,
-          "molecule": null
-        },
-        {
-          "id": "src/components/sections/SpeiFinalCta.vue",
-          "type": "component",
-          "layer": "structure",
-          "label": "SpeiFinalCta.vue",
-          "language": "vue",
-          "scope": "shared",
-          "flow": null,
-          "molecule": null
-        },
-        {
-          "id": "src/components/sections/SpeiHero.vue",
-          "type": "component",
-          "layer": "structure",
-          "label": "SpeiHero.vue",
-          "language": "vue",
-          "scope": "shared",
-          "flow": null,
-          "molecule": null
-        },
-        {
-          "id": "src/components/sections/SpeiIntelligence.vue",
-          "type": "component",
-          "layer": "structure",
-          "label": "SpeiIntelligence.vue",
-          "language": "vue",
-          "scope": "shared",
-          "flow": null,
-          "molecule": null
-        },
-        {
-          "id": "src/components/sections/SpeiOperate.vue",
-          "type": "component",
-          "layer": "structure",
-          "label": "SpeiOperate.vue",
-          "language": "vue",
-          "scope": "shared",
-          "flow": null,
-          "molecule": null
-        },
-        {
-          "id": "src/components/sections/SpeiRisks.vue",
-          "type": "component",
-          "layer": "structure",
-          "label": "SpeiRisks.vue",
-          "language": "vue",
-          "scope": "shared",
-          "flow": null,
-          "molecule": null
-        },
-        {
-          "id": "src/components/sections/SpeiShared.vue",
-          "type": "component",
-          "layer": "structure",
-          "label": "SpeiShared.vue",
-          "language": "vue",
-          "scope": "shared",
-          "flow": null,
-          "molecule": null
-        },
-        {
-          "id": "src/components/sections/SpeiStages.vue",
-          "type": "component",
-          "layer": "structure",
-          "label": "SpeiStages.vue",
-          "language": "vue",
-          "scope": "shared",
-          "flow": null,
-          "molecule": null
-        },
-        {
-          "id": "src/components/sections/SpeiStats.vue",
-          "type": "component",
-          "layer": "structure",
-          "label": "SpeiStats.vue",
-          "language": "vue",
-          "scope": "shared",
-          "flow": null,
-          "molecule": null
-        },
-        {
-          "id": "src/components/sections/SpeiWhy.vue",
-          "type": "component",
-          "layer": "structure",
-          "label": "SpeiWhy.vue",
-          "language": "vue",
-          "scope": "shared",
-          "flow": null,
-          "molecule": null
-        },
-        {
           "id": "src/components/sections/StatsSection.vue",
           "type": "component",
           "layer": "structure",
@@ -687,16 +577,6 @@
           "type": "component",
           "layer": "structure",
           "label": "index.vue",
-          "language": "vue",
-          "scope": "shared",
-          "flow": null,
-          "molecule": null
-        },
-        {
-          "id": "src/pages/infraestructura-spei.vue",
-          "type": "component",
-          "layer": "structure",
-          "label": "infraestructura-spei.vue",
           "language": "vue",
           "scope": "shared",
           "flow": null,
@@ -947,430 +827,7 @@
       "patterns": [],
       "cases": [],
       "exceptions": [],
-      "projections": [
-        {
-          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:1",
-          "type": "projection",
-          "layer": "local-knowledge",
-          "scope": "local",
-          "status": "validated",
-          "concern": "Superficie azul palida de marca en la vista SPEI",
-          "problem": "La vista SPEI necesita una superficie azul palida en tres lugares — la card del hero, la card del participante directo y la banda de compromiso — y ningun token existente sirve. El azul informativo esta demasiado saturado para usarse como fondo, y el azul claro disponible esta reservado al estado programada de campañas de email: reusarlo como superficie de marca desvirtuaria su semantica y dejaria dos significados compitiendo por el mismo valor.",
-          "projection": "Se crea --color-info-soft con valor #E8F4FD dentro del bloque de tema, junto a --color-info, con un comentario que deja escrito por que no se reuso ninguno existente. Los componentes lo consumen por su utilidad de fondo y nunca por el hex. Es el unico token creado en las dos vistas maquetadas. El hex esta medido sobre la referencia visual a falta del valor de Figma, asi que vive en un solo lugar para poder corregirlo sin tocar ningun componente.",
-          "responsibilities": [
-            "Concentrar el hex en un unico punto para corregirlo contra Figma sin tocar componentes",
-            "Definir el tono azul palido de superficie para toda la vista SPEI",
-            "Dejar constancia de por que no se reuso --color-info ni --color-scheduled"
-          ],
-          "facts": {
-            "hex_medido_de_referencia": true,
-            "instancias_de_uso": 3,
-            "pendiente_confirmar_contra_figma": true,
-            "token": "--color-info-soft",
-            "unico_token_creado_en_ambas_vistas": true,
-            "valor": "#E8F4FD"
-          },
-          "source_relations": [],
-          "evidence": [
-            {
-              "path": "src/assets/tailwind.css",
-              "hash": "sha256:c1962a1425dd6829f1117a13e6d4e5a9223f98cd7739a233295fba2cd4b92f57",
-              "symbols": [
-                "--color-info-soft"
-              ]
-            },
-            {
-              "path": "src/components/sections/SpeiEvolve.vue",
-              "hash": "sha256:19d8f898b6f631112f4ed354dff744a5125d6bebf6f4e94a588ba0562c50c83c",
-              "symbols": [
-                "bg-info-soft"
-              ]
-            },
-            {
-              "path": "src/components/sections/SpeiHero.vue",
-              "hash": "sha256:8d7749d205eb4fb9f2748d2ff7df754fbe7153154dad42e851ac1449724c4d15",
-              "symbols": [
-                "bg-info-soft"
-              ]
-            },
-            {
-              "path": "src/components/sections/SpeiShared.vue",
-              "hash": "sha256:10b1a6c3d190c3833f168219b4d810554de9820011282ee5f3393b54a61d0b23",
-              "symbols": [
-                "bg-info-soft"
-              ]
-            }
-          ],
-          "task": "task:frt-cnct-web:2",
-          "decision": "decision:2:1",
-          "checkpoint": "checkpoint:2",
-          "authored_by": "agente+humano",
-          "approved_at": "2026-08-13T01:42:08.293Z"
-        },
-        {
-          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:13",
-          "type": "projection",
-          "layer": "local-knowledge",
-          "scope": "local",
-          "status": "validated",
-          "concern": "Nombre de los componentes de seccion",
-          "problem": "El auto-import de componentes esta declarado sin prefijo de ruta, asi que anidar por carpeta NO desambigua: dos vistas que tengan cada una su propio Hero colisionarian por nombre aunque vivieran en directorios distintos. El fallo aparece al agregar la segunda vista, no la primera, cuando ya hay componentes escritos con nombres genericos.",
-          "projection": "Los componentes de seccion viven planos en src/components/sections/ y llevan el prefijo de su vista en el nombre: Hsm* para hardware criptografico y Spei* para infraestructura SPEI. El prefijo cumple el papel que la carpeta no puede cumplir bajo esta configuracion. Si algun dia se activara el prefijo de ruta, la convencion se vuelve innecesaria y conviene anidar por carpeta en su lugar.",
-          "responsibilities": [
-            "Dejar registrada la condicion bajo la cual la convencion deja de ser necesaria",
-            "Evitar colision de nombres entre secciones homonimas de vistas distintas",
-            "Permitir identificar de un vistazo a que vista pertenece cada componente"
-          ],
-          "facts": {
-            "componentes_con_prefijo": 24,
-            "configuracion": "components con pathPrefix en falso",
-            "muere_si": "se activa el prefijo de ruta en la configuracion",
-            "prefijos_en_uso": "Hsm, Spei"
-          },
-          "source_relations": [],
-          "evidence": [
-            {
-              "path": "nuxt.config.ts",
-              "hash": "sha256:8ac2dfda04d6790aace43807a5d2a57a24c532e0a1771b3a9bf095a169566531",
-              "symbols": [
-                "components",
-                "pathPrefix"
-              ]
-            },
-            {
-              "path": "src/components/sections/HsmHero.vue",
-              "hash": "sha256:8e89382a9a4b81e23d77f63d0c7e2d5023c3da53f61d4de4682da9b3f558e70a",
-              "symbols": [
-                "HsmHero"
-              ]
-            },
-            {
-              "path": "src/components/sections/SpeiHero.vue",
-              "hash": "sha256:8d7749d205eb4fb9f2748d2ff7df754fbe7153154dad42e851ac1449724c4d15",
-              "symbols": [
-                "SpeiHero"
-              ]
-            }
-          ],
-          "task": "task:frt-cnct-web:2",
-          "decision": "decision:2:13",
-          "checkpoint": "checkpoint:2",
-          "authored_by": "agente+humano",
-          "approved_at": "2026-08-13T01:42:08.293Z"
-        },
-        {
-          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
-          "type": "projection",
-          "layer": "local-knowledge",
-          "scope": "local",
-          "status": "validated",
-          "concern": "Ubicacion obligatoria de los botones en el marcado",
-          "problem": "El mixin de boton del proyecto declara disposicion flexible de forma incondicional para centrar su propio contenido. Eso lo convierte en una caja de NIVEL BLOQUE, y una caja de bloque con ancho automatico se estira hasta llenar su contenedor. El boton solo se ve compacto si su padre es a su vez un contenedor flexible; suelto dentro de una seccion centrada aparece como una barra de ancho completo sin que nada en el marcado lo haya pedido. El sintoma no apunta al mixin: parece un problema de la seccion.",
-          "projection": "Todo boton va envuelto en un contenedor flexible explicito: un div con justify-center en las secciones centradas, o dentro de la columna flexible que ya exista en las de dos columnas. Nunca se deja como hijo directo de un bloque. Cuando se quiera ancho completo a proposito, se usa el modificador dedicado que lo declara, en vez de depender de que el padre no sea flexible.",
-          "responsibilities": [
-            "Evitar que el diagnostico apunte a la seccion cuando la causa esta en el mixin",
-            "Garantizar que el boton se encoja a su contenido en cualquier seccion",
-            "Hacer explicita la intencion de ancho completo cuando exista, en vez de obtenerla como efecto lateral"
-          ],
-          "facts": {
-            "botones_envueltos_en_esta_vista": 8,
-            "causa": "el mixin de boton aplica disposicion flexible incondicional",
-            "documentado_previamente": "observation-responsive.json de julio, como conocimiento local en espera de contraste",
-            "etiqueta_prevista_no_registrada_en_la_decision": "boton-display-flex-de-bloque-se-estira-fuera-de-flex-container",
-            "instancias_falladas_en_vista_anterior": 3,
-            "modificador_para_ancho_completo": ".btn-block"
-          },
-          "source_relations": [],
-          "evidence": [
-            {
-              "path": "src/assets/scss/mixins/_component-mixins.scss",
-              "hash": "sha256:d3db40ded84cb47b44fdfe062efae9f9c1a0d3e6118834d5a00dbf599aad1cef",
-              "symbols": [
-                "button",
-                "flex"
-              ]
-            },
-            {
-              "path": "src/components/sections/HsmUseCases.vue",
-              "hash": "sha256:9185016dcff1bb727592f8aa2d1f087adefae9936850b4a4daf651662d27422a",
-              "symbols": [
-                "btn-custom"
-              ]
-            },
-            {
-              "path": "src/components/sections/SpeiIntelligence.vue",
-              "hash": "sha256:7025c203686e8908c1271c3dff4d8f3ae5682fcd2a8645cc5585e63db9ff2d99",
-              "symbols": [
-                "btn-primary"
-              ]
-            },
-            {
-              "path": "src/components/sections/SpeiRisks.vue",
-              "hash": "sha256:2c686e962abef36d96f3fc18495c9276435e821c479e157edf4c56dddce18e4f",
-              "symbols": [
-                "btn-primary"
-              ]
-            }
-          ],
-          "task": "task:frt-cnct-web:2",
-          "decision": "decision:2:4",
-          "checkpoint": "checkpoint:2",
-          "authored_by": "agente+humano",
-          "approved_at": "2026-08-13T01:42:08.293Z"
-        },
-        {
-          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:12",
-          "type": "projection",
-          "layer": "local-knowledge",
-          "scope": "local",
-          "status": "validated",
-          "concern": "De donde sale cada valor visible al maquetar una vista nueva",
-          "problem": "Arrancar una seccion copiando la disposicion de una seccion hermana importa decisiones que nadie tomo para el contexto nuevo. Lo reutilizable de una seccion previa son sus invariantes — como colapsa, de donde salen sus medidas, que separa esqueleto de piel — no su arreglo particular de bloques ni su piel. Al transplantar el arreglo, las elecciones visuales de la seccion origen viajan sin justificacion y se leen como si fueran del diseño nuevo. Ni el build ni el analizador estatico lo detectan, porque el valor es sintacticamente valido y suele venir del propio sistema de diseño.",
-          "projection": "Antes de dar por buena una seccion, se recorre cada valor visible — fondo, radio, color de texto, tamaño de medio, modificador de forma — y se responde de que medicion del diseño nuevo proviene. El que no tenga respuesta se elimina o se mide. En esta vista el chequeo destapo cuatro instancias: un fondo crema y una superficie gris que la referencia no tiene, y el modificador de pildora en dos botones cuya referencia usa el radio base.",
-          "responsibilities": [
-            "Dar un chequeo concreto y aplicable antes de cerrar cada seccion",
-            "Impedir que la piel de una vista previa se cuele como si fuera del diseño nuevo",
-            "Separar lo reutilizable de una seccion hermana, que son sus invariantes, de lo que no lo es, que es su arreglo y su piel"
-          ],
-          "facts": {
-            "chequeo": "por cada valor visible, de que medicion del diseño nuevo sale",
-            "detalle_instancias": "fondo crema en etapas, superficie gris bajo el diagrama, pildora en el boton del hero y en el de riesgos",
-            "detectadas_por": "el humano contrastando contra la referencia",
-            "detectadas_por_build_o_linter": 0,
-            "instancias_en_esta_vista": 4
-          },
-          "source_relations": [],
-          "evidence": [
-            {
-              "path": "src/components/sections/SpeiHero.vue",
-              "hash": "sha256:8d7749d205eb4fb9f2748d2ff7df754fbe7153154dad42e851ac1449724c4d15",
-              "symbols": [
-                "btn-primary"
-              ]
-            },
-            {
-              "path": "src/components/sections/SpeiRisks.vue",
-              "hash": "sha256:2c686e962abef36d96f3fc18495c9276435e821c479e157edf4c56dddce18e4f",
-              "symbols": [
-                "btn-primary"
-              ]
-            },
-            {
-              "path": "src/components/sections/SpeiStages.vue",
-              "hash": "sha256:32f9bf8dc52dac11dfff0261e60d5934e63c1f1387733c58bcaa1a619d95fb37",
-              "symbols": [
-                "section"
-              ]
-            },
-            {
-              "path": "src/components/sections/SpeiWhy.vue",
-              "hash": "sha256:7b6216194ec40f7c5816fb3ba6b7f5cc36e8809a46fcb69585b387761d0e02f3",
-              "symbols": [
-                "figure"
-              ]
-            }
-          ],
-          "task": "task:frt-cnct-web:2",
-          "decision": "decision:2:12",
-          "checkpoint": "checkpoint:2",
-          "authored_by": "agente+humano",
-          "approved_at": "2026-08-13T01:42:08.293Z"
-        },
-        {
-          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:14",
-          "type": "projection",
-          "layer": "local-knowledge",
-          "scope": "local",
-          "status": "validated",
-          "concern": "Contraste y tamaño del texto de apoyo",
-          "problem": "Al maquetar desde una referencia, el rol que el implementador ASUME para un elemento no es necesariamente el que el diseño le asigna. Clasificar mentalmente un parrafo como texto de apoyo lleva a aplicarle el token de tinta atenuada y un tamaño reducido por defecto, pero el diseño puede darle a ese mismo parrafo casi el peso del titular. Ninguna herramienta lo detecta: compila, pasa el analizador y el color proviene del sistema de diseño, asi que parece correcto.",
-          "projection": "El contraste y el tamaño de cada texto se leen del diseño elemento por elemento, no se derivan del rol que uno le supone. En esta vista el parrafo del hero quedo en tinta oscura y un escalon mas grande que el default, y las etiquetas de los cuatro riesgos tambien: ambos se habian escrito con el token atenuado. La señal de alarma es haber elegido el token por el nombre de su rol en vez de por comparacion contra la referencia.",
-          "responsibilities": [
-            "Nombrar la señal de alarma: elegir un token por el nombre de su rol y no por comparacion",
-            "Obligar a leer el contraste y el tamaño del diseño en vez de deducirlos del rol supuesto"
-          ],
-          "facts": {
-            "correccion": "de tinta atenuada a tinta oscura y un escalon mas de tamaño",
-            "detalle_instancias": "parrafo del hero y etiquetas de los cuatro riesgos",
-            "detectadas_por": "el humano contrastando contra la referencia",
-            "instancias_en_esta_vista": 2,
-            "secciones_consecutivas": true
-          },
-          "source_relations": [],
-          "evidence": [
-            {
-              "path": "src/components/sections/SpeiHero.vue",
-              "hash": "sha256:8d7749d205eb4fb9f2748d2ff7df754fbe7153154dad42e851ac1449724c4d15",
-              "symbols": [
-                "text-2xl",
-                "text-text"
-              ]
-            },
-            {
-              "path": "src/components/sections/SpeiRisks.vue",
-              "hash": "sha256:2c686e962abef36d96f3fc18495c9276435e821c479e157edf4c56dddce18e4f",
-              "symbols": [
-                "text-lg",
-                "text-text"
-              ]
-            }
-          ],
-          "task": "task:frt-cnct-web:2",
-          "decision": "decision:2:14",
-          "checkpoint": "checkpoint:2",
-          "authored_by": "agente+humano",
-          "approved_at": "2026-08-13T01:42:08.293Z"
-        },
-        {
-          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:19",
-          "type": "projection",
-          "layer": "local-knowledge",
-          "scope": "local",
-          "status": "validated",
-          "concern": "Dueño del filete divisorio entre secciones",
-          "problem": "Una linea divisoria entre dos secciones adyacentes no pertenece a la frontera sino a uno de los dos vecinos, y hay que elegir cual antes de dibujar la primera. Si cada seccion decide por su cuenta, el mismo separador puede quedar declarado por las dos — borde doble, del grosor equivocado — o por ninguna. El defecto no se ve al escribir la seccion: aparece al reordenar la pagina o al insertar una seccion en medio.",
-          "projection": "En las vistas de este proyecto la frontera la declara SIEMPRE la seccion que sigue, con su borde superior; ninguna seccion declara borde inferior. Asi cada frontera tiene exactamente un dueño, mover o insertar secciones no deja lineas huerfanas ni duplicadas, y la primera seccion de la pagina no dibuja nada, que es correcto porque arriba no tiene vecino. La banda de riesgos ya lo hacia sin estar dicho; la linea que la referencia muestra DEBAJO del diagrama se implementa como borde superior de la seccion de inteligencia.",
-          "responsibilities": [
-            "Dejar sin separador la primera seccion, que no tiene vecino arriba",
-            "Garantizar un unico dueño por frontera para que no haya bordes dobles ni ausentes",
-            "Hacer que reordenar o insertar secciones no rompa la secuencia de separadores"
-          ],
-          "facts": {
-            "consultado_en_genoma": true,
-            "regla": "la seccion siguiente declara su borde superior; ninguna declara borde inferior",
-            "resultado_de_la_consulta": "sin coincidencias, candidato de siembra",
-            "secciones_con_filete_en_esta_vista": 2
-          },
-          "source_relations": [],
-          "evidence": [
-            {
-              "path": "src/components/sections/SpeiIntelligence.vue",
-              "hash": "sha256:7025c203686e8908c1271c3dff4d8f3ae5682fcd2a8645cc5585e63db9ff2d99",
-              "symbols": [
-                "border-line",
-                "border-t"
-              ]
-            },
-            {
-              "path": "src/components/sections/SpeiRisks.vue",
-              "hash": "sha256:2c686e962abef36d96f3fc18495c9276435e821c479e157edf4c56dddce18e4f",
-              "symbols": [
-                "border-line",
-                "border-t"
-              ]
-            },
-            {
-              "path": "src/pages/infraestructura-spei.vue",
-              "hash": "sha256:15e77ed4973a74e24e972f196eac99d59086cb41497e6e5b93116c399588df36",
-              "symbols": [
-                "SpeiIntelligence",
-                "SpeiWhy"
-              ]
-            }
-          ],
-          "task": "task:frt-cnct-web:2",
-          "decision": "decision:2:19",
-          "checkpoint": "checkpoint:2",
-          "authored_by": "agente+humano",
-          "approved_at": "2026-08-13T01:42:08.293Z"
-        },
-        {
-          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:20",
-          "type": "projection",
-          "layer": "local-knowledge",
-          "scope": "local",
-          "status": "validated",
-          "concern": "Fragmento resaltado dentro de un texto traducible",
-          "problem": "Cuando una frase del copy lleva un fragmento en negrita, las dos salidas obvias fallan. Partir la frase en claves separadas obliga a que cada idioma tenga el mismo numero de tramos, deja claves vacias en los items que no llevan resalte y rompe el orden natural en idiomas que reordenan la oracion. Inyectar marcado desde el archivo de textos mete presentacion en los contenidos y obliga a renderizar sin escapar, abriendo una via de inyeccion.",
-          "projection": "El fragmento a resaltar se marca con un delimitador de dobles asteriscos dentro del propio texto, y el componente parte por ese delimitador: los segmentos en posicion impar son los resaltados. Queda una sola clave por frase, el traductor mueve el delimitador junto con las palabras, los items sin resalte devuelven un unico segmento sin ramas especiales, y el resalte se pinta con un elemento real sin renderizar marcado arbitrario.",
-          "responsibilities": [
-            "Mantener una sola clave de traduccion por frase, con o sin resalte",
-            "Permitir que el traductor reubique el fragmento resaltado dentro de la oracion",
-            "Pintar el resalte sin renderizar marcado proveniente del archivo de textos"
-          ],
-          "facts": {
-            "claves_vacias_necesarias": 0,
-            "delimitador": "dobles asteriscos",
-            "items_con_resalte_en_esta_vista": 1,
-            "items_sin_resalte": 3,
-            "regla_de_render": "los segmentos en posicion impar van resaltados"
-          },
-          "source_relations": [],
-          "evidence": [
-            {
-              "path": "i18n/locales/en.json",
-              "hash": "sha256:ee7c68326d61d6d81955c634598dc3f13930746b79076b17022a69d0c4b95f90",
-              "symbols": [
-                "spei.intelligence.items"
-              ]
-            },
-            {
-              "path": "i18n/locales/es.json",
-              "hash": "sha256:4f0fa6bdfa843251b5618bd730d37518973d4cc067d8e51573a3ad17f86446bd",
-              "symbols": [
-                "spei.intelligence.items"
-              ]
-            },
-            {
-              "path": "src/components/sections/SpeiIntelligence.vue",
-              "hash": "sha256:7025c203686e8908c1271c3dff4d8f3ae5682fcd2a8645cc5585e63db9ff2d99",
-              "symbols": [
-                "segments",
-                "strong"
-              ]
-            }
-          ],
-          "task": "task:frt-cnct-web:2",
-          "decision": "decision:2:20",
-          "checkpoint": "checkpoint:2",
-          "authored_by": "agente+humano",
-          "approved_at": "2026-08-13T01:42:08.293Z"
-        },
-        {
-          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:21",
-          "type": "projection",
-          "layer": "local-knowledge",
-          "scope": "local",
-          "status": "validated",
-          "concern": "Tope de tamaño obligatorio para toda imagen incrustada",
-          "problem": "La hoja de estilos global de este proyecto declara que toda imagen ocupe el ancho de su contenedor. Eso invierte el default seguro: omitir una medida ya no produce un elemento pequeño y evidentemente sin terminar, sino uno que llena todo y arrastra consigo la altura del contenedor que lo aloja. El sintoma no se lee como error — la imagen se ve nitida y bien puesta — sino como una tarjeta desproporcionadamente alta, y el origen queda a dos saltos, en un reset global que nadie recuerda al escribir el componente.",
-          "projection": "Toda imagen incrustada en un contenedor de tamaño flexible declara su tope explicito, y ese tope sale de medir la referencia, no de lo que el contenedor permita. En el carrusel de esta vista las ilustraciones quedaron topadas a 22rem, medida de la referencia donde la ilustracion ocupa alrededor del 56 por ciento del ancho de la card. Hay ademas una segunda regla global que acota el alto de las imagenes por debajo de 768 px y excluye a las que llenan su contenedor por cobertura: conviene saber en cual de las dos cae cada imagen antes de darla por terminada.",
-          "responsibilities": [
-            "Impedir que una imagen sin tope estire la tarjeta que la contiene",
-            "Obligar a que el tope provenga de medir la referencia y no del contenedor",
-            "Recordar que existe una segunda regla global que acota el alto en pantallas chicas"
-          ],
-          "facts": {
-            "origen_del_tope": "medido de la referencia, ~56 por ciento del ancho de la card",
-            "regla_movil": "alto acotado por debajo de 768 px, excluye las imagenes que llenan por cobertura",
-            "reset_global": "toda imagen al ancho del contenedor",
-            "tope_aplicado": "22rem",
-            "veces_que_fallo_en_esta_vista": 1
-          },
-          "source_relations": [],
-          "evidence": [
-            {
-              "path": "src/assets/scss/style.scss",
-              "hash": "sha256:de671574c03b48f70831d9006d49812882b99a8cbc59bc455eb5df90069352d0",
-              "symbols": [
-                "img"
-              ]
-            },
-            {
-              "path": "src/components/sections/SpeiIntelligence.vue",
-              "hash": "sha256:7025c203686e8908c1271c3dff4d8f3ae5682fcd2a8645cc5585e63db9ff2d99",
-              "symbols": [
-                "max-w-[22rem]"
-              ]
-            }
-          ],
-          "task": "task:frt-cnct-web:2",
-          "decision": "decision:2:21",
-          "checkpoint": "checkpoint:2",
-          "authored_by": "agente+humano",
-          "approved_at": "2026-08-13T01:42:08.293Z"
-        }
-      ]
+      "projections": []
     }
   },
   "worklog": {
@@ -1852,9 +1309,9 @@
         "id": "task:frt-cnct-web:2",
         "sequence": 2,
         "intent": "Maquetar la vista completa de SPEI 2.0 / Hermes a partir de referencia visual, reutilizando la estructura sc-*, los tokens y los patrones ya asentados en la vista de Hardware Criptografico; los tokens nuevos solo se asumen si no existe equivalente y quedan documentados antes de crearse. Alcance exclusivamente visual y responsive: sin integracion API ni logica de negocio.",
-        "status": "recorded",
+        "status": "awaiting_validation",
         "opened_at": "2026-08-07T22:28:09.964Z",
-        "closed_at": "2026-08-13T01:42:08.293Z",
+        "closed_at": null,
         "consultations": [
           {
             "id": "consult:2:1",
@@ -2249,7 +1706,7 @@
             "evidence": [
               "src/assets/tailwind.css"
             ],
-            "status": "validated"
+            "status": "proposed"
           },
           {
             "id": "decision:2:2",
@@ -2266,7 +1723,7 @@
             "consultations": [
               "consult:2:3"
             ],
-            "status": "validated"
+            "status": "proposed"
           },
           {
             "id": "decision:2:3",
@@ -2283,7 +1740,7 @@
             "consultations": [
               "consult:2:2"
             ],
-            "status": "validated"
+            "status": "proposed"
           },
           {
             "id": "decision:2:4",
@@ -2296,7 +1753,7 @@
               "src/components/sections/SpeiIntelligence.vue",
               "src/assets/scss/mixins/_component-mixins.scss"
             ],
-            "status": "validated"
+            "status": "proposed"
           },
           {
             "id": "decision:2:5",
@@ -2308,7 +1765,7 @@
               "src/components/sections/SpeiStages.vue",
               "src/components/sections/HsmSteps.vue"
             ],
-            "status": "validated"
+            "status": "proposed"
           },
           {
             "id": "decision:2:6",
@@ -2322,7 +1779,7 @@
               "src/components/sections/HsmHero.vue",
               "src/components/sections/FeatureCards.vue"
             ],
-            "status": "validated"
+            "status": "proposed"
           },
           {
             "id": "decision:2:7",
@@ -2333,7 +1790,7 @@
               "src/components/sections/HsmOrgCard.vue",
               "src/components/sections/HsmUseCases.vue"
             ],
-            "status": "validated"
+            "status": "proposed"
           },
           {
             "id": "decision:2:8",
@@ -2343,7 +1800,7 @@
             "evidence": [
               "src/components/sections/HsmUseCases.vue"
             ],
-            "status": "validated"
+            "status": "proposed"
           },
           {
             "id": "decision:2:9",
@@ -2354,7 +1811,7 @@
               "src/components/sections/HsmOrgMosaic.vue",
               "src/components/sections/SpeiStages.vue"
             ],
-            "status": "validated"
+            "status": "proposed"
           },
           {
             "id": "decision:2:10",
@@ -2366,7 +1823,7 @@
               "assets/Micrositio Hermes/etapas SPEI BN.png",
               "src/components/sections/SpeiStages.vue"
             ],
-            "status": "validated"
+            "status": "proposed"
           },
           {
             "id": "decision:2:11",
@@ -2377,7 +1834,7 @@
               "assets/Micrositio Hermes/etapas SPE Color.png",
               "assets/Micrositio Hermes/etapas SPEI BN.png"
             ],
-            "status": "validated"
+            "status": "proposed"
           },
           {
             "id": "decision:2:12",
@@ -2388,7 +1845,7 @@
               "src/components/sections/SpeiStages.vue",
               "src/components/sections/HsmSteps.vue"
             ],
-            "status": "validated"
+            "status": "proposed"
           },
           {
             "id": "decision:2:13",
@@ -2400,7 +1857,7 @@
               "src/components/sections/SpeiHero.vue",
               "src/components/sections/HsmHero.vue"
             ],
-            "status": "validated"
+            "status": "proposed"
           },
           {
             "id": "decision:2:14",
@@ -2411,7 +1868,7 @@
               "src/components/sections/SpeiHero.vue",
               "src/components/sections/SpeiRisks.vue"
             ],
-            "status": "validated"
+            "status": "proposed"
           },
           {
             "id": "decision:2:15",
@@ -2424,7 +1881,7 @@
               "src/components/sections/SpeiStages.vue",
               "src/components/sections/SpeiWhy.vue"
             ],
-            "status": "validated"
+            "status": "proposed"
           },
           {
             "id": "decision:2:16",
@@ -2438,7 +1895,7 @@
               "public/images/operando/4.webp",
               "src/components/sections/SpeiOperate.vue"
             ],
-            "status": "validated"
+            "status": "proposed"
           },
           {
             "id": "decision:2:17",
@@ -2453,7 +1910,7 @@
             "consultations": [
               "consult:2:6"
             ],
-            "status": "validated"
+            "status": "proposed"
           },
           {
             "id": "decision:2:18",
@@ -2464,7 +1921,7 @@
               "src/components/sections/SpeiWhy.vue",
               "src/components/sections/SpeiOperate.vue"
             ],
-            "status": "validated"
+            "status": "proposed"
           },
           {
             "id": "decision:2:19",
@@ -2476,7 +1933,7 @@
               "src/components/sections/SpeiRisks.vue",
               "src/pages/infraestructura-spei.vue"
             ],
-            "status": "validated"
+            "status": "proposed"
           },
           {
             "id": "decision:2:20",
@@ -2488,7 +1945,7 @@
               "i18n/locales/es.json",
               "i18n/locales/en.json"
             ],
-            "status": "validated"
+            "status": "proposed"
           },
           {
             "id": "decision:2:21",
@@ -2499,7 +1956,7 @@
               "src/components/sections/SpeiIntelligence.vue",
               "src/assets/scss/style.scss"
             ],
-            "status": "validated"
+            "status": "proposed"
           },
           {
             "id": "decision:2:22",
@@ -2511,7 +1968,7 @@
               "node_modules/swiper/shared/get-element-params.mjs",
               "node_modules/swiper/swiper-element-bundle.mjs"
             ],
-            "status": "validated"
+            "status": "proposed"
           },
           {
             "id": "decision:2:23",
@@ -2521,7 +1978,7 @@
             "evidence": [
               "src/components/sections/SpeiIntelligence.vue"
             ],
-            "status": "validated"
+            "status": "proposed"
           },
           {
             "id": "decision:2:24",
@@ -2531,7 +1988,7 @@
             "evidence": [
               "src/components/sections/SpeiIntelligence.vue"
             ],
-            "status": "validated"
+            "status": "proposed"
           },
           {
             "id": "decision:2:25",
@@ -2543,7 +2000,7 @@
               "i18n/locales/en.json",
               "src/components/sections/SpeiFaq.vue"
             ],
-            "status": "validated"
+            "status": "proposed"
           },
           {
             "id": "decision:2:26",
@@ -2555,7 +2012,7 @@
               "src/components/sections/SpeiStages.vue",
               "src/assets/scss/style.scss"
             ],
-            "status": "validated"
+            "status": "proposed"
           },
           {
             "id": "decision:2:27",
@@ -2566,7 +2023,7 @@
               "src/components/sections/SpeiHero.vue",
               "src/components/sections/SpeiWhy.vue"
             ],
-            "status": "validated"
+            "status": "proposed"
           },
           {
             "id": "decision:2:28",
@@ -2576,16 +2033,10 @@
             "evidence": [
               "src/components/sections/SpeiStages.vue"
             ],
-            "status": "validated"
+            "status": "proposed"
           }
         ],
-        "validation": {
-          "actor": "human",
-          "at": "2026-08-13T01:42:08.293Z",
-          "outcome": "approved",
-          "approval_ref": "fredy-nazario/2026-08-13/chat",
-          "note": "OK explicito de Fredy: \"dale finalize_task\", tras presentarle los proposals de proyeccion local y el resumen del cierre. Aprueba cerrar la vista de Infraestructura SPEI con el desktop completo y el responsive diferido a tarea propia."
-        },
+        "validation": {},
         "change_set": {
           "base_checkpoint": "checkpoint:base:2",
           "files": {
@@ -2655,347 +2106,9 @@
             },
             "excluded_from_task": true
           },
-          "close": {
-            "status": "fresh",
-            "target": "src",
-            "captured_at": "2026-08-13T01:42:08.114Z",
-            "source_hash": "sha256:778dfb603ea10905da16ee878e6a63d0150622aab52fa08577ecd207d104ce14",
-            "graph_hash": "sha256:fd6eba712b0883515f00c049310932c1630d99ea0bb1c68aaef175c143a7eee8",
-            "attribution": "task"
-          }
+          "close": null
         },
         "submitted_at": "2026-08-13T01:35:32.238Z"
-      },
-      {
-        "id": "task:frt-cnct-web:3",
-        "sequence": 3,
-        "intent": "Maquetar la vista completa de Cripto as a Service a partir de referencia visual, reutilizando la estructura sc-*, los tokens y los patrones ya asentados en las vistas de Hardware Criptografico e Infraestructura SPEI; los tokens nuevos solo se asumen si no existe equivalente y quedan documentados antes de crearse. La vista incluye tres piezas con comportamiento propio que exceden el maquetado plano: una seccion animada para el bloque de llaves dispersas, cards que en reposo van apagadas en gris —contenido incluido— y al hover se encienden con fondo y borde de un violeta algo mas fuerte, y un carrusel de superposicion donde las cards de los extremos se apilan hacia el fondo en vez de desaparecer y la card activa gana protagonismo sobre las demas; esa ultima forma puede requerir un componente propio si la libreria de carrusel ya presente en el proyecto no la cubre. Alcance exclusivamente visual y de maquetacion, sin integracion API ni logica de negocio; desktop como base, y el responsive dependera de que existan vistas de referencia.",
-        "status": "open",
-        "opened_at": "2026-08-13T01:53:34.984Z",
-        "closed_at": null,
-        "consultations": [
-          {
-            "id": "consult:3:1",
-            "at": "2026-08-13T02:05:47.377Z",
-            "intent": "Antes de crear tokens de color para la vista nueva: recuperar el criterio ya asentado en este proyecto sobre cuando crear un token y cuando reusar uno existente. La primera consulta con find_node no devolvio nada porque esa herramienta solo indexa el catalogo global; find_guidance, que compone genoma y proyecciones locales, devolvio la proyeccion del token de la vista anterior como pieza componible de mayor puntaje.",
-            "tool": "find_node",
-            "arguments": {
-              "query": "local-projection",
-              "limit": 15
-            },
-            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
-            "candidates": [],
-            "receipt": {
-              "id": "consultation-receipt:e7ce2616-2698-4c6d-b027-9f4e4b5ffda0",
-              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
-              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
-              "server_version": "0.30.6",
-              "overlay_revision": 50,
-              "overlay_graph_hash": "sha256:55d4a2a8f6813fe5120b443e1c2da4ab34803b148d79e628c3afb2c34e0853be",
-              "overlay_curated_hash": "sha256:f585177455224a3ebbf5a80f26801122f9395007db526b758f96ea7c530d3eb2",
-              "overlay_projections_revision": null,
-              "output_hash": "sha256:1275cccbb4e5acd6c7eea11166a75a93afe6868531f178a1cd41f22c21b85b74",
-              "candidate_sources": [],
-              "output_bytes": 64
-            }
-          },
-          {
-            "id": "consult:3:2",
-            "at": "2026-08-13T02:06:29.024Z",
-            "intent": "Antes de crear tokens de color para la vista nueva: recuperar el criterio ya asentado en este proyecto sobre cuando crear un token y cuando reusar uno existente. La primera consulta con find_node no devolvio nada porque esa herramienta solo indexa el catalogo global; find_guidance, que compone genoma y proyecciones locales, devolvio la proyeccion del token de la vista anterior como pieza componible de mayor puntaje.",
-            "tool": "find_guidance",
-            "arguments": {
-              "intent": "Crear tokens de color nuevos para una vista a partir de colores medidos del diseño, decidiendo en cada caso si amerita token nuevo o si conviene reusar uno existente cuya diferencia medida es de uno o dos puntos, y documentando el criterio.",
-              "alternate_intents": [],
-              "responsibilities": [
-                "Decidir si un color medido del diseño amerita token nuevo o reuso de uno existente",
-                "Evitar proliferacion de tokens casi identicos entre si",
-                "Dejar documentada la razon de cada token nuevo y su valor medido"
-              ],
-              "facts": {
-                "project": "frt-cnct-web",
-                "framework": "nuxt",
-                "stack": "tailwind",
-                "path": "src/assets/tailwind.css",
-                "value_granularity": "hex"
-              },
-              "mode": "normal",
-              "budget": {
-                "max_results": 6,
-                "max_excerpt_chars": 600
-              }
-            },
-            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
-            "candidates": [
-              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:1",
-              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:13",
-              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:12",
-              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:14"
-            ],
-            "receipt": {
-              "id": "consultation-receipt:7af7f770-8ecb-4ebc-92d1-8aa3e515e913",
-              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
-              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
-              "server_version": "0.30.6",
-              "overlay_revision": 50,
-              "overlay_graph_hash": "sha256:55d4a2a8f6813fe5120b443e1c2da4ab34803b148d79e628c3afb2c34e0853be",
-              "overlay_curated_hash": "sha256:f585177455224a3ebbf5a80f26801122f9395007db526b758f96ea7c530d3eb2",
-              "overlay_projections_revision": "sha256:65ad3859f967ec32bea13c0684076ff26e13a009f618e44ddad00411c67fdb95",
-              "output_hash": "sha256:0ea83e9927a749a1ec19b28fe64fdc104a8c7c43e91ed6768ba8ca9cd44fc627",
-              "candidate_sources": [
-                {
-                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:1",
-                  "source": "overlay",
-                  "lane": "composable_parts",
-                  "candidate_revision": "sha256:e7efd510de1e77388dec78ba65dd2c67744f3105baa329b0d93763b544ad83f2"
-                },
-                {
-                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:13",
-                  "source": "overlay",
-                  "lane": "composable_parts",
-                  "candidate_revision": "sha256:465ea5122e136eab516b2aa0e3f2f9c5e359a7c7b27749308ef069b7c72055ce"
-                },
-                {
-                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:12",
-                  "source": "overlay",
-                  "lane": "composable_parts",
-                  "candidate_revision": "sha256:698af8f8c1d5afc89393e66fd0a5a80cae441460ff8c38f7429ce5a41868fa45"
-                },
-                {
-                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:14",
-                  "source": "overlay",
-                  "lane": "composable_parts",
-                  "candidate_revision": "sha256:3dc87695a369f526d0f0e34f28eeff22e655f05ee42adb5062c42270d23f3dc5"
-                }
-              ],
-              "query_revision": "sha256:c15217d02ccf514955150e1cfa028523a66d59a6cb7e8bdb25f7c2cdc23581c0",
-              "local": {
-                "state": "not_configured"
-              },
-              "output_bytes": 14276,
-              "budget": {
-                "max_results": 6,
-                "max_excerpt_chars": 600,
-                "used_results": 4,
-                "used_excerpt_chars": 1839,
-                "omitted_by_lane": {
-                  "direct_local_obligations": 0,
-                  "direct_genome_precedents": 0,
-                  "composable_parts": 0,
-                  "directed_exploration": 0
-                }
-              }
-            }
-          },
-          {
-            "id": "consult:3:3",
-            "at": "2026-08-13T02:41:49.835Z",
-            "intent": "Antes de maquetar el carrusel de superposicion: averiguar si hace falta componente propio o si la libreria ya presente lo cubre, y como someter su marcado y su piel al sistema de diseño. La guia no devolvio receta directa pero si el tipo de problema de tercero bajo design system del genoma y la proyeccion propia sobre no transplantar la piel de una vista hermana.",
-            "tool": "find_guidance",
-            "arguments": {
-              "intent": "Implementar un carrusel donde la pieza central se muestra mas grande y al frente y las vecinas quedan escaladas y detras, superponiendose en vez de desaparecer en los extremos, usando la libreria de carrusel que el proyecto ya tiene en vez de escribir un componente propio.",
-              "alternate_intents": [],
-              "responsibilities": [
-                "Decidir si la libreria existente cubre el efecto de superposicion o hace falta componente propio",
-                "Someter el marcado y la piel de la libreria al sistema de diseño del proyecto",
-                "Evitar que el estilo del componente de terceros se pierda por el alcance del scoping"
-              ],
-              "facts": {
-                "project": "frt-cnct-web",
-                "framework": "nuxt",
-                "stack": "swiper element",
-                "path": "src/components/sections",
-                "operation": "carousel"
-              },
-              "mode": "normal",
-              "budget": {
-                "max_results": 6,
-                "max_excerpt_chars": 600
-              }
-            },
-            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
-            "candidates": [
-              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:12",
-              "ptype:tercero-bajo-design-system",
-              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:1"
-            ],
-            "receipt": {
-              "id": "consultation-receipt:70b33f0a-8ac6-41f8-a23f-3cbe0bd1c4d7",
-              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
-              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
-              "server_version": "0.30.6",
-              "overlay_revision": 53,
-              "overlay_graph_hash": "sha256:55d4a2a8f6813fe5120b443e1c2da4ab34803b148d79e628c3afb2c34e0853be",
-              "overlay_curated_hash": "sha256:f585177455224a3ebbf5a80f26801122f9395007db526b758f96ea7c530d3eb2",
-              "overlay_projections_revision": "sha256:65ad3859f967ec32bea13c0684076ff26e13a009f618e44ddad00411c67fdb95",
-              "output_hash": "sha256:72f3ae79314c547dd45410fbac104fb486cea97920dba6cd3c4f8ca413ce52d1",
-              "candidate_sources": [
-                {
-                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:12",
-                  "source": "overlay",
-                  "lane": "composable_parts",
-                  "candidate_revision": "sha256:698af8f8c1d5afc89393e66fd0a5a80cae441460ff8c38f7429ce5a41868fa45"
-                },
-                {
-                  "id": "ptype:tercero-bajo-design-system",
-                  "source": "genome",
-                  "lane": "composable_parts",
-                  "candidate_revision": "sha256:6dbb4252096e49adcda1956a3c2782754fae75d0fbda02760234ac5ced0fcc47"
-                },
-                {
-                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:1",
-                  "source": "overlay",
-                  "lane": "composable_parts",
-                  "candidate_revision": "sha256:e7efd510de1e77388dec78ba65dd2c67744f3105baa329b0d93763b544ad83f2"
-                }
-              ],
-              "query_revision": "sha256:03c7e81a98c77810786a7530733416dae4d859c5a236beb7275c6ef7efffd735",
-              "local": {
-                "state": "not_configured"
-              },
-              "output_bytes": 9421,
-              "budget": {
-                "max_results": 6,
-                "max_excerpt_chars": 600,
-                "used_results": 3,
-                "used_excerpt_chars": 1081,
-                "omitted_by_lane": {
-                  "direct_local_obligations": 0,
-                  "direct_genome_precedents": 0,
-                  "composable_parts": 0,
-                  "directed_exploration": 0
-                }
-              }
-            }
-          }
-        ],
-        "decisions": [
-          {
-            "id": "decision:3:1",
-            "kind": "novel",
-            "rationale": "Un sistema de conocimiento con dos capas —un catalogo global compartido y un registro local del proyecto— expone entradas de consulta distintas, y no todas componen ambas. Consultar por la entrada que solo indexa el catalogo global devuelve vacio para el precedente propio aunque este correctamente registrado y validado. El sintoma es especialmente engañoso porque no hay error: la consulta responde bien, simplemente responde que no hay nada, y de ahi se concluye que el conocimiento local no existe o no sirve, cuando lo que fallo fue la puerta elegida. La consecuencia practica es que el esfuerzo de registrar y proyectar se percibe como inutil justo cuando mas deberia rendir. La regla es identificar cual es la entrada ORDINARIA que compone las dos capas y usarla por defecto; las entradas por identificador o por nombre de patron sirven para verificar algo puntual del catalogo global, no para recuperar precedente.",
-            "projection": "etiqueta: consulta-por-la-capa-global-no-recupera-el-precedente-local — aqui la busqueda por identificador devolvio cero resultados para las proyecciones del proyecto, y la entrada ordinaria por intencion devolvio cuatro de las ocho, con la del token de la vista anterior en primer lugar y marcada como cubriendo dos de las tres responsabilidades declaradas. Las tres tareas previas se consultaron solo con entradas de catalogo global, y por eso el precedente local nunca volvia.",
-            "evidence": [
-              "project-memory-v1.json"
-            ],
-            "status": "proposed"
-          },
-          {
-            "id": "decision:3:2",
-            "kind": "local",
-            "rationale": "Se crean cinco tokens de color para la vista Cripto as a Service y se REUSAN dos existentes, todo a partir de muestreo directo de la referencia y no de estimacion a ojo. El criterio que separa crear de reusar es la distancia medida: dos colores del diseño quedaron a uno y dos puntos de tokens existentes y se reusan sin crear nada, mientras que los otros cinco no tienen equivalente cercano ni sustituto semanticamente honesto. El mas importante de los cinco no es nuevo en el producto: es un violeta que ya estaba escrito a mano en los gradientes del home y en los titulares de las dos vistas anteriores, y que aqui aparece ademas como fondo de la banda de cierre y como borde del hover; tres paginas usandolo lo vuelven color de marca y justifican sacarlo de los literales. Sigue el precedente ya asentado en este proyecto para el token de la vista anterior: crear solo si ninguno sirve, dejar escrito el porque, y concentrar el hex en un unico punto.",
-            "projection": "Cinco tokens nuevos en el bloque de tema, cada uno con su comentario y su razon: --color-brand-violet #865BDA, --color-brand-violet-soft #E5E1F9, --color-brand-blush #F2DBF3, --color-accent-mid #FFCAA6 y --color-cream-soft #FFFDF9. Se reusan --color-surface-3 para la card en reposo (medido #F4F4F4 contra #F5F5F5) y --color-surface-2 para las cards de paso (medido #F5F6FC contra #F7F7F9). Los archivos del home siguen con el violeta escrito a mano: sustituirlos es otra vista y otra tarea.",
-            "evidence": [
-              "src/assets/tailwind.css"
-            ],
-            "status": "proposed"
-          },
-          {
-            "id": "decision:3:3",
-            "kind": "novel",
-            "rationale": "Una referencia visual de proporcion extrema —una pagina completa en una sola imagen muy alta— es ilegible cuando la herramienta que la abre la reduce para que quepa: el texto desaparece y quien la lee termina adivinando el copy. La salida no es pedir otra entrega ni transcribir a ojo, sino cortar la referencia en bandas por zona y leer cada banda a resolucion util. El corte se hace con solape de unas decenas de pixeles para que ningun titulo quede partido justo en la costura. El beneficio adicional es que las bandas son artefactos en disco: sobreviven a que se pierda el contexto de la conversacion, asi que la lectura no se repite. Es aplicable a cualquier documento cuya relacion de aspecto lo vuelva ilegible de una sola vez.",
-            "projection": "etiqueta: referencia-de-proporcion-extrema-se-lee-por-bandas-con-solape — aqui la referencia medía 3358 por 21434 y a escala completa no se leia una sola linea de copy. Se corto en once bandas, una por zona, con 60 px de solape, y el copy salio literal. Las bandas y un archivo de notas quedaron en disco antes de escribir el primer componente.",
-            "evidence": [
-              "src/pages/cripto-as-a-service.vue",
-              "i18n/locales/es.json"
-            ],
-            "status": "proposed"
-          },
-          {
-            "id": "decision:3:4",
-            "kind": "novel",
-            "rationale": "Para que las piezas de un carrusel se SUPERPONGAN no basta con escalar las que no estan activas: escalar reduce cada pieza hacia su propio centro, asi que en vez de solaparse se separan y aparecen huecos justo donde deberia haber traslape. El solape exige separacion NEGATIVA entre piezas, que es lo que las acerca lo suficiente como para que la activa, ya a tamaño completo, quede montada sobre sus vecinas. Escala y separacion negativa son dos mecanismos independientes que hay que combinar: la escala da la jerarquia de tamaño, la separacion negativa da la superposicion, y el plano de apilado decide cual queda al frente. Con dos de los tres el efecto no aparece, y el sintoma no es un error sino un carrusel que se ve simplemente separado.",
-            "projection": "etiqueta: superposicion-en-carrusel-exige-separacion-negativa-ademas-de-escala — aqui las vecinas van al 82 por ciento de escala con separacion de -64 px y plano de apilado 1, y la activa a escala plena con plano 3. Ademas el rotulo vive dentro de cada pieza y solo se muestra en la activa, para que acompañe a su imagen al desplazarse en vez de ser un texto suelto sincronizado por indice.",
-            "evidence": [
-              "src/components/sections/CaasAreas.vue"
-            ],
-            "status": "proposed"
-          },
-          {
-            "id": "decision:3:5",
-            "kind": "novel",
-            "rationale": "Cuando en un proyecto conviven dos familias de variables de estilo con convenciones de nombre distintas, escribir una variable de una familia con la forma de la otra produce una referencia inexistente. Y una variable inexistente no falla: se resuelve a nada, el navegador aplica el valor heredado o inicial, y la compilacion pasa limpia porque sintacticamente todo es correcto. El defecto se ve solo mirando la pantalla, y aparece como una propiedad que simplemente no surtio efecto, sin nada que apunte a la causa. La verificacion barata es comprobar de que familia proviene cada variable ANTES de escribirla, sobre todo al mezclar tokens recien creados con tokens heredados, que es cuando las dos convenciones se cruzan.",
-            "projection": "etiqueta: variable-de-estilo-inexistente-por-mezclar-dos-convenciones-de-nombre — aqui los tokens nuevos viven en el bloque de tema y se nombran con el prefijo del sistema de utilidades, mientras que los heredados viven en la raiz de la hoja global con el sufijo puesto al final. Escribi los nuevos con la convencion de los viejos y la card del hover se habria quedado sin fondo ni borde, con el build en verde. Se detecto releyendo el propio codigo, no compilando.",
-            "evidence": [
-              "src/components/sections/CaasOnePlace.vue",
-              "src/assets/tailwind.css",
-              "src/assets/scss/style.scss"
-            ],
-            "status": "proposed"
-          },
-          {
-            "id": "decision:3:6",
-            "kind": "novel",
-            "rationale": "Un asset puede traer su estado visual ya horneado, y en ese caso volver a aplicarlo desde el componente lo duplica. Si en un conjunto de piezas unas vienen en tono pleno y otras atenuadas, esa diferencia ES la distincion entre activo y pendiente: agregarle encima una opacidad o un filtro apaga dos veces las mismas piezas y deja las atenuadas practicamente invisibles. Ademas, el estado horneado sirve como verificacion independiente del orden: si el conjunto llega con nombres que no dicen su posicion, el reparto de tonos permite comprobar que la secuencia deducida es la correcta, porque coincide con cuales estan encendidas en la referencia. La regla es inspeccionar los assets antes de decidir que estado aplica el componente, y aplicar solo el que el asset no trae.",
-            "projection": "etiqueta: estado-visual-horneado-en-el-asset-no-se-reaplica-en-el-componente — aqui los cinco iconos de los pasos llegaron con nombres que no indicaban orden; al renderizarlos juntos se vio que dos venian en violeta pleno y tres en violeta claro, lo que confirmo el mapeo y coincidio con los dos pasos que la referencia muestra cubiertos. El componente NO les aplica opacidad y si cambia el color de numero y etiqueta, que es el estado que el asset no trae.",
-            "evidence": [
-              "src/components/sections/CaasStart.vue",
-              "public/images/caas/icons/1.svg",
-              "public/images/caas/icons/3.svg"
-            ],
-            "status": "proposed"
-          }
-        ],
-        "validation": {},
-        "change_set": {
-          "base_checkpoint": "checkpoint:base:3",
-          "files": {
-            "added": [],
-            "modified": [],
-            "removed": []
-          }
-        },
-        "result": {},
-        "boundary": {
-          "mode": "normal",
-          "declared_at": "2026-08-13T01:53:34.984Z",
-          "measurement_eligible": true,
-          "prior_work": null,
-          "base": {
-            "status": "fresh",
-            "target": "src",
-            "captured_at": "2026-08-13T01:53:34.785Z",
-            "source_hash": "sha256:778dfb603ea10905da16ee878e6a63d0150622aab52fa08577ecd207d104ce14",
-            "graph_hash": "sha256:55d4a2a8f6813fe5120b443e1c2da4ab34803b148d79e628c3afb2c34e0853be",
-            "preexisting_delta": {
-              "nodes": {
-                "added": [],
-                "changed": [],
-                "removed": []
-              },
-              "edges": {
-                "added": [],
-                "changed": [],
-                "removed": []
-              },
-              "synapses": {
-                "added": [],
-                "changed": [],
-                "removed": []
-              },
-              "curated_preserved": {
-                "node_annotations": 0,
-                "edges": 1,
-                "synapses": 1,
-                "patterns": 0,
-                "cases": 0,
-                "exceptions": 0,
-                "projections": 8
-              },
-              "orphans": [
-                {
-                  "kind": "rationale",
-                  "id": "e20",
-                  "from": "src/components/sections/ContactSection.vue",
-                  "to": "src/schemas/contactSchema.ts"
-                }
-              ],
-              "orphans_resolved": []
-            },
-            "excluded_from_task": true
-          },
-          "close": null
-        }
       }
     ],
     "checkpoints": [
@@ -3107,87 +2220,6 @@
         "created_at": "2026-08-07T22:28:09.964Z",
         "graph_hash": "sha256:0d52c55ba3605499e5fec8e6cb8eeb931ade68be66237afa6d1075692ab4f041",
         "curated_hash": "sha256:e98e8253e2728a4c0da4e5f4f0fc8daee8f071d30cb8cce49898aede64f8bc88",
-        "delta": {
-          "kind": "task-baseline",
-          "excluded_from_task": true,
-          "derived": {
-            "attribution": "preexisting",
-            "verified": true,
-            "nodes_added": [],
-            "nodes_changed": [],
-            "nodes_removed": [],
-            "edges_added": [],
-            "edges_changed": [],
-            "edges_removed": [],
-            "synapses_added": [],
-            "synapses_changed": [],
-            "synapses_removed": []
-          }
-        }
-      },
-      {
-        "id": "checkpoint:2",
-        "parent": "checkpoint:base:2",
-        "task": "task:frt-cnct-web:2",
-        "kind": "task-recorded",
-        "created_at": "2026-08-13T01:42:08.293Z",
-        "graph_hash": "sha256:fd6eba712b0883515f00c049310932c1630d99ea0bb1c68aaef175c143a7eee8",
-        "curated_hash": "sha256:f585177455224a3ebbf5a80f26801122f9395007db526b758f96ea7c530d3eb2",
-        "delta": {
-          "derived": {
-            "attribution": "task",
-            "verified": true,
-            "nodes_added": [
-              "src/components/sections/SpeiEvolve.vue",
-              "src/components/sections/SpeiFaq.vue",
-              "src/components/sections/SpeiFinalCta.vue",
-              "src/components/sections/SpeiHero.vue",
-              "src/components/sections/SpeiIntelligence.vue",
-              "src/components/sections/SpeiOperate.vue",
-              "src/components/sections/SpeiRisks.vue",
-              "src/components/sections/SpeiShared.vue",
-              "src/components/sections/SpeiStages.vue",
-              "src/components/sections/SpeiStats.vue",
-              "src/components/sections/SpeiWhy.vue",
-              "src/pages/infraestructura-spei.vue"
-            ],
-            "nodes_changed": [],
-            "nodes_removed": [],
-            "edges_added": [],
-            "edges_changed": [],
-            "edges_removed": [],
-            "synapses_added": [],
-            "synapses_changed": [],
-            "synapses_removed": []
-          },
-          "curated": {
-            "annotations_added": [],
-            "edges_added": [],
-            "synapses_added": [],
-            "cases_added": [],
-            "patterns_added": [],
-            "exceptions_added": [],
-            "projections_added": [
-              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:1",
-              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:13",
-              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
-              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:12",
-              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:14",
-              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:19",
-              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:20",
-              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:21"
-            ]
-          }
-        }
-      },
-      {
-        "id": "checkpoint:base:3",
-        "parent": "checkpoint:2",
-        "task": "task:frt-cnct-web:3",
-        "kind": "task-baseline",
-        "created_at": "2026-08-13T01:53:34.984Z",
-        "graph_hash": "sha256:55d4a2a8f6813fe5120b443e1c2da4ab34803b148d79e628c3afb2c34e0853be",
-        "curated_hash": "sha256:f585177455224a3ebbf5a80f26801122f9395007db526b758f96ea7c530d3eb2",
         "delta": {
           "kind": "task-baseline",
           "excluded_from_task": true,

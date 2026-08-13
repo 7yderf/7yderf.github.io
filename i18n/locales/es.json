@@ -492,7 +492,7 @@
     },
     "stats": {
       "title": "Lo que ofrecemos",
-      "subtitle": "Con Hermes II tienes una plataforma probada y un equipo experimentado.",
+      "subtitle": "Con Hermes tienes una plataforma probada y un equipo experimentado.",
       "items": [
         { "value": "1M", "label": "De transacciones por hora" },
         { "value": "99.9%", "label": "Disponibilidad" },
@@ -509,23 +509,23 @@
       "items": [
         {
           "question": "¿Debo cambiar toda mi infraestructura?",
-          "answer": "No. Integramos Hermes II con tu entorno actual."
+          "answer": "No. Integramos Hermes con tu entorno actual."
         },
         {
           "question": "¿La migración interrumpe la operación?",
-          "answer": "PENDIENTE DE COPY APROBADO."
+          "answer": "No. Diseñamos un plan para mantener la continuidad del servicio."
         },
         {
           "question": "¿También apoyan la certificación?",
-          "answer": "PENDIENTE DE COPY APROBADO."
+          "answer": "Sí. Acompañamos el proceso hasta la aprobación por parte de Banco de México."
         },
         {
           "question": "¿Qué ocurre cuando cambian los requisitos?",
-          "answer": "PENDIENTE DE COPY APROBADO."
+          "answer": "Actualizamos la plataforma y te acompañamos durante la transición."
         },
         {
           "question": "¿Mi equipo podrá administrarla?",
-          "answer": "PENDIENTE DE COPY APROBADO."
+          "answer": "Sí. Transferimos conocimiento para que tengas autonomía cuando lo decidas."
         }
       ]
     },
@@ -534,6 +534,155 @@
       "titlePre": "El mejor momento para",
       "titlePost": "comenzar es ahora.",
       "cta": "Agenda una evaluación técnica"
+    }
+  },
+  "caas": {
+    "meta": {
+      "title": "Cripto as a Service — Conecta",
+      "description": "Controla tu criptografía con tu hardware o con el nuestro. Bóveda criptográfica, gestión de llaves y certificados en una sola consola."
+    },
+    "hero": {
+      "brandAlt": "Tesseract",
+      "eyebrow": "Criptografía (SaaS)",
+      "titlePre": "Controla tu criptografía,",
+      "titleMid": "con tu hardware o",
+      "titlePost": "con el nuestro.",
+      "subtitle": "Tus llaves, donde sea que vivan, pero siempre bajo tu control.",
+      "cta": "Agenda una evaluación técnica"
+    },
+    "paths": {
+      "title": "Dos caminos, el mismo objetivo.",
+      "subtitle": "Cada organización empieza desde un lugar distinto y nosotros nos adaptamos al tuyo.",
+      "startTitle": "Aún no tienes HSM",
+      "startCta": "Conocer el modelo en la nube",
+      "startItems": [
+        { "label": "Empieza sin comprar hardware." },
+        { "label": "Obtén una partición dedicada, administrada por especialistas y lista para operar desde el primer día." }
+      ],
+      "ownTitle": "Ya tienes HSM",
+      "ownCta": "Conocer cómo funciona",
+      "ownItems": [
+        { "label": "Aprovecha la infraestructura que ya construiste." },
+        { "label": "Agregamos la visibilidad, el gobierno y la automatización que hoy te hacen falta." }
+      ]
+    },
+    "scattered": {
+      "title": "¿Tus llaves están dispersas y los certificados fuera de control?",
+      "subtitle": "Centraliza la gestión criptográfica antes de que impacte tu operación.",
+      "cta": "Comunicar con ventas"
+    },
+    "onePlace": {
+      "title": "Todo desde un solo lugar.",
+      "subtitle": "Centraliza toda tu operación en una sola vista: una plataforma y una consola única diseñada para darte el dominio absoluto de tu infraestructura.",
+      "cta": "Comunicar con ventas",
+      "cards": [
+        {
+          "title": "Ecosistema Cloud",
+          "subtitle": "",
+          "link": "Conocer el ecosistema cloud",
+          "items": [
+            "Autenticación 2FA.",
+            "Bóveda Criptográfica (HSM as a Services).",
+            "Gestión de identidades (IAM /CIAM).",
+            "Monitor de HSMs.",
+            "Admin. de llaves on-prem y multicloud.",
+            "SDKs"
+          ]
+        },
+        {
+          "title": "HSM Control Security",
+          "subtitle": "On-Premise",
+          "link": "Conocer sobre el HSM Control Security",
+          "items": [
+            "**Monitor HSM:** Supervisa en tiempo real el estado de tus equipos.",
+            "**Key Manager:** Centraliza y administra tus llaves de tu bóveda criptográfica.",
+            "**Key Scan:** Localiza y supervisa las llaves de toda tu infraestructura.",
+            "**Keyos:** Conecta Key Manager a cualquiera de las principales nubes.",
+            "**Bus criptográfico:** Integra tus aplicaciones de forma sencilla."
+          ]
+        },
+        {
+          "title": "Auth",
+          "subtitle": "",
+          "link": "Saber sobre autenticación",
+          "items": [
+            "**2FA Criptográfico:** Protege accesos y operaciones críticas mediante códigos OTP dinámicos vinculados a la identidad del usuario.",
+            "**Secure PINPad:** Protege el PIN con criptografía avanzada y comunicación segura, reduciendo el riesgo de exposición."
+          ]
+        }
+      ]
+    },
+    "adapts": {
+      "title": "Se adapta a tu operación.",
+      "subtitle": "No al revés. Elige el modelo que mejor funciona para tu organización.",
+      "cta": "Comparar modelos",
+      "colOwn": "Con tu hardware",
+      "colCloud": "En nuestra nube",
+      "rows": [
+        { "label": "Inversión inicial", "own": "Hardware propio", "cloud": "Sin comprar hardware" },
+        { "label": "Implementación", "own": "Sobre tu infraestructura", "cloud": "Inversión inicial" },
+        { "label": "Operación", "own": "Tu equipo", "cloud": "Tesseract" },
+        { "label": "Escalabilidad", "own": "Según tu infraestructura", "cloud": "Bajo demanda" },
+        { "label": "Soporte", "own": "Especializado", "cloud": "Especializado" },
+        { "label": "Ideal para", "own": "Máximo control", "cloud": "Rapidez y simplicidad" }
+      ]
+    },
+    "areas": {
+      "title": "Pensado para toda la organización.",
+      "subtitle": "Cada área obtiene algo distinto.",
+      "cta": "Ver beneficios por área",
+      "items": [
+        { "title": "Dirección", "first": "Más control", "second": "Menor riesgo" },
+        { "title": "Tecnología", "first": "Menos operación manual", "second": "Más automatización" },
+        { "title": "Seguridad", "first": "Mayor visibilidad", "second": "Menos puntos ciegos" },
+        { "title": "Desarrollo", "first": "Integraciones simples", "second": "Menos tiempo de implementación" },
+        { "title": "Cumplimiento", "first": "Auditorías más rápidas", "second": "Evidencia lista cuando la necesites" }
+      ]
+    },
+    "postQuantum": {
+      "titlePre": "Preparación",
+      "titlePost": "Post-Quantica",
+      "body": "La criptografía evoluciona y tu infraestructura también debería hacerlo.",
+      "cta": "Habla con un especialista"
+    },
+    "compliance": {
+      "titlePre": "Cumplir también",
+      "titlePost": "puede ser sencillo.",
+      "body": "Cuando llegue la auditoría, solo exporta la información y sin empezar de cero.",
+      "cta": "Saber cómo funciona"
+    },
+    "start": {
+      "titlePre": "Empezar es más simple",
+      "titlePost": "de lo que parece.",
+      "cta": "Agendar sesión",
+      "steps": [
+        { "label": "Entendemos tu situación" },
+        { "label": "Definimos el modelo adecuado" },
+        { "label": "Configuramos la plataforma" },
+        { "label": "Integramos tu infraestructura" },
+        { "label": "Te acompañamos durante toda la operación" }
+      ]
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "items": [
+        {
+          "question": "¿Tengo que comprar hardware?",
+          "answer": "Solo si quieres. Puedes rentar una partición dedicada en nuestros equipos certificados o adquirir el equipo. Lo definimos según tu normativa y presupuesto."
+        },
+        { "question": "Ya tengo HSM. ¿Tengo que cambiarlo?", "answer": "PENDIENTE DE COPY APROBADO." },
+        { "question": "¿Funciona con los equipos que ya compré?", "answer": "PENDIENTE DE COPY APROBADO." },
+        { "question": "¿Puedo empezar en la nube y migrar después a equipo propio?", "answer": "PENDIENTE DE COPY APROBADO." },
+        { "question": "¿Dónde viven mis llaves?", "answer": "PENDIENTE DE COPY APROBADO." },
+        { "question": "¿Qué tan complicado es integrarlo?", "answer": "PENDIENTE DE COPY APROBADO." },
+        { "question": "¿Puedo contratar solo un módulo?", "answer": "PENDIENTE DE COPY APROBADO." },
+        { "question": "¿Cuánto cuesta?", "answer": "PENDIENTE DE COPY APROBADO." }
+      ]
+    },
+    "finalCta": {
+      "eyebrow": "Analizamos tu infraestructura, detectamos oportunidades y te recomendamos el nivel de servicio ideal para tu operación.",
+      "title": "Recupera el control de tu criptografía.",
+      "cta": "Agenda una demo"
     }
   }
 }
