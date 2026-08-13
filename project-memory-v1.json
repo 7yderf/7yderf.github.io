@@ -1,7 +1,7 @@
 {
   "$schema": "https://eure-k.local/schemas/project-memory-v1.json",
   "schema": "eure-k.project-memory/v1",
-  "revision": 67,
+  "revision": 68,
   "project": {
     "id": "frt-cnct-web",
     "repository_fingerprint": "git-remote-v1:sha256:9cecfa5ed6040202f52f46768540e1b8a10fa6c11be8f5acbcaf8dbea368cb60",
@@ -3184,6 +3184,19 @@
             "rationale": "Tomar el control de un orden que antes estaba implicito OBLIGA a hacer explicitos todos los ordenes que ese accidente venia resolviendo por su cuenta, incluidos los que nadie habia notado. No es un efecto colateral: es la parte del trabajo que aparece despues, y omitirla convierte una correccion en una regresion silenciosa.\\n\\nEl caso concreto: al diferir el arranque de la libreria hasta despues de hidratar, quedo al descubierto una segunda dependencia de orden dentro del mismo componente. Una preferencia del visitante solo consultable en el navegador se resolvia al montar, y de ella se derivaba un parametro del carrusel. Con el arranque automatico la libreria partia con el valor por defecto y despues recibia el corregido por la via reactiva —funcionaba de rebote—. Con el arranque manual, si se dispara sin esperar un ciclo de render, el valor derivado todavia no viajo al elemento y la libreria arranca con el valor equivocado y ya no lo corrige, porque el cambio ocurrio antes de que existiera nada que observarlo. Un visitante que pidio menos movimiento habria recibido movimiento.\\n\\nLa regla: cuando se reemplaza un orden accidental por uno declarado, hay que inventariar que otras cosas dependian de ese accidente ANTES de dar por buena la correccion. Y la pista de donde mirar es concreta: todo valor que se resuelva al montar y del que dependa la configuracion de lo que se esta arrancando. La verificacion tampoco puede ser solo mirar la pantalla, porque el modo degradado —el que respeta la preferencia— es justo el que no se ve en una revision normal.",
             "projection": "etiqueta: el-orden-declarado-descubre-ordenes-ocultos — en el carrusel con avance automatico el gancho de montado quedo con cuatro pasos en secuencia obligatoria: resolver la preferencia de movimiento, esperar a que el componente este definido, esperar un ciclo de render para que el valor derivado llegue al elemento, y recien entonces arrancar. Se documento el porque de cada paso en el codigo, porque los cuatro se ven intercambiables y ninguno lo es. Se corrigieron los tres carruseles del producto con la misma forma; el del home tambien traia el defecto y ahi las flechas si estan a la vista.",
             "evidence": [
+              "src/components/sections/SpeiIntelligence.vue",
+              "src/components/sections/SolutionsCarousel.vue",
+              "src/components/sections/CaasAreas.vue"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:3:14",
+            "kind": "novel",
+            "rationale": "Un fragmento reutilizable que se apropia de un gancho del ciclo de vida tiene que recibir sus dependencias de orden como PARAMETRO, no dejar que el consumidor las resuelva en un gancho aparte. Dos ganchos separados se ejecutan en el orden en que fueron registrados, o sea en el orden en que aparecen las lineas del archivo que los llama: una precedencia real, con consecuencias, que no esta escrita en ninguna parte y que se rompe con solo reordenar dos lineas que parecen independientes. Recibida como parametro, la precedencia queda declarada en la llamada y deja de depender de la posicion.\\n\\nEsto importa especialmente al extraer un fragmento comun a partir de varias copias, porque ahi acecha una trampa: extraer para eliminar una repeticion puede reintroducir en la abstraccion el mismo defecto que la motivo. Aqui las tres copias existian por haber corregido un orden implicito entre una libreria y el framework; agrupar eso en un gancho propio del fragmento habria sustituido un orden implicito por otro, mas dificil de ver porque ahora cruza la frontera del archivo. El criterio para no caer: si el fragmento agenda trabajo, preguntarse que tiene que haber pasado antes de ese trabajo, y hacer que eso entre por la interfaz.\\n\\nCorolario sobre cuando abstraer: la duplicacion explicita es preferible a una abstraccion que esconde una precedencia. La abstraccion solo se gana el lugar si expone en su firma aquello que el consumidor necesita controlar; si para usarla bien hay que saber en que renglon invocarla, no redujo el conocimiento necesario, solo lo movio a un lugar donde nadie lo va a buscar.",
+            "projection": "etiqueta: la-precedencia-va-en-la-firma-no-en-el-orden-de-registro — el fragmento que arranca los carruseles despues de hidratar acepta un trabajo previo opcional y lo ejecuta como primer paso de su propia secuencia. De los tres consumidores, dos no pasan nada; el tercero pasa la resolucion de la preferencia de movimiento, de la que depende su avance automatico. Los cuatro pasos de la secuencia quedan comentados uno por uno adentro, porque se ven intercambiables y ninguno lo es. El fragmento tambien documenta su propia precondicion: solo surte efecto si el marcado lleva el atributo que impide el arranque automatico, y sin el no cambia nada en silencio.",
+            "evidence": [
+              "src/composables/useSwiperInit.ts",
               "src/components/sections/SpeiIntelligence.vue",
               "src/components/sections/SolutionsCarousel.vue",
               "src/components/sections/CaasAreas.vue"

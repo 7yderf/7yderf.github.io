@@ -93,18 +93,9 @@ const images = [
 const texts = useLocalizedItems<AreaText>('caas.areas.items', images.length, ['title', 'first', 'second'])
 const areas = computed(() => texts.value.map((text, i) => ({ ...text, image: images[i] })))
 
-// Arranque manual del carrusel, despues de la hidratacion. onMounted ya garantiza
-// que el subarbol propio esta hidratado; whenDefined evita depender del orden en
-// que corra el plugin que registra el componente. Si faltara initialize el fallo
-// seria visible, no un carrusel a medias.
-type SwiperContainer = HTMLElement & { initialize?: () => void }
-const swiperEl = ref<SwiperContainer | null>(null)
-
-onMounted(async () => {
-  await customElements.whenDefined('swiper-container')
-  await nextTick()
-  swiperEl.value?.initialize?.()
-})
+// Arranque diferido hasta despues de la hidratacion. El porque esta en el
+// composable; aca solo hace falta recordar que va de la mano con init="false".
+const swiperEl = useSwiperInit()
 </script>
 
 <!-- Sin scope: la libreria reubica las piezas en su propio arbol y el atributo

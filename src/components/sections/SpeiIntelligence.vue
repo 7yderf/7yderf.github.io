@@ -118,24 +118,15 @@ const AUTOPLAY = { delay: 4500, disableOnInteraction: false, pauseOnMouseEnter: 
 const reduceMotion = ref(false)
 const autoplay = computed(() => (reduceMotion.value ? false : AUTOPLAY))
 
-// Arranque manual, despues de la hidratacion. El orden de estas cuatro lineas no
-// es cosmetico:
-//   1. se resuelve la preferencia de movimiento, que solo existe en el navegador
-//   2. se espera a que el componente este definido, para no depender del orden
-//      en que corra el plugin que lo registra
-//   3. nextTick deja que el valor derivado de autoplay viaje al elemento: Vue
-//      escribe la propiedad en el siguiente ciclo de render, e initialize lee la
-//      propiedad tal como este en ese momento. Sin esta espera el carrusel
-//      arrancaria con avance automatico aunque se hubiera pedido menos movimiento
-//   4. recien ahi arranca
-type SwiperContainer = HTMLElement & { initialize?: () => void }
-const swiperEl = ref<SwiperContainer | null>(null)
-
-onMounted(async () => {
-  reduceMotion.value = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  await customElements.whenDefined('swiper-container')
-  await nextTick()
-  swiperEl.value?.initialize?.()
+// Arranque diferido hasta despues de la hidratacion, con una precedencia propia:
+// la preferencia de movimiento tiene que quedar resuelta ANTES de arrancar, porque
+// de ella depende autoplay y el carrusel lee su configuracion una sola vez. Va
+// como parametro y no como un onMounted aparte para que esa precedencia se lea
+// aca, en vez de quedar librada al orden en que se registren los ganchos.
+const swiperEl = useSwiperInit({
+  before: () => {
+    reduceMotion.value = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  },
 })
 
 const images = [

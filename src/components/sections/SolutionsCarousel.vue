@@ -56,16 +56,9 @@ const allItems = computed(() => [
   ...upcomingTexts.value.map((text, i) => ({ ...text, img: upcomingImages[i], upcoming: true })),
 ])
 
-// Arranque manual, ya hidratado. whenDefined evita depender del orden en que
-// corra el plugin que registra el componente.
-type SwiperContainer = HTMLElement & { initialize?: () => void }
-const swiperEl = ref<SwiperContainer | null>(null)
-
-onMounted(async () => {
-  await customElements.whenDefined('swiper-container')
-  await nextTick()
-  swiperEl.value?.initialize?.()
-})
+// Arranque diferido hasta despues de la hidratacion. El porque esta en el
+// composable; aca solo hace falta recordar que va de la mano con init="false".
+const swiperEl = useSwiperInit()
 </script>
 
 <!-- Sin scope: Swiper clona los slides del loop; la clase .swiper-slide-active
