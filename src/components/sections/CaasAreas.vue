@@ -62,21 +62,29 @@
         :navigation="true"
       >
         <swiper-slide v-for="area in areas" :key="area.title">
-          <figure class="sc-figure areas-card overflow-hidden">
-            <img
-              :src="area.image"
-              :alt="area.title"
-              class="block w-full object-cover"
-              loading="lazy"
-              decoding="async"
-            >
-          </figure>
+          <!-- figcaption solo es valido como primer o ultimo hijo de figure, nunca
+               como hermano suelto — Vue lo marca porque un anidado invalido puede
+               divergir entre lo que el servidor entrega y lo que el navegador
+               reconstruye. El recorte redondeado se mueve al envoltorio de la
+               imagen para que el overflow-hidden no le recorte el texto al
+               figcaption, que ahora vive dentro. -->
+          <figure class="sc-figure areas-card">
+            <div class="areas-card__media overflow-hidden">
+              <img
+                :src="area.image"
+                :alt="area.title"
+                class="block w-full object-cover"
+                loading="lazy"
+                decoding="async"
+              >
+            </div>
 
-          <figcaption class="mt-6 text-center">
-            <span class="block font-secondary text-3xl font-bold text-deep-ink">{{ area.title }}</span>
-            <span class="mt-2 block text-xl text-text">{{ area.first }}</span>
-            <span class="block text-xl text-text">{{ area.second }}</span>
-          </figcaption>
+            <figcaption class="mt-6 text-center">
+              <span class="block font-secondary text-3xl font-bold text-deep-ink">{{ area.title }}</span>
+              <span class="mt-2 block text-xl text-text">{{ area.first }}</span>
+              <span class="block text-xl text-text">{{ area.second }}</span>
+            </figcaption>
+          </figure>
         </swiper-slide>
       </swiper-container>
     </div>
@@ -130,8 +138,11 @@ const swiperEl = useSwiperInit()
   }
 }
 
-/* El radio grande y desigual es parte del lenguaje de la referencia */
-.areas-card {
+/* El radio grande y desigual es parte del lenguaje de la referencia. Vive en
+   el envoltorio de la imagen (areas-card__media), no en areas-card: el figure
+   ya no recorta -el figcaption vive dentro y no debe recortarse-, asi que el
+   radio tiene que ir junto al overflow-hidden que sí sigue recortando algo. */
+.areas-card__media {
   border-radius: 12rem 12rem 12rem 12rem / 8rem 8rem 8rem 8rem;
 }
 
