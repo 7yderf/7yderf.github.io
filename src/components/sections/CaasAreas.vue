@@ -2,21 +2,23 @@
      mas grande y al frente, y las vecinas quedan escaladas y por detras en vez
      de desaparecer en los extremos.
 
-     NO hace falta componente propio. El efecto sale de tres piezas de la
-     libreria que el proyecto ya usa:
-       1. slides centrados, para que siempre haya una pieza en el eje;
-       2. separacion NEGATIVA entre piezas, que es lo que las hace solaparse —
-          con separacion cero el escalado abre huecos en vez de superponer;
-       3. escala y plano de apilado gobernados por la clase que la libreria
-          pone en la pieza activa.
-     La tercera es la que exige que estos estilos NO lleven scope: la libreria
-     mueve las piezas a su propio arbol y el atributo de scoping no las alcanza.
-     Las flechas se pintan por ::part, que es la superficie que el componente
-     expone; alcanzarlas de otro modo seria depender de su marcado interno.
+     SOLO EN CLIENTE. La libreria reescribe el DOM que recibe —agrega clases,
+     estilos en linea y, con recorrido circular, clona piezas— y la hidratacion
+     compara el HTML del servidor contra el arbol que el framework generaria.
+     Un componente que muta su propio DOM no puede hidratarse: el servidor
+     entrega nodos que el cliente nunca produjo. Renderizarlo solo en cliente
+     elimina la comparacion en vez de intentar reconciliarla.
 
-     El rotulo vive dentro de cada pieza y solo se muestra en la activa: asi
-     acompaña a su imagen al desplazarse, en vez de ser un texto suelto que
-     habria que sincronizar por indice. -->
+     El efecto NO se arma a mano con escala y separacion negativa: la libreria
+     trae uno pensado para esto, que resuelve la aritmetica de profundidad,
+     acercamiento y plano de apilado a la vez y se mantiene coherente a
+     cualquier ancho. Hacerlo a mano exigia una separacion negativa en pixeles
+     fija contra un ancho de pieza porcentual, y esa mezcla se desajusta en
+     cuanto cambia el contenedor.
+
+     Los parametros del efecto van en forma compuesta con guiones, que es la
+     unica que pasa por la coercion de atributos; los de una sola palabra irian
+     crudos como cadena. -->
 <template>
   <section class="sc-section w-full px-4 py-8 lg:px-8 lg-2:py-16">
     <h2 class="mx-auto max-w-3xl text-center font-secondary font-bold bg-gradient-to-r from-accent to-brand-violet bg-clip-text text-transparent">
@@ -33,38 +35,48 @@
     </div>
 
     <div class="mx-auto mt-12 w-full max-w-6xl">
-      <!-- Los parametros de una sola palabra van BINDEADOS: la libreria define
-           una propiedad por parametro y el framework asigna propiedad —no
-           atributo— cuando el nombre existe en el elemento, saltandose la
-           coercion que si aplica la ruta de atributos. -->
-      <swiper-container
-        class="areas-swiper block"
-        slides-per-view="auto"
-        centered-slides="true"
-        space-between="-64"
-        :loop="true"
-        :speed="600"
-        :navigation="true"
-        :keyboard="true"
-      >
-        <swiper-slide v-for="area in areas" :key="area.title">
-          <figure class="sc-figure areas-card overflow-hidden">
-            <img
-              :src="area.image"
-              :alt="area.title"
-              class="block w-full object-cover"
-              loading="lazy"
-              decoding="async"
-            >
-          </figure>
+      <ClientOnly>
+        <swiper-container
+          class="areas-swiper block"
+          effect="coverflow"
+          slides-per-view="auto"
+          centered-slides="true"
+          coverflow-effect-rotate="0"
+          coverflow-effect-depth="220"
+          coverflow-effect-modifier="1.8"
+          coverflow-effect-stretch="-40"
+          coverflow-effect-scale="0.66"
+          coverflow-effect-slide-shadows="false"
+          :loop="true"
+          :speed="600"
+          :navigation="true"
+          :keyboard="true"
+        >
+          <swiper-slide v-for="area in areas" :key="area.title">
+            <figure class="sc-figure areas-card overflow-hidden">
+              <img
+                :src="area.image"
+                :alt="area.title"
+                class="block w-full object-cover"
+                loading="lazy"
+                decoding="async"
+              >
+            </figure>
 
-          <figcaption class="areas-caption mt-6 text-center">
-            <span class="block font-secondary text-3xl font-bold text-deep-ink">{{ area.title }}</span>
-            <span class="mt-2 block text-xl text-text">{{ area.first }}</span>
-            <span class="block text-xl text-text">{{ area.second }}</span>
-          </figcaption>
-        </swiper-slide>
-      </swiper-container>
+            <figcaption class="areas-caption mt-6 text-center">
+              <span class="block font-secondary text-3xl font-bold text-deep-ink">{{ area.title }}</span>
+              <span class="mt-2 block text-xl text-text">{{ area.first }}</span>
+              <span class="block text-xl text-text">{{ area.second }}</span>
+            </figcaption>
+          </swiper-slide>
+        </swiper-container>
+
+        <!-- Reserva de alto mientras el carrusel no existe en servidor, para que
+             la pagina no salte al montarse. -->
+        <template #fallback>
+          <div class="h-[42rem] w-full" aria-hidden="true" />
+        </template>
+      </ClientOnly>
     </div>
   </section>
 </template>
@@ -94,21 +106,7 @@ const areas = computed(() => texts.value.map((text, i) => ({ ...text, image: ima
      de scoping no alcanza a los descendientes que mueve. -->
 <style>
 .areas-swiper swiper-slide {
-  width: 54%;
-  position: relative;
-  z-index: 1;
-  scale: 0.82;
-  transition:
-    scale 500ms cubic-bezier(0.2, 0, 0, 1),
-    filter 500ms cubic-bezier(0.2, 0, 0, 1);
-  /* Las vecinas se van al fondo tambien en color, no solo en tamaño */
-  filter: brightness(0.92);
-}
-
-.areas-swiper swiper-slide.swiper-slide-active {
-  z-index: 3;
-  scale: 1;
-  filter: none;
+  width: 48%;
 }
 
 /* El radio grande y desigual es parte del lenguaje de la referencia */
@@ -127,19 +125,24 @@ const areas = computed(() => texts.value.map((text, i) => ({ ...text, image: ima
   opacity: 1;
 }
 
-/* Flechas: superficie expuesta por el componente, no su marcado interno. */
+/* Flechas: superficie expuesta por el componente, no su marcado interno.
+   Se acercan al centro con el desplazamiento lateral que la propia libreria
+   expone, para que caigan sobre el borde de la pieza activa. */
+.areas-swiper {
+  --swiper-navigation-sides-offset: 8%;
+  --swiper-navigation-size: 1.6rem;
+}
+
 .areas-swiper::part(button-prev),
 .areas-swiper::part(button-next) {
-  width: 4.8rem;
-  height: 4.8rem;
+  width: 4rem;
+  height: 4rem;
   border-radius: 9999px;
   background-color: var(--color-primary-soft);
   color: var(--color-brand-violet);
-  --swiper-navigation-size: 1.8rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .areas-swiper swiper-slide,
   .areas-caption {
     transition: none;
   }
