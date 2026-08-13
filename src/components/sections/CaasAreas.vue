@@ -1,9 +1,13 @@
 <!-- CaasAreas.vue — Zona 6. Carrusel de areas.
 
-     PRIMERA ACTIVIDAD: que se vean las cinco. La configuracion es exactamente la
-     del carrusel de la vista SPEI, sin añadidos. La superposicion del diseño
-     —pieza central mas grande y vecinas al fondo— es una segunda actividad y no
-     esta aqui: se agrega encima cuando esta base funcione. -->
+     Se construye por desviaciones sobre una linea base verificada, una por vez,
+     para que cualquier fallo tenga una sola causa posible:
+       base) la configuracion del carrusel de SPEI, sin añadidos
+       1) navegadores laterales
+       2) pieza activa centrada
+       3) arranque diferido hasta despues de la hidratacion
+     Pendiente: la superposicion del diseño —central mas grande, vecinas al
+     fondo— que va sola, encima de esto. -->
 <template>
   <section class="sc-section w-full px-4 py-8 lg:px-8 lg-2:py-16">
     <h2 class="mx-auto max-w-3xl text-center font-secondary font-bold bg-gradient-to-r from-accent to-brand-violet bg-clip-text text-transparent">
@@ -28,8 +32,17 @@
            piezas debe ser >= visibles + grupo + 1 cuando se centra. Son 5 piezas
            contra 2 visibles + 1 + 1 = 4 en el corte mas ancho, y menos exigente
            en los angostos. -->
+      <!-- init="false" es la compuerta que la propia libreria expone: al conectarse
+           comprueba este atributo y se abstiene de tocar el DOM. Sin el, el
+           componente se autoinicializa en cuanto queda definido —antes de que Vue
+           hidrate— y duplica piezas en el DOM que el servidor entrego; Vue
+           encuentra mas nodos de los que espera, los revierte, y de paso destruye
+           lo que la libreria acababa de montar. Se arranca a mano una vez
+           hidratado, y asi el orden es explicito en vez de accidental. -->
       <swiper-container
+        ref="swiperEl"
         class="areas-swiper block"
+        init="false"
         slides-per-view="auto"
         space-between="32"
         centered-slides="true"
@@ -79,6 +92,19 @@ const images = [
 ]
 const texts = useLocalizedItems<AreaText>('caas.areas.items', images.length, ['title', 'first', 'second'])
 const areas = computed(() => texts.value.map((text, i) => ({ ...text, image: images[i] })))
+
+// Arranque manual del carrusel, despues de la hidratacion. onMounted ya garantiza
+// que el subarbol propio esta hidratado; whenDefined evita depender del orden en
+// que corra el plugin que registra el componente. Si faltara initialize el fallo
+// seria visible, no un carrusel a medias.
+type SwiperContainer = HTMLElement & { initialize?: () => void }
+const swiperEl = ref<SwiperContainer | null>(null)
+
+onMounted(async () => {
+  await customElements.whenDefined('swiper-container')
+  await nextTick()
+  swiperEl.value?.initialize?.()
+})
 </script>
 
 <!-- Sin scope: la libreria reubica las piezas en su propio arbol y el atributo

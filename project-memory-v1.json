@@ -1,7 +1,7 @@
 {
   "$schema": "https://eure-k.local/schemas/project-memory-v1.json",
   "schema": "eure-k.project-memory/v1",
-  "revision": 64,
+  "revision": 66,
   "project": {
     "id": "frt-cnct-web",
     "repository_fingerprint": "git-remote-v1:sha256:9cecfa5ed6040202f52f46768540e1b8a10fa6c11be8f5acbcaf8dbea368cb60",
@@ -28,7 +28,7 @@
     "revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
     "server_version": "0.30.6",
     "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
-    "last_consulted_at": "2026-08-13T04:19:34.982Z",
+    "last_consulted_at": "2026-08-13T04:30:13.875Z",
     "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7"
   },
   "graph": {
@@ -2956,6 +2956,95 @@
                 }
               }
             }
+          },
+          {
+            "id": "consult:3:5",
+            "at": "2026-08-13T04:30:13.875Z",
+            "intent": "Buscar precedente sobre ordenar la toma de posesion del DOM entre un componente web que se autoinicializa y un framework que hidrata el mismo marcado. El genoma vuelve a responder no_direct_recipe: segundo hueco declarado en esta tarea sobre integracion de libreria de terceros bajo render de servidor. Se procede leyendo el codigo del paquete instalado y se registra la forma resultante.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Un componente web de terceros muta el DOM que el servidor ya habia entregado, y lo hace ANTES de que el framework hidrate ese mismo DOM. El framework encuentra mas nodos de los que su representacion espera, los revierte, y con eso destruye los nodos que la libreria acababa de crear. El sintoma no apunta a la causa: arrastrar funciona y los botones no. Busco precedente sobre ordenar la toma de posesion del DOM entre una libreria que se autoinicializa y un framework que hidrata.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Ordenar quien toma posesion del DOM entre hidratacion y libreria",
+                "Conservar el render del servidor por SEO en una landing",
+                "Diferir la inicializacion de un componente web sin envolverlo en render de solo cliente",
+                "Reconocer un defecto recurrente ya visto antes en esta tarea"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "stack": "vue3-swiper-element",
+                "path": "src/plugins/swiper.client.ts",
+                "operation": "hidratacion-vs-custom-element"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:21",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:19",
+              "pattern:visual-dos-columnas-responsive",
+              "case:tmx-headings-anidado-invertido"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:b219871e-1feb-42f9-85bc-6dfccb423bf0",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.6",
+              "overlay_revision": 64,
+              "overlay_graph_hash": "sha256:55d4a2a8f6813fe5120b443e1c2da4ab34803b148d79e628c3afb2c34e0853be",
+              "overlay_curated_hash": "sha256:f585177455224a3ebbf5a80f26801122f9395007db526b758f96ea7c530d3eb2",
+              "overlay_projections_revision": "sha256:65ad3859f967ec32bea13c0684076ff26e13a009f618e44ddad00411c67fdb95",
+              "output_hash": "sha256:ed8dbf16ff8b71c0207481a23cd6376c6367e5c5bed0875e24ff8bc636f46e51",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:21",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:d0ea2118d2585c32b8b6c575722725f993b937ec92276b4a46c0222321809062"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:19",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:a2a134f7b13d29564a7a563289f6564d6184f4fdb9ebb1e1d078157d6bba9536"
+                },
+                {
+                  "id": "pattern:visual-dos-columnas-responsive",
+                  "source": "genome",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:4e7dffcead5dfc1bbcedbb97c95ae412266f96a85170d824a1b012548f69edd5"
+                },
+                {
+                  "id": "case:tmx-headings-anidado-invertido",
+                  "source": "genome",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:3183b8e6b0b4993bf49296aecb17ccf4ca0a9f24cdc6f8f2edb9a9b9518a78de"
+                }
+              ],
+              "query_revision": "sha256:707ccccbe3c3aeedb55d18c6e4334a69c03a6d8a85fe1416259dffb74b5954cf",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 10161,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 4,
+                "used_excerpt_chars": 1008,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
           }
         ],
         "decisions": [
@@ -3074,6 +3163,18 @@
               "src/components/sections/CaasAreas.vue",
               "node_modules/swiper/types/options.d.ts",
               "node_modules/swiper/shared/get-element-params.mjs"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:3:12",
+            "kind": "novel",
+            "rationale": "Cuando un componente de terceros que se autoinicializa y un framework que hidrata reclaman el MISMO marcado, el orden entre los dos tiene que quedar declarado en el codigo, porque por defecto lo decide el momento de carga y eso no es una garantia. El componente se activa en cuanto queda definido y muta el marcado que el servidor entrego; el framework llega despues, encuentra mas nodos de los que su representacion espera, y los revierte — destruyendo de paso lo que el componente acababa de montar. Ninguno de los dos hace nada incorrecto por separado: el defecto es que ambos asumen posesion exclusiva.\\n\\nLo que vuelve caro este defecto es que el sintoma cae lejos de la causa y ademas es PARCIAL. Aqui arrastrar con el puntero funcionaba y los botones no. Esa asimetria es la firma del conflicto, no un detalle: sobreviven los comportamientos cuyos oyentes estan atados al elemento contenedor —el unico nodo sobre el que las dos partes coinciden— y mueren los atados a nodos que el framework volvio a crear. Generalizando: ante un conflicto de posesion del DOM, lo que sigue funcionando delata cual es el nodo estable, y lo que murio delata que fue reconstruido. Un componente que funciona A MEDIAS despues de hidratar debe leerse como disputa de posesion antes que como configuracion incompleta, y esa lectura ahorra toda la busqueda por el lado de los parametros.\\n\\nLa correccion tentadora —renderizar solo en cliente— cambia un defecto real por una perdida real: se va el render de servidor, que en una pagina de captacion es justamente lo que se quiere conservar. La correccion correcta es la compuerta que la propia libreria expone para no autoinicializarse, y arrancarla a mano una vez hidratado. Antes de escribir cualquier envoltorio propio hay que buscar si la libreria ya ofrece diferir su arranque: es una necesidad tan comun que suele estar prevista.",
+            "projection": "etiqueta: orden-explicito-de-posesion-del-dom — el componente lleva el atributo que le indica no arrancar solo, y el arranque se hace en el gancho de montado, esperando ademas a que el componente este definido para no depender del orden en que corra el plugin que lo registra. Asi se conserva el render de servidor completo. Se llego aqui por el disparador de reincidencia: el mismo aviso de desajuste de hidratacion ya habia aparecido antes en esta tarea y se habia atribuido a otra cosa, porque se leyo como problema de configuracion del carrusel en vez de como disputa por el DOM. Queda pendiente declarado: el carrusel de la vista SPEI tiene la misma forma y por tanto el mismo defecto latente, sin corregir todavia.",
+            "evidence": [
+              "src/components/sections/CaasAreas.vue",
+              "src/plugins/swiper.client.ts",
+              "node_modules/swiper/swiper-element.mjs"
             ],
             "status": "proposed"
           }
