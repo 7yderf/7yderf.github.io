@@ -670,13 +670,13 @@
           "question": "¿Tengo que comprar hardware?",
           "answer": "Solo si quieres. Puedes rentar una partición dedicada en nuestros equipos certificados o adquirir el equipo. Lo definimos según tu normativa y presupuesto."
         },
-        { "question": "Ya tengo HSM. ¿Tengo que cambiarlo?", "answer": "PENDIENTE DE COPY APROBADO." },
-        { "question": "¿Funciona con los equipos que ya compré?", "answer": "PENDIENTE DE COPY APROBADO." },
-        { "question": "¿Puedo empezar en la nube y migrar después a equipo propio?", "answer": "PENDIENTE DE COPY APROBADO." },
-        { "question": "¿Dónde viven mis llaves?", "answer": "PENDIENTE DE COPY APROBADO." },
-        { "question": "¿Qué tan complicado es integrarlo?", "answer": "PENDIENTE DE COPY APROBADO." },
-        { "question": "¿Puedo contratar solo un módulo?", "answer": "PENDIENTE DE COPY APROBADO." },
-        { "question": "¿Cuánto cuesta?", "answer": "PENDIENTE DE COPY APROBADO." }
+        { "question": "Ya tengo HSM. ¿Tengo que cambiarlo?", "answer": "No. Nos montamos sobre los equipos que ya tienes, sin modificar tu arquitectura ni reemplazar las capacidades del fabricante. Le agregamos la capa de gobierno que le falta." },
+        { "question": "¿Funciona con los equipos que ya compré?", "answer": "Sí, con las familias de HSM más usadas en el sector financiero. En la sesión de alcance confirmamos la compatibilidad con tu caso específico." },
+        { "question": "¿Puedo empezar en la nube y migrar después a equipo propio?", "answer": "Sí. Varias instituciones arrancan rentando un proyecto, y capitalizan más adelante cuando el volumen lo justifica. La plataforma y las integraciones son las mismas, así que la migración no obliga a rehacer el trabajo." },
+        { "question": "¿Dónde viven mis llaves?", "answer": "En hardware certificado: en tus instalaciones o en nuestra infraestructura en México, según el modelo. En ambos casos la partición es exclusivamente tuya y las llaves nunca salen del equipo." },
+        { "question": "¿Qué tan complicado es integrarlo?", "answer": "Se integra por APIs REST documentadas. Tus desarrolladores no necesitan conocer protocolos especializados, y la plataforma genera la guía de integración para cada aplicación que se conecta." },
+        { "question": "¿Puedo contratar solo un módulo?", "answer": "Sí. Muchos clientes empiezan por el monitoreo o por el inventario de llaves, resuelven su dolor más urgente y van sumando." },
+        { "question": "¿Cuánto cuesta?", "answer": "Depende del modelo que elijas y de cuántos equipos, llaves y aplicaciones tengas. Lo definimos en una sesión de alcance sin compromiso." }
       ]
     },
     "finalCta": {
