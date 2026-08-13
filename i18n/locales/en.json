@@ -670,13 +670,13 @@
           "question": "Do I have to buy hardware?",
           "answer": "Only if you want to. You can rent a dedicated partition on our certified equipment or purchase the equipment. We define it according to your regulation and budget."
         },
-        { "question": "I already have an HSM. Do I have to replace it?", "answer": "PENDING APPROVED COPY." },
-        { "question": "Does it work with the equipment I already bought?", "answer": "PENDING APPROVED COPY." },
-        { "question": "Can I start in the cloud and migrate to my own equipment later?", "answer": "PENDING APPROVED COPY." },
-        { "question": "Where do my keys live?", "answer": "PENDING APPROVED COPY." },
-        { "question": "How complicated is it to integrate?", "answer": "PENDING APPROVED COPY." },
-        { "question": "Can I contract just one module?", "answer": "PENDING APPROVED COPY." },
-        { "question": "How much does it cost?", "answer": "PENDING APPROVED COPY." }
+        { "question": "I already have an HSM. Do I have to replace it?", "answer": "No. We layer on top of the equipment you already have, without changing your architecture or replacing the manufacturer's capabilities. We add the governance layer it's missing." },
+        { "question": "Does it work with the equipment I already bought?", "answer": "Yes, with the HSM families most widely used in the financial sector. We confirm compatibility with your specific case during the scoping session." },
+        { "question": "Can I start in the cloud and migrate to my own equipment later?", "answer": "Yes. Several institutions start out renting, then invest in their own equipment later once volume justifies it. The platform and integrations stay the same, so migrating doesn't mean redoing the work." },
+        { "question": "Where do my keys live?", "answer": "On certified hardware: at your facilities or in our infrastructure in Mexico, depending on the model. Either way, the partition is exclusively yours and your keys never leave the device." },
+        { "question": "How complicated is it to integrate?", "answer": "It integrates through documented REST APIs. Your developers don't need to know any specialized protocols, and the platform generates an integration guide for each application that connects." },
+        { "question": "Can I contract just one module?", "answer": "Yes. Many clients start with monitoring or key inventory, solve their most urgent pain point, and add on from there." },
+        { "question": "How much does it cost?", "answer": "It depends on the model you choose and how many devices, keys, and applications you have. We define it together in a no-commitment scoping session." }
       ]
     },
     "finalCta": {
