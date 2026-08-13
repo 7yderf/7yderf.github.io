@@ -28,5 +28,8 @@ logs
 # Raw design assets (Drive export) — no confundir con src/assets (codigo)
 /assets
 
-# Respaldo que Eureka reescribe en cada mutacion de project-memory
+# Respaldos que Eureka escribe junto a project-memory. Son dos formas: el .bak
+# que reescribe en cada mutacion, y el .finalize-<hash>.bak que deja al cerrar
+# una tarea. El comodin cubre ambas y las que agregue despues.
+project-memory-v1.json.*.bak
 project-memory-v1.json.bak
