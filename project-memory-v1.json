@@ -1,7 +1,7 @@
 {
   "$schema": "https://eure-k.local/schemas/project-memory-v1.json",
   "schema": "eure-k.project-memory/v1",
-  "revision": 61,
+  "revision": 62,
   "project": {
     "id": "frt-cnct-web",
     "repository_fingerprint": "git-remote-v1:sha256:9cecfa5ed6040202f52f46768540e1b8a10fa6c11be8f5acbcaf8dbea368cb60",
@@ -2962,6 +2962,17 @@
             "projection": "etiqueta: el-default-de-visibilidad-degrada-hacia-visible-no-hacia-oculto — aqui las piezas del carrusel arrancaban en opacidad cero y a escala reducida, y solo se mostraban al recibir la clase de activa o vecina. Se invirtio: el default es visible y a tamaño pleno, y una regla de negacion retira unicamente las que no son la activa ni sus dos vecinas. El sintoma reportado fue una imagen cargada, con peso y tamaño intrinseco correctos, que aun asi no se veia, y el diagnostico inicial apunto a la ruta del archivo.",
             "evidence": [
               "src/components/sections/CaasAreas.vue"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:3:10",
+            "kind": "novel",
+            "rationale": "Cuando una integracion de terceros falla de un modo que no se logra atribuir, la salida no es corregir hacia adelante sino REDUCIR a una configuracion minima ya verificada en otro punto del mismo producto, y volver a añadir una diferencia a la vez. Corregir hacia adelante sobre un diagnostico no confirmado agrega una variable sin retirar las anteriores: al cabo de tres intentos hay tres capas encima de una causa que nunca se identifico, y ya nadie puede decir que esta provocando que. La señal para dejar de corregir y empezar a reducir es objetiva y no depende de intuicion: si el resultado observable NO cambia despues de una correccion, esa correccion no toco la causa, y encadenar otra solo empeora la atribucion. Ademas, la configuracion minima que si funciona debe quedar registrada como linea base, con sus parametros exactos: es el punto al que se vuelve cada vez que algo se rompe, y convierte cada desviacion posterior en un experimento con una sola variable.",
+            "projection": "etiqueta: linea-base-verificada-antes-de-cada-desviacion — la linea base del carrusel en este proyecto es: ancho de pieza en automatico, separacion positiva, recorrido circular, teclado y velocidad; el ancho de cada pieza lo fija el CSS del proyecto por cortes de ancho, y los estilos van sin scope porque la libreria reubica las piezas. Sobre esa base se añade una desviacion por vez. Se llego aqui tras tres correcciones encadenadas que no cambiaron nada en pantalla: envolver en render de solo cliente, un efecto tridimensional con planos de apilado negativos, y un ocultamiento por opacidad que escondia toda pieza sin clase de estado. Las tres se retiraron juntas.",
+            "evidence": [
+              "src/components/sections/CaasAreas.vue",
+              "src/components/sections/SpeiIntelligence.vue"
             ],
             "status": "proposed"
           }

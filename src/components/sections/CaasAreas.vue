@@ -27,6 +27,7 @@
         :loop="true"
         :keyboard="true"
         :speed="600"
+        :navigation="true"
       >
         <swiper-slide v-for="area in areas" :key="area.title">
           <figure class="sc-figure areas-card overflow-hidden">
@@ -96,5 +97,21 @@ const areas = computed(() => texts.value.map((text, i) => ({ ...text, image: ima
 /* El radio grande y desigual es parte del lenguaje de la referencia */
 .areas-card {
   border-radius: 12rem 12rem 12rem 12rem / 8rem 8rem 8rem 8rem;
+}
+
+/* DESVIACION 1 sobre la linea base: navegadores laterales.
+   Se pintan por ::part, que es la superficie que el componente expone; llegar a
+   ellos por su marcado interno seria depender de un detalle privado suyo. */
+.areas-swiper {
+  --swiper-navigation-size: 1.6rem;
+}
+
+.areas-swiper::part(button-prev),
+.areas-swiper::part(button-next) {
+  width: 4.4rem;
+  height: 4.4rem;
+  border-radius: 9999px;
+  background-color: var(--color-primary-soft);
+  color: var(--color-brand-violet);
 }
 </style>
