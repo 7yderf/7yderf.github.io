@@ -38,15 +38,9 @@
       <ClientOnly>
         <swiper-container
           class="areas-swiper block"
-          effect="coverflow"
           slides-per-view="auto"
           centered-slides="true"
-          coverflow-effect-rotate="0"
-          coverflow-effect-depth="220"
-          coverflow-effect-modifier="1.8"
-          coverflow-effect-stretch="-40"
-          coverflow-effect-scale="0.66"
-          coverflow-effect-slide-shadows="false"
+          space-between="0"
           :loop="true"
           :speed="600"
           :navigation="true"
@@ -105,8 +99,49 @@ const areas = computed(() => texts.value.map((text, i) => ({ ...text, image: ima
 <!-- Sin scope: la libreria reubica las piezas en su propio arbol y el atributo
      de scoping no alcanza a los descendientes que mueve. -->
 <style>
+/* La superposicion la gobierna este bloque, no un efecto de la libreria. La
+   libreria marca con clases cual pieza esta al centro y cuales son sus vecinas,
+   y en modo normal desplaza el CARRIL, no las piezas: eso deja la transformacion
+   de cada pieza libre para usarla aqui.
+
+   Todos los planos de apilado son POSITIVOS a proposito. El efecto 3D de la
+   libreria asignaba plano negativo a las vecinas, y un plano negativo pinta el
+   elemento por detras del fondo de su contexto de apilado: las vecinas no
+   quedaban atras, desaparecian.
+
+   El acercamiento va en PORCENTAJE del ancho de la propia pieza, no en pixeles:
+   asi la superposicion se mantiene igual en cualquier contenedor. Un valor fijo
+   contra un ancho porcentual se desajusta en cuanto cambia el ancho. */
 .areas-swiper swiper-slide {
-  width: 48%;
+  width: 46%;
+  z-index: 1;
+  opacity: 0;
+  transform: scale(0.62);
+  transition:
+    transform 500ms cubic-bezier(0.2, 0, 0, 1),
+    opacity 500ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Solo se ven la activa y sus dos vecinas; el resto queda fuera del encuadre */
+.areas-swiper swiper-slide.swiper-slide-active,
+.areas-swiper swiper-slide.swiper-slide-prev,
+.areas-swiper swiper-slide.swiper-slide-next {
+  opacity: 1;
+}
+
+/* La vecina izquierda se acerca hacia la derecha y la derecha hacia la
+   izquierda, hasta quedar tapadas casi por completo por la activa. */
+.areas-swiper swiper-slide.swiper-slide-prev {
+  transform: translateX(55%) scale(0.62);
+}
+
+.areas-swiper swiper-slide.swiper-slide-next {
+  transform: translateX(-55%) scale(0.62);
+}
+
+.areas-swiper swiper-slide.swiper-slide-active {
+  z-index: 3;
+  transform: scale(1);
 }
 
 /* El radio grande y desigual es parte del lenguaje de la referencia */
@@ -143,6 +178,7 @@ const areas = computed(() => texts.value.map((text, i) => ({ ...text, image: ima
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .areas-swiper swiper-slide,
   .areas-caption {
     transition: none;
   }

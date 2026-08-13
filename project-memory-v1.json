@@ -1,7 +1,7 @@
 {
   "$schema": "https://eure-k.local/schemas/project-memory-v1.json",
   "schema": "eure-k.project-memory/v1",
-  "revision": 59,
+  "revision": 60,
   "project": {
     "id": "frt-cnct-web",
     "repository_fingerprint": "git-remote-v1:sha256:9cecfa5ed6040202f52f46768540e1b8a10fa6c11be8f5acbcaf8dbea368cb60",
@@ -2940,6 +2940,16 @@
             "kind": "novel",
             "rationale": "Un componente que REESCRIBE el DOM que recibe no puede hidratarse. La hidratacion compara el marcado que produjo el servidor contra el arbol que el cliente generaria, y exige que coincidan; pero estos componentes agregan clases, estilos en linea y, cuando tienen recorrido circular, duplican elementos. El resultado es que el servidor entrega nodos que el cliente nunca produjo y la comparacion falla, con el agravante de que el aviso describe el sintoma —sobran hijos— y no la causa. Intentar reconciliarlo es perseguir una diferencia que se vuelve a abrir en cada render. La salida correcta es excluir ese subarbol del renderizado en servidor: sin marcado previo no hay nada que comparar. Ademas conviene reservar su alto mientras no existe, para que el resto de la pagina no salte cuando aparezca. Vale para cualquier integracion que tome control imperativo de su propio marcado.",
             "projection": "etiqueta: componente-que-reescribe-su-dom-se-excluye-del-render-en-servidor — aqui el carrusel se envolvio para renderizarse solo en cliente y se le dio un sustituto de alto fijo. El aviso previo señalaba piezas con indice y margen en linea que el servidor entregaba y el cliente no: eran los clones del recorrido circular y los estilos que la libreria escribe al montarse.",
+            "evidence": [
+              "src/components/sections/CaasAreas.vue"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:3:8",
+            "kind": "novel",
+            "rationale": "Un plano de apilado NEGATIVO no manda el elemento detras de sus hermanos: lo manda detras del fondo del contexto de apilado que lo contiene. Si ese contexto tiene fondo, el elemento desaparece por completo en vez de quedar en segundo plano. Por eso los efectos de profundidad de las librerias, que asignan planos negativos a las piezas no activas, pueden hacerlas invisibles en un contenedor con fondo y no en uno transparente — lo que vuelve el defecto dependiente del entorno y dificil de atribuir. La regla es mantener TODOS los planos en positivo y expresar la profundidad con la diferencia entre ellos: el mismo orden visual sin la posibilidad de caer detras del fondo. Cuando la libreria impone planos negativos, conviene renunciar a su efecto y gobernar la profundidad desde las clases de estado que ella ya expone.",
+            "projection": "etiqueta: plano-de-apilado-negativo-esconde-detras-del-fondo-no-detras-del-hermano — aqui el efecto tridimensional del carrusel dejaba las piezas vecinas con plano -1 y desplazamiento en profundidad de -396 px, y desaparecian por completo; ademas su factor multiplicador convertia la escala pedida de 0.66 en 0.39. Se sustituyo por planos 1 y 3 y transformaciones propias gobernadas por las clases de pieza activa, anterior y siguiente que la libreria ya pone.",
             "evidence": [
               "src/components/sections/CaasAreas.vue"
             ],
