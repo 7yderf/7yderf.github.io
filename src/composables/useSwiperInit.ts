@@ -52,6 +52,15 @@ export function useSwiperInit(options: SwiperInitOptions = {}): Ref<SwiperContai
     await nextTick()
     // 4. recien ahora
     el.value?.initialize?.()
+    // Bandera propia, en el elemento host (luz, no sombra): la libreria SI
+    // marca su propio "inicializado", pero lo hace sobre el div interno de su
+    // shadow DOM, inalcanzable desde una hoja de estilos externa. Un consumidor
+    // que necesite CSS condicionado a "ya arranco" debe usar esta clase y no la
+    // de la libreria. Sin ella, cualquier regla que oculte por defecto lo que
+    // la libreria todavia no etiqueto ocultaria TODO durante el render de
+    // servidor y la ventana previa a este arranque — el escenario que
+    // useSwiperInit existe para evitar.
+    el.value?.classList.add('is-ready')
   })
 
   return el

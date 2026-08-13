@@ -6,8 +6,18 @@
        1) navegadores laterales
        2) pieza activa centrada
        3) arranque diferido hasta despues de la hidratacion
-     Pendiente: la superposicion del diseño —central mas grande, vecinas al
-     fondo— que va sola, encima de esto. -->
+       4) superposicion: vecinas escaladas y corridas detras de la activa
+
+     La (4) es una prueba de concepto, no el efecto circular 3D que pidio el
+     diseño. Se investigo antes de construirla (Eureka decision:3:16): la
+     libreria abierta no trae rotacion circular de 360 grados —esa es un modulo
+     de pago, distinto del paquete instalado— y sus dos efectos tridimensionales
+     (coverflow, creative) escriben zIndex negativo por JavaScript en cada
+     fotograma, el mismo mecanismo que borro las vecinas la vez anterior; ninguna
+     hoja de estilos externa le gana a eso de forma sostenida. Por eso esta
+     version no toca ningun modulo de efecto: estiliza por CSS las clases que
+     Swiper YA aplica en su modo por defecto (activa/anterior/siguiente), donde
+     nadie mas escribe transform ni zIndex por encima. -->
 <template>
   <section class="sc-section w-full px-4 py-8 lg:px-8 lg-2:py-16">
     <h2 class="mx-auto max-w-3xl text-center font-secondary font-bold bg-gradient-to-r from-accent to-brand-violet bg-clip-text text-transparent">
@@ -139,5 +149,110 @@ const swiperEl = useSwiperInit()
   border-radius: 9999px;
   background-color: var(--color-primary-soft);
   color: var(--color-brand-violet);
+}
+
+/* DESVIACION 4 sobre la linea base: superposicion. Confirmada por Fredy el
+   2026-08-13, valores finales de esta ronda.
+
+   PARA AJUSTAR — los cuatro diales, y donde vive cada uno:
+   - Cuanto se meten las vecinas: translateX en las reglas .swiper-slide-prev
+     (positivo) y .swiper-slide-next (negativo), lineas ~223-231. Hoy 6rem.
+     Tiene que superar el space-between="32" (32px) del carrusel para que
+     alcance a producir superposicion real y no solo cierre el hueco.
+   - Que tan chicas se ven: scale() en esas mismas dos reglas. Hoy 0.56.
+   - Que tan rapido se acomodan: transition: transform ..., linea 213. Hoy
+     400ms. Compartida por las tres clases via la regla base (linea 205);
+     no hace falta declararla de nuevo en swiper-slide-prev/next/active.
+   - Que tan rapido se desvanece la que sale/entra: transition: opacity ...,
+     linea 214. Hoy 100ms, deliberadamente mas corto que transform para que
+     el cambio de tamaño quede tapado por la opacidad antes de notarse.
+
+   Si el numero de piezas visibles a la vez cambiara (hoy son 3: anterior,
+   activa, siguiente), revisar primero la precondicion del recorrido circular
+   documentada en el bloque del template (visibles + grupo + 1).
+
+   .swiper-slide-prev/-active/-next son clases que Swiper asigna solas en modo
+   "slide" (el default, sin effect declarado). En ese modo la libreria mueve la
+   franja completa y no toca transform ni zIndex de cada pieza — a diferencia de
+   los modulos de efecto, aqui esas dos propiedades son enteramente nuestras.
+
+   400ms/ease-out en vez del speed="600" del recorrido: el desplazamiento lateral
+   ya lo cubre el speed del carrusel: este transform solo necesita "asentar" la
+   escala y la profundidad un poco antes de que la pieza termine de llegar, para
+   que no se sienta como dos animaciones separadas compitiendo.
+
+   El traslado tiene que superar el space-between="32" del carrusel (32px): ese
+   es el hueco que YA separa a la vecina de la activa antes de mover nada, asi
+   que un traslado menor a eso no llega ni a cerrarlo, no digamos a meterla
+   detras. Primera vuelta con 24px no se notaba por exactamente esto.
+
+   transform-origin es el segundo ajuste, y el que de verdad faltaba: por
+   defecto el origen del escalado es el CENTRO del elemento, asi que al achicar,
+   el borde cercano a la activa retrocede (se aleja) antes de que el translate
+   lo empuje — la escala le resta desplazamiento al propio movimiento que se
+   busca. Fijando el origen en el borde que debe quedar pegado a la activa, ese
+   borde ya no se mueve por el escalado: solo se mueve por el translate, y el
+   achique ocurre completo del lado contrario (el que se va a la sombra). Asi el
+   traslado se traduce integro en superposicion real, no en acercamiento.
+
+   Tercer ajuste: la pieza que SALE (pierde prev/next sin ganar activa, porque
+   quedo a dos posiciones) rebotaba a su tamaño original de golpe. La causa no
+   es visual, es de cascada: al perder la clase, la regla que le daba transform
+   Y transition desaparece con ella, asi que no hay nada que anime el regreso.
+   La solucion no es intentar animar esa transicion de salida — es no tener
+   nada que animar: toda pieza que no sea una de las tres etiquetadas vive en
+   opacity:0 por defecto, y ganar/perder una de las tres etiquetas ahora
+   tambien cruza ese opacity, con su propia transicion. La pieza que sale se
+   desvanece en vez de rebotar, sin importar hacia que lado gire el carrusel.
+
+   Ese default en opacity:0 NO puede aplicarse siempre: las tres clases las
+   asigna la libreria recien cuando arranca, y este proyecto difiere ese
+   arranque hasta despues de hidratar (useSwiperInit) para conservar el render
+   de servidor. Si el default fuera invisible sin condicion, un visitante o
+   rastreador que vea el HTML antes de ese arranque —o sin JavaScript del
+   todo— veria el carrusel completo en blanco: exactamente lo que esa decision
+   anterior evitaba. Por eso el ocultamiento esta condicionado a .is-ready, la
+   bandera que useSwiperInit agrega al elemento host justo cuando el arranque
+   termina: antes de eso, todo permanece visible por defecto, sin condicion.
+
+   Las reglas que muestran a las tres etiquetadas repiten .is-ready y el tipo
+   swiper-slide junto a su clase, y no es adorno: es lo que les da mas
+   especificidad que la regla que oculta. Sin ese refuerzo, "2 clases + 1 tipo"
+   (la regla que oculta) le gana a "2 clases" (mostrar sin el tipo repetido) y
+   TODO quedaria invisible aunque este etiquetado — el bug se verificó al
+   calcular la especificidad antes de compilar, no despues de verlo fallar. */
+.areas-swiper.is-ready swiper-slide {
+  opacity: 0;
+  /* opacity en 100ms: bastante mas corto que el transform (400ms) para que la
+     pieza se desvanezca justo antes de que se note el cambio de tamaño debajo,
+     pero no tan instantaneo (0ms) como para leerse como un corte. transform
+     sigue en 400ms porque a la que ENTRA le sirve seguir viendose crecer/entrar
+     en marcha. */
+  transition:
+    transform 400ms ease-out,
+    opacity 100ms ease-out;
+}
+
+.areas-swiper.is-ready swiper-slide.swiper-slide-prev,
+.areas-swiper.is-ready swiper-slide.swiper-slide-next {
+  z-index: 1;
+  opacity: 1;
+}
+
+.areas-swiper.is-ready swiper-slide.swiper-slide-prev {
+  transform-origin: right center;
+  transform: translateX(6rem) scale(0.56);
+}
+
+.areas-swiper.is-ready swiper-slide.swiper-slide-next {
+  transform-origin: left center;
+  transform: translateX(-6rem) scale(0.56);
+}
+
+.areas-swiper.is-ready swiper-slide.swiper-slide-active {
+  position: relative;
+  z-index: 2;
+  opacity: 1;
+  transform: scale(1);
 }
 </style>

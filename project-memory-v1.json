@@ -1,7 +1,7 @@
 {
   "$schema": "https://eure-k.local/schemas/project-memory-v1.json",
   "schema": "eure-k.project-memory/v1",
-  "revision": 70,
+  "revision": 77,
   "project": {
     "id": "frt-cnct-web",
     "repository_fingerprint": "git-remote-v1:sha256:9cecfa5ed6040202f52f46768540e1b8a10fa6c11be8f5acbcaf8dbea368cb60",
@@ -28,7 +28,7 @@
     "revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
     "server_version": "0.30.6",
     "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
-    "last_consulted_at": "2026-08-13T14:09:57.483Z",
+    "last_consulted_at": "2026-08-13T15:56:53.116Z",
     "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7"
   },
   "graph": {
@@ -3134,6 +3134,266 @@
                 }
               }
             }
+          },
+          {
+            "id": "consult:3:7",
+            "at": "2026-08-13T14:49:12.949Z",
+            "intent": "Buscar precedente sobre investigar el soporte nativo de un efecto de rotacion circular tridimensional antes de simularlo, y sobre si el fallo previo de un efecto tridimensional en este proyecto (planos de apilado negativos) descarta reintentar por esa via o solo descarta la configuracion puntual que se probo. El genoma responde no_direct_recipe otra vez: cuarto hueco declarado en esta tarea. El precedente local del fallo de planos negativos no aparecio entre los candidatos de esta consulta pese a estar registrado en el proyecto (decision:3:10); se toma igual en cuenta por memoria directa de la tarea, no como candidato de esta consulta.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Investigar si una libreria de carrusel de terceros soporta de forma nativa y documentada un efecto de rotacion circular tridimensional (piezas dispuestas como en un circulo visto desde arriba, la activa al frente y dos vecinas asomando a los costados, que giran al avanzar) ANTES de intentar simularlo con CSS o JavaScript propio. Ya existe un precedente local de que un efecto tridimensional de esta misma libreria fallo antes en este proyecto por una mala interaccion entre planos de apilado negativos y el fondo de la seccion; quiero saber si ese precedente aplica aqui o si el efecto que se busca ahora es una configuracion distinta de la libreria.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Determinar si existe soporte nativo documentado para el efecto pedido antes de construir nada propio",
+                "Distinguir entre reintentar un efecto que ya fallo y usar una via distinta de la misma libreria",
+                "Evitar repetir el defecto de planos de apilado negativos ya registrado en este proyecto",
+                "Preferir la capacidad de la libreria sobre una simulacion con CSS solo si la libreria no la ofrece"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "stack": "vue3-swiper-element",
+                "path": "src/components/sections/CaasAreas.vue",
+                "operation": "investigar-efecto-circular-3d"
+              },
+              "mode": "exploration",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:13",
+              "pattern:estado-sesion-reactivo-semilla-unica-storage",
+              "pattern:correccion-css-en-la-declaracion-ganadora"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:490c6674-103d-4760-a15c-71103ada4f5c",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.6",
+              "overlay_revision": 70,
+              "overlay_graph_hash": "sha256:55d4a2a8f6813fe5120b443e1c2da4ab34803b148d79e628c3afb2c34e0853be",
+              "overlay_curated_hash": "sha256:f585177455224a3ebbf5a80f26801122f9395007db526b758f96ea7c530d3eb2",
+              "overlay_projections_revision": "sha256:65ad3859f967ec32bea13c0684076ff26e13a009f618e44ddad00411c67fdb95",
+              "output_hash": "sha256:d3ee271ebf186e474b245a863a2c7cde56de2eb731f7b843ca322a771fda8fbf",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:efb8d260195f4da3fe18b1a1400d1d427e2745440e127bfa6112030cb83d8d42"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:13",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:465ea5122e136eab516b2aa0e3f2f9c5e359a7c7b27749308ef069b7c72055ce"
+                },
+                {
+                  "id": "pattern:estado-sesion-reactivo-semilla-unica-storage",
+                  "source": "genome",
+                  "lane": "directed_exploration",
+                  "candidate_revision": "sha256:6b89f5aecc0de275c5fe9850bfddf1f4641af9993bcb92d2000f0a111d0e77e7"
+                },
+                {
+                  "id": "pattern:correccion-css-en-la-declaracion-ganadora",
+                  "source": "genome",
+                  "lane": "directed_exploration",
+                  "candidate_revision": "sha256:081be3e29e2fe1ddd6ea56dfab7e77d89bd2ce33ef39de4bb7a0f0361e23268b"
+                }
+              ],
+              "query_revision": "sha256:06b5b379595f757f414ab72ace2254b1fc8025e08a5dc081c103b79bb36b6e8e",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 10851,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 4,
+                "used_excerpt_chars": 1042,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:3:8",
+            "at": "2026-08-13T15:41:55.737Z",
+            "intent": "Buscar precedente sobre como componer scale y translate en CSS para que el borde cercano de un elemento se comporte como punto fijo del escalado, de modo que la reduccion de tamaño no le reste desplazamiento a la traslacion. El genoma responde no_direct_recipe: quinto hueco declarado en esta tarea. Se procede con razonamiento directo sobre la composicion de matrices de transformacion CSS (el origen de transformacion determina que punto queda fijo al escalar; con origen centrado el borde cercano retrocede al achicar, restando parte de la traslacion posterior) y se registra la forma resultante.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Con CSS puro, un elemento se achica con scale y se desplaza con translate hacia un vecino, buscando el efecto de que su borde cercano quede escondido detras del borde del vecino (superposicion real, no solo acercamiento visual). El resultado no logra la superposicion aunque el tamaño si se redujo: el borde que deberia meterse detras del vecino no avanza lo suficiente. Sospecho que el punto de origen de la transformacion (el punto fijo alrededor del cual ocurre el escalado) esta consumiendo parte del desplazamiento, porque el origen por defecto es el centro del elemento y al achicar simetricamente el borde cercano retrocede en vez de mantenerse fijo antes de aplicar el translate. Busco precedente sobre como componer escala y traslado para que el borde relevante de un elemento se comporte como punto fijo del escalado.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Lograr superposicion visual real entre dos elementos con transform CSS, no solo acercamiento",
+                "Diagnosticar por que el borde cercano no avanza lo suficiente pese a reducir el tamaño y desplazar",
+                "Elegir el punto de origen de la transformacion en funcion de que borde debe quedar fijo",
+                "Evitar seguir ajustando numeros a ciegas sin haber diagnosticado el mecanismo"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "stack": "css-transform",
+                "path": "src/components/sections/CaasAreas.vue",
+                "operation": "superposicion-scale-translate-origin"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:19",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:13",
+              "pattern:visual-dos-columnas-responsive"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:ceb31768-6535-4c4f-b5b4-dd4433f8fc67",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.6",
+              "overlay_revision": 73,
+              "overlay_graph_hash": "sha256:55d4a2a8f6813fe5120b443e1c2da4ab34803b148d79e628c3afb2c34e0853be",
+              "overlay_curated_hash": "sha256:f585177455224a3ebbf5a80f26801122f9395007db526b758f96ea7c530d3eb2",
+              "overlay_projections_revision": "sha256:65ad3859f967ec32bea13c0684076ff26e13a009f618e44ddad00411c67fdb95",
+              "output_hash": "sha256:4001a6c6a5c2e5fb559661c6597b042a240ed77f6379cb90d7129c84afc9f826",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:19",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:a2a134f7b13d29564a7a563289f6564d6184f4fdb9ebb1e1d078157d6bba9536"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:13",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:465ea5122e136eab516b2aa0e3f2f9c5e359a7c7b27749308ef069b7c72055ce"
+                },
+                {
+                  "id": "pattern:visual-dos-columnas-responsive",
+                  "source": "genome",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:4e7dffcead5dfc1bbcedbb97c95ae412266f96a85170d824a1b012548f69edd5"
+                }
+              ],
+              "query_revision": "sha256:115c46209be87fb8d50ea81116786886927c0e3549b2b180e4ac2e67e09b009e",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 9158,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 3,
+                "used_excerpt_chars": 797,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:3:9",
+            "at": "2026-08-13T15:56:53.116Z",
+            "intent": "Buscar precedente sobre declarar un estado visual que dependa de clases que una libreria asigna en tiempo de ejecucion (activo/anterior/siguiente), sin que el contenido renderizado por el servidor quede invisible mientras esa libreria todavia no corrio. El genoma responde no_direct_recipe: sexto hueco declarado en esta tarea. Se investigo en el codigo fuente de la libreria donde asigna su clase de \"inicializado\" y se encontro que la asigna al DIV interno de su shadow DOM, no al elemento host que este proyecto puede seleccionar desde una hoja de estilos externa — por eso no sirve como bandera. Se opta por que el propio composable useSwiperInit marque el elemento host con una clase propia en el instante exacto en que el arranque manual termina, y condicionar el ocultamiento por defecto a esa clase.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Se quiere que toda pieza de un carrusel que NO sea una de las tres etiquetadas por la libreria (activa, anterior, siguiente) sea invisible por defecto (opacity 0), para que al perder esa etiqueta durante una transicion la pieza se desvanezca en vez de reaparecer de golpe a su tamaño original. El riesgo que veo: esas tres clases las asigna la libreria en su arranque, que en este proyecto esta diferido hasta despues de hidratar (init=\"false\" + arranque manual) por una decision previa que buscaba conservar el render de servidor para paginas de captacion. Si el estado por defecto es invisible y las clases todavia no existen (servidor, o cliente antes de que la libreria arranque, o un visitante/rastreador sin JavaScript), TODAS las piezas quedarian invisibles, justo el escenario que la decision anterior queria evitar. Busco precedente sobre como declarar un estado visual que dependa de clases asignadas por JavaScript en tiempo de ejecucion sin sacrificar la visibilidad del contenido renderizado por el servidor antes de que ese JavaScript corra.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Evitar el rebote de una pieza que pierde su clase de estado activo/vecino",
+                "No hacer depender la visibilidad del contenido renderizado por el servidor de que JavaScript ya haya corrido",
+                "Distinguir el estado antes de la inicializacion del estado en regimen normal",
+                "Preferir opacity sobre revertir manualmente transform para lograr una salida suave"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "stack": "vue3-swiper-element-ssr",
+                "path": "src/components/sections/CaasAreas.vue",
+                "operation": "opacity-por-defecto-vs-render-servidor"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+              "case:ux-005",
+              "pattern:envelope-respuesta-estandar",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:19"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:17b26f5c-c110-4c09-944d-ceef0ea2c501",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.6",
+              "overlay_revision": 75,
+              "overlay_graph_hash": "sha256:55d4a2a8f6813fe5120b443e1c2da4ab34803b148d79e628c3afb2c34e0853be",
+              "overlay_curated_hash": "sha256:f585177455224a3ebbf5a80f26801122f9395007db526b758f96ea7c530d3eb2",
+              "overlay_projections_revision": "sha256:65ad3859f967ec32bea13c0684076ff26e13a009f618e44ddad00411c67fdb95",
+              "output_hash": "sha256:541fabf14d8d688071bfe9bc3bbf98e95be4d3ee15ca19a135f1f3df965e180b",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:efb8d260195f4da3fe18b1a1400d1d427e2745440e127bfa6112030cb83d8d42"
+                },
+                {
+                  "id": "case:ux-005",
+                  "source": "genome",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:4369bdb88d69d4f8e73965a4eab236329fb3ba452fef6048bdcd41c3fba0f5a9"
+                },
+                {
+                  "id": "pattern:envelope-respuesta-estandar",
+                  "source": "genome",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:df7e8bf8c5025983e32ca5d5a169660218b9e335914e97a9586706e581194ff5"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:19",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:a2a134f7b13d29564a7a563289f6564d6184f4fdb9ebb1e1d078157d6bba9536"
+                }
+              ],
+              "query_revision": "sha256:e32531c64521467ba2baf115d7406179bcfb3775c09221005e4f76ebc6c7580f",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 10424,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 4,
+                "used_excerpt_chars": 986,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
           }
         ],
         "decisions": [
@@ -3299,6 +3559,50 @@
             "evidence": [
               "src/composables/useMedia.ts",
               "src/components/sections/SpeiIntelligence.vue"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:3:16",
+            "kind": "novel",
+            "rationale": "Antes de construir a mano un efecto que una libreria de terceros parece ofrecer, hay que agotar tres fuentes en orden, y ninguna sustituye a las otras: los tipos del paquete instalado (que fuerza), la pagina de documentacion oficial (que explica), y la busqueda de quien ya lo intento (que revela intentos abandonados). Aqui las tres coincidieron: la libreria instalada solo trae dos efectos tridimensionales, coverflow y creative, y ninguno esta documentado como una rotacion circular de 360 grados con piezas dispuestas alrededor de un eje — los dos producen un abanico con profundidad y un numero limitado de vecinas visibles. La propia documentacion oficial nombra el efecto circular verdadero como un plugin de PAGO, distinto del paquete abierto que este proyecto tiene instalado. Y el unico repositorio comunitario que prometia ese efecto esta archivado desde 2019, con su propio README advirtiendo que su funcionalidad ya vive en el nucleo de la libreria — es decir, es el mismo coverflow que ya se descarto.\\n\\nAl leer el codigo fuente de los dos modulos surgio el dato que explica por que el intento anterior fallo, mas alla del ajuste puntual que se le atribuyo entonces: los DOS modulos de efecto tridimensional escriben zIndex negativo por JavaScript en cada fotograma de la transicion, calculado a partir de la distancia de cada pieza al centro. No es un parametro que se pueda subir o bajar: es el mecanismo interno del efecto. Cualquier intento de corregirlo con CSS quedaria pisado en el siguiente fotograma, porque el estilo en linea escrito por JavaScript le gana a la hoja de estilos y la libreria lo vuelve a escribir todo el tiempo. La conclusion generaliza: antes de construir sobre el modulo de efecto de una libreria de animacion, hay que revisar si ESE modulo especificamente escribe estilo en linea por cuadro, porque si lo hace, ninguna hoja de estilos puede ganarle de forma sostenida — hay que ganarle por fuera, no por encima.\\n\\nPor eso la ruta elegida no reutiliza ningun modulo de efecto: se manipulan por CSS las clases que la propia libreria YA aplica en su modo por defecto —activa, anterior, siguiente— porque en ese modo, sin efecto declarado, la libreria mueve la franja completa y no toca transform ni zIndex de cada pieza. Ahi el CSS es dueño exclusivo de esas dos propiedades, sin nadie escribiendo por encima cuadro a cuadro.",
+            "projection": "etiqueta: css-propio-cuando-el-modulo-de-efecto-escribe-en-linea-por-cuadro — se investigo si existe un efecto circular 3D nativo antes de simularlo, siguiendo tres fuentes: tipos del paquete instalado, documentacion oficial, busqueda de intentos previos. Las tres niegan que exista en la version abierta de la libreria; el efecto real es un plugin de pago. Se encontro ademas la causa tecnica precisa del fallo anterior con planos de apilado negativos: los modulos de efecto tridimensional escriben zIndex negativo por JavaScript en cada fotograma, un estilo en linea que ninguna hoja de estilos externa puede vencer de forma sostenida. La ruta elegida evita el problema por diseño: se estiliza por CSS las clases activa/anterior/siguiente que la libreria aplica en su modo por defecto, donde no hay ningun modulo de efecto escribiendo transform ni zIndex por encima.",
+            "evidence": [
+              "node_modules/swiper/modules/effect-coverflow.mjs",
+              "node_modules/swiper/modules/effect-creative.mjs",
+              "node_modules/swiper/modules/effect-coverflow/effect-coverflow.d.ts",
+              "node_modules/swiper/modules/effect-creative/effect-creative.d.ts"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:3:17",
+            "kind": "novel",
+            "rationale": "Cuando el efecto pedido no tiene soporte nativo gratuito y la via de simularlo con el modulo de efecto de la libreria ya fallo por un mecanismo estructural (estilo en linea reescrito por JavaScript en cada fotograma), la alternativa correcta no es escribir una implementacion propia desde cero sino buscar que puntos de enganche deja la libreria en su comportamiento por defecto. Aqui el punto de enganche existia ya: en modo \"slide\" sin efecto declarado, la libreria marca cada pieza como anterior, activa o siguiente mediante clases, y no toca transform ni zIndex de ninguna. Eso convierte esas dos propiedades en territorio exclusivo del proyecto sin necesidad de escribir ninguna logica de calculo de posicion, distancia u orden — la libreria ya hizo esa parte y la expone con nombre.\\n\\nEl patron generaliza: ante un efecto visual no soportado, antes de escribir la logica a mano, buscar si la libreria ya etiqueta el estado relevante (activo/anterior/siguiente, abierto/cerrado, visible/oculto) mediante clases o atributos en su comportamiento base, y estilizar sobre esa etiqueta. Es mas barato, no compite con nada que la libreria reescriba, y se cae con gracia: si la clase desaparece, el elemento vuelve a su estado normal en vez de romperse.",
+            "projection": "etiqueta: estilizar-sobre-la-clase-de-estado-que-la-libreria-ya-marca — prueba de concepto de superposicion: las vecinas se escalan y se corren hacia el centro con CSS puro sobre swiper-slide-prev y swiper-slide-next, que Swiper aplica solas en su modo por defecto sin que ningun modulo de efecto compita por transform o zIndex. La transicion CSS es mas corta que el recorrido del carrusel a proposito, para que la escala se sienta como un asentamiento y no como una segunda animacion compitiendo con el desplazamiento. Valores de traslado y escala declarados como punto de partida, pendientes de ajuste visual contra la referencia; no se hizo commit todavia porque la revision visual la hace el humano.",
+            "evidence": [
+              "src/components/sections/CaasAreas.vue"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:3:18",
+            "kind": "novel",
+            "rationale": "Al componer scale y translate para lograr que un elemento parezca meterse detras de un vecino, el origen de la transformacion no es un detalle cosmetico: determina si el achicado AYUDA o COMPITE con el desplazamiento. Con el origen por defecto (el centro del elemento) el escalado mueve los DOS bordes hacia adentro por igual — tambien el borde que se supone debe avanzar hacia el vecino. Ese borde entonces retrocede una fraccion de su propio ancho por el solo hecho de achicarse, y el translate que viene despues tiene que gastar parte de su recorrido en cancelar ese retroceso antes de producir cualquier avance neto. El resultado visible es exactamente lo que se observo: el tamaño cambia con claridad pero la superposicion casi no avanza, porque una fraccion sustancial del desplazamiento declarado se la comio la propia escala.\\n\\nLa correccion es fijar el origen de la transformacion en el borde que debe permanecer pegado al vecino — el borde CONTRARIO al que se aleja. Con el origen ahi, ese borde no se mueve por el escalado en absoluto: su unico movimiento es el translate, integro. El achicado ocurre entero del lado opuesto, que es justo el lado que se va a la sombra y no importa que retroceda. Asi el numero que se declara en el translate es el numero que efectivamente se ve, sin descuento oculto.\\n\\nEl patron generaliza mas alla de este carrusel: en cualquier composicion de scale+translate cuyo proposito sea que un borde especifico de un elemento alcance una posicion (tocar, superponerse, alinearse con otro elemento), el origen de la transformacion tiene que fijarse en ese borde. Dejarlo en el centro por defecto es correcto solo cuando el escalado debe ser simetrico y no hay un borde protagonista — que es el caso comun, y por eso el default pasa desapercibido hasta que aparece un caso, como este, donde si importa cual borde se mueve.",
+            "projection": "etiqueta: origen-de-transformacion-en-el-borde-que-debe-llegar — para la superposicion del carrusel de areas, el origen de la transformacion de cada vecina se fija en su borde cercano a la activa (la anterior en su borde derecho, la siguiente en su borde izquierdo) en vez de dejarlo en el centro por defecto. Se llego a esto por retroalimentacion directa: la primera version con origen centrado si redujo el tamaño visible pero no logro la superposicion, pese a que el traslado ya superaba el hueco entre piezas. El diagnostico establecio que el origen centrado le restaba desplazamiento al borde cercano por el propio acto de escalar. De paso se aplico el achique adicional pedido: escala de 0.75 a 0.56.",
+            "evidence": [
+              "src/components/sections/CaasAreas.vue"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:3:19",
+            "kind": "novel",
+            "rationale": "Cuando una pieza pierde una clase de estado que le daba tanto un valor de transform como la transicion que lo animaba, perder la clase apaga las dos cosas A LA VEZ: no solo deja de tener el valor final, deja de tener QUIEN LO ANIME. El regreso al estado sin transform ocurre entonces de forma instantanea, sin importar que la transicion declarada fuera suave, porque la regla entera —incluida la transicion— dejo de aplicar en el mismo instante que el valor. Intentar resolver esto animando la transicion de salida no funciona por la misma razon que no funciona corregir con CSS un valor que una libreria reescribe por JavaScript en cada fotograma (decision:3:16 de esta misma tarea): no hay ninguna regla viva en el momento en que hay que animar, asi que no hay nada que declarar ahi.\\n\\nLa solucion que si funciona invierte el problema: en vez de animar la transicion de SALIDA de un estado que va a desaparecer, se hace que el estado por defecto sea PERMANENTEMENTE invisible (opacity 0 con su propia transicion, declarada en la regla base que nunca deja de aplicar), y que las clases de estado unicamente sumen opacity 1 por encima. Ahora perder la clase no apaga nada: la pieza cae de vuelta a la regla base, que siempre estuvo ahi y siempre tuvo su transicion declarada, asi que el desvanecimiento ocurre sin importar por cual de las clases se haya salido ni hacia que lado.\\n\\nSegundo hallazgo, encontrado al verificar antes de compilar y no despues de verlo fallar: la regla base tenia MAS especificidad que las reglas que debian mostrar las piezas etiquetadas, porque la base incluia un selector de tipo (swiper-slide) que las reglas de las clases de estado no repetian — dos clases mas un tipo le gana a dos clases solas. El default hubiera ganado siempre, dejando todo invisible incluso ya etiquetado. La correccion fue repetir el mismo tipo en las reglas de estado para igualar el termino que faltaba, no bajar la especificidad de la base. Regla general: cuando un default se declara con un selector mas amplio (tipo + clase) que las excepciones que deben ganarle (solo clase), hay que calcular la especificidad de las dos antes de asumir que \"la mas especifica en la intencion\" es la que el navegador tambien va a elegir — la intencion y el conteo de selectores no son la misma cosa.",
+            "projection": "etiqueta: default-invisible-en-vez-de-animar-la-salida — para que una pieza que deja de ser vecina se desvanezca en vez de rebotar a su tamaño original, el estado por defecto de toda pieza no etiquetada es opacity:0 con su propia transicion, y las tres clases de estado (activa/anterior/siguiente) solo añaden opacity:1. Asi perder cualquiera de las tres cae siempre en la misma regla base, que nunca dejo de aplicar y siempre tuvo transicion. La regla base esta condicionada a una bandera propia (.is-ready, que el composable useSwiperInit agrega al elemento host justo al terminar el arranque diferido) para no ocultar el contenido durante el render de servidor o antes de que la libreria arranque — ver [[origen-de-transformacion-en-el-borde-que-debe-llegar]] para el ajuste de superposicion sobre el que este se monta. Las reglas de las tres clases de estado repiten el tipo swiper-slide junto a su clase especificamente para igualar la especificidad de la regla base, que la incluye; sin ese refuerzo la base habria ganado siempre.",
+            "evidence": [
+              "src/components/sections/CaasAreas.vue",
+              "src/composables/useSwiperInit.ts"
             ],
             "status": "proposed"
           }
