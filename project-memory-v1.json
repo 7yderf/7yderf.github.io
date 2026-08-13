@@ -1,7 +1,7 @@
 {
   "$schema": "https://eure-k.local/schemas/project-memory-v1.json",
   "schema": "eure-k.project-memory/v1",
-  "revision": 60,
+  "revision": 61,
   "project": {
     "id": "frt-cnct-web",
     "repository_fingerprint": "git-remote-v1:sha256:9cecfa5ed6040202f52f46768540e1b8a10fa6c11be8f5acbcaf8dbea368cb60",
@@ -2950,6 +2950,16 @@
             "kind": "novel",
             "rationale": "Un plano de apilado NEGATIVO no manda el elemento detras de sus hermanos: lo manda detras del fondo del contexto de apilado que lo contiene. Si ese contexto tiene fondo, el elemento desaparece por completo en vez de quedar en segundo plano. Por eso los efectos de profundidad de las librerias, que asignan planos negativos a las piezas no activas, pueden hacerlas invisibles en un contenedor con fondo y no en uno transparente — lo que vuelve el defecto dependiente del entorno y dificil de atribuir. La regla es mantener TODOS los planos en positivo y expresar la profundidad con la diferencia entre ellos: el mismo orden visual sin la posibilidad de caer detras del fondo. Cuando la libreria impone planos negativos, conviene renunciar a su efecto y gobernar la profundidad desde las clases de estado que ella ya expone.",
             "projection": "etiqueta: plano-de-apilado-negativo-esconde-detras-del-fondo-no-detras-del-hermano — aqui el efecto tridimensional del carrusel dejaba las piezas vecinas con plano -1 y desplazamiento en profundidad de -396 px, y desaparecian por completo; ademas su factor multiplicador convertia la escala pedida de 0.66 en 0.39. Se sustituyo por planos 1 y 3 y transformaciones propias gobernadas por las clases de pieza activa, anterior y siguiente que la libreria ya pone.",
+            "evidence": [
+              "src/components/sections/CaasAreas.vue"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:3:9",
+            "kind": "novel",
+            "rationale": "Cuando la visibilidad de un elemento depende de que una libreria le asigne una clase de estado, el valor por defecto debe ser VISIBLE y las reglas de estado solo deben quitar. Si el default es invisible y la visibilidad se concede por clase, cualquier instante sin clase —una transicion en curso, un elemento duplicado por el recorrido circular, la inicializacion que aun no ocurrio o que fallo— deja el elemento oculto. Y ese fallo es de los peores de diagnosticar porque no deja rastro: el recurso se descargo, el elemento existe, tiene tamaño renderizado y la herramienta de inspeccion lo muestra normal. Quien lo mira busca la causa en la carga o en la ruta, que es donde no esta. Invertir la direccion no cambia el resultado cuando todo funciona, y cuando algo falla degrada hacia mostrar de mas en vez de hacia una seccion vacia.",
+            "projection": "etiqueta: el-default-de-visibilidad-degrada-hacia-visible-no-hacia-oculto — aqui las piezas del carrusel arrancaban en opacidad cero y a escala reducida, y solo se mostraban al recibir la clase de activa o vecina. Se invirtio: el default es visible y a tamaño pleno, y una regla de negacion retira unicamente las que no son la activa ni sus dos vecinas. El sintoma reportado fue una imagen cargada, con peso y tamaño intrinseco correctos, que aun asi no se veia, y el diagnostico inicial apunto a la ruta del archivo.",
             "evidence": [
               "src/components/sections/CaasAreas.vue"
             ],

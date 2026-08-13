@@ -112,25 +112,22 @@ const areas = computed(() => texts.value.map((text, i) => ({ ...text, image: ima
    El acercamiento va en PORCENTAJE del ancho de la propia pieza, no en pixeles:
    asi la superposicion se mantiene igual en cualquier contenedor. Un valor fijo
    contra un ancho porcentual se desajusta en cuanto cambia el ancho. */
+/* El estado por defecto es VISIBLE y a tamaño pleno, y las reglas de estado solo
+   quitan. Es deliberado: si una pieza no recibe su clase —durante una
+   transicion, con los clones del recorrido circular, o si la libreria no llego a
+   inicializar— queda visible en vez de desaparecer. Con el default invisible, un
+   solo instante sin clase vacia la seccion entera y el sintoma no apunta a nada,
+   porque la imagen cargo bien y hasta tiene tamaño renderizado. */
 .areas-swiper swiper-slide {
   width: 46%;
   z-index: 1;
-  opacity: 0;
-  transform: scale(0.62);
   transition:
     transform 500ms cubic-bezier(0.2, 0, 0, 1),
     opacity 500ms cubic-bezier(0.2, 0, 0, 1);
 }
 
-/* Solo se ven la activa y sus dos vecinas; el resto queda fuera del encuadre */
-.areas-swiper swiper-slide.swiper-slide-active,
-.areas-swiper swiper-slide.swiper-slide-prev,
-.areas-swiper swiper-slide.swiper-slide-next {
-  opacity: 1;
-}
-
-/* La vecina izquierda se acerca hacia la derecha y la derecha hacia la
-   izquierda, hasta quedar tapadas casi por completo por la activa. */
+/* Las vecinas se encogen y se acercan hasta quedar tapadas casi del todo por la
+   activa: la izquierda viaja a la derecha y la derecha a la izquierda. */
 .areas-swiper swiper-slide.swiper-slide-prev {
   transform: translateX(55%) scale(0.62);
 }
@@ -142,6 +139,11 @@ const areas = computed(() => texts.value.map((text, i) => ({ ...text, image: ima
 .areas-swiper swiper-slide.swiper-slide-active {
   z-index: 3;
   transform: scale(1);
+}
+
+/* Solo lo que no es ni la activa ni sus dos vecinas se retira del encuadre */
+.areas-swiper swiper-slide:not(.swiper-slide-active):not(.swiper-slide-prev):not(.swiper-slide-next) {
+  opacity: 0;
 }
 
 /* El radio grande y desigual es parte del lenguaje de la referencia */
