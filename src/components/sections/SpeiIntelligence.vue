@@ -39,9 +39,19 @@
            aplica la ruta de atributos. loop="true" llegaria como la cadena
            "true"; funciona por ser truthy, pero por esa misma via un objeto
            llega sin parsear. Los kebab-case (slides-per-view, space-between)
-           no coinciden con ninguna propiedad y si van como atributo. -->
+           no coinciden con ninguna propiedad y si van como atributo.
+
+           init="false" es la compuerta que la libreria expone para no arrancar
+           sola: al conectarse comprueba este atributo y no toca el DOM. Sin el
+           se autoinicializa en cuanto queda definida —antes de que Vue hidrate—
+           y con recorrido circular duplica piezas en el marcado que entrego el
+           servidor; Vue encuentra mas nodos de los que espera, los revierte y
+           destruye lo que la libreria acababa de montar. El arranque va abajo,
+           ya hidratado. -->
       <swiper-container
+        ref="swiperEl"
         class="intel-swiper block"
+        init="false"
         slides-per-view="auto"
         space-between="32"
         :loop="true"
@@ -106,11 +116,27 @@ const AUTOPLAY = { delay: 4500, disableOnInteraction: false, pauseOnMouseEnter: 
 // desactiva si el visitante pidio menos movimiento. Se resuelve al montar porque
 // la consulta solo existe en el navegador.
 const reduceMotion = ref(false)
-onMounted(() => {
-  reduceMotion.value = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-})
-
 const autoplay = computed(() => (reduceMotion.value ? false : AUTOPLAY))
+
+// Arranque manual, despues de la hidratacion. El orden de estas cuatro lineas no
+// es cosmetico:
+//   1. se resuelve la preferencia de movimiento, que solo existe en el navegador
+//   2. se espera a que el componente este definido, para no depender del orden
+//      en que corra el plugin que lo registra
+//   3. nextTick deja que el valor derivado de autoplay viaje al elemento: Vue
+//      escribe la propiedad en el siguiente ciclo de render, e initialize lee la
+//      propiedad tal como este en ese momento. Sin esta espera el carrusel
+//      arrancaria con avance automatico aunque se hubiera pedido menos movimiento
+//   4. recien ahi arranca
+type SwiperContainer = HTMLElement & { initialize?: () => void }
+const swiperEl = ref<SwiperContainer | null>(null)
+
+onMounted(async () => {
+  reduceMotion.value = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  await customElements.whenDefined('swiper-container')
+  await nextTick()
+  swiperEl.value?.initialize?.()
+})
 
 const images = [
   '/images/inteligencia/1.webp',

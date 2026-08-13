@@ -7,8 +7,17 @@
     </h2>
 
     <div class="relative mx-auto mt-12 w-full max-w-5xl ">
+      <!-- init="false": la libreria se autoinicializa en cuanto queda definida, y
+           eso ocurre antes de que Vue hidrate. Con recorrido circular duplica
+           piezas en el marcado que entrego el servidor, Vue encuentra mas nodos
+           de los que espera y los revierte, destruyendo lo que la libreria monto.
+           El sintoma es enganoso: arrastrar sigue funcionando —sus oyentes estan
+           en el contenedor, que sobrevive— y las flechas no, porque las suyas
+           quedaron en nodos reconstruidos. El arranque va abajo, ya hidratado. -->
       <swiper-container
+        ref="swiperEl"
         class="block"
+        init="false"
         slides-per-view="3"
         space-between="16"
         navigation="true"
@@ -46,6 +55,17 @@ const allItems = computed(() => [
   ...activeTexts.value.map((text, i) => ({ ...text, img: activeImages[i], upcoming: false })),
   ...upcomingTexts.value.map((text, i) => ({ ...text, img: upcomingImages[i], upcoming: true })),
 ])
+
+// Arranque manual, ya hidratado. whenDefined evita depender del orden en que
+// corra el plugin que registra el componente.
+type SwiperContainer = HTMLElement & { initialize?: () => void }
+const swiperEl = ref<SwiperContainer | null>(null)
+
+onMounted(async () => {
+  await customElements.whenDefined('swiper-container')
+  await nextTick()
+  swiperEl.value?.initialize?.()
+})
 </script>
 
 <!-- Sin scope: Swiper clona los slides del loop; la clase .swiper-slide-active
