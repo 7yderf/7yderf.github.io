@@ -1,24 +1,17 @@
 <!-- CaasAreas.vue — Zona 6. Carrusel de superposicion: la pieza central se ve
-     mas grande y al frente, y las vecinas quedan escaladas y por detras en vez
-     de desaparecer en los extremos.
+     mas grande y al frente y las vecinas quedan escaladas y por detras.
 
-     SOLO EN CLIENTE. La libreria reescribe el DOM que recibe —agrega clases,
-     estilos en linea y, con recorrido circular, clona piezas— y la hidratacion
-     compara el HTML del servidor contra el arbol que el framework generaria.
-     Un componente que muta su propio DOM no puede hidratarse: el servidor
-     entrega nodos que el cliente nunca produjo. Renderizarlo solo en cliente
-     elimina la comparacion en vez de intentar reconciliarla.
+     La configuracion es la MISMA que la del carrusel de la vista SPEI, que ya
+     funciona, con dos añadidos que usan mecanismos ya probados ahi: un atributo
+     con guiones para centrar las piezas y un booleano bindeado para las flechas.
 
-     El efecto NO se arma a mano con escala y separacion negativa: la libreria
-     trae uno pensado para esto, que resuelve la aritmetica de profundidad,
-     acercamiento y plano de apilado a la vez y se mantiene coherente a
-     cualquier ancho. Hacerlo a mano exigia una separacion negativa en pixeles
-     fija contra un ancho de pieza porcentual, y esa mezcla se desajusta en
-     cuanto cambia el contenedor.
+     NO va envuelto para render solo en cliente. Con esa envoltura la libreria se
+     monta despues y, como el ancho de cada pieza lo toma del CSS, llegaba a
+     medir antes de que ese CSS existiera: asignaba las clases de estado pero no
+     calculaba ninguna medida, y las piezas quedaban sin ancho ni posicion.
 
-     Los parametros del efecto van en forma compuesta con guiones, que es la
-     unica que pasa por la coercion de atributos; los de una sola palabra irian
-     crudos como cadena. -->
+     La superposicion la gobierna el bloque de estilos de abajo sobre las clases
+     de estado que la libreria expone, no un efecto tridimensional suyo. -->
 <template>
   <section class="sc-section w-full px-4 py-8 lg:px-8 lg-2:py-16">
     <h2 class="mx-auto max-w-3xl text-center font-secondary font-bold bg-gradient-to-r from-accent to-brand-violet bg-clip-text text-transparent">
@@ -35,42 +28,34 @@
     </div>
 
     <div class="mx-auto mt-12 w-full max-w-6xl">
-      <ClientOnly>
-        <swiper-container
-          class="areas-swiper block"
-          slides-per-view="auto"
-          centered-slides="true"
-          space-between="0"
-          :loop="true"
-          :speed="600"
-          :navigation="true"
-          :keyboard="true"
-        >
-          <swiper-slide v-for="area in areas" :key="area.title">
-            <figure class="sc-figure areas-card overflow-hidden">
-              <img
-                :src="area.image"
-                :alt="area.title"
-                class="block w-full object-cover"
-                loading="lazy"
-                decoding="async"
-              >
-            </figure>
+      <swiper-container
+        class="areas-swiper block"
+        slides-per-view="auto"
+        space-between="0"
+        centered-slides="true"
+        :loop="true"
+        :keyboard="true"
+        :speed="600"
+        :navigation="true"
+      >
+        <swiper-slide v-for="area in areas" :key="area.title">
+          <figure class="sc-figure areas-card overflow-hidden">
+            <img
+              :src="area.image"
+              :alt="area.title"
+              class="block w-full object-cover"
+              loading="lazy"
+              decoding="async"
+            >
+          </figure>
 
-            <figcaption class="areas-caption mt-6 text-center">
-              <span class="block font-secondary text-3xl font-bold text-deep-ink">{{ area.title }}</span>
-              <span class="mt-2 block text-xl text-text">{{ area.first }}</span>
-              <span class="block text-xl text-text">{{ area.second }}</span>
-            </figcaption>
-          </swiper-slide>
-        </swiper-container>
-
-        <!-- Reserva de alto mientras el carrusel no existe en servidor, para que
-             la pagina no salte al montarse. -->
-        <template #fallback>
-          <div class="h-[42rem] w-full" aria-hidden="true" />
-        </template>
-      </ClientOnly>
+          <figcaption class="areas-caption mt-6 text-center">
+            <span class="block font-secondary text-3xl font-bold text-deep-ink">{{ area.title }}</span>
+            <span class="mt-2 block text-xl text-text">{{ area.first }}</span>
+            <span class="block text-xl text-text">{{ area.second }}</span>
+          </figcaption>
+        </swiper-slide>
+      </swiper-container>
     </div>
   </section>
 </template>
@@ -99,25 +84,8 @@ const areas = computed(() => texts.value.map((text, i) => ({ ...text, image: ima
 <!-- Sin scope: la libreria reubica las piezas en su propio arbol y el atributo
      de scoping no alcanza a los descendientes que mueve. -->
 <style>
-/* La superposicion la gobierna este bloque, no un efecto de la libreria. La
-   libreria marca con clases cual pieza esta al centro y cuales son sus vecinas,
-   y en modo normal desplaza el CARRIL, no las piezas: eso deja la transformacion
-   de cada pieza libre para usarla aqui.
-
-   Todos los planos de apilado son POSITIVOS a proposito. El efecto 3D de la
-   libreria asignaba plano negativo a las vecinas, y un plano negativo pinta el
-   elemento por detras del fondo de su contexto de apilado: las vecinas no
-   quedaban atras, desaparecian.
-
-   El acercamiento va en PORCENTAJE del ancho de la propia pieza, no en pixeles:
-   asi la superposicion se mantiene igual en cualquier contenedor. Un valor fijo
-   contra un ancho porcentual se desajusta en cuanto cambia el ancho. */
-/* El estado por defecto es VISIBLE y a tamaño pleno, y las reglas de estado solo
-   quitan. Es deliberado: si una pieza no recibe su clase —durante una
-   transicion, con los clones del recorrido circular, o si la libreria no llego a
-   inicializar— queda visible en vez de desaparecer. Con el default invisible, un
-   solo instante sin clase vacia la seccion entera y el sintoma no apunta a nada,
-   porque la imagen cargo bien y hasta tiene tamaño renderizado. */
+/* El default es VISIBLE y a tamaño pleno; las reglas de estado solo quitan. Asi
+   una pieza sin clase queda visible en vez de desaparecer. */
 .areas-swiper swiper-slide {
   width: 46%;
   z-index: 1;
@@ -127,7 +95,8 @@ const areas = computed(() => texts.value.map((text, i) => ({ ...text, image: ima
 }
 
 /* Las vecinas se encogen y se acercan hasta quedar tapadas casi del todo por la
-   activa: la izquierda viaja a la derecha y la derecha a la izquierda. */
+   activa. El acercamiento va en porcentaje del ancho de la propia pieza, no en
+   pixeles, para que se sostenga a cualquier ancho de contenedor. */
 .areas-swiper swiper-slide.swiper-slide-prev {
   transform: translateX(55%) scale(0.62);
 }
@@ -136,12 +105,13 @@ const areas = computed(() => texts.value.map((text, i) => ({ ...text, image: ima
   transform: translateX(-55%) scale(0.62);
 }
 
+/* Planos de apilado todos POSITIVOS: uno negativo pintaria la pieza detras del
+   fondo de su contexto y desapareceria en vez de quedar atras. */
 .areas-swiper swiper-slide.swiper-slide-active {
   z-index: 3;
   transform: scale(1);
 }
 
-/* Solo lo que no es ni la activa ni sus dos vecinas se retira del encuadre */
 .areas-swiper swiper-slide:not(.swiper-slide-active):not(.swiper-slide-prev):not(.swiper-slide-next) {
   opacity: 0;
 }
@@ -162,9 +132,7 @@ const areas = computed(() => texts.value.map((text, i) => ({ ...text, image: ima
   opacity: 1;
 }
 
-/* Flechas: superficie expuesta por el componente, no su marcado interno.
-   Se acercan al centro con el desplazamiento lateral que la propia libreria
-   expone, para que caigan sobre el borde de la pieza activa. */
+/* Flechas: superficie expuesta por el componente, no su marcado interno */
 .areas-swiper {
   --swiper-navigation-sides-offset: 8%;
   --swiper-navigation-size: 1.6rem;
