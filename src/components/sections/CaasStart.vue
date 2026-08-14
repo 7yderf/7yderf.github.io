@@ -8,7 +8,19 @@
      Los iconos ya vienen con su estado horneado: los de los pasos cubiertos
      estan en violeta fuerte y los pendientes en violeta claro. Por eso el
      componente no les aplica opacidad — hacerlo apagaria dos veces los
-     primeros. El texto si cambia, porque ahi el estado no viene del asset. -->
+     primeros. El texto si cambia, porque ahi el estado no viene del asset.
+
+     basis-[18%] en vez de un 100/N% calculado: con exactamente 5 piezas y
+     gap-4 (16px), 5 x 20% ya consume el 100% del contenedor ANTES de contar
+     los 4 huecos — el mismo mecanismo que el genoma ya tiene documentado como
+     causa de columnas que saltan (case:frt-cnct-columnas-saltan-por-calc).
+     18% deja el hueco para que el propio flex-shrink absorba esa diferencia
+     sin necesidad de envolver; 19% no alcanzaba a dejar margen suficiente y
+     seguia envolviendo la quinta pieza — el diagnostico de que faltaba
+     margen era correcto, el numero exacto se ajusto probando en vivo, no
+     calculando de antemano. Es un valor fijo, no derivado del conteo: si el
+     numero de pasos cambia alguna vez, hay que recalcularlo a mano junto con
+     el resto de esta seccion (iconos, barra, texto). -->
 <template>
   <section class="sc-section w-full px-4 py-8 lg:px-8 lg-2:py-16">
     <h2 class="mx-auto max-w-3xl text-center font-secondary font-bold text-deep-ink">
@@ -29,8 +41,7 @@
         <div
           v-for="(step, i) in steps"
           :key="step.label"
-          class="sc-section flex min-w-[16rem] grow flex-col items-center rounded-2xl bg-surface-2 px-5 pb-8 pt-8"
-          :style="{ flexBasis: cell }"
+          class="sc-section flex min-w-[18rem] basis-[18%] grow flex-col items-center rounded-2xl bg-surface-2 px-5 pb-8 pt-8"
         >
           <img
             :src="step.icon"
@@ -90,6 +101,5 @@ const steps = computed(() => texts.value.map((text, i) => ({ ...text, icon: icon
 // barra y que numeros y etiquetas van encendidos: una sola fuente de verdad.
 const covered = 2
 
-const cell = computed(() => `${100 / steps.value.length}%`)
 const filled = computed(() => `${(covered / steps.value.length) * 100}%`)
 </script>
