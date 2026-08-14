@@ -1,7 +1,7 @@
 {
   "$schema": "https://eure-k.local/schemas/project-memory-v1.json",
   "schema": "eure-k.project-memory/v1",
-  "revision": 84,
+  "revision": 86,
   "project": {
     "id": "frt-cnct-web",
     "repository_fingerprint": "git-remote-v1:sha256:9cecfa5ed6040202f52f46768540e1b8a10fa6c11be8f5acbcaf8dbea368cb60",
@@ -38,8 +38,8 @@
         "version": "headless-v1",
         "adapter": "legacy-front",
         "target": "src",
-        "generated_at": "2026-08-13T01:53:34.984Z",
-        "content_hash": "sha256:8297fc0cc89b485862f2ac62a3cd4ed5b36f68fd233ac730adc13fe94790d56b"
+        "generated_at": "2026-08-14T17:41:22.997Z",
+        "content_hash": "sha256:b49b7c907a5b620d66dd324a82c6608de154c9eb4d81811e1ace335eff9c6307"
       },
       "nodes": [
         {
@@ -227,6 +227,116 @@
           "type": "component",
           "layer": "structure",
           "label": "AlliancesCarousel.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/CaasAdapts.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "CaasAdapts.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/CaasAreas.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "CaasAreas.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/CaasCompliance.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "CaasCompliance.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/CaasFaq.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "CaasFaq.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/CaasFinalCta.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "CaasFinalCta.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/CaasHero.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "CaasHero.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/CaasOnePlace.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "CaasOnePlace.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/CaasPaths.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "CaasPaths.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/CaasPostQuantum.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "CaasPostQuantum.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/CaasScattered.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "CaasScattered.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/components/sections/CaasStart.vue",
+          "type": "component",
+          "layer": "structure",
+          "label": "CaasStart.vue",
           "language": "vue",
           "scope": "shared",
           "flow": null,
@@ -653,6 +763,16 @@
           "molecule": null
         },
         {
+          "id": "src/composables/useSwiperInit.ts",
+          "type": "logic",
+          "layer": "structure",
+          "label": "useSwiperInit.ts",
+          "language": "typescript",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
           "id": "src/layouts/default.vue",
           "type": "layout",
           "layer": "structure",
@@ -667,6 +787,16 @@
           "type": "component",
           "layer": "structure",
           "label": "contact.vue",
+          "language": "vue",
+          "scope": "shared",
+          "flow": null,
+          "molecule": null
+        },
+        {
+          "id": "src/pages/cripto-as-a-service.vue",
+          "type": "service",
+          "layer": "structure",
+          "label": "cripto-as-a-service.vue",
           "language": "vue",
           "scope": "shared",
           "flow": null,
@@ -1369,6 +1499,362 @@
           "checkpoint": "checkpoint:2",
           "authored_by": "agente+humano",
           "approved_at": "2026-08-13T01:42:08.293Z"
+        },
+        {
+          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:10",
+          "type": "projection",
+          "layer": "local-knowledge",
+          "scope": "local",
+          "status": "validated",
+          "concern": "Integración de librería de terceros con fallos no atribuibles",
+          "problem": "Al fallar una integración de terceros de forma no atribuible, corregir hacia adelante sobre un diagnóstico no confirmado agrega variables sin retirar las anteriores, y tras varios intentos nadie puede decir qué provoca qué.",
+          "projection": "etiqueta: linea-base-verificada-antes-de-cada-desviacion — la salida no es corregir hacia adelante sino REDUCIR a una configuracion minima ya verificada en otro punto del mismo producto, y volver a añadir una diferencia a la vez. La señal para dejar de corregir es objetiva: si el resultado observable NO cambia despues de una correccion, esa correccion no toco la causa. La configuracion minima que si funciona debe quedar registrada como linea base, con sus parametros exactos.",
+          "responsibilities": [
+            "Reconocer la señal objetiva para dejar de corregir: el resultado observable no cambio",
+            "Reducir a una configuracion minima verificada en vez de seguir corrigiendo hacia adelante",
+            "Registrar la linea base con sus parametros exactos como punto de retorno"
+          ],
+          "facts": {
+            "framework": "nuxt",
+            "project": "frt-cnct-web",
+            "stack": "vue3-swiper-element"
+          },
+          "source_relations": [],
+          "evidence": [
+            {
+              "path": "src/components/sections/CaasAreas.vue",
+              "hash": "sha256:b68bc4567cc577316bcd5993b55ace4d6af77cda1afa8bf67b8038e35fecf0c8",
+              "symbols": [
+                "areas-swiper"
+              ]
+            },
+            {
+              "path": "src/components/sections/SpeiIntelligence.vue",
+              "hash": "sha256:33592a4d00a52067af4b5416a94e6f615dfa34c8f198c9effca1f45a26824c30",
+              "symbols": [
+                "intel-swiper"
+              ]
+            }
+          ],
+          "task": "task:frt-cnct-web:3",
+          "decision": "decision:3:10",
+          "checkpoint": "checkpoint:3",
+          "authored_by": "agente+humano",
+          "approved_at": "2026-08-14T17:41:22.997Z"
+        },
+        {
+          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:12",
+          "type": "projection",
+          "layer": "local-knowledge",
+          "scope": "local",
+          "status": "validated",
+          "concern": "Conflicto de posesión del DOM entre librería que se autoinicializa y framework que hidrata",
+          "problem": "Un componente web que se autoinicializa en cuanto queda definido y un framework que hidrata el mismo marcado reclaman posesion exclusiva del DOM; el sintoma resultante es parcial -unos comportamientos sobreviven, otros no- y no apunta a la causa por si solo.",
+          "projection": "etiqueta: orden-explicito-de-posesion-del-dom — el componente lleva un atributo que le indica no arrancar solo, y el arranque se hace en el gancho de montado, esperando a que el componente este definido para no depender del orden del plugin que lo registra. Un componente que funciona A MEDIAS despues de hidratar debe leerse como disputa de posesion del DOM antes que como configuracion incompleta: lo que sigue vivo delata el nodo estable, lo que murio delata el reconstruido.",
+          "responsibilities": [
+            "Conservar el render de servidor completo para paginas de captacion",
+            "Diferir el arranque de la libreria hasta despues de hidratar en vez de renderizar solo en cliente",
+            "Leer un fallo parcial post-hidratacion como disputa de posesion del DOM, no como configuracion incompleta"
+          ],
+          "facts": {
+            "framework": "nuxt",
+            "project": "frt-cnct-web",
+            "stack": "vue3-swiper-element-ssr"
+          },
+          "source_relations": [],
+          "evidence": [
+            {
+              "path": "src/composables/useSwiperInit.ts",
+              "hash": "sha256:781db369160881cf996199e02a07ffbc1d31a68415106c2d6790f3f0940100e2",
+              "symbols": [
+                "useSwiperInit"
+              ]
+            },
+            {
+              "path": "src/plugins/swiper.client.ts",
+              "hash": "sha256:11f532e4aaf1d69059888d62fe50afbf2c976b91ceb77175bb2d5559726f2956",
+              "symbols": []
+            }
+          ],
+          "task": "task:frt-cnct-web:3",
+          "decision": "decision:3:12",
+          "checkpoint": "checkpoint:3",
+          "authored_by": "agente+humano",
+          "approved_at": "2026-08-14T17:41:22.997Z"
+        },
+        {
+          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:14",
+          "type": "projection",
+          "layer": "local-knowledge",
+          "scope": "local",
+          "status": "validated",
+          "concern": "Extraer un composable compartido que se apropia de un gancho del ciclo de vida",
+          "problem": "Al extraer un fragmento reutilizable a partir de copias que ya resolvieron un orden implicito entre libreria y framework, agrupar ese arranque en un gancho propio del fragmento puede reintroducir el mismo tipo de orden implicito, ahora cruzando la frontera del archivo.",
+          "projection": "etiqueta: la-precedencia-va-en-la-firma-no-en-el-orden-de-registro — un fragmento que se apropia de un gancho del ciclo de vida debe recibir sus dependencias de orden como PARAMETRO, no dejar que el consumidor las resuelva en un gancho aparte. Dos ganchos separados se ejecutan en el orden en que fueron registrados -una precedencia real que no esta escrita en ninguna parte-. La abstraccion se gana el lugar solo si expone en su firma lo que el consumidor necesita controlar.",
+          "responsibilities": [
+            "Decidir cuando la duplicacion explicita es preferible a una abstraccion que oculta orden",
+            "Evitar que la abstraccion esconda una precedencia con consecuencias",
+            "Recibir dependencias de orden como parametro en vez de como gancho de ciclo de vida separado"
+          ],
+          "facts": {
+            "framework": "nuxt",
+            "project": "frt-cnct-web",
+            "stack": "vue3-composables"
+          },
+          "source_relations": [],
+          "evidence": [
+            {
+              "path": "src/composables/useSwiperInit.ts",
+              "hash": "sha256:781db369160881cf996199e02a07ffbc1d31a68415106c2d6790f3f0940100e2",
+              "symbols": [
+                "SwiperInitOptions",
+                "useSwiperInit"
+              ]
+            }
+          ],
+          "task": "task:frt-cnct-web:3",
+          "decision": "decision:3:14",
+          "checkpoint": "checkpoint:3",
+          "authored_by": "agente+humano",
+          "approved_at": "2026-08-14T17:41:22.997Z"
+        },
+        {
+          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:15",
+          "type": "projection",
+          "layer": "local-knowledge",
+          "scope": "local",
+          "status": "validated",
+          "concern": "Reimplementación a mano de un composable ya existente en el proyecto",
+          "problem": "Un componente reimplementa a mano una consulta de medios que el proyecto ya resuelve con un composable propio, y la copia a mano hace MENOS que el original: no escucha cambios posteriores, solo lee una vez al montar.",
+          "projection": "etiqueta: reimplementacion-a-mano-de-composable-existente — antes de escribir una consulta de medios/estado del navegador a mano dentro de un componente, revisar la carpeta de composables del proyecto por si ya existe. No unificar a ciegas si el composable existente resuelve su valor dentro de su propio gancho de montado: eso puede reintroducir una dependencia de orden que ya se elimino en el consumidor.",
+          "responsibilities": [
+            "Detectar duplicacion contra composables ya existentes en el proyecto antes de escribir logica propia",
+            "No unificar sin antes revisar si el composable existente introduce una dependencia de orden nueva"
+          ],
+          "facts": {
+            "project": "frt-cnct-web"
+          },
+          "source_relations": [],
+          "evidence": [
+            {
+              "path": "src/components/sections/SpeiIntelligence.vue",
+              "hash": "sha256:33592a4d00a52067af4b5416a94e6f615dfa34c8f198c9effca1f45a26824c30",
+              "symbols": []
+            },
+            {
+              "path": "src/composables/useMedia.ts",
+              "hash": "sha256:8941fc6b51bcecf1bf7f06e37c762c163ef4b4913882317243d63f7bda2d88a3",
+              "symbols": [
+                "useMedia"
+              ]
+            }
+          ],
+          "task": "task:frt-cnct-web:3",
+          "decision": "decision:3:15",
+          "checkpoint": "checkpoint:3",
+          "authored_by": "agente+humano",
+          "approved_at": "2026-08-14T17:41:22.997Z"
+        },
+        {
+          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:16",
+          "type": "projection",
+          "layer": "local-knowledge",
+          "scope": "local",
+          "status": "validated",
+          "concern": "Simular un efecto visual no soportado por una librería de carrusel",
+          "problem": "Los modulos de efecto tridimensional de la libreria reescriben zIndex/transform por JavaScript en cada fotograma; cualquier CSS que intente corregirlos queda pisado en el siguiente fotograma, asi que no hay forma de ganarle por encima.",
+          "projection": "etiqueta: css-propio-cuando-el-modulo-de-efecto-escribe-en-linea-por-cuadro — antes de construir un efecto visual sobre el modulo de efecto de una libreria de animacion, revisar si ESE modulo especifico escribe estilo en linea por fotograma: si lo hace, ninguna hoja de estilos externa puede vencerlo de forma sostenida. La alternativa es estilizar por CSS las clases de estado que la libreria YA aplica en su modo por defecto, donde nadie mas escribe esas propiedades encima.",
+          "responsibilities": [
+            "Buscar si la libreria ya etiqueta el estado relevante con clases en su modo por defecto",
+            "Evitar construir CSS sobre un modulo de efecto que escribe estilo en linea por fotograma"
+          ],
+          "facts": {
+            "project": "frt-cnct-web",
+            "stack": "vue3-swiper-element"
+          },
+          "source_relations": [],
+          "evidence": [
+            {
+              "path": "src/components/sections/CaasAreas.vue",
+              "hash": "sha256:b68bc4567cc577316bcd5993b55ace4d6af77cda1afa8bf67b8038e35fecf0c8",
+              "symbols": [
+                "swiper-slide-active",
+                "swiper-slide-next",
+                "swiper-slide-prev"
+              ]
+            }
+          ],
+          "task": "task:frt-cnct-web:3",
+          "decision": "decision:3:16",
+          "checkpoint": "checkpoint:3",
+          "authored_by": "agente+humano",
+          "approved_at": "2026-08-14T17:41:22.997Z"
+        },
+        {
+          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:18",
+          "type": "projection",
+          "layer": "local-knowledge",
+          "scope": "local",
+          "status": "validated",
+          "concern": "Componer scale y translate para lograr superposición visual real entre elementos",
+          "problem": "Con el origen de transformacion por defecto (centro), el escalado mueve tambien el borde que debe avanzar hacia el vecino, restandole desplazamiento al propio translate; el resultado reduce el tamaño visible pero no logra la superposicion.",
+          "projection": "etiqueta: origen-de-transformacion-en-el-borde-que-debe-llegar — en cualquier composicion de scale+translate cuyo proposito sea que un borde especifico de un elemento alcance una posicion (tocar, superponerse, alinearse con otro), el transform-origin tiene que fijarse en ese borde. Con el origen centrado el achicado retrocede el borde que deberia avanzar, y el translate gasta parte de su recorrido en cancelar ese retroceso antes de producir cualquier avance neto.",
+          "responsibilities": [
+            "Diagnosticar por que un translate declarado no se traduce en desplazamiento neto visible",
+            "Fijar transform-origin en el borde que debe permanecer fijo o llegar a destino"
+          ],
+          "facts": {
+            "project": "frt-cnct-web",
+            "stack": "css-transform"
+          },
+          "source_relations": [],
+          "evidence": [
+            {
+              "path": "src/components/sections/CaasAreas.vue",
+              "hash": "sha256:b68bc4567cc577316bcd5993b55ace4d6af77cda1afa8bf67b8038e35fecf0c8",
+              "symbols": [
+                "swiper-slide-next",
+                "swiper-slide-prev"
+              ]
+            }
+          ],
+          "task": "task:frt-cnct-web:3",
+          "decision": "decision:3:18",
+          "checkpoint": "checkpoint:3",
+          "authored_by": "agente+humano",
+          "approved_at": "2026-08-14T17:41:22.997Z"
+        },
+        {
+          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:19",
+          "type": "projection",
+          "layer": "local-knowledge",
+          "scope": "local",
+          "status": "validated",
+          "concern": "Evitar que un elemento rebote a su estado original al perder una clase de estado",
+          "problem": "Al perder una clase que provee tanto un valor de transform como su transicion, la pieza pierde ambos a la vez y no hay ninguna regla viva para animar el regreso; intentar animar la transicion de salida no funciona por esa razon.",
+          "projection": "etiqueta: default-invisible-en-vez-de-animar-la-salida — para que una pieza que deja de estar en un estado visible se desvanezca en vez de rebotar, el estado por defecto de toda pieza no etiquetada debe ser invisible con su propia transicion, y las clases de estado solo añaden visibilidad por encima. Asi perder cualquier clase de estado cae siempre en la misma regla base, que nunca dejo de aplicar y siempre tuvo transicion. Ese default debe condicionarse a una bandera de listo para no ocultar contenido de servidor antes de que la libreria arranque.",
+          "responsibilities": [
+            "Condicionar ese default a una bandera de listo para no ocultar contenido de servidor antes de hidratar",
+            "Declarar el estado por defecto permanentemente distinto en vez de animar una transicion de salida"
+          ],
+          "facts": {
+            "project": "frt-cnct-web",
+            "stack": "vue3-swiper-element-ssr"
+          },
+          "source_relations": [],
+          "evidence": [
+            {
+              "path": "src/components/sections/CaasAreas.vue",
+              "hash": "sha256:b68bc4567cc577316bcd5993b55ace4d6af77cda1afa8bf67b8038e35fecf0c8",
+              "symbols": [
+                "is-ready"
+              ]
+            },
+            {
+              "path": "src/composables/useSwiperInit.ts",
+              "hash": "sha256:781db369160881cf996199e02a07ffbc1d31a68415106c2d6790f3f0940100e2",
+              "symbols": [
+                "useSwiperInit"
+              ]
+            }
+          ],
+          "task": "task:frt-cnct-web:3",
+          "decision": "decision:3:19",
+          "checkpoint": "checkpoint:3",
+          "authored_by": "agente+humano",
+          "approved_at": "2026-08-14T17:41:22.997Z"
+        },
+        {
+          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:22",
+          "type": "projection",
+          "layer": "local-knowledge",
+          "scope": "local",
+          "status": "validated",
+          "concern": "Elegir entre CSS Grid y flex-wrap para reacomodo responsive de piezas",
+          "problem": "El patron del genoma recomienda Grid para columnas fijas, pero un requisito de reacomodo progresivo en varios anchos -no un salto unico a un breakpoint- hace que Grid no sea la eleccion correcta pese a que la causa raiz (basis en porcentaje sin margen para el gap) sea la misma que el genoma documenta.",
+          "projection": "etiqueta: basis-fijo-con-holgura-para-el-gap-no-derivado-del-conteo — cuando el requisito real es reacomodo progresivo en varios escalones de ancho (no un salto rigido de N a 1 columna en un breakpoint fijo), la correccion correcta se queda dentro de flex-wrap: fijar el basis como un valor constante con margen deliberado para el gap, en vez de derivarlo de 100/conteo. Es la misma correccion de fondo que recomienda migrar a Grid -dejar de tratar el porcentaje como si el gap no existiera- aplicada dentro del mecanismo ya establecido.",
+          "responsibilities": [
+            "Corregir la causa raiz (basis sin margen para gap) dentro del mecanismo ya establecido cuando el requisito lo exige",
+            "Evaluar si el patron recomendado por el genoma aplica al requisito real antes de adoptarlo"
+          ],
+          "facts": {
+            "project": "frt-cnct-web",
+            "stack": "tailwind-flex"
+          },
+          "source_relations": [],
+          "evidence": [
+            {
+              "path": "src/components/sections/CaasStart.vue",
+              "hash": "sha256:04687a25f1b4fece05e4f226bf1f5b8d1d0615867589ae8c86416dfef962e88f",
+              "symbols": []
+            }
+          ],
+          "task": "task:frt-cnct-web:3",
+          "decision": "decision:3:22",
+          "checkpoint": "checkpoint:3",
+          "authored_by": "agente+humano",
+          "approved_at": "2026-08-14T17:41:22.997Z"
+        },
+        {
+          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:23",
+          "type": "projection",
+          "layer": "local-knowledge",
+          "scope": "local",
+          "status": "validated",
+          "concern": "Diagnosticar un wrap inesperado en un contenedor flex-wrap",
+          "problem": "Un contenedor flex-wrap sigue envolviendo pese a que su estructura ya fue verificada correcta dos veces; la persistencia del sintoma se trato como si necesitara mas investigacion estructural en vez de leerse como evidencia directa de un problema de ancho.",
+          "projection": "etiqueta: envolver-en-flex-wrap-es-evidencia-de-ancho-no-de-estructura — cuando un contenedor flex-wrap sigue envolviendo pese a que su estructura ya fue verificada correcta, ese envolver es prueba directa de que la suma de anchos supera el disponible, no un sintoma abierto a mas hipotesis. La respuesta correcta es un experimento barato e inmediato -reducir basis/min-width un margen pequeño y mirar el resultado en vivo- antes de escalar a investigar tokens, orden de carga, o cambiar de mecanismo de layout.",
+          "responsibilities": [
+            "Probar un experimento directo y barato antes de escalar a investigacion mas profunda",
+            "Reconocer que un wrap persistente con estructura confirmada es evidencia de ancho, no de arquitectura"
+          ],
+          "facts": {
+            "project": "frt-cnct-web",
+            "stack": "tailwind-flex"
+          },
+          "source_relations": [],
+          "evidence": [
+            {
+              "path": "src/components/sections/CaasStart.vue",
+              "hash": "sha256:04687a25f1b4fece05e4f226bf1f5b8d1d0615867589ae8c86416dfef962e88f",
+              "symbols": []
+            }
+          ],
+          "task": "task:frt-cnct-web:3",
+          "decision": "decision:3:23",
+          "checkpoint": "checkpoint:3",
+          "authored_by": "agente+humano",
+          "approved_at": "2026-08-14T17:41:22.997Z"
+        },
+        {
+          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:24",
+          "type": "projection",
+          "layer": "local-knowledge",
+          "scope": "local",
+          "status": "validated",
+          "concern": "Prohibición explícita: qué NO hacer ante un wrap persistente con estructura verificada",
+          "problem": "Escalar a investigacion de arquitectura, tokens de diseño o cascada CSS como primera respuesta ante un sintoma que ya tiene una explicacion unica y barata de confirmar gasta tiempo desproporcionado y engaña al propio agente, que siente progreso en cada paso sin acercarse a la respuesta.",
+          "projection": "etiqueta: no-escalar-a-arquitectura-cuando-el-sintoma-ya-señala-ancho — prohibicion explicita: si un contenedor con flex-wrap sigue envolviendo despues de que su estructura ya fue verificada correcta, NO abrir investigacion de arquitectura, tokens de diseño o cascada CSS como primer paso. El sintoma persistente CON estructura confirmada ya es la respuesta -sobra ancho, no falta estructura-. El primer paso obligatorio es un experimento directo y barato, y solo si ese experimento no resuelve el sintoma se abre investigacion mas profunda.",
+          "responsibilities": [
+            "Intentar el experimento directo de ancho primero, siempre",
+            "No abrir investigacion de arquitectura/tokens/cascada como primer paso ante wrap persistente con estructura confirmada"
+          ],
+          "facts": {
+            "project": "frt-cnct-web"
+          },
+          "source_relations": [],
+          "evidence": [
+            {
+              "path": "src/components/sections/CaasStart.vue",
+              "hash": "sha256:04687a25f1b4fece05e4f226bf1f5b8d1d0615867589ae8c86416dfef962e88f",
+              "symbols": []
+            }
+          ],
+          "task": "task:frt-cnct-web:3",
+          "decision": "decision:3:24",
+          "checkpoint": "checkpoint:3",
+          "authored_by": "agente+humano",
+          "approved_at": "2026-08-14T17:41:22.997Z"
         }
       ]
     }
@@ -2670,9 +3156,9 @@
         "id": "task:frt-cnct-web:3",
         "sequence": 3,
         "intent": "Maquetar la vista completa de Cripto as a Service a partir de referencia visual, reutilizando la estructura sc-*, los tokens y los patrones ya asentados en las vistas de Hardware Criptografico e Infraestructura SPEI; los tokens nuevos solo se asumen si no existe equivalente y quedan documentados antes de crearse. La vista incluye tres piezas con comportamiento propio que exceden el maquetado plano: una seccion animada para el bloque de llaves dispersas, cards que en reposo van apagadas en gris —contenido incluido— y al hover se encienden con fondo y borde de un violeta algo mas fuerte, y un carrusel de superposicion donde las cards de los extremos se apilan hacia el fondo en vez de desaparecer y la card activa gana protagonismo sobre las demas; esa ultima forma puede requerir un componente propio si la libreria de carrusel ya presente en el proyecto no la cubre. Alcance exclusivamente visual y de maquetacion, sin integracion API ni logica de negocio; desktop como base, y el responsive dependera de que existan vistas de referencia.",
-        "status": "open",
+        "status": "recorded",
         "opened_at": "2026-08-13T01:53:34.984Z",
-        "closed_at": null,
+        "closed_at": "2026-08-14T17:41:22.997Z",
         "consultations": [
           {
             "id": "consult:3:1",
@@ -3683,7 +4169,7 @@
             "evidence": [
               "project-memory-v1.json"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:3:2",
@@ -3693,7 +4179,7 @@
             "evidence": [
               "src/assets/tailwind.css"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:3:3",
@@ -3704,7 +4190,7 @@
               "src/pages/cripto-as-a-service.vue",
               "i18n/locales/es.json"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:3:4",
@@ -3714,7 +4200,7 @@
             "evidence": [
               "src/components/sections/CaasAreas.vue"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:3:5",
@@ -3726,7 +4212,7 @@
               "src/assets/tailwind.css",
               "src/assets/scss/style.scss"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:3:6",
@@ -3738,7 +4224,7 @@
               "public/images/caas/icons/1.svg",
               "public/images/caas/icons/3.svg"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:3:7",
@@ -3748,7 +4234,7 @@
             "evidence": [
               "src/components/sections/CaasAreas.vue"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:3:8",
@@ -3758,7 +4244,7 @@
             "evidence": [
               "src/components/sections/CaasAreas.vue"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:3:9",
@@ -3768,7 +4254,7 @@
             "evidence": [
               "src/components/sections/CaasAreas.vue"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:3:10",
@@ -3779,7 +4265,7 @@
               "src/components/sections/CaasAreas.vue",
               "src/components/sections/SpeiIntelligence.vue"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:3:11",
@@ -3791,7 +4277,7 @@
               "node_modules/swiper/types/options.d.ts",
               "node_modules/swiper/shared/get-element-params.mjs"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:3:12",
@@ -3803,7 +4289,7 @@
               "src/plugins/swiper.client.ts",
               "node_modules/swiper/swiper-element.mjs"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:3:13",
@@ -3815,7 +4301,7 @@
               "src/components/sections/SolutionsCarousel.vue",
               "src/components/sections/CaasAreas.vue"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:3:14",
@@ -3828,7 +4314,7 @@
               "src/components/sections/SolutionsCarousel.vue",
               "src/components/sections/CaasAreas.vue"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:3:15",
@@ -3838,7 +4324,7 @@
               "src/composables/useMedia.ts",
               "src/components/sections/SpeiIntelligence.vue"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:3:16",
@@ -3851,7 +4337,7 @@
               "node_modules/swiper/modules/effect-coverflow/effect-coverflow.d.ts",
               "node_modules/swiper/modules/effect-creative/effect-creative.d.ts"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:3:17",
@@ -3861,7 +4347,7 @@
             "evidence": [
               "src/components/sections/CaasAreas.vue"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:3:18",
@@ -3871,7 +4357,7 @@
             "evidence": [
               "src/components/sections/CaasAreas.vue"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:3:19",
@@ -3882,7 +4368,7 @@
               "src/components/sections/CaasAreas.vue",
               "src/composables/useSwiperInit.ts"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:3:20",
@@ -3899,7 +4385,7 @@
               "consult:3:11",
               "consult:3:14"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:3:21",
@@ -3909,7 +4395,7 @@
             "evidence": [
               "src/components/sections/CaasStart.vue"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:3:22",
@@ -3924,7 +4410,7 @@
               "consult:3:11",
               "consult:3:14"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:3:23",
@@ -3934,7 +4420,7 @@
             "evidence": [
               "src/components/sections/CaasStart.vue"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:3:24",
@@ -3944,10 +4430,16 @@
             "evidence": [
               "src/components/sections/CaasStart.vue"
             ],
-            "status": "proposed"
+            "status": "validated"
           }
         ],
-        "validation": {},
+        "validation": {
+          "actor": "human",
+          "at": "2026-08-14T17:41:22.997Z",
+          "outcome": "approved",
+          "approval_ref": "chat-ok-2026-08-14-task3-cierre",
+          "note": "Fredy confirmo con \"ok\" en el chat, en respuesta directa a la pregunta \"¿Das el OK para finalize_task con estas 10?\" sobre la lista de 10 proposals presentada (decisiones 3:10, 3:12, 3:14, 3:15, 3:16, 3:18, 3:19, 3:22, 3:23, 3:24), con la exclusion explicita de 3:20/3:21/3:11/3:13/3:17 ya declarada antes de pedir el OK."
+        },
         "change_set": {
           "base_checkpoint": "checkpoint:base:3",
           "files": {
@@ -3956,7 +4448,14 @@
             "removed": []
           }
         },
-        "result": {},
+        "result": {
+          "status": "entregado",
+          "summary": "Vista completa Cripto as a Service (/cripto-as-a-service) maquetada de punta a punta: 11 zonas desde Hero hasta FinalCta, copy real en es/en, tokens documentados, assets convertidos. El carrusel de areas se construyo por desviaciones sucesivas sobre una linea base verificada -navegacion, centrado, arranque diferido post-hidratacion, superposicion con transform-origin y opacidad por defecto- cada una investigada y verificada antes de aplicarse. Se corrigio ademas un defecto de hidratacion compartido por los otros dos carruseles del producto (SpeiIntelligence, SolutionsCarousel del home) y se extrajo a un composable comun (useSwiperInit). Verificacion de cierre: npm run build + npm run lint, ambos limpios (los 2 warnings de lint son preexistentes y ajenos a esta tarea).",
+          "pendientes_declarados": [
+            "en.json conserva el mismo copy pendiente de FAQ traducido al ingles que es.json ya tenia resuelto; no se recibio copy en ingles",
+            "Responsive no incluido: la vista es desktop, igual que las dos anteriores de este proyecto"
+          ]
+        },
         "boundary": {
           "mode": "normal",
           "declared_at": "2026-08-13T01:53:34.984Z",
@@ -4005,8 +4504,16 @@
             },
             "excluded_from_task": true
           },
-          "close": null
-        }
+          "close": {
+            "status": "fresh",
+            "target": "src",
+            "captured_at": "2026-08-14T17:41:22.885Z",
+            "source_hash": "sha256:e3107cff1734c923b9b5cc4b883a7c3f506d53db573190598923ce095a9fc913",
+            "graph_hash": "sha256:ddaa9c08e0877f6737630196d29e5d6f16ac4f8f73ec5df8fe0c4e249fa33591",
+            "attribution": "task"
+          }
+        },
+        "submitted_at": "2026-08-14T17:34:45.407Z"
       }
     ],
     "checkpoints": [
@@ -4214,6 +4721,64 @@
             "synapses_added": [],
             "synapses_changed": [],
             "synapses_removed": []
+          }
+        }
+      },
+      {
+        "id": "checkpoint:3",
+        "parent": "checkpoint:base:3",
+        "task": "task:frt-cnct-web:3",
+        "kind": "task-recorded",
+        "created_at": "2026-08-14T17:41:22.997Z",
+        "graph_hash": "sha256:ddaa9c08e0877f6737630196d29e5d6f16ac4f8f73ec5df8fe0c4e249fa33591",
+        "curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+        "delta": {
+          "derived": {
+            "attribution": "task",
+            "verified": true,
+            "nodes_added": [
+              "src/components/sections/CaasAdapts.vue",
+              "src/components/sections/CaasAreas.vue",
+              "src/components/sections/CaasCompliance.vue",
+              "src/components/sections/CaasFaq.vue",
+              "src/components/sections/CaasFinalCta.vue",
+              "src/components/sections/CaasHero.vue",
+              "src/components/sections/CaasOnePlace.vue",
+              "src/components/sections/CaasPaths.vue",
+              "src/components/sections/CaasPostQuantum.vue",
+              "src/components/sections/CaasScattered.vue",
+              "src/components/sections/CaasStart.vue",
+              "src/composables/useSwiperInit.ts",
+              "src/pages/cripto-as-a-service.vue"
+            ],
+            "nodes_changed": [],
+            "nodes_removed": [],
+            "edges_added": [],
+            "edges_changed": [],
+            "edges_removed": [],
+            "synapses_added": [],
+            "synapses_changed": [],
+            "synapses_removed": []
+          },
+          "curated": {
+            "annotations_added": [],
+            "edges_added": [],
+            "synapses_added": [],
+            "cases_added": [],
+            "patterns_added": [],
+            "exceptions_added": [],
+            "projections_added": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:10",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:12",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:14",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:15",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:16",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:18",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:19",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:22",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:23",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:24"
+            ]
           }
         }
       }
