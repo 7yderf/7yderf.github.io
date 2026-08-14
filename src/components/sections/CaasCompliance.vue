@@ -17,7 +17,7 @@
         </div>
       </div>
 
-      <figure class="sc-figure min-w-[28rem] grow basis-[34rem] p-10 lg-2:py-16 lg-2:pr-16">
+      <figure class="sc-figure min-w-[28rem] grow basis-[40rem] p-6 lg-2:py-10 lg-2:pr-10">
         <img
           src="/images/caas/cumplir.webp"
           alt=""

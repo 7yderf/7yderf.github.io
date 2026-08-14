@@ -1,7 +1,7 @@
 {
   "$schema": "https://eure-k.local/schemas/project-memory-v1.json",
   "schema": "eure-k.project-memory/v1",
-  "revision": 77,
+  "revision": 84,
   "project": {
     "id": "frt-cnct-web",
     "repository_fingerprint": "git-remote-v1:sha256:9cecfa5ed6040202f52f46768540e1b8a10fa6c11be8f5acbcaf8dbea368cb60",
@@ -28,7 +28,7 @@
     "revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
     "server_version": "0.30.6",
     "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
-    "last_consulted_at": "2026-08-13T15:56:53.116Z",
+    "last_consulted_at": "2026-08-14T16:32:47.839Z",
     "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7"
   },
   "graph": {
@@ -3394,6 +3394,284 @@
                 }
               }
             }
+          },
+          {
+            "id": "consult:3:10",
+            "at": "2026-08-14T03:46:02.360Z",
+            "intent": "Confirmar antes de agrandar la imagen de la seccion Cumplimiento que el mecanismo de la tarjeta de dos columnas (flex-wrap + grow + basis) ya es el patron canonico del proyecto, y que el ajuste correcto es tocar basis/padding dentro de ese mismo mecanismo en vez de introducir uno nuevo. El genoma confirma el patron promovido pattern:visual-dos-columnas-responsive como precedente directo.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Agrandar visualmente una imagen (captura de tablero) dentro de una tarjeta de dos columnas con flex-wrap, sin romper el balance con la columna de texto. La columna de la imagen ya tiene flex-basis mayor que la de texto; se busca precedente sobre si el ajuste correcto es subir el basis, reducir el padding que rodea la imagen dentro de su columna, o ambos.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Dar mas protagonismo visual a una imagen dentro de una tarjeta de dos columnas",
+                "Mantener el balance responsive del layout flex-wrap existente",
+                "Elegir entre ajustar flex-basis, padding interno, o ambos"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "stack": "tailwind-flex",
+                "path": "src/components/sections/CaasCompliance.vue",
+                "operation": "agrandar-imagen-en-columna-flex"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "pattern:visual-dos-columnas-responsive"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:014ea003-60e0-4e36-af69-8e924d74cd04",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.6",
+              "overlay_revision": 77,
+              "overlay_graph_hash": "sha256:55d4a2a8f6813fe5120b443e1c2da4ab34803b148d79e628c3afb2c34e0853be",
+              "overlay_curated_hash": "sha256:f585177455224a3ebbf5a80f26801122f9395007db526b758f96ea7c530d3eb2",
+              "overlay_projections_revision": "sha256:65ad3859f967ec32bea13c0684076ff26e13a009f618e44ddad00411c67fdb95",
+              "output_hash": "sha256:ffc1543bb2c057d4b3e8c4a44617aefd93f9f47581f8d1cdfcfbf3eb463337c4",
+              "candidate_sources": [
+                {
+                  "id": "pattern:visual-dos-columnas-responsive",
+                  "source": "genome",
+                  "lane": "direct_genome_precedents",
+                  "candidate_revision": "sha256:4e7dffcead5dfc1bbcedbb97c95ae412266f96a85170d824a1b012548f69edd5"
+                }
+              ],
+              "query_revision": "sha256:16815bee3d5e410e77eec370451b859466931302b11ca135e842b1d6f5ed7e3d",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 2770,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 1,
+                "used_excerpt_chars": 42,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:3:11",
+            "at": "2026-08-14T16:32:13.711Z",
+            "intent": "Buscar precedente sobre pasar de N columnas iguales a M columnas fijas con el resto envolviendo a fila completa, manteniendo una barra de progreso absoluta alineada al ancho real de la fila. El genoma no tiene receta directa para la combinacion completa, pero SI tiene un caso curado y su patron generalizado directamente relevante a la causa raiz del mecanismo actual: case:frt-cnct-columnas-saltan-por-calc, que generaliza a pattern:columnas-por-css-grid-no-calc (columnas responsive con CSS Grid, no con calc(%) + gap), gobernado por principle:v4 Limpieza sobre Conveniencia. El mecanismo actual de CaasStart.vue (flex-basis: 100/N% combinado con gap-4) es exactamente la forma que ese patron desaconseja. Se adopta el patron: reemplazar por CSS Grid con columnas fijas.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Una fila de N tarjetas con ancho de celda derivado del conteo total debe pasar a mostrar solo M tarjetas por fila (M menor a N) en pantallas grandes, con el resto envolviendo a una fila propia de ancho completo. Sobre esa fila hay una barra de progreso absoluta que cruza las tarjetas de lado a lado, con su tramo lleno derivado de cuantos pasos ya se cubrieron sobre el total. Al cambiar de N celdas iguales a M columnas fijas, la barra tiene que seguir alineada al ancho real de la fila que cruza. Ya existe en este proyecto un precedente sobre un riel/barra que debe alinearse a centros de nodos derivados de un conteo de celdas, y una vez ya hubo una sobreestimacion de celdas (mitad de celda) que produjo 133% de desbordamiento. Busco ese precedente para no repetir el mismo tipo de error de conteo ahora que el numero de columnas visibles cambia de N a M.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Pasar de N columnas iguales a M columnas fijas con el resto envolviendo a fila completa",
+                "Mantener la barra de progreso absoluta alineada al ancho real de la fila que cruza tras el cambio de columnas",
+                "Evitar el error de conteo de celdas ya documentado en este proyecto (riel alineado por celdas)",
+                "Conservar el comportamiento responsive existente por debajo del breakpoint donde se muestra la barra"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "stack": "tailwind-grid-flex",
+                "path": "src/components/sections/CaasStart.vue",
+                "operation": "grid-parcial-con-riel-derivado-de-celdas"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+              "case:frt-cnct-columnas-saltan-por-calc",
+              "pattern:visual-dos-columnas-responsive",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:21"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:af2effe5-c968-48aa-abbe-f662da52855a",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.6",
+              "overlay_revision": 78,
+              "overlay_graph_hash": "sha256:55d4a2a8f6813fe5120b443e1c2da4ab34803b148d79e628c3afb2c34e0853be",
+              "overlay_curated_hash": "sha256:f585177455224a3ebbf5a80f26801122f9395007db526b758f96ea7c530d3eb2",
+              "overlay_projections_revision": "sha256:65ad3859f967ec32bea13c0684076ff26e13a009f618e44ddad00411c67fdb95",
+              "output_hash": "sha256:28fb62a05abfa6a17f64a1c6c7b22669181a2c88db12164b2c6ed36ce2acc48d",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:efb8d260195f4da3fe18b1a1400d1d427e2745440e127bfa6112030cb83d8d42"
+                },
+                {
+                  "id": "case:frt-cnct-columnas-saltan-por-calc",
+                  "source": "genome",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:dceafd62d0fddd708751912b7dbaa0c4326ec0b8ac1d26f9f0a2aac5acb61694"
+                },
+                {
+                  "id": "pattern:visual-dos-columnas-responsive",
+                  "source": "genome",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:4e7dffcead5dfc1bbcedbb97c95ae412266f96a85170d824a1b012548f69edd5"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:21",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:d0ea2118d2585c32b8b6c575722725f993b937ec92276b4a46c0222321809062"
+                }
+              ],
+              "query_revision": "sha256:b31afa7e2af41233d2eecbf21f918783dc3a6f0c09e0d04b92067f9423cae009",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 10682,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 4,
+                "used_excerpt_chars": 1101,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:3:12",
+            "at": "2026-08-14T16:32:25.161Z",
+            "intent": "Buscar precedente sobre pasar de N columnas iguales a M columnas fijas con el resto envolviendo a fila completa, manteniendo una barra de progreso absoluta alineada al ancho real de la fila. El genoma no tiene receta directa para la combinacion completa, pero SI tiene un caso curado y su patron generalizado directamente relevante a la causa raiz del mecanismo actual: case:frt-cnct-columnas-saltan-por-calc, que generaliza a pattern:columnas-por-css-grid-no-calc (columnas responsive con CSS Grid, no con calc(%) + gap), gobernado por principle:v4 Limpieza sobre Conveniencia. El mecanismo actual de CaasStart.vue (flex-basis: 100/N% combinado con gap-4) es exactamente la forma que ese patron desaconseja. Se adopta el patron: reemplazar por CSS Grid con columnas fijas.",
+            "tool": "find_node",
+            "arguments": {
+              "query": "case:frt-cnct-columnas-saltan-por-calc",
+              "limit": 3
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "case:frt-cnct-columnas-saltan-por-calc"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:11d3f3e0-0ca1-4622-a4b4-062e4b5842cd",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.6",
+              "overlay_revision": 78,
+              "overlay_graph_hash": "sha256:55d4a2a8f6813fe5120b443e1c2da4ab34803b148d79e628c3afb2c34e0853be",
+              "overlay_curated_hash": "sha256:f585177455224a3ebbf5a80f26801122f9395007db526b758f96ea7c530d3eb2",
+              "overlay_projections_revision": null,
+              "output_hash": "sha256:3d8150ac66d516ca2ed41da929ba6e7281a4295ddcac02c1822725f9ecae4cd0",
+              "candidate_sources": [
+                {
+                  "id": "case:frt-cnct-columnas-saltan-por-calc",
+                  "source": "genome",
+                  "candidate_revision": "sha256:dceafd62d0fddd708751912b7dbaa0c4326ec0b8ac1d26f9f0a2aac5acb61694"
+                }
+              ],
+              "output_bytes": 176
+            }
+          },
+          {
+            "id": "consult:3:13",
+            "at": "2026-08-14T16:32:38.910Z",
+            "intent": "Buscar precedente sobre pasar de N columnas iguales a M columnas fijas con el resto envolviendo a fila completa, manteniendo una barra de progreso absoluta alineada al ancho real de la fila. El genoma no tiene receta directa para la combinacion completa, pero SI tiene un caso curado y su patron generalizado directamente relevante a la causa raiz del mecanismo actual: case:frt-cnct-columnas-saltan-por-calc, que generaliza a pattern:columnas-por-css-grid-no-calc (columnas responsive con CSS Grid, no con calc(%) + gap), gobernado por principle:v4 Limpieza sobre Conveniencia. El mecanismo actual de CaasStart.vue (flex-basis: 100/N% combinado con gap-4) es exactamente la forma que ese patron desaconseja. Se adopta el patron: reemplazar por CSS Grid con columnas fijas.",
+            "tool": "neighbors",
+            "arguments": {
+              "nodeId": "case:frt-cnct-columnas-saltan-por-calc",
+              "depth": 2
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "case:frt-cnct-columnas-saltan-por-calc",
+              "pattern:columnas-por-css-grid-no-calc",
+              "principle:v4"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:386a13ce-2f1b-4996-8bed-1e35cf9a3d0f",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.6",
+              "overlay_revision": 78,
+              "overlay_graph_hash": "sha256:55d4a2a8f6813fe5120b443e1c2da4ab34803b148d79e628c3afb2c34e0853be",
+              "overlay_curated_hash": "sha256:f585177455224a3ebbf5a80f26801122f9395007db526b758f96ea7c530d3eb2",
+              "overlay_projections_revision": null,
+              "output_hash": "sha256:1b39067e70e23444bb326f2f07031b5a51ea382973a647082c374e5eefab8498",
+              "candidate_sources": [
+                {
+                  "id": "case:frt-cnct-columnas-saltan-por-calc",
+                  "source": "genome",
+                  "candidate_revision": "sha256:dceafd62d0fddd708751912b7dbaa0c4326ec0b8ac1d26f9f0a2aac5acb61694"
+                },
+                {
+                  "id": "pattern:columnas-por-css-grid-no-calc",
+                  "source": "genome",
+                  "candidate_revision": "sha256:713f00a43a6f0c1851eaf6057335628000ad4680861a33d06c7e7638ec471ce7"
+                },
+                {
+                  "id": "principle:v4",
+                  "source": "genome",
+                  "candidate_revision": "sha256:07d3be18ebf87e3a010054154a6f978ed1d1e01ac3a49df293e9b1c76fe77abf"
+                }
+              ],
+              "output_bytes": 522
+            }
+          },
+          {
+            "id": "consult:3:14",
+            "at": "2026-08-14T16:32:47.839Z",
+            "intent": "Buscar precedente sobre pasar de N columnas iguales a M columnas fijas con el resto envolviendo a fila completa, manteniendo una barra de progreso absoluta alineada al ancho real de la fila. El genoma no tiene receta directa para la combinacion completa, pero SI tiene un caso curado y su patron generalizado directamente relevante a la causa raiz del mecanismo actual: case:frt-cnct-columnas-saltan-por-calc, que generaliza a pattern:columnas-por-css-grid-no-calc (columnas responsive con CSS Grid, no con calc(%) + gap), gobernado por principle:v4 Limpieza sobre Conveniencia. El mecanismo actual de CaasStart.vue (flex-basis: 100/N% combinado con gap-4) es exactamente la forma que ese patron desaconseja. Se adopta el patron: reemplazar por CSS Grid con columnas fijas.",
+            "tool": "find_by_pattern",
+            "arguments": {
+              "name": "columnas-por-css-grid-no-calc"
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "case:frt-cnct-columnas-saltan-por-calc",
+              "pattern:columnas-por-css-grid-no-calc",
+              "principle:v4"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:b9ea143d-621e-472d-b80e-4d6512bdfc09",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.6",
+              "overlay_revision": 78,
+              "overlay_graph_hash": "sha256:55d4a2a8f6813fe5120b443e1c2da4ab34803b148d79e628c3afb2c34e0853be",
+              "overlay_curated_hash": "sha256:f585177455224a3ebbf5a80f26801122f9395007db526b758f96ea7c530d3eb2",
+              "overlay_projections_revision": null,
+              "output_hash": "sha256:6ed14ec5f0119fca5bd005d8d2a02325f1e2b805d6843822d746b95603085322",
+              "candidate_sources": [
+                {
+                  "id": "case:frt-cnct-columnas-saltan-por-calc",
+                  "source": "genome",
+                  "candidate_revision": "sha256:dceafd62d0fddd708751912b7dbaa0c4326ec0b8ac1d26f9f0a2aac5acb61694"
+                },
+                {
+                  "id": "pattern:columnas-por-css-grid-no-calc",
+                  "source": "genome",
+                  "candidate_revision": "sha256:713f00a43a6f0c1851eaf6057335628000ad4680861a33d06c7e7638ec471ce7"
+                },
+                {
+                  "id": "principle:v4",
+                  "source": "genome",
+                  "candidate_revision": "sha256:07d3be18ebf87e3a010054154a6f978ed1d1e01ac3a49df293e9b1c76fe77abf"
+                }
+              ],
+              "output_bytes": 258
+            }
           }
         ],
         "decisions": [
@@ -3603,6 +3881,68 @@
             "evidence": [
               "src/components/sections/CaasAreas.vue",
               "src/composables/useSwiperInit.ts"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:3:20",
+            "kind": "adapt",
+            "target": "pattern:columnas-por-css-grid-no-calc",
+            "rationale": "El patron del genoma dice usar CSS Grid en vez de calc(%) + gap para columnas fijas, y eso resuelve la causa raiz. Pero aplicarlo con la via mas obvia en un proyecto Tailwind —una utilidad responsive como lg-2:grid sobre un elemento que ya trae display:flex de una clase semantica global— no funciona en ESTE proyecto sin ajuste adicional, y falla en silencio: ambos selectores tienen la misma especificidad (una clase), asi que el desempate lo decide el orden de aparicion en el CSS final, no la intencion del que escribe la utilidad. En nuxt.config.ts el array `css` carga tailwind.css ANTES que style.scss, asi que .sc-article{display:flex} —definida en style.scss— aparece DESPUES de cualquier utilidad de Tailwind en el CSS concatenado, y gana el empate sin importar el breakpoint. El utility class lg-2:grid quedaria escrito, activo segun el breakpoint, y aun asi sin efecto — exactamente la clase de fallo silencioso mas cara de diagnosticar, porque todo en el codigo parece correcto.\\n\\nLa correccion no es escribir la utilidad con mas fuerza (evitar !important, que es la salida facil y la que este proyecto ya evito antes en su reset global de text-align). La correccion es usar el mecanismo que Vue ya da para esto: un <style scoped> inyecta un atributo [data-v-hash] que Vue agrega automaticamente a los selectores de ese bloque, y una clase mas un atributo pesa mas que una clase sola — gana la especificidad sin depender del orden de carga entre archivos. Regla general para este proyecto: antes de usar una utilidad responsive de Tailwind para forzar una propiedad que una clase semantica global (sc-*) ya declara sin condicion, verificar el orden real de carga en el array css de nuxt.config.ts; si la clase semantica carga despues, la utilidad pierde el empate en silencio y hay que resolverlo con especificidad real (style scoped), no con mas utilidades.",
+            "projection": "etiqueta: utilidad-tailwind-pierde-empate-si-clase-semantica-carga-despues — CaasStart.vue pasa de flex-basis en porcentaje (calc-like) a CSS Grid con columnas fijas a partir de lg-2, aplicando el patron ya curado del genoma. La aplicacion concreta usa una clase con scope (start-grid) en vez de una utilidad Tailwind (lg-2:grid), porque en este proyecto tailwind.css carga antes que style.scss y .sc-article{display:flex} le ganaria el empate de especificidad a la utilidad sin importar el breakpoint activo. El atributo que Vue agrega a un style con scope resuelve el empate con especificidad real, no con orden de carga.",
+            "evidence": [
+              "src/components/sections/CaasStart.vue",
+              "nuxt.config.ts",
+              "src/assets/scss/style.scss"
+            ],
+            "consultations": [
+              "consult:3:11",
+              "consult:3:14"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:3:21",
+            "kind": "local",
+            "rationale": "decision:3:20 registro un cambio de flex a CSS Grid en CaasStart.vue, presentado como correccion de un desajuste contra la referencia. Era un diagnostico equivocado: se leyeron invertidas las dos imagenes que Fredy comparo -cual era \"nuestro sitio\" y cual era \"la referencia\"- y el cambio se aplico sobre esa lectura al reves. La referencia real siempre fue 5 columnas en una sola fila, que es exactamente lo que el codigo original (flex-basis en porcentaje del conteo total mas gap) ya producia correctamente. No habia ningun defecto que corregir.\\n\\nEl fix se revirtio por completo con git checkout al ultimo commit, asi que CaasStart.vue quedo identico al estado previo a esta actividad. El insight tecnico de decision:3:20 sobre la especificidad -una utilidad Tailwind puede perder el empate contra una clase semantica global si esta ultima carga despues en el array css de nuxt.config.ts- sigue siendo un hecho verificado y valido en general; lo que no era valido es que hiciera falta aplicarlo aqui, porque el problema que se estaba resolviendo no existia.\\n\\nLa leccion de proceso, no de CSS: cuando dos imagenes se comparan como \"esto vs aquello debe verse\", confirmar explicitamente cual es cual ANTES de construir, en particular si las imagenes se parecen superficialmente (ambas muestran las mismas 5 tarjetas con la misma barra) y la diferencia real esta en un detalle estructural (cuantas caben por fila). Una vez construido sobre la lectura equivocada, cada intento de diagnostico posterior parte del mismo error de base y no lo corrige solo, porque la pregunta \"que ves que esta mal\" se responde correctamente sobre la imagen equivocada.\\n\\nESTA decision SUPERSEDE a decision:3:20 para este componente: 3:20 queda como registro de un diagnostico equivocado, no como precedente valido a reutilizar para CaasStart.vue.",
+            "projection": "etiqueta: confirmar-cual-imagen-es-cual-antes-de-construir — CaasStart.vue volvio a su forma original de 5 columnas en flex; no se aplico el cambio a CSS Grid porque el problema que lo motivaba no existia. decision:3:20 queda registrada como diagnostico equivocado sobre esta instancia especifica, no como precedente valido para este componente; su contenido tecnico sobre especificidad Tailwind-vs-clase-semantica sigue siendo cierto para cuando SI haga falta.",
+            "evidence": [
+              "src/components/sections/CaasStart.vue"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:3:22",
+            "kind": "reject",
+            "target": "pattern:columnas-por-css-grid-no-calc",
+            "rationale": "El genoma recomienda CSS Grid para columnas fijas en vez de calc(%) + gap, y la causa raiz que documenta es real y aplica aca: 5 piezas a exactamente 100/5=20% de basis, mas gap-4 (16px, cuatro huecos = 64px), demandan mas del 100% del contenedor -el basis por si solo ya consume el 100%, sin dejar nada para los huecos-. Eso fuerza al motor de flex a encoger cada pieza, y si el contenedor real es mas angosto de lo esperado, el encogimiento choca contra el min-width antes de completarse y flex-wrap manda la ultima pieza a una fila nueva. Mismo mecanismo que el caso ya documentado.\\n\\nSe rechaza la recomendacion de Grid especificamente para ESTE componente, no en general: el requisito explicito es que las piezas se reacomoden hacia abajo con flex-wrap en mas de un escalon segun el ancho disponible (cinco, luego menos, luego menos), no un salto unico y rigido de 4+1 a un breakpoint fijo. CSS Grid con columnas fijas resuelve bien un splary especifico (N columnas, resto envuelve entero) pero no da ese reacomodo progresivo sin escribir un breakpoint por cada conteo de columnas deseado -exactamente lo que la seccion no necesitaba y lo que la genero la confusion anterior (decision:3:20/3:21)-.\\n\\nLa correccion real no cambia el mecanismo (sigue siendo flex-wrap + grow, pattern:visual-dos-columnas-responsive) sino el basis: en vez de derivarlo de 100/steps.length (calculado, sensible al conteo), se fija un valor constante con margen deliberado para el gap (19%, dejando 5% de holgura contra el 20% que consume el conteo exacto). Es la MISMA correccion de fondo que el patron del genoma persigue -dejar de tratar el porcentaje como si el gap no existiera- aplicada dentro de flex en vez de migrando a grid.",
+            "projection": "etiqueta: basis-fijo-con-holgura-para-el-gap-no-derivado-del-conteo — CaasStart.vue mantiene flex-wrap (el mecanismo estandar del proyecto) pero cambia el basis de las 5 piezas de un calculo 100/steps.length (que en 20% exacto no deja margen para gap-4) a un valor fijo de 19% con margen deliberado. min-width tambien subio de 16rem a 18rem, pedido explicito para que el reacomodo hacia pantallas angostas se vea menos apretado. Se opto por esto en vez de CSS Grid porque el requisito real era reacomodo progresivo en varios escalones de ancho, no un salto rigido de N a 1 columna en un breakpoint fijo -lo que Grid con columnas fijas no da sin trabajo adicional-.",
+            "evidence": [
+              "src/components/sections/CaasStart.vue"
+            ],
+            "consultations": [
+              "consult:3:11",
+              "consult:3:14"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:3:23",
+            "kind": "novel",
+            "rationale": "flex-wrap no es un mecanismo ambiguo: envuelve UNICAMENTE cuando la suma de los anchos de sus piezas -ya encogidas hasta su min-width- mas los huecos supera el ancho disponible del contenedor. Eso convierte el hecho de que algo envuelva en una prueba directa, no en un sintoma que requiera investigar multiples hipotesis: si el padre ya es flex-wrap, si la estructura de piezas ya esta verificada correcta, y aun asi una pieza sigue cayendo a una fila nueva, la unica variable que puede seguir explicandolo es el ancho -basis o min-width demasiado grandes-, no la arquitectura. La pregunta correcta en ese momento no es \"que mas puede estar mal estructuralmente\" sino \"cuanto exceden los anchos actuales al disponible\", y esa pregunta se responde en segundos con un experimento directo -bajar el porcentaje un punto y mirar- no con una investigacion mas profunda.\\n\\nEsta vez la señal estaba completa y se ignoro: la estructura (contenedor flex-wrap, min-width, basis) ya se habia verificado correcta DOS VECES -en el diagnostico original y de nuevo tras revertir- y la quinta pieza SEGUIA cayendo. Esa persistencia del sintoma pese a la estructura confirmada correcta es en si misma la evidencia de que el problema es aritmetico, no estructural. En cambio de tomar esa señal y probar el ajuste de ancho de inmediato -el experimento mas barato disponible-, la respuesta fue escalar a mas investigacion: verificar tokens de diseño, confirmar el orden de carga de hojas de estilo, escribir una explicacion extensa. El propio Fredy resolvio el ajuste real -de 19% a 18%- en menos de un minuto probando en vivo, mientras la sesion llevaba mas de una hora dando vueltas sobre el mismo componente.\\n\\nRegla general: cuando flex-wrap envuelve pese a una estructura ya verificada, la respuesta inmediata es un experimento de ancho (no una investigacion de arquitectura), y con un humano iterando en vivo que puede confirmar el resultado al instante, ese experimento debe intentarse ANTES de escalar a explicaciones o reconstrucciones mas caras. El costo de una prueba directa es casi siempre menor que el costo de razonar sobre por que no deberia hacer falta probarla.",
+            "projection": "etiqueta: envolver-en-flex-wrap-es-evidencia-de-ancho-no-de-estructura — cuando un contenedor flex-wrap sigue envolviendo pese a que su estructura (display, wrap, gap, jerarquia de piezas) ya fue verificada correcta, ese envolver es prueba directa de que la suma de anchos supera el disponible, no un sintoma abierto a mas hipotesis. La respuesta correcta es un experimento barato e inmediato -reducir basis/min-width un margen pequeño y mirar el resultado en vivo- antes de escalar a investigar tokens, orden de carga, o cambiar de mecanismo de layout. En CaasStart.vue la correccion real fue reducir el basis fijo de 19% a 18%; el margen de 19% no alcanzaba y seguia envolviendo, y el numero final se encontro probando en vivo, no calculando de antemano.",
+            "evidence": [
+              "src/components/sections/CaasStart.vue"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:3:24",
+            "kind": "novel",
+            "rationale": "Contraparte explicita de decision:3:23, registrada aparte porque el \"que NO hacer\" merece su propia entrada y no diluirse dentro de la redaccion en positivo de la anterior: alguien que busque despues puede toparse con una sola de las dos, y la prohibicion tiene que quedar clara sin depender de leer la otra completa.\\n\\nNO ESCALAR a investigacion de arquitectura o de configuracion global -cambiar el mecanismo de layout (flex a grid), auditar tokens de diseño, verificar orden de carga de hojas de estilo, releer documentacion de la libreria- como primera respuesta cuando el sintoma es que un contenedor con wrap sigue envolviendo pese a que su estructura YA fue verificada correcta. Esa escalada es un error especifico y reconocible: trata un sintoma con explicacion unica y barata de confirmar (los anchos no caben) como si tuviera muchas causas posibles igualmente probables, y gasta una hora de investigacion indirecta en vez de un minuto de experimento directo. La escalada ademas es enganosa hacia el propio agente que la hace: cada paso de investigacion adicional se siente como progreso -se aprende algo real en cada uno- pero ninguno acerca a la respuesta si la pregunta correcta nunca se hizo. Se registra como PROHIBICION, no como sugerencia: ante wrap persistente con estructura confirmada, escalar a investigacion de arquitectura/tokens/cascada ANTES de probar un ajuste de ancho directo es la accion a evitar, sin excepcion salvo que el experimento directo ya se haya intentado y fallado.",
+            "projection": "etiqueta: no-escalar-a-arquitectura-cuando-el-sintoma-ya-señala-ancho — prohibicion explicita: si un contenedor con flex-wrap (o equivalente) sigue envolviendo despues de que su estructura ya fue verificada correcta, NO abrir investigacion de arquitectura, tokens de diseño o cascada CSS como primer paso. El sintoma persistente CON estructura confirmada ya es la respuesta -sobra ancho, no falta estructura-. El primer paso obligatorio es un experimento directo y barato (reducir basis o min-width un margen pequeño, mirar el resultado), y solo si ese experimento no resuelve el sintoma se abre investigacion mas profunda. En CaasStart.vue esta prohibicion se violo dos veces seguidas: primero migrando a CSS Grid sin verificar la referencia, despues auditando tokens/cascada tras revertir, cuando el ajuste real (basis 19%→18%) se resolvia con un experimento de segundos.",
+            "evidence": [
+              "src/components/sections/CaasStart.vue"
             ],
             "status": "proposed"
           }
