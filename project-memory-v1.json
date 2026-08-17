@@ -1,7 +1,7 @@
 {
   "$schema": "https://eure-k.local/schemas/project-memory-v1.json",
   "schema": "eure-k.project-memory/v1",
-  "revision": 86,
+  "revision": 109,
   "project": {
     "id": "frt-cnct-web",
     "repository_fingerprint": "git-remote-v1:sha256:9cecfa5ed6040202f52f46768540e1b8a10fa6c11be8f5acbcaf8dbea368cb60",
@@ -26,9 +26,9 @@
   "genome_baseline": {
     "id": "eure-k",
     "revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
-    "server_version": "0.30.6",
+    "server_version": "0.30.9",
     "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
-    "last_consulted_at": "2026-08-14T16:32:47.839Z",
+    "last_consulted_at": "2026-08-17T22:08:15.107Z",
     "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7"
   },
   "graph": {
@@ -38,7 +38,7 @@
         "version": "headless-v1",
         "adapter": "legacy-front",
         "target": "src",
-        "generated_at": "2026-08-14T17:41:22.997Z",
+        "generated_at": "2026-08-17T21:51:30.566Z",
         "content_hash": "sha256:b49b7c907a5b620d66dd324a82c6608de154c9eb4d81811e1ace335eff9c6307"
       },
       "nodes": [
@@ -4514,6 +4514,1108 @@
           }
         },
         "submitted_at": "2026-08-14T17:34:45.407Z"
+      },
+      {
+        "id": "task:frt-cnct-web:4",
+        "sequence": 4,
+        "intent": "Primera revision responsive de las tres vistas de campaña ya entregadas -Hardware Criptografico (/hardware-criptografico), Infraestructura SPEI (/infraestructura-spei) y Cripto as a Service (/cripto-as-a-service)-, las tres construidas explicitamente desktop-only con \"responsive no incluido\" declarado como pendiente en cada cierre. El objetivo es que las tres se vean y funcionen correctamente en los breakpoints ya definidos del proyecto (xs-2 320, xs 375, sm 535, md 768, lg-2 991, lg 1024, xl 1200, 2xl 1536), reutilizando los patrones responsive ya existentes en el proyecto -riel de celdas, tokens, regla del .btn-*, desplazamiento posicional como estructura, flex-wrap/grow- antes de inventar mecanismos nuevos. Alcance exclusivamente visual y de maquetacion: sin cambios de copy, sin logica de negocio. No incluye home, /privacy, /contact ni ninguna otra ruta -fuera por decision explicita, no por omision-.",
+        "status": "open",
+        "opened_at": "2026-08-17T21:51:30.566Z",
+        "closed_at": null,
+        "consultations": [
+          {
+            "id": "consult:4:1",
+            "at": "2026-08-17T21:52:46.315Z",
+            "intent": "Revisar HsmHero contra los precedentes locales ya publicados sobre el mismo tipo de problema: decision:3:22 (basis sin margen para gap), decision:2:21 (imagenes sin tope se estiran por el reset global), decision:3:23 (wrap persistente = evidencia de ancho). Se verifica la aritmetica real de basis+min-width+gap contra el contenedor, y se confirma que el video ya tiene w-full+aspect-ratio fijo (no cae en el reset global de decision:2:21).",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Revision responsive de HsmHero: dos columnas (texto + media en card) que colapsan por flex-wrap+basis+min-width, no por media query de viewport. El componente ya declara seguir pattern:visual-dos-columnas-responsive. Quiero verificar si la ejecucion concreta -valores de basis, min-width, gap, y el video con aspect-ratio fijo dentro de su columna- es correcta en los anchos angostos, o si hay algun defecto de la clase que ya conocemos en este proyecto (basis sin margen para gap, min-width que fuerza wrap antes de lo esperado, imagenes que no escalan).",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Verificar que basis+min-width+gap no reproduzcan el defecto de calc(%)+gap ya conocido",
+                "Verificar que el video con aspect-ratio fijo se comporte bien al angostarse su columna",
+                "Confirmar que el colapso por ancho disponible (no por viewport) sea el patron correcto para este caso"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "stack": "tailwind-flex",
+                "path": "src/components/sections/HsmHero.vue",
+                "operation": "revision-responsive-dos-columnas"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "pattern:visual-dos-columnas-responsive",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:22",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:21",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:23"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:003e167d-d5d8-4613-ba80-403f84428c29",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.9",
+              "overlay_revision": 87,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:82edaff1735cf1e1987ea973c5d2be1b825a977b3d2ccbb110ed75e289aea7fe",
+              "candidate_sources": [
+                {
+                  "id": "pattern:visual-dos-columnas-responsive",
+                  "source": "genome",
+                  "lane": "direct_genome_precedents",
+                  "candidate_revision": "sha256:4e7dffcead5dfc1bbcedbb97c95ae412266f96a85170d824a1b012548f69edd5"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:22",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:4d255325599edbfc589fdc186bb133ccbd2bc16e3a54c6dd111fda7c2b90f4d2"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:21",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:d0ea2118d2585c32b8b6c575722725f993b937ec92276b4a46c0222321809062"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:23",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:883682cf19db341c29feacb565a5bce09c0b92cd6386ac9c81c8c81c60e0bb2f"
+                }
+              ],
+              "query_revision": "sha256:5cadec59f097f411e6339fda1da8571a61017220a5ef2261641585954d060a03",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 10624,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 4,
+                "used_excerpt_chars": 1114,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:4:2",
+            "at": "2026-08-17T21:58:00.446Z",
+            "intent": "Revisar HsmPains contra decision:3:22 (basis sin margen para gap) y decision:2:21 (imagenes sin tope). Verificar basis-64 x3 + gap-8 contra max-w-5xl, y confirmar que los iconos h-10/w-10 evitan el reset global.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Revision responsive de HsmPains: fila de 3 items (icono + texto) con flex-wrap+grow+basis-64, min-w-[20rem], gap-8. El propio comentario del componente dice que comparte riel con IndustriesGrid. Verificar la aritmetica basis+gap contra el contenedor (max-w-5xl) y si los iconos con h-10/w-10 explicitos evitan el reset global de imagenes.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Verificar que basis-64 x3 + gap-8 no exceda el contenedor sin margen",
+                "Confirmar que los iconos con dimension explicita no caigan en el reset global de imagenes"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "stack": "tailwind-flex",
+                "path": "src/components/sections/HsmPains.vue",
+                "operation": "revision-responsive-fila-3-items"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:21",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:22"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:31ff04f6-bd50-4101-ac00-2e9766241e38",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.9",
+              "overlay_revision": 89,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:ffba484fab059d13315c970284b08e90347be3e47dacfe5158927ab4f2b6bcb3",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:21",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:d0ea2118d2585c32b8b6c575722725f993b937ec92276b4a46c0222321809062"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:22",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:4d255325599edbfc589fdc186bb133ccbd2bc16e3a54c6dd111fda7c2b90f4d2"
+                }
+              ],
+              "query_revision": "sha256:0e44f37dce2e818e09572b3dc40e75a7d3e1fe10a22bed449960b9e71e124773",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 7416,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 2,
+                "used_excerpt_chars": 817,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:4:3",
+            "at": "2026-08-17T21:59:08.596Z",
+            "intent": "Revisar HsmDataLocation contra decision:2:4 (boton se estira sin padre flexible), decision:2:21 (imagenes sin tope) y decision:3:22/3:23 (basis+gap). decision:2:4 confirma directamente que el boton esta a salvo: su padre inmediato ya es flex-col, cumple la condicion que la propia decision exige.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Revision responsive de HsmDataLocation: dos columnas (video + texto/CTA) con flex-wrap+basis+min-width. El boton (.btn-custom, display:flex por mixin) no tiene wrapper flex dedicado como en otras secciones -es hijo directo de un flex-col con items-center/items-start ya declarado para toda la columna. Quiero verificar si eso es seguro (el boton es item de ese flex-col, no una caja de bloque suelta) o si igual necesita el wrapper dedicado que usan otras secciones.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Verificar basis+min-width+gap contra el contenedor",
+                "Determinar si un boton hijo directo de un flex-col con items-center/items-start esta a salvo de estirarse sin wrapper dedicado",
+                "Confirmar que el video con aspect-ratio fijo escale bien"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "stack": "tailwind-flex",
+                "path": "src/components/sections/HsmDataLocation.vue",
+                "operation": "revision-responsive-dos-columnas-boton-sin-wrapper"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:23",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:21",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+              "pattern:visual-dos-columnas-responsive"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:9f833f8f-d4a4-4264-add4-f4262562ff0e",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.9",
+              "overlay_revision": 91,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:48448b2beebee3350b38c15020ddd0a0456a121aa1306adc6f52bb8830b7fe9a",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:23",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:883682cf19db341c29feacb565a5bce09c0b92cd6386ac9c81c8c81c60e0bb2f"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:21",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:d0ea2118d2585c32b8b6c575722725f993b937ec92276b4a46c0222321809062"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:efb8d260195f4da3fe18b1a1400d1d427e2745440e127bfa6112030cb83d8d42"
+                },
+                {
+                  "id": "pattern:visual-dos-columnas-responsive",
+                  "source": "genome",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:4e7dffcead5dfc1bbcedbb97c95ae412266f96a85170d824a1b012548f69edd5"
+                }
+              ],
+              "query_revision": "sha256:303c630e57c21c9f6225f6ab1a866fe25631791109c6f05e2d7d592768e4aa8b",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 11668,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 4,
+                "used_excerpt_chars": 1318,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:4:4",
+            "at": "2026-08-17T22:00:31.677Z",
+            "intent": "Buscar precedente sobre estructuras escalonadas/en abanico que colapsan a una columna, y confirmar boton con wrapper dedicado via decision:2:4. El genoma no tiene receta directa para la pregunta del escalonado -genuinamente nueva-, asi que se separa lo verificable por aritmetica (basis de los tres bloques) de lo que requiere confirmacion visual humana (si el gap-32 se lee como escalonado intencional o como hueco extraño al colapsar del todo).",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Revision responsive de HsmOrgMosaic: abanico de tres bloques (grupo izquierdo, texto central, grupo derecho), cada grupo lateral con dos sub-columnas (una con 1 card, otra con 2 cards separadas por gap-32 para crear el escalonado). El propio comentario dice que el escalonado es estructural -sale de en que columna vive cada card- para que se preserve al colapsar en vez de desalinearse. Dos preocupaciones: (1) aritmetica de basis en el nivel externo (los tres bloques) esta muy justa contra el contenedor -1220px de basis contra 1280px de max-w-7xl, solo 60px de margen antes de necesitar encoger- aunque el piso de min-width deja un rango de encogimiento razonable (960px) antes de forzar wrap. (2) en un colapso completo a una sola columna (mobile), el gap-32 (128px) entre la card exterior y la columna interior de 2 cards podria verse como un hueco grande y extraño en vez de un escalonado intencional, ya que ese efecto visual solo tiene sentido cuando las columnas estan lado a lado. Busco precedente sobre estructuras escalonadas/en abanico que colapsan a una columna.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Verificar la aritmetica de basis en el nivel externo de los tres bloques",
+                "Evaluar si el efecto de escalonado (gap-32) sigue teniendo sentido visual al colapsar a una columna",
+                "Determinar si esto requiere confirmacion visual humana o si hay precedente que lo resuelva por codigo"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "stack": "tailwind-flex-nested",
+                "path": "src/components/sections/HsmOrgMosaic.vue",
+                "operation": "revision-responsive-abanico-escalonado"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:1",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:19"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:4f5d5c05-c70e-4179-9338-7344a1697786",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.9",
+              "overlay_revision": 93,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:618757528860f8bf56c3ed11bd23fd8517ffb22355d30785b676e41a62370a8f",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:efb8d260195f4da3fe18b1a1400d1d427e2745440e127bfa6112030cb83d8d42"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:1",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:e7efd510de1e77388dec78ba65dd2c67744f3105baa329b0d93763b544ad83f2"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:19",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:a2a134f7b13d29564a7a563289f6564d6184f4fdb9ebb1e1d078157d6bba9536"
+                }
+              ],
+              "query_revision": "sha256:667df577ab938c221e749d95b23330895fac32c98cf802e4644b0a9f3c28407a",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 11343,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 3,
+                "used_excerpt_chars": 1371,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:4:5",
+            "at": "2026-08-17T22:02:05.722Z",
+            "intent": "Buscar precedente sobre cuanto margen es prudente entre basis+gap y el contenedor. El genoma no tiene receta directa para \"cuanto es suficiente\" -es un juicio nuevo, no cubierto por decision:3:22 (que solo establece que el margen debe ser positivo, no cuanto). Se procede a corregir con criterio propio, calibrado contra el margen que ya se acepto como sano en HsmOrgMosaic (60px con buen rango de encogimiento) y el resto de secciones (100-500px).",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "HsmTechDiagram: panel con padding interno propio (px-6/lg-2:px-12) mas la seccion externa (px-4/lg:px-8), y dentro un articulo de tres bloques (columna izquierda basis-[30rem], centro basis-[40rem] con dos imagenes superpuestas, columna derecha basis-[30rem]) con gap-6. Verificacion aritmetica cuidadosa: a ancho completo, el articulo demanda 1048px (1000px de basis + 48px de gap) contra 1056px disponibles (max-w-6xl 1152px menos el padding interno del panel lg-2:px-12=96px) -solo 8px de margen. Es un margen mucho mas fino que el resto de secciones ya revisadas (60-500px). Busco precedente sobre cuanto margen es prudente dejar entre basis+gap y el contenedor, y si 8px amerita correccion preventiva.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Determinar si un margen de 8px entre basis+gap y el contenedor es lo bastante fragil como para ameritar correccion preventiva",
+                "Elegir que basis reducir sin romper el contenido que aloja cada columna",
+                "Mantener el margen resultante en linea con el resto de secciones ya revisadas"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "stack": "tailwind-flex-nested-padding",
+                "path": "src/components/sections/HsmTechDiagram.vue",
+                "operation": "revision-responsive-margen-insuficiente"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:19",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:13",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:21"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:c0c2b728-7687-4bfa-b740-4e3810a4812c",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.9",
+              "overlay_revision": 95,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:26705433318e4b6bee06b1842ec8f572e5eec709a9c8291eb954b37fc415d848",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:19",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:a2a134f7b13d29564a7a563289f6564d6184f4fdb9ebb1e1d078157d6bba9536"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:13",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:465ea5122e136eab516b2aa0e3f2f9c5e359a7c7b27749308ef069b7c72055ce"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:21",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:d0ea2118d2585c32b8b6c575722725f993b937ec92276b4a46c0222321809062"
+                }
+              ],
+              "query_revision": "sha256:2c59e235c346e641ecfa38baebdf11c662aedfab1be3b033b372d641e911b33d",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 10988,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 3,
+                "used_excerpt_chars": 1270,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:4:6",
+            "at": "2026-08-17T22:03:47.659Z",
+            "intent": "Revisar HsmUseCases: boton confirmado por decision:2:4 (que ya cita este mismo archivo como evidencia validada). Sin receta directa para \"reflow a multiples filas\", se verifica por aritmetica propia: a lg (gap-12=48px), 3 cards de basis-72(288px) + 2 gaps = 960px contra max-w-5xl(1024px) = 64px de margen, por encima del piso de 15-20px establecido en decision:4:5.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Revision responsive de HsmUseCases: 6 cards en grid flex-wrap+grow+basis-72(288px), min-w-[24rem], gap-6 lg:gap-12 (el gap crece a proposito en lg para acercar las cards al cuadrado reduciendo su ancho disponible). A diferencia de las secciones anteriores de 2-3 items, aca 6 items NUNCA caben en una sola fila -el flex-wrap decide cuantas columnas caben, reflowando en 2+ filas. Verificar que el wrap entre filas no deje huecos raros ni fuerce un colapso prematuro, y que el aumento de gap en lg no rompa el margen contra el contenedor.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Verificar basis+gap (incluido el aumento de gap en lg) contra el contenedor max-w-5xl",
+                "Confirmar que el reflow a multiples filas no deje margenes fragiles",
+                "Confirmar iconos con dimension explicita y boton con wrapper dedicado"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "stack": "tailwind-flex-multirow",
+                "path": "src/components/sections/HsmUseCases.vue",
+                "operation": "revision-responsive-grid-6-items"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:24",
+              "ptype:consumo-medido-contra-bolsa",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:0ab8f44d-eb4d-4945-84e0-3d97101f497d",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.9",
+              "overlay_revision": 97,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:63dca6024dd5138bc5e2464b2abbe934cdf3f84e33a6d812b2339be00e8d3feb",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:24",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:eda243717ade12c0122ba9f26c961c78d73564fa101d8f3dd3b12288b64c12d3"
+                },
+                {
+                  "id": "ptype:consumo-medido-contra-bolsa",
+                  "source": "genome",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:20af7d4aaa4b26f4867adaa1747a9e9778ec1ab28cfc49c50b0cfc2800d36f8c"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:efb8d260195f4da3fe18b1a1400d1d427e2745440e127bfa6112030cb83d8d42"
+                }
+              ],
+              "query_revision": "sha256:763d8e396f72e8ca54018adbf7f07c9381edcdceec1ed2de8f9d21c9d33a1248",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 8639,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 3,
+                "used_excerpt_chars": 840,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:4:7",
+            "at": "2026-08-17T22:04:38.152Z",
+            "intent": "Revisar HsmBeyond, bento de dos niveles. Sin receta directa; se verifica con aritmetica propia en ambos niveles, considerando que grow con el mismo factor (1) en los dos hijos del nivel externo reparte el espacio extra 1:1 sin importar sus basis distintos, lo que fija el ancho real que le llega al nivel interno.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Revision responsive de HsmBeyond: layout bento de dos niveles. Nivel externo: card PQC (basis-[36rem]) + columna derecha (basis-[62rem]) con gap-6, contra max-w-6xl. Nivel interno: la columna derecha apila dos cards horizontales, cada una con su propio flex-wrap de imagen+texto (basis-72 cada uno) mas su propio padding p-5. Verificar margenes en ambos niveles, considerando que el grow del nivel externo redistribuye espacio extra 1:1 entre la card PQC y la columna derecha (mismo factor de grow), lo que afecta cuanto espacio real le queda al nivel interno.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Verificar margen en el nivel externo (card PQC + columna) contra max-w-6xl",
+                "Calcular el ancho real de la columna derecha tras la redistribucion de grow, y verificar margen del nivel interno contra ese ancho real menos su propio padding",
+                "Confirmar que las imagenes con aspect-ratio explicito eviten el reset global"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "stack": "tailwind-flex-bento-anidado",
+                "path": "src/components/sections/HsmBeyond.vue",
+                "operation": "revision-responsive-bento-dos-niveles"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:21",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:1"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:75257a17-50e8-496c-a196-dc19e551ee04",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.9",
+              "overlay_revision": 99,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:b0536d5ac081c5c5f9aecd57bb864e19ba09248bf6889d8b66849c1656b3bde9",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:21",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:d0ea2118d2585c32b8b6c575722725f993b937ec92276b4a46c0222321809062"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:efb8d260195f4da3fe18b1a1400d1d427e2745440e127bfa6112030cb83d8d42"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:1",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:e7efd510de1e77388dec78ba65dd2c67744f3105baa329b0d93763b544ad83f2"
+                }
+              ],
+              "query_revision": "sha256:60cb87c1ba258a723e05eed3b78a81bc4f7e6d468cdce092ff6817889e7eeda2",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 11376,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 3,
+                "used_excerpt_chars": 1470,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:4:8",
+            "at": "2026-08-17T22:06:06.390Z",
+            "intent": "Revisar HsmSteps, el riel de celdas mencionado explicitamente al abrir la tarea. No aparecio decision:2:5 (el riel auxiliar de SpeiWhy) entre los candidatos -posiblemente porque quedo sin etiqueta estable, ya sabido de una sesion anterior- pero si aparecio un caso del genoma sobre rieles duales contextuales. Se completa la verificacion con algebra propia: halfCell*2+(n-1)*cell=100% para cualquier n, confirmado. La fila de pasos usa basis:cell SIN gap horizontal (gap-y-10 solo afecta filas envueltas), asi que el margen es exactamente 0% -distinto del defecto de decision:3:22 (basis+GAP excediendo 100%): aca no hay gap adicional consumiendo margen, y el rango de encogimiento hasta min-w-[14rem] (39px por item) es mas que suficiente para absorber variacion real del navegador.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Revision responsive de HsmSteps, el riel de celdas: arcos conectores arriba (media celda + (n-1) arcos de celda completa + media celda) y pasos numerados abajo, ambos derivados del conteo de pasos (100/n, 50/n) en vez de escritos a mano. Verificar algebraicamente que halfCell*2 + (n-1)*cell = 100% para cualquier n (no solo n=5), y verificar la fila de pasos: usa flexBasis:cell (20% en n=5) SIN gap horizontal (gap-y-10 solo afecta filas envueltas), asi que el margen contra el contenedor es exactamente 0% en vez de negativo -diferente del defecto de decision:3:22 que exigia basis+gap excediendo el 100%. Verificar si un margen exacto de 0% (sin gap adicional) es aceptable dado el rango de encogimiento hasta min-w-[14rem].",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Verificar algebraicamente que el riel de arcos suma exactamente 100% para cualquier conteo de pasos",
+                "Determinar si un margen de 0% en basis (sin gap horizontal adicional) es distinto del defecto ya documentado de basis+gap excediendo el 100%",
+                "Verificar que el rango de encogimiento hasta min-w-[14rem] sea suficiente"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "stack": "tailwind-flex-riel-celdas",
+                "path": "src/components/sections/HsmSteps.vue",
+                "operation": "revision-responsive-riel-celdas-derivadas"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+              "case:tmx-sidebar-doble-riel-contextual",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:19"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:c5ed2496-4cd0-4747-8ebc-5a1af173b5cf",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.9",
+              "overlay_revision": 101,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:ced2f4026c7bd6ed576ef218aaac798cab7a538b1fd26bf30545d90c4f8a10e6",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:efb8d260195f4da3fe18b1a1400d1d427e2745440e127bfa6112030cb83d8d42"
+                },
+                {
+                  "id": "case:tmx-sidebar-doble-riel-contextual",
+                  "source": "genome",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:485ada1a4e6540233ca9397e7748afa7c8c0567358e501a66c2b4a63ea28769c"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:19",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:a2a134f7b13d29564a7a563289f6564d6184f4fdb9ebb1e1d078157d6bba9536"
+                }
+              ],
+              "query_revision": "sha256:597a96241b2add4c37cfe7caa11ab010e6cf3fe39dbae038c375553ecb893498",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 9360,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 3,
+                "used_excerpt_chars": 960,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:4:9",
+            "at": "2026-08-17T22:07:27.528Z",
+            "intent": "Revisar HsmSupport: el filete divisorio confirma decision:2:19 (linea divisoria pertenece a un vecino, gateada a cuando siguen lado a lado) y el boton confirma decision:2:4 (padre flex-col con items-start). Se completa con verificacion numerica propia en el punto EXACTO de la transicion del breakpoint, no solo en desktop amplio.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Revision responsive de HsmSupport: banda con fila de 5 compromisos separados por filetes verticales (border-l) en vez de gap, y el filete izquierdo esta gateado a lg-2 para evitar que cuelgue suelto al envolver -exactamente el patron que decision:2:19 documenta (una linea divisoria pertenece a un vecino y debe gatearse a cuando esos vecinos siguen lado a lado). Verificacion numerica en el punto exacto de la transicion (viewport=991px, breakpoint lg-2): 5 items x basis-48(192px) = 960px demanda, contra ~959px disponible (991px viewport menos px-4=32px, ya que lg=1024 no se alcanzo aun) -960 excede por 1px justo en el limite. Verificar si ese 1px de exceso en el punto exacto de activacion del filete es un riesgo real o si el rango de encogimiento hasta min-w-[12rem] lo absorbe sin producir el filete colgante que el comentario advierte.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Confirmar que decision:2:19 (linea divisoria gateada por vecino) aplica correctamente aqui",
+                "Verificar el punto exacto de transicion del breakpoint donde se activa el filete, no solo el caso desktop amplio",
+                "Confirmar boton con padre flex ya validado por decision:2:4"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "stack": "tailwind-flex-divisor-gateado",
+                "path": "src/components/sections/HsmSupport.vue",
+                "operation": "revision-responsive-divisor-en-limite-breakpoint"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:19",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:1"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:c7121258-eb47-4287-8d01-4cb2db49e4dc",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.9",
+              "overlay_revision": 103,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:82bd29b47468303bdc4000c1ab758e1a5132a8f3cd43acc8ada38f841f14eda7",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:19",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:a2a134f7b13d29564a7a563289f6564d6184f4fdb9ebb1e1d078157d6bba9536"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:efb8d260195f4da3fe18b1a1400d1d427e2745440e127bfa6112030cb83d8d42"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:1",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:e7efd510de1e77388dec78ba65dd2c67744f3105baa329b0d93763b544ad83f2"
+                }
+              ],
+              "query_revision": "sha256:8b79923ae480ed1bcfff066f3abc3ecd9dbb23267dd239ff6c463e944a450cb0",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 11486,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 3,
+                "used_excerpt_chars": 1371,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:4:10",
+            "at": "2026-08-17T22:08:12.266Z",
+            "intent": "Revisar HsmFaq: acordeon en columna unica, sin reflow de fila. El sistema marco decision:3:22 como scope-incompatible -correcto, no aplica aqui porque no hay basis/gap en juego. Icono shrink-0 + texto sin restriccion es un patron flex estandar y seguro: el texto se envuelve libremente, el icono mantiene su tamaño.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Revision responsive de HsmFaq: acordeon en columna unica (sc-article flex-col), sin reflow de filas ni basis/gap. El summary usa flex justify-between con el texto de la pregunta (sin shrink-0, se envuelve libremente) y el chevron con shrink-0 (tamaño fijo). Verificar que este patron de icono fijo + texto flexible sea seguro en anchos angostos.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Confirmar que un icono shrink-0 junto a texto sin restriccion de ancho no produzca overflow",
+                "Determinar si aplica algun precedente de basis/gap dado que no hay reflow de fila en este componente"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "stack": "tailwind-flex-columna-unica",
+                "path": "src/components/sections/HsmFaq.vue",
+                "operation": "revision-responsive-acordeon-columna-unica"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:20",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:13"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:db5dfa5c-4753-4ee5-98b7-c1e9c549898e",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.9",
+              "overlay_revision": 105,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:5dce9779c239d7892a300cbb70fc36c3efe02134918eff54e4123d8ef67d8166",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:20",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:540a1b4323e309d99f9cf16575c83a270205a725343030da69e357d06ce6dddb"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:13",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:465ea5122e136eab516b2aa0e3f2f9c5e359a7c7b27749308ef069b7c72055ce"
+                }
+              ],
+              "query_revision": "sha256:f0318007fc944c30efa973cd7115d43cca51b224d45728d43452c06fa2631f49",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 8003,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 2,
+                "used_excerpt_chars": 782,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:4:11",
+            "at": "2026-08-17T22:08:15.107Z",
+            "intent": "Revisar HsmFinalCta: panel de cierre en columna unica, boton confirmado por decision:2:4 (padre flex-col items-center). decision:3:22 marcado scope-incompatible, correcto, no hay basis/gap en este componente.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Revision responsive de HsmFinalCta: panel de cierre en columna unica (flex-col items-center), sin reflow de fila. El boton .btn-custom es hijo directo de ese mismo flex-col con items-center -mismo patron ya confirmado por decision:2:4 en HsmDataLocation y HsmSupport.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Confirmar boton hijo de flex-col items-center via decision:2:4",
+                "Determinar si un panel en columna unica sin basis/gap necesita alguna verificacion adicional"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "stack": "tailwind-flex-columna-unica",
+                "path": "src/components/sections/HsmFinalCta.vue",
+                "operation": "revision-responsive-panel-cierre-columna-unica"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+              "case:clients-notification-panel",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:24"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:03ef2446-19b8-42b5-80d0-2d0b00984ae3",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.9",
+              "overlay_revision": 105,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:3e94ee0b6fce8af4cd1be78b47ee50135b6a7d7faaee6d1f152c085581561e46",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:efb8d260195f4da3fe18b1a1400d1d427e2745440e127bfa6112030cb83d8d42"
+                },
+                {
+                  "id": "case:clients-notification-panel",
+                  "source": "genome",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:3817340b7ea17d95c78b17972cc6f7ad8991b4ccb68f20e2e2a712a173bfe879"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:24",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:eda243717ade12c0122ba9f26c961c78d73564fa101d8f3dd3b12288b64c12d3"
+                }
+              ],
+              "query_revision": "sha256:dcec7a7a0b7517faf9a6cc55142ba6ec7b4ab4515a4cd46942d68f6be6565b5c",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 8854,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 3,
+                "used_excerpt_chars": 824,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          }
+        ],
+        "decisions": [
+          {
+            "id": "decision:4:1",
+            "kind": "local",
+            "rationale": "Revision responsive de HsmHero contra los tres precedentes que la consulta trajo. Verificado con aritmetica real, no de memoria: basis de las dos columnas (34rem=340px + 38rem=380px) mas gap-10 (10 x --spacing 0.4rem = 40px) suman 760px de demanda natural, contra un contenedor max-w-7xl de 1280px (--container-7xl: 128rem) -sobra margen, no hay el defecto de decision:3:22 donde el basis por si solo ya consumia el 100% sin dejar nada para el gap. El piso de min-width (28rem+28rem+gap=600px) es un punto de colapso razonable, no prematuro.\\n\\nEl video de la columna de media ya lleva w-full + aspect-[4/3] explicitos, asi que no cae en el reset global de decision:2:21 (img sin tope que se estira y arrastra su contenedor): su altura queda gobernada por el aspect-ratio, no por el contenido, y escala proporcional al angostarse la columna.\\n\\nSin cambios de codigo: la seccion ya estaba correctamente construida desde su version original. Se registra la revision como evidencia de que la seccion fue auditada y con que resultado, no como hallazgo de un defecto nuevo.",
+            "evidence": [
+              "src/components/sections/HsmHero.vue",
+              "src/assets/tailwind.css"
+            ],
+            "consultations": [
+              "consult:4:1"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:2",
+            "kind": "local",
+            "rationale": "Revision responsive de HsmPains. Aritmetica verificada: basis-64 (64 x --spacing 0.4rem = 256px) x3 items = 768px, mas gap-8 (32px) x2 huecos = 64px, total 832px contra max-w-5xl (--container-5xl: 102.4rem = 1024px) -sobra margen, sin el defecto de decision:3:22. Piso de min-width (20rem x3 + gaps = 664px) es punto de colapso razonable.\\n\\nLos iconos llevan h-10 w-10 explicitos (ambas dimensiones, no solo una), asi que no caen en el reset global de decision:2:21: el navegador nunca necesita adivinar su tamaño desde el contenido.\\n\\nSin cambios de codigo. Segunda seccion consecutiva que pasa revision limpia usando el mismo riel ya establecido (flex-wrap+grow+basis, la misma forma que IndustriesGrid, HsmHero y el patron promovido del genoma) -consistente con que las vistas de este proyecto comparten una sola forma de resolver filas responsive, no una por seccion.",
+            "evidence": [
+              "src/components/sections/HsmPains.vue",
+              "src/assets/tailwind.css"
+            ],
+            "consultations": [
+              "consult:4:2"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:3",
+            "kind": "local",
+            "rationale": "Revision responsive de HsmDataLocation. Aritmetica: basis 32rem(320px)+30rem(300px)+gap-10(40px)=660px contra max-w-6xl(1152px) -margen sano. Piso min-width: 26rem+26rem+40px=560px, colapso razonable.\\n\\nEl boton .btn-custom no lleva wrapper flex dedicado como en otras secciones, y la consulta trajo decision:2:4 -el mixin de boton se estira SOLO si su padre no es un contenedor flexible. Verificado: el padre inmediato del boton es un flex-col (items-center/md:items-start) que ya envuelve TODA la columna (titulo, parrafo, boton), asi que el boton es un item de ese flex, no una caja de bloque suelta. Cumple la condicion exacta que decision:2:4 exige, sin necesitar un wrapper adicional: la alineacion de toda la columna ya la resuelve.\\n\\nVideo con w-full+aspect-[4/3], a salvo del reset global de decision:2:21. Sin cambios de codigo.",
+            "evidence": [
+              "src/components/sections/HsmDataLocation.vue",
+              "src/assets/tailwind.css"
+            ],
+            "consultations": [
+              "consult:4:3"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:4",
+            "kind": "local",
+            "rationale": "Revision responsive de HsmOrgMosaic, la seccion mas compleja hasta ahora (sc-article anidado, sancionado por su propio comentario). Se separan dos cosas de naturaleza distinta, a proposito, en vez de forzar un veredicto unico:\\n\\n1) VERIFICADO por aritmetica: los tres bloques externos suman 1220px de basis (40rem+34rem+40rem+gap-10x2) contra max-w-7xl (1280px) -solo 60px de margen antes de necesitar encoger, pero el piso de min-width (30rem+28rem+30rem+gaps=960px) deja 320px de rango de encogimiento gradual antes de forzar wrap. No hay overflow ni wrap prematuro: el margen ajustado en basis no es lo mismo que falta de margen para encoger. El boton final SI lleva wrapper flex dedicado (a diferencia de HsmDataLocation), asi que decision:2:4 no aplica ninguna alerta aqui.\\n\\n2) NO VERIFICADO, declarado explicitamente: el gap-32 (128px) entre la card exterior y la columna interior de 2 cards crea el escalonado cuando las sub-columnas estan lado a lado. El genoma no tiene precedente sobre si ese mismo hueco se sigue leyendo como escalonado intencional o como un vacio extraño una vez que TODO colapsa a una sola columna en mobile -esa es una pregunta de lectura visual, no de aritmetica, y no se puede responder leyendo el codigo. Se deja pendiente de confirmacion visual humana en vez de asumir un veredicto.",
+            "evidence": [
+              "src/components/sections/HsmOrgMosaic.vue",
+              "src/assets/tailwind.css"
+            ],
+            "consultations": [
+              "consult:4:4"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:5",
+            "kind": "novel",
+            "rationale": "decision:3:22 establece que basis+gap debe dejar margen positivo contra el contenedor -no que baste con que el margen sea positivo. Aca el margen era positivo (8px) y aun asi era fragil: en un contenedor con padding propio anidado dentro de otro con padding propio (panel px-6/lg-2:px-12 dentro de seccion px-4/lg:px-8), la demanda de basis+gap llegaba a 1048px contra 1056px disponibles a ancho completo. 8px es del orden de un redondeo de subpixel o del ancho de una scrollbar no superpuesta (tipicamente 15-17px en Windows) -cualquiera de los dos puede consumir ese margen y producir un wrap o una compresion visible que nadie pidio, sin que el codigo se vea incorrecto a simple lectura.\\n\\nSe corrigio bajando las dos columnas laterales de basis-[30rem] a basis-[28rem] (ahorra 40px combinados), subiendo el margen real a 48px -en linea con el resto de las secciones ya revisadas en esta tarea (60-500px), en vez de quedar como un caso aislado y fragil.\\n\\nGeneraliza mas alla de este componente: verificar basis+gap contra el contenedor no basta con confirmar que el resultado es positivo. Cuando el contenedor tiene padding propio ANIDADO dentro de otro contenedor con padding propio (un panel con su propio padding, dentro de una seccion con el suyo), el margen disponible se reduce mas de lo que una lectura superficial sugiere, y hay que calcularlo explicitamente sumando TODOS los paddings involucrados, no solo el del contenedor mas cercano. Un margen debe medirse contra algo mas que cero: contra el rango tipico de variacion que el navegador introduce por su cuenta (scrollbar, redondeo).",
+            "projection": "etiqueta: margen-positivo-no-basta-debe-superar-la-variacion-del-navegador — al verificar basis+gap contra un contenedor, no alcanza con confirmar que el margen es positivo: tiene que superar el rango tipico de variacion que el navegador introduce por su cuenta (ancho de scrollbar no superpuesta, redondeo de subpixel), tipicamente 15-20px. Cuando el contenedor tiene padding propio anidado dentro de otro contenedor con padding propio, hay que sumar TODOS los paddings involucrados para el calculo, no solo el del contenedor mas cercano -un margen que se ve sano contra un solo nivel de padding puede ser fragil una vez contados todos.",
+            "evidence": [
+              "src/components/sections/HsmTechDiagram.vue",
+              "src/assets/tailwind.css"
+            ],
+            "consultations": [
+              "consult:4:5"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:6",
+            "kind": "local",
+            "rationale": "Revision responsive de HsmUseCases. A diferencia de secciones anteriores (2-3 items en una fila), aca 6 items nunca caben en una sola fila: el flex-wrap decide cuantas columnas caben y reflowa a 2+ filas por diseño, ya documentado en el comentario del componente. Verificado con el criterio de margen establecido en decision:4:5 (superar 15-20px de variacion del navegador): en lg, gap-12(48px) + 3 cards de basis-72(288px) = 960px contra max-w-5xl(1024px) = 64px de margen, sano. El aumento de gap en lg es deliberado (acerca las cards al cuadrado) y no compromete el margen.\\n\\nEl boton .btn-custom ya tiene wrapper flex dedicado, y decision:2:4 cita este mismo archivo como evidencia ya validada en una tarea anterior. Iconos con h-16 w-16 explicitos, a salvo de decision:2:21. Sin cambios de codigo.",
+            "evidence": [
+              "src/components/sections/HsmUseCases.vue",
+              "src/assets/tailwind.css"
+            ],
+            "consultations": [
+              "consult:4:6"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:7",
+            "kind": "local",
+            "rationale": "Revision responsive de HsmBeyond, bento de dos niveles. Nivel externo: basis 36rem(360px)+62rem(620px)+gap-6(24px)=1004px contra max-w-6xl(1152px)=148px margen, sano. Ambos hijos tienen flex-grow:1 (via sc-section) con el MISMO factor, asi que el espacio extra (148px) se reparte 1:1 sin importar que sus basis sean distintos -74px cada uno- dejando la columna derecha en ~694px de ancho real.\\n\\nNivel interno: cada card horizontal (imagen+texto, basis-72 x2 + gap-6 = 600px) vive dentro de la columna derecha (~694px) menos su propio padding p-5 (40px) = ~654px disponibles. Margen ~54px, por encima del piso de 15-20px de decision:4:5.\\n\\nImagenes con aspect-[7/8] y aspect-square + w-full explicitos, a salvo del reset global de decision:2:21. Sin cambios de codigo.",
+            "evidence": [
+              "src/components/sections/HsmBeyond.vue",
+              "src/assets/tailwind.css"
+            ],
+            "consultations": [
+              "consult:4:7"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:8",
+            "kind": "novel",
+            "rationale": "Revision responsive de HsmSteps, el riel de celdas que Fredy señalo al abrir esta tarea. Verificado ALGEBRAICAMENTE, no solo con el n=5 actual: halfCell*2 + (n-1)*cell = 2*(50/n) + (n-1)*(100/n) = 100/n + (100n-100)/n = 100n/n = 100%, para CUALQUIER n. El riel de arcos siempre cierra exacto, confirmando por que el comentario del componente dice que deriva del conteo en vez de escribirse a mano: la propiedad se sostiene aunque cambie el numero de pasos.\\n\\nLa fila de pasos usa flexBasis:cell (20% en n=5) sin ningun gap horizontal (gap-y-10 solo aplica entre filas cuando hay wrap), asi que el margen contra el contenedor es EXACTAMENTE 0%, no negativo. Esto se distingue del defecto de decision:3:22/CaasStart, que exigia basis+GAP excediendo el 100% -aca no hay gap adicional restando margen. Un margen de 0% sin gap no es el mismo defecto que un margen negativo con gap: el primero solo significa que en el caso ideal no hace falta encoger nada, y el rango real de encogimiento hasta min-w-[14rem] (39px por item, 196px en la fila) es mas que suficiente para absorber cualquier variacion real de navegador sin tocar el piso.\\n\\nEsto refina decision:4:5 en vez de contradecirla: la regla de margen minimo (15-20px) aplica cuando basis+gap ya estan sumando MAS del 100% y dependen de shrink para caber; cuando basis solo llega a exactamente 100% sin gap adicional, lo que hay que verificar no es un margen previo sino que el RANGO DE ENCOGIMIENTO (basis menos min-width) sea generoso, que aca lo es.",
+            "projection": "etiqueta: rango-de-encogimiento-no-margen-previo-cuando-basis-suma-exacto-100 — cuando flex-basis por conteo suma exactamente 100% de su contenedor SIN gap horizontal adicional, el margen de 0% no reproduce el defecto de basis+gap excediendo el 100%: lo que hay que verificar en ese caso es que el rango entre basis y min-width sea generoso (no el criterio de margen previo de 15-20px, que aplica cuando hay que encoger DESDE una demanda ya excedida). Ambos criterios son formas del mismo principio -verificar la aritmetica real, no asumir que \"positivo\" o \"cero\" ya es suficiente por si solo- pero se aplican a situaciones distintas y no deben confundirse.",
+            "evidence": [
+              "src/components/sections/HsmSteps.vue"
+            ],
+            "consultations": [
+              "consult:4:8"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:9",
+            "kind": "local",
+            "rationale": "Revision responsive de HsmSupport. El filete izquierdo gateado a lg-2 (lg-2:border-l) es exactamente el patron de decision:2:19: la linea pertenece al vecino de la derecha y solo aparece cuando los 5 compromisos ya estan lado a lado, evitando el borde colgante que el propio comentario del componente anticipa.\\n\\nVerificado en el punto EXACTO de la transicion, no solo en desktop amplio: a viewport=991px (el breakpoint lg-2), la demanda es 960px (5 x basis-48/192px, sin gap horizontal -la separacion es por borde, no por gap) contra ~959px disponibles (991 menos px-4=32px, ya que lg=1024 todavia no se alcanza). Excede por apenas 1px justo en el limite, pero el rango de encogimiento hasta min-w-[12rem] (72px por item, 360px en la fila) absorbe eso sin esfuerzo -no hay riesgo de que el filete se active un instante antes de que los 5 quepan realmente.\\n\\nBoton dentro de flex max-w-lg flex-col items-start, mismo patron ya confirmado por decision:2:4. Sin cambios de codigo.",
+            "evidence": [
+              "src/components/sections/HsmSupport.vue",
+              "src/assets/tailwind.css"
+            ],
+            "consultations": [
+              "consult:4:9"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:10",
+            "kind": "local",
+            "rationale": "Revision responsive de HsmFaq. Columna unica, sin flex-wrap de fila ni basis/gap -el sistema marco correctamente decision:3:22 como scope-incompatible. El summary combina un span de texto sin restriccion (se envuelve libremente en varias lineas si hace falta) con un icono shrink-0 (tamaño fijo, nunca se comprime): patron flex estandar de \"un elemento flexible + un elemento fijo con gap entre ambos\", sin riesgo de overflow en ningun ancho porque el unico elemento con ancho variable es el que puede envolver. Sin cambios de codigo.",
+            "evidence": [
+              "src/components/sections/HsmFaq.vue"
+            ],
+            "consultations": [
+              "consult:4:10"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:11",
+            "kind": "local",
+            "rationale": "Revision responsive de HsmFinalCta, zona final de HSM. Columna unica (flex-col items-center), sin basis/gap -decision:3:22 correctamente scope-incompatible. Boton .btn-custom hijo directo del mismo flex-col con items-center, mismo patron ya confirmado por decision:2:4 en HsmDataLocation y HsmSupport dentro de esta misma tarea. Sin cambios de codigo.\\n\\nCon esta seccion se completa la revision de las 11 zonas de HSM: 1 correccion real (HsmTechDiagram, margen fragil), 1 item pendiente de confirmacion visual (HsmOrgMosaic, escalonado al colapsar), y 9 secciones sin cambios necesarios.",
+            "evidence": [
+              "src/components/sections/HsmFinalCta.vue"
+            ],
+            "consultations": [
+              "consult:4:11"
+            ],
+            "status": "proposed"
+          }
+        ],
+        "validation": {},
+        "change_set": {
+          "base_checkpoint": "checkpoint:base:4",
+          "files": {
+            "added": [],
+            "modified": [],
+            "removed": []
+          }
+        },
+        "result": {},
+        "boundary": {
+          "mode": "normal",
+          "declared_at": "2026-08-17T21:51:30.566Z",
+          "measurement_eligible": true,
+          "prior_work": null,
+          "base": {
+            "status": "fresh",
+            "target": "src",
+            "captured_at": "2026-08-17T21:51:30.440Z",
+            "source_hash": "sha256:e3107cff1734c923b9b5cc4b883a7c3f506d53db573190598923ce095a9fc913",
+            "graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+            "preexisting_delta": {
+              "nodes": {
+                "added": [],
+                "changed": [],
+                "removed": []
+              },
+              "edges": {
+                "added": [],
+                "changed": [],
+                "removed": []
+              },
+              "synapses": {
+                "added": [],
+                "changed": [],
+                "removed": []
+              },
+              "curated_preserved": {
+                "node_annotations": 0,
+                "edges": 1,
+                "synapses": 1,
+                "patterns": 0,
+                "cases": 0,
+                "exceptions": 0,
+                "projections": 18
+              },
+              "orphans": [
+                {
+                  "kind": "rationale",
+                  "id": "e20",
+                  "from": "src/components/sections/ContactSection.vue",
+                  "to": "src/schemas/contactSchema.ts"
+                }
+              ],
+              "orphans_resolved": []
+            },
+            "excluded_from_task": true
+          },
+          "close": null
+        }
       }
     ],
     "checkpoints": [
@@ -4779,6 +5881,32 @@
               "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:23",
               "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:24"
             ]
+          }
+        }
+      },
+      {
+        "id": "checkpoint:base:4",
+        "parent": "checkpoint:3",
+        "task": "task:frt-cnct-web:4",
+        "kind": "task-baseline",
+        "created_at": "2026-08-17T21:51:30.566Z",
+        "graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+        "curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+        "delta": {
+          "kind": "task-baseline",
+          "excluded_from_task": true,
+          "derived": {
+            "attribution": "preexisting",
+            "verified": true,
+            "nodes_added": [],
+            "nodes_changed": [],
+            "nodes_removed": [],
+            "edges_added": [],
+            "edges_changed": [],
+            "edges_removed": [],
+            "synapses_added": [],
+            "synapses_changed": [],
+            "synapses_removed": []
           }
         }
       }

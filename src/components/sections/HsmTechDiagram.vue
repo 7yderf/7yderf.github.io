@@ -5,7 +5,14 @@
      El centro es un contenedor relative: el fondo de conectores va en absolute
      inset-0 (se rige por ese relative, no por la seccion) y el HSM se apila
      encima. Asi las lineas escalan con la columna en vez de necesitar
-     posiciones calculadas por breakpoint. -->
+     posiciones calculadas por breakpoint.
+
+     Columnas laterales en 28rem, no 30rem: con el padding propio del panel
+     (px-6/lg-2:px-12) restando al max-w-6xl, 30rem dejaba solo 8px de margen
+     entre la demanda de basis+gap y el contenedor disponible — margen real
+     pero demasiado fino, al borde de lo que un redondeo de pixel o una
+     scrollbar puede consumir. 28rem sube ese margen a 48px, en linea con el
+     resto de secciones de esta vista. -->
 <template>
   <section class="sc-section w-full px-4 py-8 lg:px-8 lg-2:py-16">
     <div class="mx-auto w-full max-w-6xl rounded-3xl bg-primary-soft px-6 py-12 lg-2:px-12 lg-2:py-16">
@@ -21,7 +28,7 @@
       </div>
 
       <article class="sc-article mt-12 flex-wrap items-stretch justify-center gap-6">
-        <div class="sc-section flex min-w-[26rem] basis-[30rem] flex-col justify-between gap-6">
+        <div class="sc-section flex min-w-[26rem] basis-[28rem] flex-col justify-between gap-6">
           <HsmTechCard
             v-for="item in leftItems"
             :key="item.label"
@@ -49,7 +56,7 @@
           >
         </div>
 
-        <div class="sc-section flex min-w-[26rem] basis-[30rem] flex-col justify-between gap-6">
+        <div class="sc-section flex min-w-[26rem] basis-[28rem] flex-col justify-between gap-6">
           <HsmTechCard
             v-for="item in rightItems"
             :key="item.label"
