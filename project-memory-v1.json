@@ -1,7 +1,7 @@
 {
   "$schema": "https://eure-k.local/schemas/project-memory-v1.json",
   "schema": "eure-k.project-memory/v1",
-  "revision": 121,
+  "revision": 131,
   "project": {
     "id": "frt-cnct-web",
     "repository_fingerprint": "git-remote-v1:sha256:9cecfa5ed6040202f52f46768540e1b8a10fa6c11be8f5acbcaf8dbea368cb60",
@@ -28,7 +28,7 @@
     "revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
     "server_version": "0.30.9",
     "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
-    "last_consulted_at": "2026-08-17T22:22:30.425Z",
+    "last_consulted_at": "2026-08-17T22:25:09.525Z",
     "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7"
   },
   "graph": {
@@ -5866,6 +5866,404 @@
                 }
               }
             }
+          },
+          {
+            "id": "consult:4:18",
+            "at": "2026-08-17T22:23:32.361Z",
+            "intent": "Confirmar SpeiIntelligence: decision:2:21 cita este mismo archivo como evidencia ya validada de la defensa contra el reset global. decision:2:4 confirma el boton. Sin hueco en los 4 niveles de ancho, ya cubren todo el rango por diseño desde la construccion original.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Revision responsive de SpeiIntelligence: carrusel Swiper con slides-per-view=\"auto\" y ancho de slide gobernado por CSS en 4 niveles (86% base, 60% a 535px, 44% a 768px, 30% a 1200px) -ya cubre todo el rango de anchos por diseño, sin fallback \"hidden\" necesario. Ya se corrigio el orden de hidratacion en una tarea anterior (useSwiperInit). Imagen con w-full+max-w-[22rem] explicito, ya documentado contra el reset global. Verificar si queda algun hueco en los 4 niveles o algun otro riesgo no cubierto.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Confirmar que los 4 niveles de ancho de slide cubren todo el rango sin huecos",
+                "Confirmar que la imagen con max-w explicito evita el reset global",
+                "Confirmar boton con wrapper dedicado"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "stack": "vue3-swiper-element-responsive-por-diseno",
+                "path": "src/components/sections/SpeiIntelligence.vue",
+                "operation": "revision-responsive-carrusel-ya-cubierto"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:21",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:24"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:e37dfbb7-0c84-46ac-a3c3-1e31ab8fceca",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.9",
+              "overlay_revision": 121,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:e0b9d264185f75105ae01a8c1c18a4bcd582564d9bbd36b3926d483d5852ec52",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:21",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:d0ea2118d2585c32b8b6c575722725f993b937ec92276b4a46c0222321809062"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:efb8d260195f4da3fe18b1a1400d1d427e2745440e127bfa6112030cb83d8d42"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:24",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:eda243717ade12c0122ba9f26c961c78d73564fa101d8f3dd3b12288b64c12d3"
+                }
+              ],
+              "query_revision": "sha256:a2f03560a3d2051f2354689bce0286a17e43e86d0c164cf917664550bbfa7e2d",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 10650,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 3,
+                "used_excerpt_chars": 1308,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:4:19",
+            "at": "2026-08-17T22:24:11.290Z",
+            "intent": "Confirmar SpeiStats: divide-x gateado a lg-2 sigue el patron de decision:2:19. decision:3:22 correctamente scope-incompatible -flex-1 no es basis fijo, no hay aritmetica de margen que verificar de la misma forma.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Revision responsive de SpeiStats: 4 metricas con flex-1 (basis:0%, grow:1, shrink:1) en vez de basis fijo -los items siempre se reparten el 100% de la fila exacto, sin aritmetica de basis+gap. min-w-[16rem] como piso de colapso. divide-x gateado a lg-2, mismo patron de decision:2:19 (linea divisoria que colgaria suelta al envolver, ya declarado explicitamente en el comentario del componente). Verificar que flex-1 sea seguro y que el patron de divide-x gateado sea correcto.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Confirmar que flex-1 (basis 0) es un mecanismo seguro, distinto pero equivalente en seguridad al basis fijo",
+                "Confirmar que divide-x gateado a lg-2 sigue el patron ya validado de decision:2:19"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "stack": "tailwind-flex-1-divide-x",
+                "path": "src/components/sections/SpeiStats.vue",
+                "operation": "revision-responsive-flex-1-divisor"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:24",
+              "pattern:visual-dos-columnas-responsive",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:19"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:119e6683-027d-4243-93f4-ac423a5aae0b",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.9",
+              "overlay_revision": 123,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:3bdb394e30e43fdc159fabfee5249542018c18f58cd1d44589ea3a21b968d4d2",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:24",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:eda243717ade12c0122ba9f26c961c78d73564fa101d8f3dd3b12288b64c12d3"
+                },
+                {
+                  "id": "pattern:visual-dos-columnas-responsive",
+                  "source": "genome",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:4e7dffcead5dfc1bbcedbb97c95ae412266f96a85170d824a1b012548f69edd5"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:19",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:a2a134f7b13d29564a7a563289f6564d6184f4fdb9ebb1e1d078157d6bba9536"
+                }
+              ],
+              "query_revision": "sha256:f75e265e65aa5c0c90b7895c8371b88c4e1939875bc639103a712b08c4c6849b",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 8623,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 3,
+                "used_excerpt_chars": 745,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:4:20",
+            "at": "2026-08-17T22:24:38.994Z",
+            "intent": "Confirmar SpeiShared: bloque de texto centrado sin flex-wrap ni boton. Ninguno de los precedentes surgidos (boton, columnas, wrap persistente) aplica realmente -no hay elemento flex en juego.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Revision responsive de SpeiShared: banda de texto centrado, max-w-3xl, sin flex-wrap, sin boton, sin imagen. Riesgo minimo por construccion -texto que se envuelve naturalmente dentro de su max-width en cualquier ancho.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Confirmar que un bloque de texto centrado sin elementos flex no tiene riesgo responsive"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "stack": "texto-centrado-simple",
+                "path": "src/components/sections/SpeiShared.vue",
+                "operation": "revision-responsive-bloque-texto"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "pattern:visual-dos-columnas-responsive",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:1",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:24"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:f0b9f54e-9155-45d1-b716-5f3395e5d3f2",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.9",
+              "overlay_revision": 125,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:e3f4d22a2aa08caefdb55db5a8d7c9aeca827d93cc2cceda413ef50bcfcad5ba",
+              "candidate_sources": [
+                {
+                  "id": "pattern:visual-dos-columnas-responsive",
+                  "source": "genome",
+                  "lane": "direct_genome_precedents",
+                  "candidate_revision": "sha256:4e7dffcead5dfc1bbcedbb97c95ae412266f96a85170d824a1b012548f69edd5"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:efb8d260195f4da3fe18b1a1400d1d427e2745440e127bfa6112030cb83d8d42"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:1",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:e7efd510de1e77388dec78ba65dd2c67744f3105baa329b0d93763b544ad83f2"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:24",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:eda243717ade12c0122ba9f26c961c78d73564fa101d8f3dd3b12288b64c12d3"
+                }
+              ],
+              "query_revision": "sha256:d8811aa97e850922c44c30d06d0618b1a65cf99768b2c8be190fab5cd1d15007",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 11686,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 4,
+                "used_excerpt_chars": 1284,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:4:21",
+            "at": "2026-08-17T22:25:07.237Z",
+            "intent": "Confirmar SpeiFaq: mismo patron exacto que HsmFaq, ya revisado en esta misma tarea (decision:4:10). decision:2:13 y decision:3:24 surgieron sin aplicar realmente a este componente.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Revision responsive de SpeiFaq: mismo patron exacto que HsmFaq (icono shrink-0 + texto flexible), ya confirmado sin defecto en decision:4:10 de esta misma tarea.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Confirmar que el patron identico a HsmFaq ya validado se sostiene aqui"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "stack": "tailwind-flex-columna-unica",
+                "path": "src/components/sections/SpeiFaq.vue",
+                "operation": "revision-responsive-acordeon-columna-unica"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "case:tmx-monitor-historia-hsm",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:13",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:24"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:fdf2fb3a-791d-4941-bd28-ee5adf91ad5c",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.9",
+              "overlay_revision": 127,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:2fb60dc6959b19a906e41294eeb10ea42e9995d4cacd518ebc7ee8db7b86d0c1",
+              "candidate_sources": [
+                {
+                  "id": "case:tmx-monitor-historia-hsm",
+                  "source": "genome",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:560c08f76b9cf981c142354b80b17cecf3659b48cd58c94436756eaca867e267"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:13",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:465ea5122e136eab516b2aa0e3f2f9c5e359a7c7b27749308ef069b7c72055ce"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:24",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:eda243717ade12c0122ba9f26c961c78d73564fa101d8f3dd3b12288b64c12d3"
+                }
+              ],
+              "query_revision": "sha256:df058271859aad1e9d757b3ee6dfe0d2b1d5a0eb312f203f085b3908edccf184",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 8509,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 3,
+                "used_excerpt_chars": 655,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:4:22",
+            "at": "2026-08-17T22:25:09.525Z",
+            "intent": "Confirmar SpeiFinalCta: mismo patron exacto que HsmFinalCta, ya revisado en esta misma tarea (decision:4:11). Boton hijo directo de flex-col items-center.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Revision responsive de SpeiFinalCta: mismo patron exacto que HsmFinalCta (boton hijo de flex-col items-center), ya confirmado sin defecto en decision:4:11 de esta misma tarea.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Confirmar que el patron identico a HsmFinalCta ya validado se sostiene aqui"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "stack": "tailwind-flex-columna-unica",
+                "path": "src/components/sections/SpeiFinalCta.vue",
+                "operation": "revision-responsive-panel-cierre-columna-unica"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "case:tmx-monitor-historia-hsm",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:13"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:ad2daad4-bdf5-451a-b308-4d830288794b",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.9",
+              "overlay_revision": 127,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:07e6088223d8f189f818e83cc39f31ff3cff83439bd9fb6253f13efafd9fde48",
+              "candidate_sources": [
+                {
+                  "id": "case:tmx-monitor-historia-hsm",
+                  "source": "genome",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:560c08f76b9cf981c142354b80b17cecf3659b48cd58c94436756eaca867e267"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:13",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:465ea5122e136eab516b2aa0e3f2f9c5e359a7c7b27749308ef069b7c72055ce"
+                }
+              ],
+              "query_revision": "sha256:2ff6fb59b5b80fee82b329e8e5b1818a3991b595e03e3a4429c05d7586b65905",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 6256,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 2,
+                "used_excerpt_chars": 368,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
           }
         ],
         "decisions": [
@@ -6082,6 +6480,66 @@
             ],
             "consultations": [
               "consult:4:17"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:18",
+            "kind": "local",
+            "rationale": "Revision responsive de SpeiIntelligence. A diferencia de SpeiStages, este carrusel ya es responsive por diseño desde su construccion original: slides-per-view=\"auto\" con ancho de slide gobernado por CSS en 4 niveles (86%/60%/44%/30% en 0/535/768/1200px) cubre todo el rango sin necesitar ningun fallback oculto. El orden de hidratacion ya se corrigio en una tarea anterior (useSwiperInit). La imagen ya lleva w-full+max-w-[22rem] explicito, y decision:2:21 cita este mismo archivo como evidencia ya validada de esa defensa. Boton con wrapper dedicado, confirmado por decision:2:4. Sin cambios de codigo.",
+            "evidence": [
+              "src/components/sections/SpeiIntelligence.vue"
+            ],
+            "consultations": [
+              "consult:4:18"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:19",
+            "kind": "local",
+            "rationale": "Revision responsive de SpeiStats. flex-1 (basis:0%, grow:1, shrink:1) es un mecanismo distinto pero igualmente seguro al basis fijo: los 4 items siempre se reparten exactamente el 100% de la fila entre si, sin aritmetica de basis+gap que pueda exceder el contenedor -decision:3:22 correctamente scope-incompatible, no aplica. min-w-[16rem]x4=640px es el piso de colapso, razonable.\\n\\ndivide-x gateado a lg-2 sigue el mismo patron ya validado de decision:2:19 (linea divisoria colgaria suelta al envolver), ya declarado explicitamente en el comentario del componente. Sin cambios de codigo.",
+            "evidence": [
+              "src/components/sections/SpeiStats.vue"
+            ],
+            "consultations": [
+              "consult:4:19"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:20",
+            "kind": "local",
+            "rationale": "Revision responsive de SpeiShared. Bloque de texto centrado sin flex-wrap, boton ni imagen -riesgo minimo por construccion. Ninguno de los precedentes que surgieron en la consulta aplica realmente: no hay elemento flex en juego que pueda estirarse, ni basis/gap que verificar. Sin cambios de codigo.",
+            "evidence": [
+              "src/components/sections/SpeiShared.vue"
+            ],
+            "consultations": [
+              "consult:4:20"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:21",
+            "kind": "local",
+            "rationale": "Revision responsive de SpeiFaq. Mismo patron exacto que HsmFaq, ya revisado sin defecto en esta misma tarea (decision:4:10): columna unica, icono shrink-0 + texto flexible sin restriccion, sin riesgo de overflow. Sin cambios de codigo.",
+            "evidence": [
+              "src/components/sections/SpeiFaq.vue"
+            ],
+            "consultations": [
+              "consult:4:21"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:22",
+            "kind": "local",
+            "rationale": "Revision responsive de SpeiFinalCta, zona final de SPEI. Mismo patron exacto que HsmFinalCta, ya revisado sin defecto en esta misma tarea (decision:4:11): boton hijo directo de flex-col items-center. Sin cambios de codigo.\\n\\nCon esta seccion se completa la revision de las 11 zonas de SPEI: 1 correccion real (SpeiOperate, link estirado por stretch default), 1 hallazgo mayor pendiente de decision humana -no de codigo- (SpeiStages, perdida total de contenido por debajo de lg-2), y 9 secciones sin cambios necesarios.",
+            "evidence": [
+              "src/components/sections/SpeiFinalCta.vue"
+            ],
+            "consultations": [
+              "consult:4:22"
             ],
             "status": "proposed"
           }
