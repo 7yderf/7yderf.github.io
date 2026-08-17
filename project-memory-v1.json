@@ -1,7 +1,7 @@
 {
   "$schema": "https://eure-k.local/schemas/project-memory-v1.json",
   "schema": "eure-k.project-memory/v1",
-  "revision": 109,
+  "revision": 121,
   "project": {
     "id": "frt-cnct-web",
     "repository_fingerprint": "git-remote-v1:sha256:9cecfa5ed6040202f52f46768540e1b8a10fa6c11be8f5acbcaf8dbea368cb60",
@@ -28,7 +28,7 @@
     "revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
     "server_version": "0.30.9",
     "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
-    "last_consulted_at": "2026-08-17T22:08:15.107Z",
+    "last_consulted_at": "2026-08-17T22:22:30.425Z",
     "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7"
   },
   "graph": {
@@ -5410,6 +5410,462 @@
                 }
               }
             }
+          },
+          {
+            "id": "consult:4:12",
+            "at": "2026-08-17T22:13:17.699Z",
+            "intent": "Revisar SpeiHero: mismo riel de HsmHero, ya sano. decision:2:21 aplica al reset global cuando NO se da NINGUNA dimension; aqui w-full esta explicito y la altura sigue la proporcion intrinseca del video (declarado asi a proposito en el comentario), asi que no es el mismo mecanismo -es una eleccion deliberada, no una omision.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Revision responsive de SpeiHero: mismo riel de dos columnas que HsmHero (basis-[34rem]+basis-[38rem]+gap-10, ya confirmado sano en decision:4:1), pero el video de la columna derecha NO tiene aspect-ratio fijo -el comentario dice que declara su propia proporcion intrinseca, con w-full explicito y sin altura fijada. Verificar si eso es distinto del reset global de decision:2:21 (que aplica cuando NO se da ninguna dimension) o si es un mecanismo seguro y deliberado.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Confirmar que el riel de dos columnas es identico al ya validado en HsmHero",
+                "Determinar si un video con w-full explicito pero sin aspect-ratio fijo cae en el reset global de decision:2:21 o es un mecanismo distinto y seguro"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "stack": "tailwind-flex-video-aspect-intrinseco",
+                "path": "src/components/sections/SpeiHero.vue",
+                "operation": "revision-responsive-video-sin-aspect-fijo"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:21",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:13"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:907f9ec8-aba0-48dc-9b15-031200c1cddb",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.9",
+              "overlay_revision": 109,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:7423f3be5feb1d72b18d6b3f3ef8b0a9cb5c73abfac7183072ef44ae535f9c2c",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:21",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:d0ea2118d2585c32b8b6c575722725f993b937ec92276b4a46c0222321809062"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:13",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:465ea5122e136eab516b2aa0e3f2f9c5e359a7c7b27749308ef069b7c72055ce"
+                }
+              ],
+              "query_revision": "sha256:73a70bfef8e28f120bf29cf38da737c969bae5c7e10e86498f0f8739e26cd441",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 8031,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 2,
+                "used_excerpt_chars": 854,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:4:13",
+            "at": "2026-08-17T22:13:51.732Z",
+            "intent": "Revisar SpeiRisks contra decision:3:22 (basis+gap) y decision:2:4 (boton). Verificado: 4x224px(basis-56)+3x32px(gap-8)=992px contra max-w-6xl(1152px)=160px margen.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Revision responsive de SpeiRisks: 4 items en fila, flex-wrap+grow+basis-56(224px), min-w-[18rem], gap-8. Mismo riel que HsmPains ya confirmado (decision:4:2). Verificar aritmetica: 4x224+3x32(gap)=992px contra max-w-6xl(1152px). Iconos h-9/w-9 explicitos, boton con wrapper dedicado.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Verificar basis+gap contra el contenedor",
+                "Confirmar iconos con dimension explicita y boton con wrapper"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "stack": "tailwind-flex",
+                "path": "src/components/sections/SpeiRisks.vue",
+                "operation": "revision-responsive-fila-4-items"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:22",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:e2a79925-10b9-4e00-b05e-a96697a46471",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.9",
+              "overlay_revision": 111,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:ded4f0a96543f552371616ca0a96fae2d062a41c7532c74631fdfa61e662a18e",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:22",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:4d255325599edbfc589fdc186bb133ccbd2bc16e3a54c6dd111fda7c2b90f4d2"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:efb8d260195f4da3fe18b1a1400d1d427e2745440e127bfa6112030cb83d8d42"
+                }
+              ],
+              "query_revision": "sha256:04c4f6f378056af84f6d6906022df1de0e5734ed7d2af85e1b747809653f4291",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 7563,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 2,
+                "used_excerpt_chars": 808,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:4:14",
+            "at": "2026-08-17T22:14:25.307Z",
+            "intent": "Revisar SpeiEvolve: la defensa de cada li como flex row contra el reset global de text-align confirma directamente case:frt-cnct-text-align-bloqueado-por-reset-local del genoma, ya curado. Boton confirmado por decision:2:4. decision:3:22 marcado scope-incompatible correctamente. Verificacion propia de aritmetica: 2x384px(basis-96)+24px(gap-6)=792px contra max-w-5xl(1024px)=232px margen.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Revision responsive de SpeiEvolve: 2 columnas (cards con lista), flex-wrap+grow+basis-96(384px), min-w-[28rem], gap-6. El comentario ya documenta una defensa contra el reset global de text-align:center !important en mobile: cada li es flex row para que el text-align no mueva la vineta. Verificar aritmetica y confirmar que esa defensa siga siendo correcta.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Verificar basis+gap contra max-w-5xl",
+                "Confirmar que la defensa contra el reset global de text-align en cada li sigue siendo correcta",
+                "Confirmar boton con wrapper dedicado"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "stack": "tailwind-flex-lista-defendida",
+                "path": "src/components/sections/SpeiEvolve.vue",
+                "operation": "revision-responsive-dos-columnas-lista"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "case:frt-cnct-text-align-bloqueado-por-reset-local",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+              "ptype:consumo-medido-contra-bolsa"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:d6bcfef7-7d49-48ff-85bd-11ad905f70fc",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.9",
+              "overlay_revision": 113,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:c2533f18375a8fe4ed57804b3de5c69c8ef93c74790b4981e43d940575a3f7fc",
+              "candidate_sources": [
+                {
+                  "id": "case:frt-cnct-text-align-bloqueado-por-reset-local",
+                  "source": "genome",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:0b141f0a3ae1bee71a2d2703a0509f3db56ead7a81db17a90d31675d2bc66914"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:efb8d260195f4da3fe18b1a1400d1d427e2745440e127bfa6112030cb83d8d42"
+                },
+                {
+                  "id": "ptype:consumo-medido-contra-bolsa",
+                  "source": "genome",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:20af7d4aaa4b26f4867adaa1747a9e9778ec1ab28cfc49c50b0cfc2800d36f8c"
+                }
+              ],
+              "query_revision": "sha256:a75b69af979b5a1dc389e264ec5d15c22558de12161c9c875ad8768c8ce82d2d",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 7597,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 3,
+                "used_excerpt_chars": 603,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:4:15",
+            "at": "2026-08-17T22:15:22.584Z",
+            "intent": "Buscar precedente sobre un componente interactivo gateado a un breakpoint donde el disparador de la interaccion (hover) vive dentro de la misma region que el breakpoint oculta. Sin receta directa ni precedente compatible en el genoma -confirmado como hallazgo genuinamente nuevo para este proyecto, no una omision de busqueda.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "SpeiStages: componente interactivo de 3 filas (titulos, ilustracion con bandas de color, listas de pasos) sobre una reticula de 7 celdas, con estado de \"activo\" compartido via hover. Las TRES filas estan gateadas con \"hidden ... lg-2:flex\" -por debajo de 991px, ninguna de las tres se muestra. El estado \"active\" arranca en null y SOLO puede cambiar via manejadores @mouseenter que viven DENTRO de esas mismas filas ocultas -por debajo de lg-2 esos manejadores nunca reciben eventos porque estan en elementos display:none, asi que \"active\" nunca puede dejar de ser null. Eso significa que por debajo de 991px: no se ve ningun titulo de etapa, la ilustracion se queda en blanco y negro liso (ninguna banda de color puede activarse nunca), y NINGUNA lista de pasos se renderiza -el contenido real (que explica cada etapa) desaparece por completo, no se reacomoda. Busco precedente sobre componentes interactivos gateados a un breakpoint donde el disparador de una interaccion vive dentro de la misma region oculta que revela.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Confirmar que la perdida de contenido por debajo de lg-2 es real y no una lectura erronea del codigo",
+                "Determinar si existe precedente para este patron (disparador de hover dentro de la misma region que oculta)",
+                "No inventar una solucion de diseño para el fallback movil sin decision humana, dado que implica juicio de diseño sustancial"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "stack": "vue3-hover-state-compartido",
+                "path": "src/components/sections/SpeiStages.vue",
+                "operation": "revision-responsive-perdida-total-de-contenido"
+              },
+              "mode": "exploration",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "pattern:overlay-pantalla-completa-reautenticacion-modulo",
+              "pattern:placeholder-contenido-vs-bloqueo-accion"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:5d4ffaec-34f6-4571-be24-30c3022147eb",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.9",
+              "overlay_revision": 115,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:0bb0a444e7cc8eb7b55d3e8059d65949af5a2958f43b97d4be49168ecbc52eb4",
+              "candidate_sources": [
+                {
+                  "id": "pattern:overlay-pantalla-completa-reautenticacion-modulo",
+                  "source": "genome",
+                  "lane": "directed_exploration",
+                  "candidate_revision": "sha256:287a0c1ccb4575b2e1faee3e05a07ab22a2b269c1a51bdca5291965f564c13ee"
+                },
+                {
+                  "id": "pattern:placeholder-contenido-vs-bloqueo-accion",
+                  "source": "genome",
+                  "lane": "directed_exploration",
+                  "candidate_revision": "sha256:526978841d539590e249ee2c1ec8cd215d280e1ef680c130ef410e224eec32f0"
+                }
+              ],
+              "query_revision": "sha256:d8fbf3f6d4334778eb53d76d4410c30667e2244a9ba67af5139ec61d474816f3",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 4461,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 2,
+                "used_excerpt_chars": 259,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 1
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:4:16",
+            "at": "2026-08-17T22:20:48.036Z",
+            "intent": "Confirmar que el link interno estirado por el default de flex reproduce el mecanismo de decision:2:4 (generaliza mas alla del boton: cualquier elemento flex sin padre que anule stretch se comporta igual). HsmUseCases y HsmPains, ya revisadas en esta tarea, no tienen elementos flex internos (solo img+texto), asi que el mismo default nunca se manifesto ahi -no requieren correccion retroactiva.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "SpeiOperate: la card (flex flex-col) no declara items-center ni items-start, asi que queda en el default de flex, align-items:stretch. Eso no afecta al icono (ancho explicito h-12 w-12) ni a h3/p (block-level, ocupan el ancho igual con o sin stretch), pero SI afecta al NuxtLink interno, que es flex items-center gap-2 -al ser flex genera una caja de bloque, y sin un padre que anule el stretch por defecto, esa caja se estira al ancho completo de la card en vez de ajustarse al contenido (texto + flecha). El texto sigue viendose en su lugar (justify-content por defecto es flex-start), pero el area de click/hover queda mas ancha que el texto visible, y el hover:underline puede dispararse al pasar el mouse sobre espacio vacio a la derecha del texto. Verificar si esto reproduce el patron de decision:2:4 (boton se estira sin padre no-stretch) aplicado a un link en vez de un boton, y si el resto de las cards ya revisadas en esta tarea (HsmUseCases, HsmPains) tienen el mismo default sin haberlo manifestado por no tener un link interno flex.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Confirmar que el link interno sin items-center/items-start en el padre reproduce el patron de decision:2:4 aplicado a un elemento flex distinto del boton",
+                "Determinar la correccion minima (items-start en la card vs self-start en el link)",
+                "Verificar si el mismo default (sin items-center/items-start) aparece en otras cards ya revisadas sin haberse manifestado"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "stack": "tailwind-flex-align-items-default",
+                "path": "src/components/sections/SpeiOperate.vue",
+                "operation": "revision-responsive-link-estirado-por-stretch-default"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "pattern:visual-dos-columnas-responsive",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:b8dd089b-82f8-450a-8cb5-151d228606a5",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.9",
+              "overlay_revision": 117,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:5e1df029593b59f2cd724aa7e0e824c5d85b523bcb8fd80f860e3c927669b2f3",
+              "candidate_sources": [
+                {
+                  "id": "pattern:visual-dos-columnas-responsive",
+                  "source": "genome",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:4e7dffcead5dfc1bbcedbb97c95ae412266f96a85170d824a1b012548f69edd5"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:efb8d260195f4da3fe18b1a1400d1d427e2745440e127bfa6112030cb83d8d42"
+                }
+              ],
+              "query_revision": "sha256:0cb5b54ab18b25328382699f00116b446e318b7a50b16915b49378dab2247a28",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 6449,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 2,
+                "used_excerpt_chars": 548,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:4:17",
+            "at": "2026-08-17T22:22:30.425Z",
+            "intent": "Verificar SpeiWhy: fila de etiquetas con celdas 1:1 (sin medias celdas, ya documentado en el comentario por que 133% seria el error). Sin receta directa sobre shrink-0 en basis por porcentaje exacto -se resuelve con razonamiento propio: el porcentaje flex-basis se distribuye exacto por especificacion, sin arrastre de redondeo entre items, asi que 3x33.333%=100% sin margen de error acumulado. shrink-0 aqui no es un riesgo nuevo sino un requisito legitimo: garantiza que cada columna de etiqueta mantenga el ancho exacto de celda para alinearse con los nodos de abajo -el mismo proposito que justifica el riel completo.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Revision responsive de SpeiWhy: fila de etiquetas (n=nodos, celdas de 100/n SIN medias celdas -el comentario ya documenta por que serian 133% con medias celdas para este caso 1:1) y fila de nodos con conectores gateados a lg-2, usando grow-0 en los nodos para que el flex-grow:1 heredado de sc-section no los estire y empuje el ultimo a una fila nueva -mismo fix ya documentado en la memoria de este proyecto para un problema identico. Nuevo detalle a verificar: las etiquetas llevan shrink-0 ademas de basis exacto en 100% sin gap -a diferencia de HsmSteps (decision:4:8), aqui NO pueden encoger en absoluto si algo empuja el total mas alla de 100%. Verificar si shrink-0 sobre una suma exacta de 100% via porcentaje (no unidad de Tailwind) es seguro dado que el flexbox conserva la proporcion exacta sin arrastre de redondeo, o si esto reintroduce riesgo.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Confirmar que la fila de etiquetas (celdas sin media celda, 1:1 con nodos) sigue siendo matematicamente correcta",
+                "Evaluar si shrink-0 sobre basis por porcentaje exacto a 100% reintroduce riesgo al quitar la red de seguridad del encogimiento",
+                "Confirmar que grow-0 en los nodos sigue resolviendo el mismo problema ya documentado en la memoria del proyecto"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "stack": "tailwind-flex-riel-celdas-shrink-0",
+                "path": "src/components/sections/SpeiWhy.vue",
+                "operation": "revision-responsive-riel-etiquetas-shrink-0"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "pattern:visual-dos-columnas-responsive",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:24",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:19"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:7dd9f4f2-c986-4f86-a517-fbf7eda94f56",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.9",
+              "overlay_revision": 119,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:941a9b118b504f410e5896dcaaae6a68148b8c4ef5c1ce1c8a972f793599a043",
+              "candidate_sources": [
+                {
+                  "id": "pattern:visual-dos-columnas-responsive",
+                  "source": "genome",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:4e7dffcead5dfc1bbcedbb97c95ae412266f96a85170d824a1b012548f69edd5"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:24",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:eda243717ade12c0122ba9f26c961c78d73564fa101d8f3dd3b12288b64c12d3"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:19",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:a2a134f7b13d29564a7a563289f6564d6184f4fdb9ebb1e1d078157d6bba9536"
+                }
+              ],
+              "query_revision": "sha256:417e469ec6336d22c80fac5f1d40c337748aa795f17512c45d37d5ad6cf70d0e",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 8551,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 3,
+                "used_excerpt_chars": 745,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
           }
         ],
         "decisions": [
@@ -5552,6 +6008,80 @@
             ],
             "consultations": [
               "consult:4:11"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:12",
+            "kind": "local",
+            "rationale": "Revision responsive de SpeiHero. Mismo riel de dos columnas que HsmHero, ya confirmado sano (decision:4:1): 34rem+38rem+gap-10=760px contra max-w-7xl(1280px), margen amplio.\\n\\nEl video no tiene aspect-ratio fijo, a diferencia de HsmHero, pero SI tiene w-full explicito -decision:2:21 aplica al reset global que actua cuando NO se declara NINGUNA dimension; aqui la dimension (ancho) esta explicita y la altura sigue la proporcion intrinseca del video a proposito (documentado en el propio comentario del componente), asi que no es una omision que caiga en el reset, es una eleccion deliberada y segura. Boton con wrapper dedicado. Sin cambios de codigo.",
+            "evidence": [
+              "src/components/sections/SpeiHero.vue"
+            ],
+            "consultations": [
+              "consult:4:12"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:13",
+            "kind": "local",
+            "rationale": "Revision responsive de SpeiRisks. Aritmetica: 4 items x basis-56(224px) + 3 gaps x gap-8(32px) = 896+96=992px contra max-w-6xl(1152px)=160px margen, sano. Iconos h-9/w-9 explicitos, boton con wrapper dedicado. Mismo riel ya confirmado en HsmPains (decision:4:2). Sin cambios de codigo.",
+            "evidence": [
+              "src/components/sections/SpeiRisks.vue"
+            ],
+            "consultations": [
+              "consult:4:13"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:14",
+            "kind": "local",
+            "rationale": "Revision responsive de SpeiEvolve. Aritmetica: 2 x basis-96(384px) + gap-6(24px) = 792px contra max-w-5xl(1024px)=232px margen, sano. Boton con wrapper flex justify-start dedicado, confirmado por decision:2:4.\\n\\nLa defensa contra el reset global de text-align:center !important en mobile (cada li como flex row, para que el text-align en el li no mueva la vineta) confirma directamente case:frt-cnct-text-align-bloqueado-por-reset-local, ya CURADO en el genoma -no es una improvisacion de este componente, es un patron ya promovido. Sin cambios de codigo.",
+            "evidence": [
+              "src/components/sections/SpeiEvolve.vue"
+            ],
+            "consultations": [
+              "consult:4:14"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:15",
+            "kind": "novel",
+            "rationale": "Hallazgo, no corregido -requiere decision de diseño, no un ajuste de codigo unilateral. SpeiStages es un componente interactivo de 3 filas (titulos, ilustracion con bandas de color, listas de pasos) sobre estado de hover compartido. Las TRES filas estan gateadas con \"hidden ... lg-2:flex\", y el estado que revela contenido (\"active\", que arranca en null) SOLO puede cambiar via @mouseenter registrados DENTRO de esas mismas filas ocultas. Un elemento con display:none no recibe eventos de puntero -asi que por debajo de 991px \"active\" no puede dejar nunca de ser null.\\n\\nConsecuencia verificada leyendo el codigo, no supuesta: por debajo de lg-2, (1) ningun titulo de etapa se muestra, (2) la ilustracion queda fija en blanco y negro -ninguna banda de color puede activarse jamas-, y (3) NINGUNA lista de pasos se renderiza en absoluto. El contenido real que explica cada etapa -la razon de ser de la seccion- desaparece por completo en mobile/tablet, no se reacomoda a una forma mas simple. Esto es categoricamente distinto de todo lo revisado hasta ahora en esta tarea (margenes, defensas de reset, disparadores de vecino): no es un ajuste de numeros, es una perdida total de contenido en dos tercios del rango de anchos que este proyecto sirve.\\n\\nNo se propone solucion: resolver esto implica una decision de diseño real (¿acordeon por etapa? ¿lista plana sin la interaccion de hover? ¿ilustracion estatica con las 5 bandas ya visibles?), no una correccion mecanica de CSS. Se registra el hallazgo con precision para que la decision se tome con toda la informacion, no para prejuzgarla.",
+            "projection": "etiqueta: disparador-de-hover-dentro-de-la-region-que-oculta-nunca-se-activa — cuando un componente gatea contenido a un breakpoint (hidden...breakpoint:flex) y ADEMAS ese contenido solo se revela via un estado disparado por hover (@mouseenter), verificar donde vive el manejador que dispara ese estado. Si el manejador esta DENTRO de la misma region oculta que el breakpoint controla, el estado nunca puede cambiar por debajo de ese breakpoint -un elemento display:none no recibe eventos de puntero-, y el contenido que ese estado revela queda perdido, no reacomodado. Este patron es facil de no ver leyendo cada fila por separado, porque cada \"hidden lg-2:flex\" individual parece una decision de layout razonable; el defecto solo aparece al trazar el CICLO COMPLETO estado→disparador→region oculta.",
+            "evidence": [
+              "src/components/sections/SpeiStages.vue"
+            ],
+            "consultations": [
+              "consult:4:15"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:16",
+            "kind": "novel",
+            "rationale": "decision:2:4 documenta el mixin de boton estirandose sin un padre que anule el stretch por defecto de flex. Aca aparecio el MISMO mecanismo aplicado a un elemento distinto: un NuxtLink con flex items-center gap-2 (no el mixin .btn-*), dentro de una card flex-col que no declaraba items-center ni items-start. Sin esa declaracion, align-items:stretch (el default de flex, no algo que nadie pidio explicitamente) estiraba el link al ancho completo de la card.\\n\\nA diferencia del boton, el sintoma NO era visualmente obvio: el texto seguia en su posicion correcta (justify-content por defecto es flex-start), asi que a simple vista la card se veia bien. El defecto real era el area de click/hover, mas ancha que el texto visible, con el efecto secundario de que el hover:underline podia dispararse pasando el mouse sobre espacio vacio a la derecha del texto -un defecto que no se detecta mirando una captura estatica, solo interactuando.\\n\\nSe corrigio agregando items-start a la card. Se verificaron las otras cards ya revisadas en esta tarea (HsmUseCases, HsmPains): ninguna tiene un elemento flex interno (solo img+texto plano), asi que el mismo default nunca se manifesto ahi y no requieren correccion retroactiva. Generaliza mas alla del boton: CUALQUIER elemento con flex (no solo el mixin .btn-*) necesita un padre que anule el stretch por defecto, y el sintoma de omitirlo puede ser invisible en una revision solo visual.",
+            "projection": "etiqueta: stretch-por-defecto-afecta-a-cualquier-flex-no-solo-al-boton — decision:2:4 identifico el mixin de boton estirandose sin padre no-stretch; el mecanismo real es mas amplio: CUALQUIER elemento con display:flex (boton, link, div) se estira al ancho de su padre si ese padre no anula align-items:stretch, el default de flex. Cuando el contenido interno tiene su propio justify-content en flex-start, el sintoma es invisible a simple vista -el texto queda en su lugar- y solo se manifiesta como un area de click/hover mas ancha de lo visible. Verificar items-center/items-start en CUALQUIER contenedor flex-col que aloje un elemento flex interno, no solo cuando aloja un boton.",
+            "evidence": [
+              "src/components/sections/SpeiOperate.vue"
+            ],
+            "consultations": [
+              "consult:4:16"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:17",
+            "kind": "local",
+            "rationale": "Revision responsive de SpeiWhy, la seccion donde ya se documento y corrigio el bug de 133% (medias celdas mal aplicadas con conteo 1:1). Confirmado que el fix se sostiene: celdas 100/n sin medias celdas, correcto para cuando etiquetas y nodos son 1:1.\\n\\nDetalle nuevo verificado: las etiquetas llevan shrink-0 sobre un basis por porcentaje que suma exactamente 100% sin gap horizontal. A diferencia de agregar shrink-0 sobre un basis con margen incierto, aca es seguro: flexbox distribuye basis por porcentaje de forma exacta segun especificacion, sin arrastre de redondeo entre items -3x33.333%=100% garantizado, no aproximado. shrink-0 no es un riesgo nuevo sino un requisito legitimo: sin el, el contenido de una etiqueta larga podria encoger la caja por debajo del ancho de celda y desalinearla de los nodos de abajo, que es precisamente lo que el riel entero existe para evitar.\\n\\ngrow-0 en los nodos confirmado presente y correcto -mismo fix ya documentado en la memoria del proyecto para el problema identico de sc-section estirando nodos y empujando el ultimo a una fila nueva. Conectores gateados a lg-2, mismo patron de decision:2:19. Sin cambios de codigo.",
+            "evidence": [
+              "src/components/sections/SpeiWhy.vue"
+            ],
+            "consultations": [
+              "consult:4:17"
             ],
             "status": "proposed"
           }

@@ -5,7 +5,13 @@
 
      Piel compartida con las cards de la vista criptografica: degradado vertical
      en reposo, y en hover se aclara a blanco con sombra. El icono NO lleva
-     contenedor propio — la baldosa de color es parte del arte. -->
+     contenedor propio — la baldosa de color es parte del arte.
+
+     items-start en la card, no solo flex-col: sin el, el default de flex
+     (align-items:stretch) estira el link inferior -que es flex por si mismo,
+     mismo mecanismo que decision:2:4 sobre el boton- al ancho completo de la
+     card. El texto se ve igual (justify-content sigue en flex-start), pero el
+     area de click/hover queda mas ancha que el texto visible. -->
 <template>
   <section class="sc-section w-full px-4 py-8 lg:px-8 lg-2:py-16">
     <h2 class="mx-auto max-w-3xl text-center font-secondary font-bold text-deep-ink">{{ t('spei.operate.title') }}</h2>
@@ -18,7 +24,7 @@
       <section
         v-for="item in items"
         :key="item.title"
-        class="operate-card sc-section flex min-w-[26rem] grow basis-96 flex-col rounded-2xl p-8"
+        class="operate-card sc-section flex min-w-[26rem] grow basis-96 flex-col items-start rounded-2xl p-8"
       >
         <img
           :src="item.icon"
