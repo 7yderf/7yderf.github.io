@@ -1,7 +1,7 @@
 {
   "$schema": "https://eure-k.local/schemas/project-memory-v1.json",
   "schema": "eure-k.project-memory/v1",
-  "revision": 131,
+  "revision": 144,
   "project": {
     "id": "frt-cnct-web",
     "repository_fingerprint": "git-remote-v1:sha256:9cecfa5ed6040202f52f46768540e1b8a10fa6c11be8f5acbcaf8dbea368cb60",
@@ -28,7 +28,7 @@
     "revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
     "server_version": "0.30.9",
     "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
-    "last_consulted_at": "2026-08-17T22:25:09.525Z",
+    "last_consulted_at": "2026-08-17T22:38:22.362Z",
     "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7"
   },
   "graph": {
@@ -6264,6 +6264,519 @@
                 }
               }
             }
+          },
+          {
+            "id": "consult:4:23",
+            "at": "2026-08-17T22:26:05.483Z",
+            "intent": "Revisar CaasHero. El caso nuevo case:frt-cnct-process-cta-wrap-tardio-por-ancho-intrinseco se investigo via neighbors: generaliza al mismo pattern:visual-dos-columnas-responsive ya aplicado aqui, y su contexto real es otro componente (ProcessCta del home), no un riesgo nuevo especifico de CaasHero. Verificacion propia: basis 36rem(360px)+38rem(380px)+gap-10(40px)=780px contra max-w-7xl(1280px)=500px margen. Video mismo patron ya validado en SpeiHero (decision:4:12).",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Revision responsive de CaasHero: mismo riel de dos columnas que HsmHero/SpeiHero (basis-[36rem]+basis-[38rem]+gap-10, min-w-[28rem]), y mismo video sin aspect-ratio fijo pero con w-full explicito que SpeiHero (decision:4:12). Verificar que la aritmetica se sostenga con los nuevos valores de basis.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Verificar basis+gap contra max-w-7xl con los valores especificos de esta seccion",
+                "Confirmar que el video sin aspect-ratio pero con w-full explicito repite el patron ya seguro de SpeiHero"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "stack": "tailwind-flex-video-aspect-intrinseco",
+                "path": "src/components/sections/CaasHero.vue",
+                "operation": "revision-responsive-dos-columnas-hero"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:13",
+              "case:frt-cnct-process-cta-wrap-tardio-por-ancho-intrinseco"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:26e9da04-90eb-47b2-bc2f-41d1faa759c3",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.9",
+              "overlay_revision": 131,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:188e49212977086312426109f5e33b665fa02a60e1c9dcf1c5febbc75d11e46d",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:13",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:465ea5122e136eab516b2aa0e3f2f9c5e359a7c7b27749308ef069b7c72055ce"
+                },
+                {
+                  "id": "case:frt-cnct-process-cta-wrap-tardio-por-ancho-intrinseco",
+                  "source": "genome",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:872b4c55470c44d2ece35d57a5f989da134a82738b3c4a75300f0e7ba6951739"
+                }
+              ],
+              "query_revision": "sha256:3fef8e740034c5081dafa5e1b0ce758d2d7433db4442b0a4410d99107e52a900",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 6145,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 2,
+                "used_excerpt_chars": 397,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:4:24",
+            "at": "2026-08-17T22:26:18.118Z",
+            "intent": "Revisar CaasHero. El caso nuevo case:frt-cnct-process-cta-wrap-tardio-por-ancho-intrinseco se investigo via neighbors: generaliza al mismo pattern:visual-dos-columnas-responsive ya aplicado aqui, y su contexto real es otro componente (ProcessCta del home), no un riesgo nuevo especifico de CaasHero. Verificacion propia: basis 36rem(360px)+38rem(380px)+gap-10(40px)=780px contra max-w-7xl(1280px)=500px margen. Video mismo patron ya validado en SpeiHero (decision:4:12).",
+            "tool": "neighbors",
+            "arguments": {
+              "nodeId": "case:frt-cnct-process-cta-wrap-tardio-por-ancho-intrinseco",
+              "depth": 2
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "case:frt-cnct-process-cta-wrap-tardio-por-ancho-intrinseco",
+              "case:ux-002",
+              "case:ux-015",
+              "case:ux-016",
+              "case:ux-020",
+              "case:ux-021",
+              "pattern:visual-dos-columnas-responsive",
+              "principle:v2",
+              "principle:v5",
+              "ptype:layout-responsive-sin-breakpoints"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:760571e3-a8fc-48eb-bf94-ce2a2e4dd7f9",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.9",
+              "overlay_revision": 131,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": null,
+              "output_hash": "sha256:d9bf9a7ec1f830f5f5860a57528819b44eed697dcb1484396fa1f7a7304e52c2",
+              "candidate_sources": [
+                {
+                  "id": "case:frt-cnct-process-cta-wrap-tardio-por-ancho-intrinseco",
+                  "source": "genome",
+                  "candidate_revision": "sha256:872b4c55470c44d2ece35d57a5f989da134a82738b3c4a75300f0e7ba6951739"
+                },
+                {
+                  "id": "case:ux-002",
+                  "source": "genome",
+                  "candidate_revision": "sha256:5befc5616b366fe6cedbc4eb80661f59acb94a10ca8c5ef5d17f49dd15e3d0a9"
+                },
+                {
+                  "id": "case:ux-015",
+                  "source": "genome",
+                  "candidate_revision": "sha256:96b12693dbd9a264d024823e229ac98e11d5e9a4629adc7de8ca0abb1064731f"
+                },
+                {
+                  "id": "case:ux-016",
+                  "source": "genome",
+                  "candidate_revision": "sha256:c2f2f8732f6322868bf6f42f4c018ca074419087048912b3daa24e0e8034fe5c"
+                },
+                {
+                  "id": "case:ux-020",
+                  "source": "genome",
+                  "candidate_revision": "sha256:9e7f09550c0dc2c1eb869a3314279f9fb03c29f1701b80d68c6dee1149f1a4af"
+                },
+                {
+                  "id": "case:ux-021",
+                  "source": "genome",
+                  "candidate_revision": "sha256:532857587dbcdea88d7126d96ea2b125f6c074ac37894d4800cfc3be14549137"
+                },
+                {
+                  "id": "pattern:visual-dos-columnas-responsive",
+                  "source": "genome",
+                  "candidate_revision": "sha256:4e7dffcead5dfc1bbcedbb97c95ae412266f96a85170d824a1b012548f69edd5"
+                },
+                {
+                  "id": "principle:v2",
+                  "source": "genome",
+                  "candidate_revision": "sha256:0c12be9fda75ce726b3d1246691258181dc46512d59a18160aa81b2b489231ac"
+                },
+                {
+                  "id": "principle:v5",
+                  "source": "genome",
+                  "candidate_revision": "sha256:d29a52726e0eb4c08a34b91ed6f83213732da8c33c75e2aec64633f919f3478e"
+                },
+                {
+                  "id": "ptype:layout-responsive-sin-breakpoints",
+                  "source": "genome",
+                  "candidate_revision": "sha256:cf17f9af4cb4725ce0c99fc3e2845aaac518833324261e7138c9ea53050c0792"
+                }
+              ],
+              "output_bytes": 1608
+            }
+          },
+          {
+            "id": "consult:4:25",
+            "at": "2026-08-17T22:29:59.497Z",
+            "intent": "Revisar CaasPaths.vue por responsive: riel de dos columnas y posible defecto de align-items:stretch en el NuxtLink final de cada card.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Revisar CaasPaths.vue (Zona 2, dos caminos en cards con lista y CTA al pie) por responsive: verificar riel de dos columnas (min-w-[28rem] + grow + basis-96 + gap-8 contra max-w-6xl) y verificar si la card flex-col necesita items-start para el NuxtLink final que es el mismo mecanismo de decision:4:16 en SpeiOperate (link flex anidado estirado a ancho completo por el align-items:stretch por defecto).",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Confirmar margen del riel de dos columnas contra el contenedor",
+                "Determinar si el NuxtLink final (flex items-center) requiere items-start en el padre flex-col para no heredar align-items:stretch"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "module": "CaasPaths",
+                "path": "src/components/sections/CaasPaths.vue",
+                "operation": "responsive-review"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "pattern:visual-dos-columnas-responsive"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:a2fbb4bd-b61a-4915-afe3-f70b5abe4855",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.9",
+              "overlay_revision": 133,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:22d19525d6a1070893d95d1ebe60a2032b7d0afcb0649b0df485f7a47bb50031",
+              "candidate_sources": [
+                {
+                  "id": "pattern:visual-dos-columnas-responsive",
+                  "source": "genome",
+                  "lane": "direct_genome_precedents",
+                  "candidate_revision": "sha256:4e7dffcead5dfc1bbcedbb97c95ae412266f96a85170d824a1b012548f69edd5"
+                }
+              ],
+              "query_revision": "sha256:fddb1bc360bbaee9cea9948f431245efbb06ea839d1c535b5cc600d1542e0d32",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 2705,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 1,
+                "used_excerpt_chars": 42,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:4:26",
+            "at": "2026-08-17T22:33:23.972Z",
+            "intent": "Revisar CaasScattered.vue: CTA montado sobre video via margen negativo, verificar que el margen nunca exceda el alto renderizado del video.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Revisar CaasScattered.vue (Zona 3, panel crema con video de llaves dispersas y CTA montado encima via margen negativo -mt-24/lg-2:-mt-28). Verificar que el margen negativo nunca exceda el alto renderizado del video en el breakpoint mas angosto, para que el boton no se despegue del media ni invada el subtitulo de arriba.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Verificar que -mt-24/-mt-28 se mantenga menor al alto renderizado del video figure en todos los anchos",
+                "Confirmar si existe precedente de CTA montado sobre media via margen negativo"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "module": "CaasScattered",
+                "path": "src/components/sections/CaasScattered.vue",
+                "operation": "responsive-review"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:15",
+              "case:tmx-headings-anidado-invertido"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:afa81f72-7e7d-4869-9231-f5fff26576f0",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.9",
+              "overlay_revision": 136,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:539a1ca8d4ea5e9f9ed10cac7587b720a12c491582e10e39a1d439afa7fbc702",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:15",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:5fce5f62f8b123b7d6e918ebf688beefcf3000612bd0ab1ad603d6de97521af0"
+                },
+                {
+                  "id": "case:tmx-headings-anidado-invertido",
+                  "source": "genome",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:3183b8e6b0b4993bf49296aecb17ccf4ca0a9f24cdc6f8f2edb9a9b9518a78de"
+                }
+              ],
+              "query_revision": "sha256:7451aca9fe774fa430d528d575888996ce2b13d9cf1c1fd89b325b74105e8cda",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 5452,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 2,
+                "used_excerpt_chars": 251,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:4:27",
+            "at": "2026-08-17T22:35:18.901Z",
+            "intent": "CaasOnePlace: fix puntual con align-self en el link en vez de items-* en la card, porque el ul hermano (pildoras) necesita el stretch por defecto.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "CaasOnePlace.vue: la card (flex-col, sin override de align-items) tiene un NuxtLink final que por align-items:stretch por defecto se estira al ancho completo de la card, mismo mecanismo que decision:4:16/decision:4:25. Pero aqui la card tambien contiene un ul (flex-col) cuyas pildoras SI necesitan quedar estiradas a ancho completo (son filas con fondo visible) - por lo tanto items-start/items-center en la card romperia el estirado deseado del ul. Verificar si corresponde en cambio un align-self puntual solo en el link, sin tocar el align-items del padre.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Determinar el fix correcto cuando un hijo (ul con pildoras) necesita el stretch por defecto pero otro hijo (link) no deberia heredarlo",
+                "Confirmar que align-self en el hijo puntual es la forma correcta de no romper el resto"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "module": "CaasOnePlace",
+                "path": "src/components/sections/CaasOnePlace.vue",
+                "operation": "responsive-review"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:18"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:254a4ae2-823a-4d1b-9674-ccab0f4d3baf",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.9",
+              "overlay_revision": 138,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:9e7cfe6b87db4ea9bf4801a40a7cc0e553e7c5f7d76ec71c2883c78a226a7ed5",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:efb8d260195f4da3fe18b1a1400d1d427e2745440e127bfa6112030cb83d8d42"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:18",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:18e91fe22ce3010db53470449b8ad61f12f98373411dc5a4a1fcd0c599c6e2a7"
+                }
+              ],
+              "query_revision": "sha256:700181c021bd37dd9ec262261c38d106e1cd49cab01599d6325a092d36a70d9b",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 7475,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 2,
+                "used_excerpt_chars": 745,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:4:28",
+            "at": "2026-08-17T22:36:44.786Z",
+            "intent": "CaasAdapts: verificar si aplica pattern:visual-cadena-min-w-0 al contenedor overflow-x-auto de la tabla.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Revisar CaasAdapts.vue: tabla comparativa real (no grid de divs) envuelta en un contenedor overflow-x-auto con min-w-[56rem] en la tabla, para que en viewports angostos la tabla scrollee horizontal en vez de comprimirse ilegible. Verificar si existe precedente de genoma para tabla responsiva con scroll horizontal, y si el w-1/3 en el th vacio de la primera columna es razonable.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Confirmar que el patron overflow-x-auto + min-width en tabla es el fallback responsivo correcto",
+                "Verificar si hay precedente de genoma para tablas de datos responsivas"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "module": "CaasAdapts",
+                "path": "src/components/sections/CaasAdapts.vue",
+                "operation": "responsive-review"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:22",
+              "pattern:visual-cadena-min-w-0"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:ef85b853-a261-4d31-8609-463932cedeea",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.9",
+              "overlay_revision": 140,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:b89e67e91c5def1e25882169d11bea44be5213d99fa93fe571ab1c929dffb07a",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:22",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:4d255325599edbfc589fdc186bb133ccbd2bc16e3a54c6dd111fda7c2b90f4d2"
+                },
+                {
+                  "id": "pattern:visual-cadena-min-w-0",
+                  "source": "genome",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:2ff2de09776a51d629339e1f0034768c71e16c354280e7351ca82dc23bc19742"
+                }
+              ],
+              "query_revision": "sha256:52b2f82956690c7c896f9fc077ccb84238802d84c8f0cbe062744e0236d10403",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 5484,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 2,
+                "used_excerpt_chars": 346,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:4:29",
+            "at": "2026-08-17T22:38:22.362Z",
+            "intent": "CaasAreas: verificar si aplica decision:2:21 (img sin tope de medida inflando la card) a la media del carrusel.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Revisar CaasAreas.vue por responsive: carrusel Swiper ya construido y confirmado por Fredy (decision:3:16 y siguientes, mismo esquema base que el carrusel de SPEI). Verificar los cortes de ancho de swiper-slide (86% base, 58% desde 768px, 46% desde 1200px) contra los breakpoints nombrados del proyecto (md=768, xl=1200) y la precondicion de loop centrado (5 piezas >= 2 visibles+1+1=4). No se espera reabrir el diseño del efecto de superposicion, solo confirmar que los cortes de ancho siguen siendo consistentes con el resto de la revision responsive de esta tarea.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Confirmar que los breakpoints de ancho del swiper-slide coinciden con la escala nombrada del proyecto",
+                "Confirmar que no hay riesgo nuevo de responsive no cubierto por decision:3:16 y el resto de la documentacion ya presente en el componente"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "module": "CaasAreas",
+                "path": "src/components/sections/CaasAreas.vue",
+                "operation": "responsive-review"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:21",
+              "pattern:visual-dos-columnas-responsive"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:86bd56c3-91ba-44e9-a4d3-9be39f320841",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.30.9",
+              "overlay_revision": 142,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:b9c285eb82834c32bdca4c3f5b49f3b5b043b75108a04681b5189049c18257d4",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:21",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:d0ea2118d2585c32b8b6c575722725f993b937ec92276b4a46c0222321809062"
+                },
+                {
+                  "id": "pattern:visual-dos-columnas-responsive",
+                  "source": "genome",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:4e7dffcead5dfc1bbcedbb97c95ae412266f96a85170d824a1b012548f69edd5"
+                }
+              ],
+              "query_revision": "sha256:734748088986d8ae21bc3372b9ebb5453ba7e9d63fd0b71b2d4c91285b350f4e",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 6188,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 2,
+                "used_excerpt_chars": 557,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
           }
         ],
         "decisions": [
@@ -6540,6 +7053,105 @@
             ],
             "consultations": [
               "consult:4:22"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:23",
+            "kind": "local",
+            "rationale": "Revision responsive de CaasHero. Mismo riel de dos columnas ya validado en HsmHero/SpeiHero: basis 36rem(360px)+38rem(380px)+gap-10(40px)=780px contra max-w-7xl(1280px)=500px margen, amplio. Video sin aspect-ratio pero con w-full explicito, mismo patron deliberado ya confirmado seguro en SpeiHero (decision:4:12).\\n\\nSurgio un caso nuevo del genoma (case:frt-cnct-process-cta-wrap-tardio-por-ancho-intrinseco) investigado via neighbors antes de descartarlo: generaliza al mismo pattern:visual-dos-columnas-responsive ya aplicado correctamente aqui, y su contexto real es un componente distinto (ProcessCta del home), no un riesgo especifico de este componente. Boton con wrapper flex-wrap dedicado. Sin cambios de codigo.",
+            "evidence": [
+              "src/components/sections/CaasHero.vue"
+            ],
+            "consultations": [
+              "consult:4:23",
+              "consult:4:24"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:24",
+            "kind": "adopt",
+            "target": "pattern:visual-dos-columnas-responsive",
+            "rationale": "CaasPaths.vue: dos cards (basis-96=384px, min-w-[28rem]=280px) + gap-8(32px) contra max-w-6xl(1152px) deja 352px de margen — riel de dos columnas limpio, sin ajuste necesario.",
+            "evidence": [
+              "src/components/sections/CaasPaths.vue:13",
+              "2×384px + 32px = 800px vs 1152px = 352px margen"
+            ],
+            "consultations": [
+              "consult:4:25"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:25",
+            "kind": "local",
+            "rationale": "CaasPaths.vue: la card (flex flex-col) no declaraba items-start, dejando que align-items:stretch por defecto estirara el NuxtLink final (flex items-center) al ancho completo de la card — mismo mecanismo ya identificado como novel en decision:4:16 (SpeiOperate). No se re-registra como novel porque la forma general ya esta capturada bajo esa etiqueta; esta es una segunda aplicacion del mismo hallazgo, no una forma nueva. Se agrego items-start a la card.",
+            "evidence": [
+              "src/components/sections/CaasPaths.vue:17 (antes: sin items-start)",
+              "decision:4:16 — mismo mecanismo en SpeiOperate"
+            ],
+            "consultations": [
+              "consult:4:25"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:26",
+            "kind": "novel",
+            "rationale": "CaasScattered.vue monta el CTA sobre el video via margen negativo en vez de position:absolute, para que el boton siga en flujo y la seccion reserve su alto real. La razon por la que esto es seguro no es visual sino aritmetica: el margen negativo debe ser menor al alto RENDERIZADO del media en el breakpoint mas angosto, no un valor elegido a ojo. Se midio el video (llaves-dispersas.mp4) leyendo su atomo tkhd: 864x496px, ratio 1.742. Con eso se calculo el alto renderizado del figure (max-w-4xl, dentro de section px-4/container px-6, luego px-12 desde lg-2) en cada breakpoint: en el mas angosto (320px) el figure da ~137.8px de alto y -mt-24(96px) deja 41.8px de margen antes de tocar el borde superior del video; en el resto de breakpoints el margen crece a cientos de px. Ningun breakpoint hace que el margen negativo exceda el alto del media. La tecnica (CTA en flujo montado sobre media via margen negativo, validado contra el alto minimo renderizado del media) es reutilizable fuera de este cliente/diseno: sobrevive sin Nuxt y sin Tailwind, es aritmetica de layout pura.",
+            "projection": "etiqueta: cta-montado-sobre-media-con-margen-negativo-verificar-alto-minimo",
+            "evidence": [
+              "src/components/sections/CaasScattered.vue:18-37",
+              "public/videos/llaves-dispersas.mp4 tkhd: 864x496, ratio 1.742",
+              "figure width @320px = 137.8px alto renderizado vs -mt-24=96px -> 41.8px de margen"
+            ],
+            "consultations": [
+              "consult:4:26"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:27",
+            "kind": "novel",
+            "rationale": "CaasOnePlace.vue: el mismo mecanismo de decision:2:4/4:16/4:25 (flex item de ancho automatico se estira por align-items:stretch por defecto) aparece en el NuxtLink final de la card, pero aqui NO se puede resolver con items-start/items-center en el padre porque un hermano (el ul de pildoras) SI depende de ese stretch por defecto para que sus filas (con fondo visible) ocupen el ancho completo de la card. Forzar items-start en la card habria arreglado el link pero roto las pildoras. El fix correcto es align-self puntual en el propio link (self-center, consistente con el text-center de la card), que no toca el align-items heredado por el resto de los hijos. Aqui el efecto visible es minimo (el texto ya queda centrado por text-align sin importar el ancho de la caja), pero el area de click/hover se ajusta al contenido real, igual que decision:4:16. La razon (cuando un hermano depende del stretch por defecto, el fix va en align-self del hijo problematico, no en align-items del padre) es una regla general de flexbox, no especifica de este proyecto.",
+            "projection": "etiqueta: align-self-puntual-cuando-un-hermano-necesita-el-stretch-por-defecto",
+            "evidence": [
+              "src/components/sections/CaasOnePlace.vue:37-46 (ul de pildoras, necesita stretch)",
+              "src/components/sections/CaasOnePlace.vue:48-53 (link, ahora con self-center)",
+              "decision:2:4, decision:4:16, decision:4:25 — misma familia de mecanismo"
+            ],
+            "consultations": [
+              "consult:4:27"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:28",
+            "kind": "reject",
+            "target": "pattern:visual-cadena-min-w-0",
+            "rationale": "CaasAdapts.vue: la tabla real dentro de un div overflow-x-auto no necesita la cadena min-w-0 del genoma porque esa correccion existe para hijos de un contenedor FLEX cuyo min-width:auto por defecto bloquea el shrink. Verifique la cadena de ancestros: layouts/default.vue define main con clase flex-1 (una propiedad de flex-ITEM sobre si mismo) pero NO display:flex — main no es un contenedor flex, sus hijos (las section.sc-section de cada zona) son cajas de bloque normales en flujo, no flex items. El div.overflow-x-auto tampoco esta dentro de ningun sc-article. Sin ancestro flex entre el contenedor de scroll y el bloque, no hay min-width:auto que bloquee nada; el overflow-x-auto funciona directo. Se evaluo el candidato y no aplica por ese borde estructural.",
+            "evidence": [
+              "src/components/sections/CaasAdapts.vue:18-35",
+              "src/layouts/default.vue:44 (main class=\"flex-1\", sin display:flex)",
+              "src/assets/scss/style.scss:234-236 (.sc-section{flex-grow:1} solo actua si el padre es flex)"
+            ],
+            "consultations": [
+              "consult:4:28"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:29",
+            "kind": "local",
+            "rationale": "CaasAreas.vue: la imagen del carrusel (w-full, object-cover, sin max-w/height/aspect-ratio) no reproduce el defecto de decision:2:21 (proyeccion local, no target de genoma) porque falta el ingrediente estructural que lo causaba: en SpeiIntelligence la imagen competia por altura dentro de un .intel-card flex-col con h-full (la card ya tenia una altura fijada por otro contenido/por el slide parejo), asi que el reset global img{width:100%} sin max-width la estiraba a llenar esa altura. Aqui .areas-card__media es un div de bloque normal sin altura fijada ni h-full ni flex-col con otros hermanos que la determinen: la imagen renderiza a su propia proporcion intrinseca escalada al ancho del slide, sin nada que competir. Se midieron las 5 imagenes (public/images/caas/areas/1-5.webp): las cinco son 1400x866, ratio identico (1.617) - object-cover queda inerte (no hay recorte porque la caja siempre iguala la proporcion natural) pero no produce ningun defecto visible ni inconsistencia de alto entre slides, y actua como red de seguridad si algun dia se reemplaza una imagen por otra de proporcion distinta.",
+            "evidence": [
+              "src/components/sections/CaasAreas.vue:72-80",
+              "public/images/caas/areas/1.webp..5.webp: 1400x866, ratio 1.617 identico en las 5",
+              "src/components/sections/SpeiIntelligence.vue:63,81-90 (contraste: ahi si hay h-full + flex-col compitiendo por altura)"
+            ],
+            "consultations": [
+              "consult:4:29"
             ],
             "status": "proposed"
           }

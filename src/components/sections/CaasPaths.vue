@@ -14,7 +14,7 @@
       <section
         v-for="path in paths"
         :key="path.title"
-        class="sc-section flex min-w-[28rem] grow basis-96 flex-col rounded-3xl p-10"
+        class="sc-section flex min-w-[28rem] grow basis-96 flex-col items-start rounded-3xl p-10"
         :class="path.surface"
       >
         <h3 class="font-secondary text-2xl font-bold leading-tight text-deep-ink">{{ path.title }}</h3>

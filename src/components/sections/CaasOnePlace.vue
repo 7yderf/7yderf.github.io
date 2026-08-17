@@ -47,7 +47,7 @@
 
         <NuxtLink
           :to="localePath('/contact')"
-          class="mt-auto pt-8 text-xs font-bold hover:underline"
+          class="mt-auto self-center pt-8 text-xs font-bold hover:underline"
         >
           {{ card.link }} →
         </NuxtLink>
