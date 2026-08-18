@@ -18,7 +18,7 @@
     </div>
 
     <!-- Header / Nav -->
-    <header ref="headerRef" class="sc-header sticky top-0 z-40 flex-col border-b border-line bg-bg-second/95 backdrop-blur">
+    <header class="sc-header sticky top-0 z-40 flex-col border-b border-line bg-bg-second/95 backdrop-blur">
       <nav class="sc-nav mx-auto w-full max-w-7xl items-center justify-between gap-4 px-4 py-4 lg:px-8">
         <NuxtLink :to="localePath('/')" class="shrink-0">
           <img src="/images/logo-conecta.png" alt="CONECTA" class="h-6 w-auto">
@@ -82,31 +82,60 @@
         </div>
 
         <!-- Hamburguesa: solo existe donde el ul de arriba ya esta oculto
-             por completo (debajo de lg). El icono se convierte en X en vez
-             de sumar un boton de cierre aparte. -->
+             por completo (debajo de lg). Solo abre — el cierre vive en el
+             boton X propio del panel de pantalla completa, asi que no hace
+             falta que el icono cambie de forma aqui. -->
         <button
           type="button"
           class="text-text hover:text-primary lg:hidden"
           aria-haspopup="true"
           :aria-expanded="mobileMenuOpen"
           aria-label="Abrir menú"
-          @click="mobileMenuOpen = !mobileMenuOpen"
+          @click="mobileMenuOpen = true"
         >
-          <Icon :icon="mobileMenuOpen ? 'mdi:close' : 'mdi:menu'" width="26" height="26" />
+          <Icon icon="mdi:menu" width="26" height="26" />
         </button>
       </nav>
+    </header>
 
-      <!-- Panel movil: absolute sobre el header (position:sticky ya establece
-           el bloque contenedor), no empuja el contenido ni crece el header
-           fijo. La estructura es div/button, no ul/li: .sc-nav ul solo
-           atrapa uls anidados -ver decision:4:35-, asi que evitar ul aqui
-           evita reproducir el mismo defecto en vez de tener que corregirlo. -->
+    <!-- Panel movil: toma de pantalla completa (fixed inset-0), no un panel
+         chico bajo el header — el estandar de un menu movil es cubrir todo
+         el viewport, sin dejar la franja de anuncio asomando arriba. z-50,
+         por encima del header (z-40): al ser opaco y cubrir todo, no hace
+         falta un backdrop aparte. Vive fuera de <header> porque fixed no
+         depende de ningun ancestro posicionado para su bloque contenedor.
+         La cascada por bloque (transform+opacity con delay creciente) sigue
+         el mismo patron que Riel2Panel.tsx del proyecto hermano
+         tmx-frt-secure_center. -->
+    <Transition name="mobile-menu">
       <div
         v-show="mobileMenuOpen"
-        class="absolute left-0 top-full w-full border-t border-line bg-bg-second lg:hidden"
+        class="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-bg-second lg:hidden"
       >
-        <div class="mx-auto flex w-full max-w-7xl flex-col gap-1 px-4 py-4 font-secondary text-sm font-medium text-text">
-          <div>
+        <div class="flex items-center justify-between px-4 py-4">
+          <NuxtLink :to="localePath('/')" class="shrink-0" @click="closeMobileMenu()">
+            <img src="/images/logo-conecta.png" alt="CONECTA" class="h-6 w-auto">
+          </NuxtLink>
+          <button
+            type="button"
+            class="text-text hover:text-primary"
+            aria-label="Cerrar menú"
+            @click="closeMobileMenu()"
+          >
+            <Icon icon="mdi:close" width="26" height="26" />
+          </button>
+        </div>
+
+        <!-- text-left explicito: body{text-align:center} bajo 768px (fase 2
+             del reset mobile, style.scss:384-394) se hereda a estos <a>
+             sueltos y los centra; "Soluciones" no se nota porque es flex
+             (justify-between posiciona por flexbox, no por text-align), pero
+             el resto quedaba centrado e inconsistente con el trigger. -->
+        <div class="flex flex-1 flex-col gap-1 border-t border-line px-4 py-4 text-left font-secondary text-base font-medium text-text">
+          <div
+            class="transition-[opacity,transform] duration-300 ease-out"
+            :class="mobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-2 opacity-0'"
+          >
             <button
               type="button"
               class="flex w-full items-center justify-between gap-1 rounded-lg px-3 py-2 hover:bg-surface-2 hover:text-primary"
@@ -122,25 +151,44 @@
                 :class="{ 'rotate-180': mobileSolutionsOpen }"
               />
             </button>
-            <div v-show="mobileSolutionsOpen" class="flex flex-col gap-1 py-1 pl-6">
-              <NuxtLink :to="localePath('/hardware-criptografico')" class="rounded-lg px-3 py-2 hover:bg-surface-2 hover:text-primary" @click="closeMobileMenu()">
-                {{ t('nav.solutionsMenu.hsm') }}
-              </NuxtLink>
-              <NuxtLink :to="localePath('/infraestructura-spei')" class="rounded-lg px-3 py-2 hover:bg-surface-2 hover:text-primary" @click="closeMobileMenu()">
-                {{ t('nav.solutionsMenu.spei') }}
-              </NuxtLink>
-              <NuxtLink :to="localePath('/cripto-as-a-service')" class="rounded-lg px-3 py-2 hover:bg-surface-2 hover:text-primary" @click="closeMobileMenu()">
-                {{ t('nav.solutionsMenu.caas') }}
-              </NuxtLink>
+            <!-- Acordeon via grid-template-rows 0fr/1fr: a diferencia de un
+                 max-height fijo, se ajusta a la altura real del contenido
+                 sin adivinar un tope en px. overflow-hidden en los dos
+                 niveles -la fila del grid y el contenido- es necesario: sin
+                 el interno, el contenido se ve completo antes de que la fila
+                 termine de crecer. -->
+            <div
+              class="grid overflow-hidden transition-[grid-template-rows] duration-300 ease-in-out"
+              :class="mobileSolutionsOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'"
+            >
+              <div class="flex flex-col gap-1 overflow-hidden py-1 pl-6">
+                <NuxtLink :to="localePath('/hardware-criptografico')" class="rounded-lg px-3 py-2 hover:bg-surface-2 hover:text-primary" @click="closeMobileMenu()">
+                  {{ t('nav.solutionsMenu.hsm') }}
+                </NuxtLink>
+                <NuxtLink :to="localePath('/infraestructura-spei')" class="rounded-lg px-3 py-2 hover:bg-surface-2 hover:text-primary" @click="closeMobileMenu()">
+                  {{ t('nav.solutionsMenu.spei') }}
+                </NuxtLink>
+                <NuxtLink :to="localePath('/cripto-as-a-service')" class="rounded-lg px-3 py-2 hover:bg-surface-2 hover:text-primary" @click="closeMobileMenu()">
+                  {{ t('nav.solutionsMenu.caas') }}
+                </NuxtLink>
+              </div>
             </div>
           </div>
 
-          <NuxtLink :to="`${localePath('/')}#fabricantes`" class="rounded-lg px-3 py-2 hover:bg-surface-2 hover:text-primary" @click="closeMobileMenu()">{{ t('nav.vendors') }}</NuxtLink>
-          <NuxtLink :to="`${localePath('/')}#industrias`" class="rounded-lg px-3 py-2 hover:bg-surface-2 hover:text-primary" @click="closeMobileMenu()">{{ t('nav.industries') }}</NuxtLink>
-          <NuxtLink :to="`${localePath('/')}#recursos`" class="rounded-lg px-3 py-2 hover:bg-surface-2 hover:text-primary" @click="closeMobileMenu()">{{ t('nav.resources') }}</NuxtLink>
-          <NuxtLink :to="`${localePath('/')}#nosotros`" class="rounded-lg px-3 py-2 hover:bg-surface-2 hover:text-primary" @click="closeMobileMenu()">{{ t('nav.about') }}</NuxtLink>
+          <div
+            class="flex flex-col gap-1 transition-[opacity,transform] delay-75 duration-300 ease-out"
+            :class="mobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-2 opacity-0'"
+          >
+            <NuxtLink :to="`${localePath('/')}#fabricantes`" class="rounded-lg px-3 py-2 hover:bg-surface-2 hover:text-primary" @click="closeMobileMenu()">{{ t('nav.vendors') }}</NuxtLink>
+            <NuxtLink :to="`${localePath('/')}#industrias`" class="rounded-lg px-3 py-2 hover:bg-surface-2 hover:text-primary" @click="closeMobileMenu()">{{ t('nav.industries') }}</NuxtLink>
+            <NuxtLink :to="`${localePath('/')}#recursos`" class="rounded-lg px-3 py-2 hover:bg-surface-2 hover:text-primary" @click="closeMobileMenu()">{{ t('nav.resources') }}</NuxtLink>
+            <NuxtLink :to="`${localePath('/')}#nosotros`" class="rounded-lg px-3 py-2 hover:bg-surface-2 hover:text-primary" @click="closeMobileMenu()">{{ t('nav.about') }}</NuxtLink>
+          </div>
 
-          <div class="mt-2 flex items-center justify-between gap-3 border-t border-line pt-4">
+          <div
+            class="mt-auto flex items-center justify-between gap-3 border-t border-line pt-4 transition-[opacity,transform] delay-150 duration-300 ease-out"
+            :class="mobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-2 opacity-0'"
+          >
             <LanguageSwitcher />
             <NuxtLink :to="localePath('/contact')" class="btn-primary" @click="closeMobileMenu()">
               {{ t('nav.cta') }} →
@@ -148,16 +196,7 @@
           </div>
         </div>
       </div>
-    </header>
-
-    <!-- Backdrop del panel movil: fixed cubre todo el viewport, pero el
-         header (z-40) queda arriba en la pila y no se ve oscurecido. -->
-    <div
-      v-show="mobileMenuOpen"
-      class="fixed inset-0 z-30 bg-deep-ink/50 lg:hidden"
-      aria-hidden="true"
-      @click="mobileMenuOpen = false"
-    />
+    </Transition>
 
     <main class="flex-1">
       <slot />
@@ -232,18 +271,23 @@ const { t } = useI18n()
 
 // Dropdown de "Soluciones" (escritorio): boton toggle, no link directo — el
 // click abre el panel con las 3 vistas de campaña. Sin VueUse en el
-// proyecto, el cierre por click afuera y Escape se resuelve con listeners
-// propios en document, montados solo mientras el layout vive.
+// proyecto, el cierre por click afuera y Escape se resuelve con un listener
+// propio en document, montado solo mientras el layout vive.
+//
+// composedPath(), no target+contains(): un boton toggle cuyo propio icono
+// cambia en reaccion al click que lo abre puede dejar el nodo que origino
+// el evento desconectado del arbol para cuando este listener corre —
+// target.contains() daria false aunque el click ocurrio adentro.
+// composedPath() devuelve la cadena de nodos capturada al momento del
+// dispatch, inmune a esa mutacion (ver decision:4:37).
 const solutionsOpen = ref(false)
 const solutionsRef = ref<HTMLElement | null>(null)
 
-// Panel movil: estado independiente del dropdown de escritorio, no
-// reusado. Un click en el trigger del acordeon movil vive fuera de
-// solutionsRef, asi que si compartiera el mismo ref el listener de click
-// afuera lo cerraria en el mismo tick en que se abre.
+// Panel movil: toma de pantalla completa, no un popover anclado — no hay
+// "afuera" que detectar (cerrar es via el boton X propio, Escape, o elegir
+// un link). Estado del acordeon interno separado del dropdown de escritorio.
 const mobileMenuOpen = ref(false)
 const mobileSolutionsOpen = ref(false)
-const headerRef = ref<HTMLElement | null>(null)
 
 function closeMobileMenu() {
   mobileMenuOpen.value = false
@@ -257,27 +301,24 @@ watch(isDesktop, (desktop) => {
   if (desktop) mobileMenuOpen.value = false
 })
 
-// composedPath(), no target+contains(): el boton hamburguesa cambia su
-// propio icono (mdi:menu -> mdi:close) como reaccion al mismo click que lo
-// abre, y para cuando este listener corre el <path> que origino el click ya
-// fue reemplazado por el icono nuevo -detached del arbol-, asi que
-// target.contains() da false aunque el click ocurrio adentro. composedPath()
-// devuelve la cadena de nodos capturada al momento del dispatch, no una
-// referencia que un rerender pueda invalidar.
+// Scroll-lock: el panel movil es una toma de pantalla completa, asi que el
+// body no debe poder scrollear detras mientras esta abierto -sin esto el
+// mouse wheel sigue moviendo la pagina aunque visualmente se vea bloqueada.
+watch(mobileMenuOpen, (open) => {
+  document.body.style.overflow = open ? 'hidden' : ''
+})
+
 function onDocumentClick(event: MouseEvent) {
   const path = event.composedPath()
   if (solutionsOpen.value && solutionsRef.value && !path.includes(solutionsRef.value)) {
     solutionsOpen.value = false
-  }
-  if (mobileMenuOpen.value && headerRef.value && !path.includes(headerRef.value)) {
-    mobileMenuOpen.value = false
   }
 }
 
 function onDocumentKeydown(event: KeyboardEvent) {
   if (event.key === 'Escape') {
     solutionsOpen.value = false
-    mobileMenuOpen.value = false
+    closeMobileMenu()
   }
 }
 
@@ -287,6 +328,7 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
+  document.body.style.overflow = ''
   document.removeEventListener('click', onDocumentClick)
   document.removeEventListener('keydown', onDocumentKeydown)
 })
@@ -308,3 +350,20 @@ const socialLinks = [
   { name: 'Facebook', icon: 'mdi:facebook', href: 'https://www.facebook.com/ConectaSolucionesMX' },
 ]
 </script>
+
+<style scoped>
+/* Fade minimo en el contenedor del panel movil: el <Transition> coordina que
+   v-show alterne display: none/flex recien al terminar esta transicion -sin
+   ella, v-show cortaria de golpe y la cascada de opacity/transform de los
+   bloques internos (clases utilitarias en el template) no alcanzaria a
+   notarse. */
+.mobile-menu-enter-active,
+.mobile-menu-leave-active {
+  transition: opacity 200ms ease;
+}
+
+.mobile-menu-enter-from,
+.mobile-menu-leave-to {
+  opacity: 0;
+}
+</style>
