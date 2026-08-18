@@ -25,7 +25,49 @@
         </NuxtLink>
 
         <ul class="hidden items-center gap-8 font-secondary text-sm font-medium text-text lg:flex">
-          <li><NuxtLink :to="`${localePath('/')}#soluciones`" class="hover:text-primary">{{ t('nav.solutions') }}</NuxtLink></li>
+          <li ref="solutionsRef" class="relative">
+            <button
+              type="button"
+              class="flex items-center gap-1 hover:text-primary"
+              aria-haspopup="true"
+              :aria-expanded="solutionsOpen"
+              @click="solutionsOpen = !solutionsOpen"
+            >
+              {{ t('nav.solutions') }}
+              <Icon
+                icon="mdi:chevron-down"
+                width="16"
+                height="16"
+                class="transition-transform"
+                :class="{ 'rotate-180': solutionsOpen }"
+              />
+            </button>
+
+            <!-- flex-col obligatorio: .sc-nav ul fuerza display:flex a CUALQUIER
+                 ul anidado dentro de .sc-nav, no solo al de primer nivel. Sin
+                 flex-col el panel hereda flex-direction:row y las 3 opciones
+                 caen en columnas en vez de apilarse. -->
+            <ul
+              v-show="solutionsOpen"
+              class="absolute left-0 top-full mt-3 flex min-w-[16rem] flex-col gap-1 rounded-xl border border-line bg-bg-second p-2 shadow-modal"
+            >
+              <li>
+                <NuxtLink :to="localePath('/hardware-criptografico')" class="block rounded-lg px-3 py-2 hover:bg-surface-2 hover:text-primary" @click="solutionsOpen = false">
+                  {{ t('nav.solutionsMenu.hsm') }}
+                </NuxtLink>
+              </li>
+              <li>
+                <NuxtLink :to="localePath('/infraestructura-spei')" class="block rounded-lg px-3 py-2 hover:bg-surface-2 hover:text-primary" @click="solutionsOpen = false">
+                  {{ t('nav.solutionsMenu.spei') }}
+                </NuxtLink>
+              </li>
+              <li>
+                <NuxtLink :to="localePath('/cripto-as-a-service')" class="block rounded-lg px-3 py-2 hover:bg-surface-2 hover:text-primary" @click="solutionsOpen = false">
+                  {{ t('nav.solutionsMenu.caas') }}
+                </NuxtLink>
+              </li>
+            </ul>
+          </li>
           <li><NuxtLink :to="`${localePath('/')}#fabricantes`" class="hover:text-primary">{{ t('nav.vendors') }}</NuxtLink></li>
           <li><NuxtLink :to="`${localePath('/')}#industrias`" class="hover:text-primary">{{ t('nav.industries') }}</NuxtLink></li>
           <li><NuxtLink :to="`${localePath('/')}#recursos`" class="hover:text-primary">{{ t('nav.resources') }}</NuxtLink></li>
@@ -111,6 +153,33 @@ import { Icon } from '@iconify/vue'
 
 const localePath = useLocalePath()
 const { t } = useI18n()
+
+// Dropdown de "Soluciones": boton toggle, no link directo — el click abre el
+// panel con las 3 vistas de campaña. Sin VueUse en el proyecto, el cierre por
+// click afuera y Escape se resuelve con listeners propios en document,
+// montados solo mientras el layout vive.
+const solutionsOpen = ref(false)
+const solutionsRef = ref<HTMLElement | null>(null)
+
+function onDocumentClick(event: MouseEvent) {
+  if (solutionsOpen.value && solutionsRef.value && !solutionsRef.value.contains(event.target as Node)) {
+    solutionsOpen.value = false
+  }
+}
+
+function onDocumentKeydown(event: KeyboardEvent) {
+  if (event.key === 'Escape') solutionsOpen.value = false
+}
+
+onMounted(() => {
+  document.addEventListener('click', onDocumentClick)
+  document.addEventListener('keydown', onDocumentKeydown)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('click', onDocumentClick)
+  document.removeEventListener('keydown', onDocumentKeydown)
+})
 
 const year = new Date().getFullYear()
 

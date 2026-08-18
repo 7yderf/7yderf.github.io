@@ -10,6 +10,11 @@
   },
   "nav": {
     "solutions": "Solutions",
+    "solutionsMenu": {
+      "hsm": "Cryptographic Hardware",
+      "spei": "SPEI Infrastructure",
+      "caas": "Crypto as a Service"
+    },
     "services": "Services",
     "vendors": "Vendors",
     "industries": "Industries",

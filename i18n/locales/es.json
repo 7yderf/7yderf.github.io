@@ -10,6 +10,11 @@
   },
   "nav": {
     "solutions": "Soluciones",
+    "solutionsMenu": {
+      "hsm": "Hardware Criptográfico",
+      "spei": "Infraestructura SPEI",
+      "caas": "Cripto as a Service"
+    },
     "services": "Servicios",
     "vendors": "Fabricantes",
     "industries": "Industrias",
