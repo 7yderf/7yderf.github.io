@@ -1,7 +1,7 @@
 {
   "$schema": "https://eure-k.local/schemas/project-memory-v1.json",
   "schema": "eure-k.project-memory/v1",
-  "revision": 166,
+  "revision": 169,
   "project": {
     "id": "frt-cnct-web",
     "repository_fingerprint": "git-remote-v1:sha256:9cecfa5ed6040202f52f46768540e1b8a10fa6c11be8f5acbcaf8dbea368cb60",
@@ -28,7 +28,7 @@
     "revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
     "server_version": "0.31.0",
     "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
-    "last_consulted_at": "2026-08-18T18:13:33.247Z",
+    "last_consulted_at": "2026-08-18T19:09:07.267Z",
     "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7"
   },
   "graph": {
@@ -7533,6 +7533,78 @@
                 }
               }
             }
+          },
+          {
+            "id": "consult:4:40",
+            "at": "2026-08-18T19:09:07.267Z",
+            "intent": "FeatureCards: hueco desproporcionado en stacking cards a <=768px por cruce de dos reglas responsive independientes en el mismo breakpoint.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "FeatureCards.vue (fuera de las 3 vistas de campaña, extension de alcance explicitamente autorizada por el humano en esta misma sesion, mismo criterio que decision:4:36): bug real de hueco desproporcionado en el efecto \"stacking cards\" a <=768px. Causa: dos reglas independientes cruzan en el mismo breakpoint sin que el autor de la segunda contara con la primera -el font-size raiz global (style.scss) cae de 62.5% a 55% justo en <=768px, Y la propia regla de FeatureCards sube --slot-h de 44rem a 70rem en el mismo punto, pensada para cards mas altas en mobile-. El renglon de grid resultante mide 616px reales contra una card de ~280px, mucho mas \"riel de scroll\" del que el efecto necesita. Verificado con navegador real cruzando 9 anchos (1280 a 375) con inspeccion de computed style (--slot-h, gridTemplateRows, root font-size) y comparando screenshots con/sin display:grid. display:grid es necesario -sostiene el efecto de sticky-stacking, que funciona bien en desktop, confirmado por captura-, pero Fredy valido visualmente que en movil el efecto se sostiene igual de bien SOLO con el padding-top escalonado + sticky, sin la fila de grid sobredimensionada. Se opto por apagar display:grid (a display:block) SOLO dentro del media query de 768px, dejando la regla base intacta para desktop, en vez de borrar la propiedad globalmente (lo que habria apagado el efecto tambien en desktop).",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Confirmar si el genoma documenta el riesgo de dos reglas responsive independientes (font-size raiz global + un componente) cruzando en el mismo breakpoint sin coordinacion",
+                "Verificar que apagar display:grid solo dentro del media query (no en la regla base) es el fix minimo correcto"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "module": "FeatureCards",
+                "path": "src/components/sections/FeatureCards.vue",
+                "operation": "bugfix-stacking-cards-mobile-gap"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:22",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:19"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:552ab854-3297-4e53-8be7-2ada4d7154b6",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.31.0",
+              "overlay_revision": 166,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:a929271f7e579827ef81f5d374f86aca198f281d9116578a3a74c952ec2be076",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:22",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:4d255325599edbfc589fdc186bb133ccbd2bc16e3a54c6dd111fda7c2b90f4d2"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:19",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:6036fb6f4d6e836cfd9f55b1b02d026e5f1f4b84a5bc59722cbc167aae75c018"
+                }
+              ],
+              "query_revision": "sha256:4db3e9a3f97b9f6142a94bfe1b1a71a6931240053287cec58c8146d8dc2073e7",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 6834,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 2,
+                "used_excerpt_chars": 530,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
           }
         ],
         "decisions": [
@@ -8071,6 +8143,32 @@
             ],
             "consultations": [
               "consult:4:39"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:42",
+            "kind": "novel",
+            "rationale": "Bug real, medido con navegador real cruzando 9 anchos (computed style de --slot-h, gridTemplateRows resuelto y font-size raiz en cada uno), no supuesto. Dos reglas CSS totalmente independientes -un reset tipografico global en html{} y un tunable especifico de un componente (--slot-h)- comparten el mismo valor de breakpoint (768px) por coincidencia, no por diseño coordinado. Cada una fue calibrada asumiendo que la otra no existia: el reset global asume que el rem seguira representando \"10px\" para quien calcule un tamaño en rem: la regla del componente fue tuneada asumiendo esa base). Al cruzar ambas en el mismo punto, el resultado renderizado (616px de fila de grid contra ~280px de contenido real) no es lo que ninguno de los dos autores calculo por separado. El sintoma -un hueco enorme- no señala a ninguna de las dos reglas individualmente: cada una hace exactamente lo que dice. Solo aparece al MEDIR el resultado compuesto en el navegador real, no leyendo cada regla por separado. Fix: apagar el mecanismo dependiente del rem (display:grid) especificamente en el breakpoint compartido, sin tocar ninguna de las dos reglas origen. La leccion generaliza sin CSS/Tailwind/este proyecto: cuando un valor en unidades relativas (rem, %, em) se calibra en un componente, hay que verificar si algun ancestro tiene su propia regla responsive que redefina esa unidad base en el MISMO breakpoint -la interaccion compuesta solo se ve midiendo el render real, nunca leyendo cada regla aislada.",
+            "projection": "etiqueta: dos-reglas-responsive-independientes-cruzan-en-el-mismo-breakpoint-sin-coordinarse",
+            "evidence": [
+              "src/components/sections/FeatureCards.vue:93-128 (regla base display:grid intacta, override movil display:block)",
+              "src/assets/scss/style.scss:77-98 (font-size raiz: 62.5% -> 58% en 991px -> 55% en 768px)",
+              "medicion en 9 anchos (1280..375): renglon de grid 616px vs card real ~280px a 768px antes del fix; final-mobile-768-scroll800.png / final-desktop-1280-scroll900.png confirman fix sin regresion en desktop"
+            ],
+            "consultations": [
+              "consult:4:40"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:43",
+            "kind": "local",
+            "rationale": "FeatureCards.vue: Fredy pidio actualizar el copy de las 4 cards (texto exacto por captura de referencia) y eliminar la 5ta card, ademas de corregir cada CTA para que apunte a la vista de campaña propia de su solucion (/infraestructura-spei, /hardware-criptografico, /cripto-as-a-service) en vez de /contact fijo para las 4. El intent original de task:4 declara explicitamente \"Alcance exclusivamente visual y de maquetacion: sin cambios de copy, sin logica de negocio\" -ambos pedidos caen fuera de esa declaracion textualmente-. Se documenta como extension de alcance explicitamente autorizada por el humano en esta misma sesion, mismo criterio que decision:4:36 (layout de nav compartido): el pedido es directo y puntual, no amerita abrir tarea nueva. Se tradujo el copy nuevo tambien a EN (el archivo lo requiere) sin captura de referencia en ingles -se aviso a Fredy para que la revise-. \"Infraestructura soberana y nube hibrida\" (card 3) no tiene vista de campaña propia entre las 3 construidas, su CTA quedo en /contact por no haber destino mejor.",
+            "evidence": [
+              "src/components/sections/FeatureCards.vue: cardStyles ahora con path por card",
+              "i18n/locales/es.json y en.json: features.items reducido a 4 entradas",
+              "intent original de task:4: \"sin cambios de copy, sin logica de negocio\""
             ],
             "status": "proposed"
           }

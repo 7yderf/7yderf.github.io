@@ -47,13 +47,13 @@
     "items": [
       {
         "title": "Payment Infrastructure",
-        "description": "We are certified integrators. We guide your institution from onboarding with Banco de México through to production, with high-availability schemes and 24/7 monitoring.",
+        "description": "We are certified integrators. We guide your institution from onboarding with Banco de México through to production, with high-availability schemes and monitoring.",
         "link": "Start SPEI connection"
       },
       {
-        "title": "Cryptography and Data Protection",
-        "description": "We implement Thales Luna 700 HSMs, full cryptographic key lifecycle management, and reinforced authentication. Compliant with FIPS 140-2 Level 3",
-        "link": "Security architecture"
+        "title": "Cryptographic Hardware",
+        "description": "We implement HSM infrastructure to safeguard cryptographic keys, strengthen security, and meet the requirements of the most demanding environments.",
+        "link": "Learn about Cryptographic Hardware"
       },
       {
         "title": "Sovereign Infrastructure and Hybrid Cloud",
@@ -61,14 +61,9 @@
         "link": "Explore infrastructure"
       },
       {
-        "title": "Managed Services",
-        "description": "Continuous operation and monitoring of critical infrastructure (HSM, SPEI, cloud). Includes architecture consulting, implementation, NOC/SOC support, and technical training for internal teams.",
-        "link": "Discover services"
-      },
-      {
-        "title": "Regulatory Compliance",
-        "description": "Compliance with CNBV regulations, operational continuity, and security requirements for Mexican financial institutions.",
-        "link": "Explore operational continuity"
+        "title": "Crypto as a Service",
+        "description": "Protect your cryptographic keys without investing in infrastructure. Centralize your cryptography management with a managed, secure service that's ready to operate from day one.",
+        "link": "Explore Crypto as a Service"
       }
     ]
   },

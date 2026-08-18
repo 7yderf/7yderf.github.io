@@ -47,13 +47,13 @@
     "items": [
       {
         "title": "Infraestructura para Pagos",
-        "description": "Somos integradores certificados. Llevamos tu institución desde el onboarding con Banco de México hasta producción, con esquemas de alta disponibilidad y monitoreo 24/7.",
+        "description": "Somos integradores certificados. Llevamos tu institución desde el onboarding con Banco de México hasta producción, con esquemas de alta disponibilidad y monitoreo.",
         "link": "Iniciar conexión SPEI"
       },
       {
-        "title": "Criptografía y protección de datos",
-        "description": "Implementamos HSM Luna 700 de Thales, gestión completa del ciclo de vida de llaves criptográficas y autenticación reforzada. Cumplimiento con FIPS 140-2 Nivel 3",
-        "link": "Arquitectura de seguridad"
+        "title": "Hardware criptográfico",
+        "description": "Implementamos infraestructura HSM para resguardar llaves criptográficas, fortalecer la seguridad y cumplir con los requisitos de los entornos más exigentes.",
+        "link": "Conocer Hardware Criptográfico"
       },
       {
         "title": "Infraestructura soberana y nube híbrida",
@@ -61,14 +61,9 @@
         "link": "Explorar infraestructura"
       },
       {
-        "title": "Servicios administrados",
-        "description": "Operación y monitoreo continuo de infraestructura crítica (HSM, SPEI, nube). Incluye consultoría de arquitectura, implementación, soporte NOC/SOC, y capacitación técnica a equipos internos.",
-        "link": "Descubrir servicios"
-      },
-      {
-        "title": "Cumplimiento regulatorio",
-        "description": "Adecuación a normativa CNBV, continuidad operativa y requisitos de seguridad para entidades financieras mexicanas.",
-        "link": "Explorar continuidad operativa"
+        "title": "Criptografía As a Service",
+        "description": "Protege tus llaves criptográficas sin invertir en infraestructura. Centraliza la gestión de tu criptografía con un servicio administrado, seguro y listo para operar desde el primer día.",
+        "link": "Explorar Criptografía como servicio"
       }
     ]
   },
