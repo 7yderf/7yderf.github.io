@@ -18,7 +18,7 @@
     </div>
 
     <!-- Header / Nav -->
-    <header class="sc-header sticky top-0 z-40 flex-col border-b border-line bg-bg-second/95 backdrop-blur">
+    <header ref="headerRef" class="sc-header sticky top-0 z-40 flex-col border-b border-line bg-bg-second/95 backdrop-blur">
       <nav class="sc-nav mx-auto w-full max-w-7xl items-center justify-between gap-4 px-4 py-4 lg:px-8">
         <NuxtLink :to="localePath('/')" class="shrink-0">
           <img src="/images/logo-conecta.png" alt="CONECTA" class="h-6 w-auto">
@@ -74,14 +74,90 @@
           <li><NuxtLink :to="`${localePath('/')}#nosotros`" class="hover:text-primary">{{ t('nav.about') }}</NuxtLink></li>
         </ul>
 
-        <div class="flex items-center gap-3">
+        <div class="hidden items-center gap-3 lg:flex">
           <LanguageSwitcher />
           <NuxtLink :to="localePath('/contact')" class="btn-primary">
             {{ t('nav.cta') }} →
           </NuxtLink>
         </div>
+
+        <!-- Hamburguesa: solo existe donde el ul de arriba ya esta oculto
+             por completo (debajo de lg). El icono se convierte en X en vez
+             de sumar un boton de cierre aparte. -->
+        <button
+          type="button"
+          class="text-text hover:text-primary lg:hidden"
+          aria-haspopup="true"
+          :aria-expanded="mobileMenuOpen"
+          aria-label="Abrir menú"
+          @click="mobileMenuOpen = !mobileMenuOpen"
+        >
+          <Icon :icon="mobileMenuOpen ? 'mdi:close' : 'mdi:menu'" width="26" height="26" />
+        </button>
       </nav>
+
+      <!-- Panel movil: absolute sobre el header (position:sticky ya establece
+           el bloque contenedor), no empuja el contenido ni crece el header
+           fijo. La estructura es div/button, no ul/li: .sc-nav ul solo
+           atrapa uls anidados -ver decision:4:35-, asi que evitar ul aqui
+           evita reproducir el mismo defecto en vez de tener que corregirlo. -->
+      <div
+        v-show="mobileMenuOpen"
+        class="absolute left-0 top-full w-full border-t border-line bg-bg-second lg:hidden"
+      >
+        <div class="mx-auto flex w-full max-w-7xl flex-col gap-1 px-4 py-4 font-secondary text-sm font-medium text-text">
+          <div>
+            <button
+              type="button"
+              class="flex w-full items-center justify-between gap-1 rounded-lg px-3 py-2 hover:bg-surface-2 hover:text-primary"
+              :aria-expanded="mobileSolutionsOpen"
+              @click="mobileSolutionsOpen = !mobileSolutionsOpen"
+            >
+              {{ t('nav.solutions') }}
+              <Icon
+                icon="mdi:chevron-down"
+                width="18"
+                height="18"
+                class="transition-transform"
+                :class="{ 'rotate-180': mobileSolutionsOpen }"
+              />
+            </button>
+            <div v-show="mobileSolutionsOpen" class="flex flex-col gap-1 py-1 pl-6">
+              <NuxtLink :to="localePath('/hardware-criptografico')" class="rounded-lg px-3 py-2 hover:bg-surface-2 hover:text-primary" @click="closeMobileMenu()">
+                {{ t('nav.solutionsMenu.hsm') }}
+              </NuxtLink>
+              <NuxtLink :to="localePath('/infraestructura-spei')" class="rounded-lg px-3 py-2 hover:bg-surface-2 hover:text-primary" @click="closeMobileMenu()">
+                {{ t('nav.solutionsMenu.spei') }}
+              </NuxtLink>
+              <NuxtLink :to="localePath('/cripto-as-a-service')" class="rounded-lg px-3 py-2 hover:bg-surface-2 hover:text-primary" @click="closeMobileMenu()">
+                {{ t('nav.solutionsMenu.caas') }}
+              </NuxtLink>
+            </div>
+          </div>
+
+          <NuxtLink :to="`${localePath('/')}#fabricantes`" class="rounded-lg px-3 py-2 hover:bg-surface-2 hover:text-primary" @click="closeMobileMenu()">{{ t('nav.vendors') }}</NuxtLink>
+          <NuxtLink :to="`${localePath('/')}#industrias`" class="rounded-lg px-3 py-2 hover:bg-surface-2 hover:text-primary" @click="closeMobileMenu()">{{ t('nav.industries') }}</NuxtLink>
+          <NuxtLink :to="`${localePath('/')}#recursos`" class="rounded-lg px-3 py-2 hover:bg-surface-2 hover:text-primary" @click="closeMobileMenu()">{{ t('nav.resources') }}</NuxtLink>
+          <NuxtLink :to="`${localePath('/')}#nosotros`" class="rounded-lg px-3 py-2 hover:bg-surface-2 hover:text-primary" @click="closeMobileMenu()">{{ t('nav.about') }}</NuxtLink>
+
+          <div class="mt-2 flex items-center justify-between gap-3 border-t border-line pt-4">
+            <LanguageSwitcher />
+            <NuxtLink :to="localePath('/contact')" class="btn-primary" @click="closeMobileMenu()">
+              {{ t('nav.cta') }} →
+            </NuxtLink>
+          </div>
+        </div>
+      </div>
     </header>
+
+    <!-- Backdrop del panel movil: fixed cubre todo el viewport, pero el
+         header (z-40) queda arriba en la pila y no se ve oscurecido. -->
+    <div
+      v-show="mobileMenuOpen"
+      class="fixed inset-0 z-30 bg-deep-ink/50 lg:hidden"
+      aria-hidden="true"
+      @click="mobileMenuOpen = false"
+    />
 
     <main class="flex-1">
       <slot />
@@ -154,21 +230,55 @@ import { Icon } from '@iconify/vue'
 const localePath = useLocalePath()
 const { t } = useI18n()
 
-// Dropdown de "Soluciones": boton toggle, no link directo — el click abre el
-// panel con las 3 vistas de campaña. Sin VueUse en el proyecto, el cierre por
-// click afuera y Escape se resuelve con listeners propios en document,
-// montados solo mientras el layout vive.
+// Dropdown de "Soluciones" (escritorio): boton toggle, no link directo — el
+// click abre el panel con las 3 vistas de campaña. Sin VueUse en el
+// proyecto, el cierre por click afuera y Escape se resuelve con listeners
+// propios en document, montados solo mientras el layout vive.
 const solutionsOpen = ref(false)
 const solutionsRef = ref<HTMLElement | null>(null)
 
+// Panel movil: estado independiente del dropdown de escritorio, no
+// reusado. Un click en el trigger del acordeon movil vive fuera de
+// solutionsRef, asi que si compartiera el mismo ref el listener de click
+// afuera lo cerraria en el mismo tick en que se abre.
+const mobileMenuOpen = ref(false)
+const mobileSolutionsOpen = ref(false)
+const headerRef = ref<HTMLElement | null>(null)
+
+function closeMobileMenu() {
+  mobileMenuOpen.value = false
+  mobileSolutionsOpen.value = false
+}
+
+// Cierra el panel movil solo, sin tocar el acordeon: cruzar a desktop no
+// deberia perder que "Soluciones" seguia expandido si el usuario vuelve a mobile.
+const isDesktop = useMedia('(min-width: 1024px)')
+watch(isDesktop, (desktop) => {
+  if (desktop) mobileMenuOpen.value = false
+})
+
+// composedPath(), no target+contains(): el boton hamburguesa cambia su
+// propio icono (mdi:menu -> mdi:close) como reaccion al mismo click que lo
+// abre, y para cuando este listener corre el <path> que origino el click ya
+// fue reemplazado por el icono nuevo -detached del arbol-, asi que
+// target.contains() da false aunque el click ocurrio adentro. composedPath()
+// devuelve la cadena de nodos capturada al momento del dispatch, no una
+// referencia que un rerender pueda invalidar.
 function onDocumentClick(event: MouseEvent) {
-  if (solutionsOpen.value && solutionsRef.value && !solutionsRef.value.contains(event.target as Node)) {
+  const path = event.composedPath()
+  if (solutionsOpen.value && solutionsRef.value && !path.includes(solutionsRef.value)) {
     solutionsOpen.value = false
+  }
+  if (mobileMenuOpen.value && headerRef.value && !path.includes(headerRef.value)) {
+    mobileMenuOpen.value = false
   }
 }
 
 function onDocumentKeydown(event: KeyboardEvent) {
-  if (event.key === 'Escape') solutionsOpen.value = false
+  if (event.key === 'Escape') {
+    solutionsOpen.value = false
+    mobileMenuOpen.value = false
+  }
 }
 
 onMounted(() => {

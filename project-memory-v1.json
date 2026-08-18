@@ -1,7 +1,7 @@
 {
   "$schema": "https://eure-k.local/schemas/project-memory-v1.json",
   "schema": "eure-k.project-memory/v1",
-  "revision": 158,
+  "revision": 163,
   "project": {
     "id": "frt-cnct-web",
     "repository_fingerprint": "git-remote-v1:sha256:9cecfa5ed6040202f52f46768540e1b8a10fa6c11be8f5acbcaf8dbea368cb60",
@@ -28,7 +28,7 @@
     "revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
     "server_version": "0.31.0",
     "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
-    "last_consulted_at": "2026-08-18T17:05:45.730Z",
+    "last_consulted_at": "2026-08-18T17:47:19.075Z",
     "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7"
   },
   "graph": {
@@ -7309,6 +7309,158 @@
                 }
               }
             }
+          },
+          {
+            "id": "consult:4:37",
+            "at": "2026-08-18T17:29:46.686Z",
+            "intent": "Ajuste 2 (menu movil): plan de implementacion, descubri que useMedia.ts ya existe en el proyecto (decision:3:15) sin consumidores actuales.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Ajuste 2 dentro de task:frt-cnct-web:4 (autorizado por el humano sobre el layout compartido, mismo criterio que decision:4:36): menu movil por debajo de lg=1024px. Se investigo un ejemplo de referencia en un proyecto hermano (tesseracto-front, comparte mixins/estructura SCSS): un composable useMedia(query) minimo basado en matchMedia+evento change, y un SidebarMenu controlado por isOpen externo con overlay + boton hamburguesa + MenuDropdown como acordeon inline. Al revisar el header movil actual a 375px se encontro un bug PREEXISTENTE no relacionado con el dropdown recien agregado: el boton CTA \"Hablar con un experto\" se desborda del viewport porque hoy nada oculta el grupo LanguageSwitcher+CTA en mobile. Plan: portar useMedia a src/composables/useMedia.ts (named export, mismo estilo que useSwiperInit.ts), agregar un boton hamburguesa lg:hidden que abre un panel de ancho completo debajo del header (no un drawer lateral - decision ya tomada por el humano), ocultar LanguageSwitcher+CTA del header en mobile (hidden lg:flex) y moverlos dentro del panel movil, y reusar el patron de acordeon inline de MenuDropdown para que \"Soluciones\" se comporte igual en el panel movil que ya construido para desktop.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Confirmar que ocultar LanguageSwitcher+CTA del header en mobile y moverlos al panel es el fix correcto para el desborde encontrado",
+                "Verificar si el proyecto tiene ya un patron de overlay/panel full-width que debiera reusarse en vez de crear uno nuevo",
+                "Confirmar convencion de export para el composable portado"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "module": "default-layout-nav",
+                "path": "src/layouts/default.vue",
+                "operation": "new-feature-mobile-menu"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:15",
+              "case:clients-notification-panel",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:19"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:37829759-7b8a-4c79-a3a8-157b4aecc500",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.31.0",
+              "overlay_revision": 158,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:177f327914a5ed9c36d71eea16a8bb35648a3567f4111e2dd87584a6719bfe31",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:15",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:5fce5f62f8b123b7d6e918ebf688beefcf3000612bd0ab1ad603d6de97521af0"
+                },
+                {
+                  "id": "case:clients-notification-panel",
+                  "source": "genome",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:3817340b7ea17d95c78b17972cc6f7ad8991b4ccb68f20e2e2a712a173bfe879"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:19",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:a2a134f7b13d29564a7a563289f6564d6184f4fdb9ebb1e1d078157d6bba9536"
+                }
+              ],
+              "query_revision": "sha256:06dcc13cf613c007f5a766722344bfaef4fc21acd1218b13acdeb9c7d2c1cdf3",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 8488,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 3,
+                "used_excerpt_chars": 663,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:4:38",
+            "at": "2026-08-18T17:47:19.075Z",
+            "intent": "Bug real: target+contains() en click-afuera fallaba porque el trigger cambia su propio icono como reaccion al mismo click; fix con composedPath().",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Bug real encontrado y confirmado con instrumentacion de mutation observer + logging directo en el handler: el listener de click-afuera del dropdown/panel movil (default.vue) usaba event.target + Node.contains() para decidir si el click cayo fuera del panel. El boton que abre el panel (hamburguesa/Soluciones) cambia su propio icono como reaccion al mismo click (mdi:menu -> mdi:close via el prop :icon del componente Icon de iconify), y el <path> del SVG que origino el evento queda reemplazado -detached del arbol- antes de que el listener de document corra, aunque la dispatch del evento sigue siendo la misma cadena de bubbling. target.contains() da false pese a que el click ocurrio genuinamente adentro, cerrando el panel en el mismo tick en que se abrio. Se corrigio usando event.composedPath() en vez de target+contains(): composedPath() devuelve el array de nodos capturado al momento del dispatch, inmune a que un nodo se desconecte despues. Verificado con un navegador real (playwright-core + Chrome del sistema): sin el fix, un click real (mousedown+mouseup+click) en el boton nunca lograba abrir el panel de forma persistente; con composedPath, las 7 verificaciones de interaccion (abrir, acordeon anidado sin cerrar el padre, click afuera, Escape, click en link, auto-cierre al cruzar a desktop) pasaron limpias.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Confirmar si el genoma ya documenta el patron target+contains() vs composedPath() para deteccion de click afuera cuando el propio trigger muta su contenido",
+                "Verificar que no hay otro lugar en el proyecto con el mismo target+contains() vulnerable al mismo patron"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "module": "default-layout-nav",
+                "path": "src/layouts/default.vue",
+                "operation": "bugfix-outside-click-detection"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:22",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:19"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:2182c449-eccc-4be5-a807-8d97ead754d0",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.31.0",
+              "overlay_revision": 159,
+              "overlay_graph_hash": "sha256:45916987aa960feb9477608a780e776e724dc60f470c3702c06a1b5e4112d862",
+              "overlay_curated_hash": "sha256:be2f9e5081f7aad3b1ce96701a062a68b516bb564a14fda87a232871286d093a",
+              "overlay_projections_revision": "sha256:4bae1f98f0262b0969f076d09c39cf6b72a17bf8d5224d717c3fc3a43fc773d6",
+              "output_hash": "sha256:be93f76722943f65a0a5a910bb31b8079b6217e1c14aa45be3f400e8d375accd",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:22",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:4d255325599edbfc589fdc186bb133ccbd2bc16e3a54c6dd111fda7c2b90f4d2"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:19",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:a2a134f7b13d29564a7a563289f6564d6184f4fdb9ebb1e1d078157d6bba9536"
+                }
+              ],
+              "query_revision": "sha256:b980636d42177c6172671e810062d482e3e29177faa1b6eae8c88de9c1de8689",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 7452,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 2,
+                "used_excerpt_chars": 718,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
           }
         ],
         "decisions": [
@@ -7777,6 +7929,47 @@
             ],
             "consultations": [
               "consult:4:35"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:37",
+            "kind": "novel",
+            "rationale": "Bug real, reproducido de forma consistente y diagnosticado con MutationObserver + logging directo en el handler (no supuesto): un listener de click-afuera en document que decide \"adentro/afuera\" con event.target + Node.contains() falla cuando el propio elemento clickeado MUTA su contenido como reaccion sincronica al mismo click -aqui, el icono del boton toggle cambia de mdi:menu a mdi:close via un binding reactivo del componente Icon, reemplazando el <path> del SVG que origino el evento-. Para cuando el listener de document corre, ese nodo ya no esta en el arbol y contains() devuelve false aunque el click ocurrio genuinamente dentro del elemento, cerrando el panel en el mismo tick en que se abrio -invisible en pruebas superficiales porque parece que \"el click no hizo nada\", no que se abrio y cerro solo-. Confirmado con un click SINTETICO (dispatchEvent/force) funcionando bien mientras un click REAL de usuario (mousedown+mouseup+click, via Chrome real) fallaba siempre, lo que aislo el problema al timing/identidad del nodo target y no a la logica de apertura. El fix es usar event.composedPath() en vez de target: devuelve el array de nodos capturado en el momento del dispatch, no una referencia al target que un rerender pueda invalidar. La leccion es de DOM/JS puro, sobrevive sin Vue/Nuxt/este proyecto: cualquier trigger de disclosure (dropdown, acordeon, menu) cuyo propio contenido visual cambie en respuesta al click que lo abre es candidato a este defecto si su deteccion de click-afuera usa target+contains().",
+            "projection": "etiqueta: click-afuera-con-composedpath-cuando-el-trigger-muta-su-propio-icono",
+            "evidence": [
+              "src/layouts/default.vue (onDocumentClick, antes: target+contains, ahora: composedPath)",
+              "debug-mobile-menu5.js: MutationObserver mostro aria-expanded true->false en 2.5ms tras un solo evento click, sin segundo evento",
+              "debug-mobile-menu3.js/4.js: dispatchEvent/force click funcionaban, click real fallaba consistentemente"
+            ],
+            "consultations": [
+              "consult:4:38"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:38",
+            "kind": "local",
+            "rationale": "Bug preexistente encontrado por screenshot a 375px, no causado por el dropdown de \"Soluciones\" agregado antes: el grupo LanguageSwitcher+boton CTA en el header no tenia ningun ocultamiento para mobile, y el boton \"Hablar con un experto\" se desbordaba del viewport. Se corrigio ocultando ese grupo en mobile (hidden lg:flex) y moviendolo dentro del panel del menu movil nuevo, junto al resto de los links de navegacion, en vez de dejarlo flotando fuera de alcance en pantallas angostas.",
+            "evidence": [
+              "mobile-header-375.png (antes): CTA cortado por el borde del viewport",
+              "src/layouts/default.vue: div lang+cta ahora hidden lg:flex, duplicado dentro del panel movil"
+            ],
+            "consultations": [
+              "consult:4:37"
+            ],
+            "status": "proposed"
+          },
+          {
+            "id": "decision:4:39",
+            "kind": "local",
+            "rationale": "El composable src/composables/useMedia.ts ya existia en el proyecto desde task:3 (decision:3:15, proyeccion local no target de genoma) pero sin ningun consumidor en el codigo. El menu movil lo usa por primera vez (useMedia('(min-width: 1024px)')) para cerrar el panel automaticamente al cruzar a desktop durante un resize -un caso que CSS solo no puede resolver, porque hace falta limpiar estado JS, no solo ocultar visualmente-. Se referencio el ejemplo de tesseracto-front (mismo composable, ya adaptado alli con useMedia(query):Ref<boolean> via matchMedia+change) solo para confirmar el patron; el archivo de este proyecto ya estaba en la forma correcta y no requirio portarse de nuevo.",
+            "evidence": [
+              "src/composables/useMedia.ts (ya existente, sin cambios)",
+              "src/layouts/default.vue: primer uso real, watch(isDesktop, ...) para auto-cerrar el panel movil"
+            ],
+            "consultations": [
+              "consult:4:37"
             ],
             "status": "proposed"
           }
