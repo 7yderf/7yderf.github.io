@@ -1,7 +1,7 @@
 {
   "$schema": "https://eure-k.local/schemas/project-memory-v1.json",
   "schema": "eure-k.project-memory/v1",
-  "revision": 169,
+  "revision": 171,
   "project": {
     "id": "frt-cnct-web",
     "repository_fingerprint": "git-remote-v1:sha256:9cecfa5ed6040202f52f46768540e1b8a10fa6c11be8f5acbcaf8dbea368cb60",
@@ -38,7 +38,7 @@
         "version": "headless-v1",
         "adapter": "legacy-front",
         "target": "src",
-        "generated_at": "2026-08-17T21:51:30.566Z",
+        "generated_at": "2026-08-19T03:42:26.881Z",
         "content_hash": "sha256:b49b7c907a5b620d66dd324a82c6608de154c9eb4d81811e1ace335eff9c6307"
       },
       "nodes": [
@@ -1855,6 +1855,362 @@
           "checkpoint": "checkpoint:3",
           "authored_by": "agente+humano",
           "approved_at": "2026-08-14T17:41:22.997Z"
+        },
+        {
+          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:5",
+          "type": "projection",
+          "layer": "local-knowledge",
+          "scope": "local",
+          "status": "validated",
+          "concern": "Margen de basis+gap contra padding anidado",
+          "problem": "Verificar que basis+gap deja margen positivo contra el contenedor no basta: un margen positivo pero menor al rango tipico de variacion del navegador (scrollbar no superpuesta, redondeo de subpixel, ~15-20px) sigue siendo fragil. Cuando el contenedor tiene padding propio anidado dentro de otro contenedor con padding propio, hay que sumar TODOS los paddings involucrados para el calculo real del margen disponible, no solo el del contenedor mas cercano.",
+          "projection": "etiqueta: margen-positivo-no-basta-debe-superar-la-variacion-del-navegador — al verificar basis+gap contra un contenedor, no alcanza con confirmar que el margen es positivo: tiene que superar el rango tipico de variacion que el navegador introduce por su cuenta (ancho de scrollbar no superpuesta, redondeo de subpixel), tipicamente 15-20px. Cuando el contenedor tiene padding propio anidado dentro de otro contenedor con padding propio, hay que sumar TODOS los paddings involucrados para el calculo, no solo el del contenedor mas cercano.",
+          "responsibilities": [
+            "Calcular el margen real sumando todos los paddings anidados involucrados, no solo el del contenedor mas cercano",
+            "Exigir que el margen supere el rango tipico de variacion del navegador (15-20px), no solo que sea positivo"
+          ],
+          "facts": {
+            "pattern": "riel-flex-basis-gap",
+            "project": "frt-cnct-web"
+          },
+          "source_relations": [],
+          "evidence": [
+            {
+              "path": "src/components/sections/HsmTechDiagram.vue",
+              "hash": "sha256:fd3eb585823890049ba0f5e172d786e737246eb114d74b7a3ab325287f3180ee",
+              "symbols": [
+                "basis-[28rem]"
+              ]
+            }
+          ],
+          "task": "task:frt-cnct-web:4",
+          "decision": "decision:4:5",
+          "checkpoint": "checkpoint:4",
+          "authored_by": "agente+humano",
+          "approved_at": "2026-08-19T03:42:26.881Z"
+        },
+        {
+          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:8",
+          "type": "projection",
+          "layer": "local-knowledge",
+          "scope": "local",
+          "status": "validated",
+          "concern": "Rango de encogimiento vs margen previo en basis=100%",
+          "problem": "Cuando flex-basis por conteo suma exactamente 100% del contenedor SIN gap horizontal adicional, el criterio de \"margen previo positivo de 15-20px\" no aplica -no hay demanda excedida desde la cual encoger-. El criterio correcto en ese caso es verificar que el RANGO entre basis y min-width sea generoso, no un margen previo.",
+          "projection": "etiqueta: rango-de-encogimiento-no-margen-previo-cuando-basis-suma-exacto-100 — cuando flex-basis por conteo suma exactamente 100% de su contenedor SIN gap horizontal adicional, el margen de 0% no reproduce el defecto de basis+gap excediendo el 100%: lo que hay que verificar en ese caso es que el rango entre basis y min-width sea generoso (no el criterio de margen previo de 15-20px, que aplica cuando hay que encoger DESDE una demanda ya excedida). Ambos criterios son formas del mismo principio -verificar la aritmetica real, no asumir que \"positivo\" o \"cero\" ya es suficiente por si solo- pero se aplican a situaciones distintas y no deben confundirse.",
+          "responsibilities": [
+            "Distinguir basis+gap>100% (requiere margen previo de 15-20px) de basis=100% sin gap (requiere rango de encogimiento generoso)",
+            "Verificar algebraicamente que el riel cierra en 100% para cualquier n, no solo el n actual"
+          ],
+          "facts": {
+            "pattern": "riel-de-celdas",
+            "project": "frt-cnct-web"
+          },
+          "source_relations": [],
+          "evidence": [
+            {
+              "path": "src/components/sections/HsmSteps.vue",
+              "hash": "sha256:71fda0f58881f05fa540479590d406aaf4517b789f1f48070a2d9c6bcaaf87f8",
+              "symbols": [
+                "flexBasis"
+              ]
+            }
+          ],
+          "task": "task:frt-cnct-web:4",
+          "decision": "decision:4:8",
+          "checkpoint": "checkpoint:4",
+          "authored_by": "agente+humano",
+          "approved_at": "2026-08-19T03:42:26.881Z"
+        },
+        {
+          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:15",
+          "type": "projection",
+          "layer": "local-knowledge",
+          "scope": "local",
+          "status": "validated",
+          "concern": "Hover-trigger dentro de region oculta por breakpoint",
+          "problem": "Un componente gatea contenido a un breakpoint (hidden...bp:flex) y el UNICO disparador que revela ese contenido es un evento de hover registrado DENTRO de esa misma region oculta. Por debajo del breakpoint, el elemento con display:none no recibe eventos de puntero, asi que el estado nunca puede cambiar y el contenido queda perdido por completo, no reacomodado a una forma mas simple.",
+          "projection": "etiqueta: disparador-de-hover-dentro-de-la-region-que-oculta-nunca-se-activa — cuando un componente gatea contenido a un breakpoint (hidden...breakpoint:flex) y ADEMAS ese contenido solo se revela via un estado disparado por hover (@mouseenter), verificar donde vive el manejador que dispara ese estado. Si el manejador esta DENTRO de la misma region oculta que el breakpoint controla, el estado nunca puede cambiar por debajo de ese breakpoint -un elemento display:none no recibe eventos de puntero-, y el contenido que ese estado revela queda perdido, no reacomodado. Este patron es facil de no ver leyendo cada fila por separado, porque cada \"hidden lg-2:flex\" individual parece una decision de layout razonable; el defecto solo aparece al trazar el CICLO COMPLETO estado→disparador→region oculta.",
+          "responsibilities": [
+            "Trazar el ciclo completo estado->disparador->region oculta antes de aceptar un patron hidden...bp:flex con interaccion por hover",
+            "Verificar que el disparador de un estado vive fuera de cualquier region que ese mismo estado pueda ocultar"
+          ],
+          "facts": {
+            "component": "SpeiStages",
+            "project": "frt-cnct-web",
+            "status": "unfixed-requires-design-decision"
+          },
+          "source_relations": [],
+          "evidence": [
+            {
+              "path": "src/components/sections/SpeiStages.vue",
+              "hash": "sha256:32f9bf8dc52dac11dfff0261e60d5934e63c1f1387733c58bcaa1a619d95fb37",
+              "symbols": [
+                "@mouseenter",
+                "active"
+              ]
+            }
+          ],
+          "task": "task:frt-cnct-web:4",
+          "decision": "decision:4:15",
+          "checkpoint": "checkpoint:4",
+          "authored_by": "agente+humano",
+          "approved_at": "2026-08-19T03:42:26.881Z"
+        },
+        {
+          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:16",
+          "type": "projection",
+          "layer": "local-knowledge",
+          "scope": "local",
+          "status": "validated",
+          "concern": "Stretch por defecto en cualquier flex, no solo boton",
+          "problem": "El mecanismo de decision:2:4 (boton .btn-* estirandose sin padre no-stretch) es mas amplio de lo documentado: CUALQUIER elemento display:flex dentro de un flex-col sin items-center/items-start se estira al ancho del padre por align-items:stretch (el default de flex). Si el contenido interno usa justify-content:flex-start, el sintoma es invisible a simple vista y solo se manifiesta como un area de click/hover mas ancha que el texto visible.",
+          "projection": "etiqueta: stretch-por-defecto-afecta-a-cualquier-flex-no-solo-al-boton — decision:2:4 identifico el mixin de boton estirandose sin padre no-stretch; el mecanismo real es mas amplio: CUALQUIER elemento con display:flex (boton, link, div) se estira al ancho de su padre si ese padre no anula align-items:stretch, el default de flex. Cuando el contenido interno tiene su propio justify-content en flex-start, el sintoma es invisible a simple vista -el texto queda en su lugar- y solo se manifiesta como un area de click/hover mas ancha de lo visible. Verificar items-center/items-start en CUALQUIER contenedor flex-col que aloje un elemento flex interno, no solo cuando aloja un boton.",
+          "responsibilities": [
+            "Reconocer que el sintoma puede ser invisible en revision solo visual, solo detectable interactuando",
+            "Verificar items-center/items-start en cualquier contenedor flex-col que aloje un elemento flex interno (no solo botones)"
+          ],
+          "facts": {
+            "pattern": "align-items-stretch-default",
+            "project": "frt-cnct-web"
+          },
+          "source_relations": [],
+          "evidence": [
+            {
+              "path": "src/components/sections/SpeiOperate.vue",
+              "hash": "sha256:d0bd71e63fc2a716d2b1b02fc1457b5179ba435983fa5214deea69115042e19d",
+              "symbols": [
+                "items-start"
+              ]
+            }
+          ],
+          "task": "task:frt-cnct-web:4",
+          "decision": "decision:4:16",
+          "checkpoint": "checkpoint:4",
+          "authored_by": "agente+humano",
+          "approved_at": "2026-08-19T03:42:26.881Z"
+        },
+        {
+          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:26",
+          "type": "projection",
+          "layer": "local-knowledge",
+          "scope": "local",
+          "status": "validated",
+          "concern": "CTA sobre media con margen negativo, verificar alto real",
+          "problem": "Montar un CTA sobre un media (video/imagen) via margen negativo -para que quede en flujo y la seccion reserve su alto real, en vez de position:absolute- solo es seguro si el margen negativo se verifica contra el ALTO RENDERIZADO REAL del media en el breakpoint mas angosto soportado, no un valor elegido a ojo.",
+          "projection": "etiqueta: cta-montado-sobre-media-con-margen-negativo-verificar-alto-minimo — un CTA montado sobre un media via margen negativo (en vez de position:absolute, para que el boton siga en flujo y la seccion reserve su alto real) es seguro solo si el margen negativo es menor al alto RENDERIZADO del media en el breakpoint mas angosto soportado. Verificar midiendo las dimensiones intrinsecas reales del asset (no adivinar), y calculando el alto renderizado del media en cada breakpoint contra ese margen.",
+          "responsibilities": [
+            "Medir las dimensiones intrinsecas reales del media (no asumir) antes de calcular el margen negativo seguro",
+            "Verificar el margen contra el alto renderizado en el breakpoint mas angosto soportado, donde el media es mas chico"
+          ],
+          "facts": {
+            "component": "CaasScattered",
+            "project": "frt-cnct-web"
+          },
+          "source_relations": [],
+          "evidence": [
+            {
+              "path": "src/components/sections/CaasScattered.vue",
+              "hash": "sha256:5af668a14d7d7e9374826bcd7c768d398d6698329bce0482b3fc28cb0911d525",
+              "symbols": [
+                "-mt-24",
+                "-mt-28"
+              ]
+            }
+          ],
+          "task": "task:frt-cnct-web:4",
+          "decision": "decision:4:26",
+          "checkpoint": "checkpoint:4",
+          "authored_by": "agente+humano",
+          "approved_at": "2026-08-19T03:42:26.881Z"
+        },
+        {
+          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:27",
+          "type": "projection",
+          "layer": "local-knowledge",
+          "scope": "local",
+          "status": "validated",
+          "concern": "align-self puntual cuando hermano necesita stretch",
+          "problem": "Cuando el mecanismo de decision:2:4/4:16 aparece pero un HERMANO en el mismo contenedor flex-col SI depende del align-items:stretch por defecto (ej. filas de ancho completo con fondo visible), forzar items-start/items-center en el padre arreglaria el elemento problematico pero romperia ese hermano.",
+          "projection": "etiqueta: align-self-puntual-cuando-un-hermano-necesita-el-stretch-por-defecto — cuando el mismo mecanismo de decision:2:4/4:16 (flex item de ancho automatico estirado por align-items:stretch) aparece pero un hermano en el mismo contenedor SI depende de ese stretch por defecto para verse correcto, el fix va en align-self puntual del hijo problematico, no en align-items del padre -eso romperia al hermano que si lo necesita-.",
+          "responsibilities": [
+            "Usar align-self en el hijo especifico cuando el padre no puede cambiar sin romper otro hijo",
+            "Verificar si algun hermano depende del stretch por defecto antes de anular align-items en el padre"
+          ],
+          "facts": {
+            "component": "CaasOnePlace",
+            "project": "frt-cnct-web"
+          },
+          "source_relations": [],
+          "evidence": [
+            {
+              "path": "src/components/sections/CaasOnePlace.vue",
+              "hash": "sha256:e533b410af82f5f1980aba937d9106636dc52c0806fdab0e8a4ccc531a4a4651",
+              "symbols": [
+                "self-center"
+              ]
+            }
+          ],
+          "task": "task:frt-cnct-web:4",
+          "decision": "decision:4:27",
+          "checkpoint": "checkpoint:4",
+          "authored_by": "agente+humano",
+          "approved_at": "2026-08-19T03:42:26.881Z"
+        },
+        {
+          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:35",
+          "type": "projection",
+          "layer": "local-knowledge",
+          "scope": "local",
+          "status": "validated",
+          "concern": "Selector descendiente global atrapa tag anidado nuevo",
+          "problem": "Una regla CSS con selector descendiente (.scope tag, no .scope > tag) escrita para un tag de primer nivel tambien captura cualquier instancia del mismo tag anidada a cualquier profundidad dentro de ese scope. Al agregar un tag nuevo del mismo tipo mas profundo dentro de ese scope, la regla lo atrapa sin que nada en el codigo nuevo lo pida, y el sintoma aparece como un bug en el componente nuevo, no en la regla original.",
+          "projection": "etiqueta: selector-descendiente-de-regla-global-atrapa-tag-anidado-no-previsto — escribir una regla con selector descendiente scoped por clase (no por combinador de hijo directo) crea una obligacion implicita sobre TODO tag futuro del mismo tipo que se anide en cualquier profundidad dentro de ese scope. Al agregar un tag nuevo anidado del mismo tipo, revisar activamente las reglas descendientes conocidas del scope antes de asumir que el nuevo elemento parte de cero.",
+          "responsibilities": [
+            "Preferir combinador de hijo directo (>) en vez de descendiente cuando la regla solo debe aplicar a un nivel",
+            "Revisar reglas descendientes conocidas del scope antes de anidar un tag nuevo del mismo tipo dentro de un contenedor con esas reglas"
+          ],
+          "facts": {
+            "project": "frt-cnct-web",
+            "rule": ".sc-nav ul"
+          },
+          "source_relations": [],
+          "evidence": [
+            {
+              "path": "src/assets/scss/style.scss",
+              "hash": "sha256:de671574c03b48f70831d9006d49812882b99a8cbc59bc455eb5df90069352d0",
+              "symbols": [
+                ".sc-nav ul"
+              ]
+            },
+            {
+              "path": "src/layouts/default.vue",
+              "hash": "sha256:1a0097933bef5898add80f73d0a306154e5fe873419a47bd758898d4ea525c07",
+              "symbols": [
+                "flex-col"
+              ]
+            }
+          ],
+          "task": "task:frt-cnct-web:4",
+          "decision": "decision:4:35",
+          "checkpoint": "checkpoint:4",
+          "authored_by": "agente+humano",
+          "approved_at": "2026-08-19T03:42:26.881Z"
+        },
+        {
+          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:37",
+          "type": "projection",
+          "layer": "local-knowledge",
+          "scope": "local",
+          "status": "validated",
+          "concern": "composedPath() vs target+contains() en click-afuera",
+          "problem": "Un listener de click-afuera que usa event.target + Node.contains() falla cuando el propio elemento clickeado MUTA su contenido (ej. icono que cambia de nombre) como reaccion sincronica al mismo click: el nodo que origino el evento queda desconectado del arbol para cuando el listener corre, y contains() da false pese a que el click ocurrio genuinamente adentro.",
+          "projection": "etiqueta: click-afuera-con-composedpath-cuando-el-trigger-muta-su-propio-icono — un listener de click-afuera en document que decide \"adentro/afuera\" con event.target + Node.contains() falla cuando el propio elemento clickeado muta su contenido en reaccion sincronica al mismo click, dejando el nodo que origino el evento desconectado del arbol. El fix es usar event.composedPath() en vez de target: devuelve el array de nodos capturado en el momento del dispatch, inmune a que un nodo se desconecte despues.",
+          "responsibilities": [
+            "Diagnosticar con instrumentacion real (MutationObserver, logging) antes de asumir la causa de un toggle que no persiste",
+            "Usar event.composedPath() en vez de target+contains() para deteccion de click-afuera en cualquier trigger cuyo contenido pueda mutar en respuesta al mismo click"
+          ],
+          "facts": {
+            "mechanism": "outside-click-detection",
+            "project": "frt-cnct-web"
+          },
+          "source_relations": [],
+          "evidence": [
+            {
+              "path": "src/layouts/default.vue",
+              "hash": "sha256:1a0097933bef5898add80f73d0a306154e5fe873419a47bd758898d4ea525c07",
+              "symbols": [
+                "composedPath",
+                "onDocumentClick"
+              ]
+            }
+          ],
+          "task": "task:frt-cnct-web:4",
+          "decision": "decision:4:37",
+          "checkpoint": "checkpoint:4",
+          "authored_by": "agente+humano",
+          "approved_at": "2026-08-19T03:42:26.881Z"
+        },
+        {
+          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:40",
+          "type": "projection",
+          "layer": "local-knowledge",
+          "scope": "local",
+          "status": "validated",
+          "concern": "text-align heredado ignora flex justify-content",
+          "problem": "En una lista que mezcla un trigger flex (justify-content posiciona texto+icono) con links de bloque planos, un text-align heredado desde un ancestro afecta SOLO a los links planos -el contenido dentro de un flex container ignora text-align porque su posicion la decide el algoritmo de flexbox-. Resultado: inconsistencia visual silenciosa entre items de la misma lista sin que nada en el markup de cada item lo explique.",
+          "projection": "etiqueta: flex-justify-content-inmune-a-text-align-heredado-en-lista-mixta — en una lista que mezcla un trigger flex (boton con icono, acordeon) con links de bloque plano, un text-align heredado desde un ancestro afecta solo a los links planos porque el texto dentro de un flex container ignora text-align -su posicion la decide flexbox, no el flujo de texto normal-. Al mezclar ambos tipos de item en la misma lista, verificar explicitamente que el text-align heredado no las trate distinto.",
+          "responsibilities": [
+            "No asumir que un text-align heredado afecta uniformemente a todos los hijos de una lista",
+            "Verificar text-align heredado explicitamente cuando una lista mezcla triggers flex con links de bloque plano"
+          ],
+          "facts": {
+            "mechanism": "text-align-inheritance-vs-flex",
+            "project": "frt-cnct-web"
+          },
+          "source_relations": [],
+          "evidence": [
+            {
+              "path": "src/assets/scss/style.scss",
+              "hash": "sha256:de671574c03b48f70831d9006d49812882b99a8cbc59bc455eb5df90069352d0",
+              "symbols": [
+                "body{text-align:center}"
+              ]
+            },
+            {
+              "path": "src/layouts/default.vue",
+              "hash": "sha256:1a0097933bef5898add80f73d0a306154e5fe873419a47bd758898d4ea525c07",
+              "symbols": [
+                "text-left"
+              ]
+            }
+          ],
+          "task": "task:frt-cnct-web:4",
+          "decision": "decision:4:40",
+          "checkpoint": "checkpoint:4",
+          "authored_by": "agente+humano",
+          "approved_at": "2026-08-19T03:42:26.881Z"
+        },
+        {
+          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:42",
+          "type": "projection",
+          "layer": "local-knowledge",
+          "scope": "local",
+          "status": "validated",
+          "concern": "Dos reglas responsive cruzan en mismo breakpoint sin coordinar",
+          "problem": "Dos reglas CSS independientes (un reset tipografico global en unidades rem y un tunable especifico de un componente tambien en rem) comparten el mismo valor de breakpoint por coincidencia, no por diseño coordinado. Cada una fue calibrada asumiendo que la otra no existia. El resultado renderizado compuesto no es lo que ningun autor calculo por separado, y el sintoma no señala a ninguna regla individual -cada una hace exactamente lo que dice-, solo aparece al MEDIR el render real.",
+          "projection": "etiqueta: dos-reglas-responsive-independientes-cruzan-en-el-mismo-breakpoint-sin-coordinarse — cuando un valor en unidades relativas (rem, %, em) se calibra en un componente, verificar si algun ancestro tiene su propia regla responsive que redefina esa unidad base en el MISMO breakpoint. La interaccion compuesta de dos reglas independientes calibradas por separado solo se ve midiendo el render real en el navegador, nunca leyendo cada regla aislada -cada una puede estar perfectamente correcta por si sola y aun asi producir un resultado combinado que ningun autor calculo-.",
+          "responsibilities": [
+            "Medir el resultado renderizado compuesto en el navegador real, no confiar en leer cada regla aislada",
+            "Verificar si algun ancestro tiene su propia regla responsive que redefina la unidad base (rem, %, em) en el mismo breakpoint que un componente esta calibrando"
+          ],
+          "facts": {
+            "mechanism": "root-font-size-breakpoint-collision",
+            "project": "frt-cnct-web"
+          },
+          "source_relations": [],
+          "evidence": [
+            {
+              "path": "src/assets/scss/style.scss",
+              "hash": "sha256:de671574c03b48f70831d9006d49812882b99a8cbc59bc455eb5df90069352d0",
+              "symbols": [
+                "font-size: 55%"
+              ]
+            },
+            {
+              "path": "src/components/sections/FeatureCards.vue",
+              "hash": "sha256:dd12ffeb610804cde49e16b3a08eafb5aa5ac27a1492d3955cbbfa7e1c8bb2d0",
+              "symbols": [
+                "--slot-h",
+                "display:block"
+              ]
+            }
+          ],
+          "task": "task:frt-cnct-web:4",
+          "decision": "decision:4:42",
+          "checkpoint": "checkpoint:4",
+          "authored_by": "agente+humano",
+          "approved_at": "2026-08-19T03:42:26.881Z"
         }
       ]
     }
@@ -4519,9 +4875,9 @@
         "id": "task:frt-cnct-web:4",
         "sequence": 4,
         "intent": "Primera revision responsive de las tres vistas de campaña ya entregadas -Hardware Criptografico (/hardware-criptografico), Infraestructura SPEI (/infraestructura-spei) y Cripto as a Service (/cripto-as-a-service)-, las tres construidas explicitamente desktop-only con \"responsive no incluido\" declarado como pendiente en cada cierre. El objetivo es que las tres se vean y funcionen correctamente en los breakpoints ya definidos del proyecto (xs-2 320, xs 375, sm 535, md 768, lg-2 991, lg 1024, xl 1200, 2xl 1536), reutilizando los patrones responsive ya existentes en el proyecto -riel de celdas, tokens, regla del .btn-*, desplazamiento posicional como estructura, flex-wrap/grow- antes de inventar mecanismos nuevos. Alcance exclusivamente visual y de maquetacion: sin cambios de copy, sin logica de negocio. No incluye home, /privacy, /contact ni ninguna otra ruta -fuera por decision explicita, no por omision-.",
-        "status": "open",
+        "status": "recorded",
         "opened_at": "2026-08-17T21:51:30.566Z",
-        "closed_at": null,
+        "closed_at": "2026-08-19T03:42:26.881Z",
         "consultations": [
           {
             "id": "consult:4:1",
@@ -7619,7 +7975,7 @@
             "consultations": [
               "consult:4:1"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:2",
@@ -7632,7 +7988,7 @@
             "consultations": [
               "consult:4:2"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:3",
@@ -7645,7 +8001,7 @@
             "consultations": [
               "consult:4:3"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:4",
@@ -7658,7 +8014,7 @@
             "consultations": [
               "consult:4:4"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:5",
@@ -7672,7 +8028,7 @@
             "consultations": [
               "consult:4:5"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:6",
@@ -7685,7 +8041,7 @@
             "consultations": [
               "consult:4:6"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:7",
@@ -7698,7 +8054,7 @@
             "consultations": [
               "consult:4:7"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:8",
@@ -7711,7 +8067,7 @@
             "consultations": [
               "consult:4:8"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:9",
@@ -7724,7 +8080,7 @@
             "consultations": [
               "consult:4:9"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:10",
@@ -7736,7 +8092,7 @@
             "consultations": [
               "consult:4:10"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:11",
@@ -7748,7 +8104,7 @@
             "consultations": [
               "consult:4:11"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:12",
@@ -7760,7 +8116,7 @@
             "consultations": [
               "consult:4:12"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:13",
@@ -7772,7 +8128,7 @@
             "consultations": [
               "consult:4:13"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:14",
@@ -7784,7 +8140,7 @@
             "consultations": [
               "consult:4:14"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:15",
@@ -7797,7 +8153,7 @@
             "consultations": [
               "consult:4:15"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:16",
@@ -7810,7 +8166,7 @@
             "consultations": [
               "consult:4:16"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:17",
@@ -7822,7 +8178,7 @@
             "consultations": [
               "consult:4:17"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:18",
@@ -7834,7 +8190,7 @@
             "consultations": [
               "consult:4:18"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:19",
@@ -7846,7 +8202,7 @@
             "consultations": [
               "consult:4:19"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:20",
@@ -7858,7 +8214,7 @@
             "consultations": [
               "consult:4:20"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:21",
@@ -7870,7 +8226,7 @@
             "consultations": [
               "consult:4:21"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:22",
@@ -7882,7 +8238,7 @@
             "consultations": [
               "consult:4:22"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:23",
@@ -7895,7 +8251,7 @@
               "consult:4:23",
               "consult:4:24"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:24",
@@ -7909,7 +8265,7 @@
             "consultations": [
               "consult:4:25"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:25",
@@ -7922,7 +8278,7 @@
             "consultations": [
               "consult:4:25"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:26",
@@ -7937,7 +8293,7 @@
             "consultations": [
               "consult:4:26"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:27",
@@ -7952,7 +8308,7 @@
             "consultations": [
               "consult:4:27"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:28",
@@ -7967,7 +8323,7 @@
             "consultations": [
               "consult:4:28"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:29",
@@ -7981,7 +8337,7 @@
             "consultations": [
               "consult:4:29"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:30",
@@ -7995,7 +8351,7 @@
             "consultations": [
               "consult:4:30"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:31",
@@ -8008,7 +8364,7 @@
             "consultations": [
               "consult:4:31"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:32",
@@ -8020,7 +8376,7 @@
             "consultations": [
               "consult:4:33"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:33",
@@ -8032,7 +8388,7 @@
             "consultations": [
               "consult:4:34"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:34",
@@ -8046,7 +8402,7 @@
             "consultations": [
               "consult:4:35"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:35",
@@ -8061,7 +8417,7 @@
             "consultations": [
               "consult:4:36"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:36",
@@ -8074,7 +8430,7 @@
             "consultations": [
               "consult:4:35"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:37",
@@ -8089,7 +8445,7 @@
             "consultations": [
               "consult:4:38"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:38",
@@ -8102,7 +8458,7 @@
             "consultations": [
               "consult:4:37"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:39",
@@ -8115,7 +8471,7 @@
             "consultations": [
               "consult:4:37"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:40",
@@ -8130,7 +8486,7 @@
             "consultations": [
               "consult:4:39"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:41",
@@ -8144,7 +8500,7 @@
             "consultations": [
               "consult:4:39"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:42",
@@ -8159,7 +8515,7 @@
             "consultations": [
               "consult:4:40"
             ],
-            "status": "proposed"
+            "status": "validated"
           },
           {
             "id": "decision:4:43",
@@ -8170,10 +8526,16 @@
               "i18n/locales/es.json y en.json: features.items reducido a 4 entradas",
               "intent original de task:4: \"sin cambios de copy, sin logica de negocio\""
             ],
-            "status": "proposed"
+            "status": "validated"
           }
         ],
-        "validation": {},
+        "validation": {
+          "actor": "human",
+          "at": "2026-08-19T03:42:26.881Z",
+          "outcome": "approved",
+          "approval_ref": "chat:2026-08-18:fredy-ok-cierre-task-4",
+          "note": "Fredy respondio \"ok\" explicitamente tras la presentacion de los 10 proposals de proyeccion local en el chat, autorizando publicarlos y cerrar task:frt-cnct-web:4 (primera revision responsive de las 3 vistas de campaña, parte 1)."
+        },
         "change_set": {
           "base_checkpoint": "checkpoint:base:4",
           "files": {
@@ -8182,7 +8544,10 @@
             "removed": []
           }
         },
-        "result": {},
+        "result": {
+          "build": "npm run build - exit 0, sin errores",
+          "lint": "npm run lint - exit 0, 0 errores, 2 warnings preexistentes no relacionados"
+        },
         "boundary": {
           "mode": "normal",
           "declared_at": "2026-08-17T21:51:30.566Z",
@@ -8231,8 +8596,16 @@
             },
             "excluded_from_task": true
           },
-          "close": null
-        }
+          "close": {
+            "status": "fresh",
+            "target": "src",
+            "captured_at": "2026-08-19T03:42:26.634Z",
+            "source_hash": "sha256:0e07e23667bee45d210d8978b2113688201d227cd79b028edad235a6f296db2f",
+            "graph_hash": "sha256:d6ea4f3579d271d59c5735178f50f89bf73973169820cc1e394d5e76e585a219",
+            "attribution": "task"
+          }
+        },
+        "submitted_at": "2026-08-19T02:33:37.392Z"
       }
     ],
     "checkpoints": [
@@ -8524,6 +8897,50 @@
             "synapses_added": [],
             "synapses_changed": [],
             "synapses_removed": []
+          }
+        }
+      },
+      {
+        "id": "checkpoint:4",
+        "parent": "checkpoint:base:4",
+        "task": "task:frt-cnct-web:4",
+        "kind": "task-recorded",
+        "created_at": "2026-08-19T03:42:26.881Z",
+        "graph_hash": "sha256:d6ea4f3579d271d59c5735178f50f89bf73973169820cc1e394d5e76e585a219",
+        "curated_hash": "sha256:139e73fc117d8de1c1c30dd4360446a805c4a8a3b914f484e1abeb9a76e626f4",
+        "delta": {
+          "derived": {
+            "attribution": "task",
+            "verified": true,
+            "nodes_added": [],
+            "nodes_changed": [],
+            "nodes_removed": [],
+            "edges_added": [],
+            "edges_changed": [],
+            "edges_removed": [],
+            "synapses_added": [],
+            "synapses_changed": [],
+            "synapses_removed": []
+          },
+          "curated": {
+            "annotations_added": [],
+            "edges_added": [],
+            "synapses_added": [],
+            "cases_added": [],
+            "patterns_added": [],
+            "exceptions_added": [],
+            "projections_added": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:5",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:8",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:15",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:16",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:26",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:27",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:35",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:37",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:40",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:42"
+            ]
           }
         }
       }
