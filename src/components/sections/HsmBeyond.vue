@@ -9,23 +9,25 @@
     <h2 class="mx-auto max-w-3xl text-center font-secondary font-bold text-deep-ink">{{ t('hsm.beyond.title') }}</h2>
     <p class="mx-auto mt-4 max-w-xl text-center text-ink-3">{{ t('hsm.beyond.subtitle') }}</p>
 
-    <article class="sc-article mx-auto mt-12 w-full max-w-6xl flex-wrap items-stretch gap-6">
-      <section class="sc-section flex min-w-[28rem] basis-[36rem] flex-col rounded-3xl bg-accent p-5">
-        <figure class="sc-figure overflow-hidden rounded-2xl">
+    <article class="sc-article mx-auto mt-12 w-full max-w-6xl flex-col min-[1150px]:flex-row min-[1150px]:flex-nowrap items-stretch gap-6">
+      <section class="sc-section flex flex-row-reverse flex-wrap items-center gap-6 md:flex-nowrap md:flex-col md:items-stretch md:gap-0 min-w-[28rem] min-[1150px]:basis-[36rem] rounded-3xl bg-accent p-5">
+        <figure class="sc-figure min-w-[22rem] grow basis-72 md:min-w-0 md:grow-0 md:basis-auto overflow-hidden rounded-2xl">
           <img
             src="/images/mas-que-hsm/pqc.png"
             alt=""
             aria-hidden="true"
-            class="aspect-[7/8] w-full object-cover"
+            class="aspect-[7/8] md:max-h-[28rem] min-[1150px]:max-h-none w-full object-cover"
             loading="lazy"
             decoding="async"
           >
         </figure>
-        <h3 class="mt-6 font-secondary text-2xl font-bold leading-tight text-text-invert">{{ t('hsm.beyond.pqcTitle') }}</h3>
-        <p class="mt-3 text-sm font-medium text-text-invert/90">{{ t('hsm.beyond.pqcDescription') }}</p>
+        <div class="min-w-[22rem] grow basis-72 md:min-w-0 md:grow-0 md:basis-auto md:mt-6">
+          <h3 class="font-secondary text-2xl font-bold leading-tight text-text-invert">{{ t('hsm.beyond.pqcTitle') }}</h3>
+          <p class="mt-3 text-sm font-medium text-text-invert/90">{{ t('hsm.beyond.pqcDescription') }}</p>
+        </div>
       </section>
 
-      <div class="sc-section flex min-w-[30rem] basis-[62rem] flex-col gap-6">
+      <div class="sc-section flex min-w-[30rem] min-[1150px]:basis-[62rem] flex-col gap-6">
         <article class="sc-article flex-wrap items-center gap-6 rounded-3xl bg-primary-soft p-5">
           <figure class="sc-figure min-w-[22rem] grow basis-72 overflow-hidden rounded-2xl">
             <img

@@ -27,7 +27,7 @@
         </NuxtLink>
       </div>
 
-      <article class="sc-article mt-12 flex-wrap items-stretch justify-center gap-6">
+      <article class="sc-article mt-12 flex-col min-[900px]:flex-row min-[900px]:flex-nowrap items-stretch justify-center gap-6">
         <div class="sc-section flex min-w-[26rem] basis-[28rem] flex-col justify-between gap-6">
           <HsmTechCard
             v-for="item in leftItems"
@@ -37,7 +37,7 @@
           />
         </div>
 
-        <div class="sc-section relative flex min-w-[24rem] basis-[40rem] items-center justify-center">
+        <div class="sc-section relative flex min-w-[24rem] min-[900px]:basis-[40rem] min-[900px]:max-[1189px]:basis-[20rem] items-center justify-center">
           <img
             src="/images/tecnologia/backgound-hsm.png"
             alt=""
