@@ -1,7 +1,7 @@
 {
   "$schema": "https://eure-k.local/schemas/project-memory-v1.json",
   "schema": "eure-k.project-memory/v1",
-  "revision": 231,
+  "revision": 241,
   "project": {
     "id": "frt-cnct-web",
     "repository_fingerprint": "git-remote-v1:sha256:9cecfa5ed6040202f52f46768540e1b8a10fa6c11be8f5acbcaf8dbea368cb60",
@@ -28,7 +28,7 @@
     "revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
     "server_version": "0.31.1",
     "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
-    "last_consulted_at": "2026-08-21T06:31:10.841Z",
+    "last_consulted_at": "2026-08-21T15:54:42.957Z",
     "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7"
   },
   "graph": {
@@ -38,7 +38,7 @@
         "version": "headless-v1",
         "adapter": "legacy-front",
         "target": "src",
-        "generated_at": "2026-08-21T06:41:37.642Z",
+        "generated_at": "2026-08-21T16:48:13.920Z",
         "content_hash": "sha256:d8e7be724967bdd773d5cc6c966cd1c18ce86536b09f7e25fd9a7eecdf2b18b5"
       },
       "nodes": [
@@ -3048,6 +3048,151 @@
           "checkpoint": "checkpoint:8",
           "authored_by": "agente+humano",
           "approved_at": "2026-08-21T06:41:37.642Z"
+        },
+        {
+          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:9:decision:9:1",
+          "type": "projection",
+          "layer": "local-knowledge",
+          "scope": "local",
+          "status": "validated",
+          "concern": "Margen negativo condicional debe cortar en el mismo punto que el reset global",
+          "problem": "Un margin-top negativo fijo (pensado para desktop) puede quedar declarado sin condicion junto a un margen positivo -Tailwind resuelve el conflicto a favor de uno de los dos en TODOS los anchos, no solo donde se penso.",
+          "projection": "Cuando un valor negativo de este tipo solo debe aplicar desde cierto ancho, condicionarlo con el modificador responsive correspondiente en vez de dejarlo incondicional -verificando que el punto de corte coincida con el numero real que el usuario senalo, sin asumir que es aproximado.",
+          "responsibilities": [
+            "Condicionar un margin-top negativo fijo para que se desactive por debajo de un breakpoint dado, sin afectar el valor por encima de ese punto"
+          ],
+          "facts": {
+            "framework": "nuxt",
+            "path": "src/components/sections/Hero.vue",
+            "project": "frt-cnct-web"
+          },
+          "source_relations": [],
+          "evidence": [
+            {
+              "path": "src/components/sections/Hero.vue",
+              "hash": "sha256:88badc1d3fac235a2d014395e53c9a1a86478c67a75c50ddfd89cc6fb0926766",
+              "symbols": [
+                "md:mt-[-6rem]",
+                "mt-2"
+              ]
+            }
+          ],
+          "task": "task:frt-cnct-web:9",
+          "decision": "decision:9:1",
+          "checkpoint": "checkpoint:9",
+          "authored_by": "agente+humano",
+          "approved_at": "2026-08-21T16:48:13.920Z"
+        },
+        {
+          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:9:decision:9:2",
+          "type": "projection",
+          "layer": "local-knowledge",
+          "scope": "local",
+          "status": "validated",
+          "concern": "Centrar un elemento no-texto con self-align, no items-align, para no alterar hermanos",
+          "problem": "Un reset global que centra texto (text-align) no mueve un icono/imagen -no es texto-. Centrar el icono cambiando el align-items del contenedor completo puede alterar el comportamiento de OTROS hijos que hoy dependen del stretch por defecto (ej. un parrafo sin ancho propio que se estira al 100% y podria pasar a shrink-to-fit, cambiando donde envuelve su texto).",
+          "projection": "Centrar el elemento puntual con align-self (self-center) directamente sobre el, en vez de cambiar align-items en el contenedor -deja intacto el comportamiento de cross-axis de los demas hijos.",
+          "responsibilities": [
+            "Centrar horizontalmente un icono (img) en un flex-col cuyo texto ya se centra por un reset global de text-align, sin tocar el align-items del contenedor completo"
+          ],
+          "facts": {
+            "framework": "nuxt",
+            "path": "src/components/sections/HsmUseCases.vue",
+            "project": "frt-cnct-web"
+          },
+          "source_relations": [],
+          "evidence": [
+            {
+              "path": "src/components/sections/HsmUseCases.vue",
+              "hash": "sha256:cabfbe4051cf7c1b5d6003a62a1d74f9bea6737a22f26ad1b15b93d5c3621be9",
+              "symbols": [
+                "md:self-start",
+                "self-center"
+              ]
+            }
+          ],
+          "task": "task:frt-cnct-web:9",
+          "decision": "decision:9:2",
+          "checkpoint": "checkpoint:9",
+          "authored_by": "agente+humano",
+          "approved_at": "2026-08-21T16:48:13.920Z"
+        },
+        {
+          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:9:decision:9:3",
+          "type": "projection",
+          "layer": "local-knowledge",
+          "scope": "local",
+          "status": "validated",
+          "concern": "max-width:N del reset global y md:(min-width:N) de Tailwind se pisan en N exacto",
+          "problem": "Un reset global escrito con max-width:768px (768 incluido) y un modificador responsive de Tailwind como md: (min-width:768px, 768 TAMBIEN incluido) cubren juntos el pixel 768 dos veces, en direcciones opuestas. Si un fix usa md: para revertir un comportamiento que el reset global aplica hasta 768 inclusive, el fix se revierte un pixel antes de que el reset lo suelte, reproduciendo el defecto original comprimido a ese unico pixel -invisible salvo que se pruebe ese ancho exacto.",
+          "projection": "Cuando un fix debe revertirse justo donde un reset con max-width:Npx deja de aplicar, usar min-[N+1px]: en vez del modificador nombrado equivalente (que es min-width:Npx) -el corte debe empezar en el primer pixel que el reset ya no toca, no en el mismo pixel donde el reset todavia aplica.",
+          "responsibilities": [
+            "Verificar el pixel exacto de un breakpoint nombrado contra el reset global con el que interactua antes de usar el modificador responsive equivalente, en vez de asumir que coinciden"
+          ],
+          "facts": {
+            "framework": "nuxt",
+            "path": "src/components/sections/HsmSupport.vue",
+            "project": "frt-cnct-web",
+            "reset_breakpoint": 768
+          },
+          "source_relations": [],
+          "evidence": [
+            {
+              "path": "src/assets/scss/style.scss",
+              "hash": "sha256:de671574c03b48f70831d9006d49812882b99a8cbc59bc455eb5df90069352d0",
+              "symbols": [
+                "max-width: 768px"
+              ]
+            },
+            {
+              "path": "src/components/sections/HsmSupport.vue",
+              "hash": "sha256:51112517d03cfd0ef432511a9dc134faf2884a1579fdcd34ef440d9ab8d080ec",
+              "symbols": [
+                "min-[769px]:items-start",
+                "min-[769px]:px-5"
+              ]
+            }
+          ],
+          "task": "task:frt-cnct-web:9",
+          "decision": "decision:9:3",
+          "checkpoint": "checkpoint:9",
+          "authored_by": "agente+humano",
+          "approved_at": "2026-08-21T16:48:13.920Z"
+        },
+        {
+          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:9:decision:9:4",
+          "type": "projection",
+          "layer": "local-knowledge",
+          "scope": "local",
+          "status": "validated",
+          "concern": "Un box shrink-to-fit sin holgura no muestra el efecto de text-align:center",
+          "problem": "Un reset global que fuerza text-align:center en un elemento cuya caja se encoge exacto al ancho de su contenido (texto corto, una palabra) no produce ningun cambio visible -no hay holgura para redistribuir-, aunque el mismo reset SI centra visiblemente un elemento hermano cuyo texto es mas largo y su caja ya ocupa casi todo el ancho disponible. El sintoma (\"un elemento no se centra pese al reset, otro si\") puede leerse como inconsistencia del reset cuando en realidad es la misma regla con dos resultados distintos segun cuanta holgura tiene cada caja.",
+          "projection": "Antes de asumir que un reset de text-align no esta aplicando, medir el ancho real de la caja del elemento (no solo su computed text-align): si la caja ya coincide con el ancho de su contenido, el fix necesario es mover la CAJA (align-self/self-center), no el texto -el reset ya esta aplicando correctamente, simplemente no tiene margen para mostrarse.",
+          "responsibilities": [
+            "Diagnosticar por que un reset de text-align parece no aplicar en un elemento de texto corto mientras si se nota en un hermano de texto largo, antes de elegir el mecanismo de fix"
+          ],
+          "facts": {
+            "framework": "nuxt",
+            "path": "src/components/sections/SpeiOperate.vue",
+            "project": "frt-cnct-web"
+          },
+          "source_relations": [],
+          "evidence": [
+            {
+              "path": "src/components/sections/SpeiOperate.vue",
+              "hash": "sha256:c563c1c1164f26d87206f72efc6cbc8167571a9128b9637b6032ec0e5bb17987",
+              "symbols": [
+                "h3",
+                "min-[769px]:self-start",
+                "self-center"
+              ]
+            }
+          ],
+          "task": "task:frt-cnct-web:9",
+          "decision": "decision:9:4",
+          "checkpoint": "checkpoint:9",
+          "authored_by": "agente+humano",
+          "approved_at": "2026-08-21T16:48:13.920Z"
         }
       ]
     }
@@ -11353,6 +11498,342 @@
           }
         },
         "submitted_at": "2026-08-21T06:37:25.182Z"
+      },
+      {
+        "id": "task:frt-cnct-web:9",
+        "sequence": 9,
+        "intent": "Ajustes de detalles sueltos en /home (pagina principal, no las vistas de campaña). Detalle 1: el H1 del hero (\"Conectamos tecnología con el sector financiero.\") tiene un margen negativo que hay que quitar a partir del breakpoint de 767px (md) hacia abajo -Fredy senalo el elemento directo en el DOM via devtools mostrando la clase completa. Mas detalles sueltos de esta misma vista pueden sumarse durante la tarea.",
+        "status": "recorded",
+        "opened_at": "2026-08-21T15:18:47.930Z",
+        "closed_at": "2026-08-21T16:48:13.920Z",
+        "consultations": [
+          {
+            "id": "consult:9:1",
+            "at": "2026-08-21T15:19:58.151Z",
+            "intent": "Hero.vue: margen negativo del H1 se desactiva bajo el breakpoint md=768/767, numero que coincide con el ya nombrado en el proyecto, no un wrap por contenido a bisectar.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Hero.vue (home): el H1 tiene mt-[-6rem] fijo (superpone el titulo sobre el video de arriba), a quitar por debajo del breakpoint md=768/767px -Fredy dio el numero exacto, coincide con el breakpoint md ya nombrado en el proyecto (tailwind.css --breakpoint-md, y las medias de tipografia en style.scss:96/111 que ya escalan .hero a 2.8rem ahi mismo). No es un wrap por contenido que haya que bisectar -es un breakpoint de diseño ya establecido en el sistema, coincide exacto con el numero que dio el usuario.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Condicionar un margin-top negativo fijo para que se desactive por debajo de un breakpoint nombrado ya existente en el proyecto (md=768), sin afectar el valor por encima de ese punto"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "path": "src/components/sections/Hero.vue",
+                "operation": "margen-negativo-condicional-por-breakpoint"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:21"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:aa4bdc79-0c1c-4d02-8353-8e91eefe0125",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.31.1",
+              "overlay_revision": 232,
+              "overlay_graph_hash": "sha256:bb2d15b9ff674901584556d9afa15464be114f84e93eda781f853b71f56abf2b",
+              "overlay_curated_hash": "sha256:52fc36f3dbec7fc35cd1bc227d116b60e9a51eba8c22ec3b49a3841f9150a86d",
+              "overlay_projections_revision": "sha256:ed7dc1fcb468d1fd665aac4f2daee7fb29077523fd222dcbfddf271305508052",
+              "output_hash": "sha256:f8cb4e2ecf01bcf3f112aa333f0e3a17d3f4a00d6c2c8f1bc53a574ed8751d5d",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:21",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:d0ea2118d2585c32b8b6c575722725f993b937ec92276b4a46c0222321809062"
+                }
+              ],
+              "query_revision": "sha256:6a19f38c1429387d6cb97a75b9fbc53fc874572a92f8452e5fe62045c43858a7",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 4738,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 1,
+                "used_excerpt_chars": 515,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:9:2",
+            "at": "2026-08-21T15:31:27.347Z",
+            "intent": "HsmUseCases.vue: centrar el icono bajo 768 con self-center/md:self-start en el propio img, sin tocar items-* del contenedor -evita side-effect en el stretch del <p>.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "HsmUseCases.vue: el icono (img) de cada card queda a la izquierda por debajo de 768px mientras el titulo/descripcion ya se centran por el reset global de texto (style.scss:384-394, h1-h6/p/li text-align:center !important bajo max-width:768px). El reset solo afecta texto, no la posicion del img dentro del flex-col -Fredy pide que el icono tambien vaya al centro ahi. Evaluando self-center en el img en vez de items-center en el contenedor completo, para no arriesgar el ancho de stretch que hoy tiene el <p> (que podria pasar a shrink-to-fit y cambiar su wrap si cambio align-items del padre).",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Centrar horizontalmente un icono (img) en un flex-col cuyo texto ya se centra por un reset global de text-align, sin tocar el align-items del contenedor completo (evitar que <p> pase de stretch a shrink-to-fit y cambie su wrap)"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "path": "src/components/sections/HsmUseCases.vue",
+                "operation": "centrar-icono-bajo-768-sin-tocar-items-container"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:16"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:4d52de36-01e7-4334-bd14-976e45e807e8",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.31.1",
+              "overlay_revision": 234,
+              "overlay_graph_hash": "sha256:bb2d15b9ff674901584556d9afa15464be114f84e93eda781f853b71f56abf2b",
+              "overlay_curated_hash": "sha256:52fc36f3dbec7fc35cd1bc227d116b60e9a51eba8c22ec3b49a3841f9150a86d",
+              "overlay_projections_revision": "sha256:ed7dc1fcb468d1fd665aac4f2daee7fb29077523fd222dcbfddf271305508052",
+              "output_hash": "sha256:c311463af08af9e343bb9fcbfa98309bafa9726f518027c97d4bae699dea2149",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:16",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:3a1ffde343c1293e2b36849615d8576d55b582c742a802fd7db39414dc876182"
+                }
+              ],
+              "query_revision": "sha256:3f6826ebd40cb690a940bc0a139445cb9e07dee30445f494c4f0c9fc6cea5fec",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 4588,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 1,
+                "used_excerpt_chars": 443,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:9:3",
+            "at": "2026-08-21T15:54:42.957Z",
+            "intent": "SpeiOperate.vue: mismo mecanismo self-align que HsmUseCases/HsmSupport en esta misma tarea, aplicado a icono Y h3 (title corto sin holgura), sin tocar p (ya centrado por ancho completo) ni el link (se queda a la izquierda segun la referencia).",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "SpeiOperate.vue (infraestructura-spei): mismo defecto que HsmUseCases (decision:9:2) pero en 2 elementos a la vez -icono (img) Y titulo (h3) quedan pegados a la izquierda por debajo de 768px pese a que el reset global fuerza text-align:center en el h3, porque el h3 (\"Visibilidad\", una sola palabra) se encoge a su propio ancho de contenido bajo items-start -texto centrado dentro de una caja sin holgura no se mueve visualmente-. El parrafo (p, texto largo que envuelve) SI se ve centrado porque su caja ya ocupa casi el ancho completo disponible. El link (CTA) de la referencia de Fredy se queda a la izquierda -no se centra-, a diferencia de HsmSupport donde el bloque entero (incluido el CTA) se centraba junto.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Centrar por debajo de 768 solo los elementos cuya caja no se mueve por si sola (icono e items de texto corto que se encogen a su contenido), sin tocar el parrafo (ya centrado por ancho completo) ni el link (debe quedarse a la izquierda segun la referencia)"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "path": "src/components/sections/SpeiOperate.vue",
+                "operation": "centrar-icono-y-titulo-bajo-768-sin-tocar-parrafo-ni-link"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:4f795222-29b0-4bbd-9cd4-552cfc8a8e0e",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.31.1",
+              "overlay_revision": 237,
+              "overlay_graph_hash": "sha256:bb2d15b9ff674901584556d9afa15464be114f84e93eda781f853b71f56abf2b",
+              "overlay_curated_hash": "sha256:52fc36f3dbec7fc35cd1bc227d116b60e9a51eba8c22ec3b49a3841f9150a86d",
+              "overlay_projections_revision": "sha256:ed7dc1fcb468d1fd665aac4f2daee7fb29077523fd222dcbfddf271305508052",
+              "output_hash": "sha256:9886bcdca87ef9cd2b8dfbefd34e03a88d946f5d1d6932426afe93fe75048aac",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:efb8d260195f4da3fe18b1a1400d1d427e2745440e127bfa6112030cb83d8d42"
+                }
+              ],
+              "query_revision": "sha256:581a46ebe93dc8f0c9583f52badb392fdb8884f379fc129ac48a117d159e5458",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 4918,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 1,
+                "used_excerpt_chars": 506,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          }
+        ],
+        "decisions": [
+          {
+            "id": "decision:9:1",
+            "kind": "local",
+            "rationale": "Hero.vue (home): el H1 tenia `mt-2` y `mt-[-6rem]` declarados a la vez, sin condicion -Tailwind resolvia el conflicto a favor del negativo en TODOS los anchos, jalando el titulo por encima del video/ilustracion incluso en mobile, donde el diseño no lo pedia. Fredy señalo el elemento via devtools y pidio quitar el negativo por debajo del breakpoint md=768 (dio \"767\" -el primer px por debajo de md, coincide exacto con el breakpoint ya nombrado del proyecto, no un wrap por contenido que hiciera falta bisectar).\n\nFix: el negativo se movio detras de `md:` (mobile-first, mismo convenio ya usado en toda la vista) -`mt-2` queda como base y unico margen activo por debajo de 768px, `md:mt-[-6rem]` lo reintroduce sin cambios desde 768px hacia arriba. Verificado por captura en 1440/900/768/767/500/375px: el negativo sigue dando la superposicion ajustada intencional en escritorio/tablet (768px+), y en 767px para abajo el titulo cae con espacio limpio, sin superponerse a la ilustracion.",
+            "evidence": [
+              "src/components/sections/Hero.vue: h1 mt-2 mt-[-6rem] (incondicional) -> mt-2 md:mt-[-6rem]",
+              "hero-1440.png/900.png/768.png: negativo activo, superposicion intencional sin cambios",
+              "hero-767.png/500.png/375.png: negativo desactivado, espacio limpio sin superposicion"
+            ],
+            "consultations": [
+              "consult:9:1"
+            ],
+            "status": "validated"
+          },
+          {
+            "id": "decision:9:2",
+            "kind": "novel",
+            "rationale": "HsmUseCases.vue: el icono de cada card (img dentro de flex-col) quedaba a la izquierda por debajo de 768px mientras titulo/descripcion ya se centraban -pero por un mecanismo AJENO al componente: el reset global (style.scss:384-394) centra texto (h1-h6/p/li) con text-align:center !important bajo max-width:768px, algo que no aplica a un <img> porque no es texto. Fredy pidio que el icono tambien fuera al centro ahi.\n\nSe resolvio con `self-center md:self-start` en el propio <img>, NO `items-center` en el contenedor (article/section). La razon: el <p> de la card no tiene ancho propio declarado, hoy se estira al 100% del ancho de la card por el align-items:stretch por defecto del flex-col (mismo mecanismo que decision:4:16 ya documento para otro caso: cualquier elemento flex dentro de flex-col sin items-* explicito se estira). Cambiar items-* del CONTENEDOR habria hecho que el <p> tambien pasara de stretch a shrink-to-fit-content, lo cual podia cambiar donde envuelve su texto -un efecto lateral no pedido. Centrar SOLO el elemento que necesita moverse (self-center en el img) deja el resto del flex intacto.",
+            "projection": "etiqueta: centrar-icono-con-self-align-no-items-align-para-no-alterar-stretch-de-hermanos",
+            "evidence": [
+              "src/components/sections/HsmUseCases.vue: img class self-center md:self-start (nuevo)",
+              "usecases-767.png / usecases-375.png: icono centrado junto con el texto, sin cambios de wrap en el parrafo",
+              "usecases-1024.png: desktop (>=768) sin cambios, icono y texto alineados a la izquierda como antes"
+            ],
+            "consultations": [
+              "consult:9:2"
+            ],
+            "status": "validated"
+          },
+          {
+            "id": "decision:9:3",
+            "kind": "novel",
+            "rationale": "HsmSupport.vue: dos ajustes. (1) El bloque titulo+CTA no se centraba como bloque por debajo de 768 -el reset global (style.scss) ya centraba el TEXTO del h2/p ahi, pero `items-start` dejaba la CAJA pegada a la izquierda, dando un texto centrado dentro de una caja que no lo estaba (se ve casi-pero-no-del-todo centrado). Fix: `items-center text-center` como base, revertido en desktop. (2) Los 5 items del riel de compromisos usaban padding asimetrico (px-5/py-8, ratio 1.6) tambien por debajo de 768; Fredy pidio parejo (16px las 4 caras) ahi.\n\nHallazgo real durante la propia verificacion (no visto de entrada): usar `md:` de Tailwind (min-width:768px, 768 INCLUIDO) para revertir ambos fixes en desktop reproducia el defecto exacto que se estaba arreglando, pero comprimido a un solo pixel -768px exacto-, porque el reset global usa `max-width:768px` (768 TAMBIEN incluido). Con `md:`, a 768px el reset seguia centrando el texto (max-width:768 aplica) mientras `md:items-start` YA revertia la caja a la izquierda (min-width:768 tambien aplica) -los dos rangos \"768 incluido\" se pisan en ese punto exacto. Se corrigio usando `min-[769px]:` en vez de `md:` para las 2 reversiones (items-start/text-left del bloque, px-5/py-8 del padding): el corte dispara en el primer pixel que el reset global ya NO toca, sin solaparse. Verificado por captura en 1024/900/768/767/500/375px: 768 y 767 ahora se ven identicos entre si (ambos centrados/parejos), y 900/1024 identicos al estado original (izquierda/asimetrico).",
+            "projection": "etiqueta: max-width-768-reset-y-md-min-width-768-se-pisan-en-768-exacto-usar-min-769px",
+            "evidence": [
+              "src/components/sections/HsmSupport.vue: items-start/text-left -> items-center text-center min-[769px]:items-start min-[769px]:text-left; px-5 py-8 -> p-[16px] min-[769px]:px-5 min-[769px]:py-8",
+              "medicion real: h2TextAlign 'center' en 768px y 'start' en 769px (confirma que max-width:768px del reset global es inclusivo)",
+              "support2-768.png: centrado genuino (caja+texto), antes del fix con md: se veia partido (texto centrado, caja a la izquierda) exactamente en este pixel",
+              "support2-900.png / support2-1024.png: identicos al estado original, sin regresion en desktop"
+            ],
+            "status": "validated"
+          },
+          {
+            "id": "decision:9:4",
+            "kind": "local",
+            "rationale": "SpeiOperate.vue: mismo pedido que HsmSupport (decision:9:3, \"exactamente lo mismo\") pero el diagnostico se afino con medicion real antes de tocar codigo. El icono Y el h3 (\"Visibilidad\", una sola palabra) quedaban pegados a la izquierda por debajo de 768 pese a que el reset global fuerza text-align:center en h3 -su caja se encoge exacto al ancho de su contenido bajo items-start, sin holgura para que el centrado de texto se note. El p SI se veia bien porque su texto largo hace que su caja ya ocupe casi el ancho completo disponible (shrink-to-fit sin margen para diferencia). El link se dejo intacto -la referencia de Fredy lo muestra a la izquierda, no centrado junto al resto como en HsmSupport (ahi el CTA se centraba como parte del bloque completo con items-center; aca cada elemento se trata por separado con self-*, y el link no lo pidio).\n\nMismo fix que decision:9:2 (self-center puntual, no items-center en el contenedor) aplicado a 2 elementos (img y h3) en vez de 1, y mismo min-[769px]: en vez de md: por la misma razon de decision:9:3 (evitar el pixel 768 donde el reset global max-width:768 y el md: min-width:768 de Tailwind se pisan). Verificado por captura en 1024/900/768/767/375px: coincide exacto con la referencia de Fredy (icono+titulo+descripcion centrados, link a la izquierda) por debajo de 769, y desktop sin cambios.",
+            "evidence": [
+              "src/components/sections/SpeiOperate.vue: img/h3 self-center min-[769px]:self-start (nuevo)",
+              "medicion real: h3.left=28 (igual al padding, sin holgura) pese a text-align:center; p.left=28 pero p.width~=ancho disponible completo (234/235), confirmando por que p se veia centrado y h3 no",
+              "operate-fix-375.png: coincide exacto con la referencia de Fredy",
+              "operate-fix-768.png/767.png: identicos entre si, sin partirse en el pixel limite",
+              "operate-fix-900.png/1024.png: identicos al estado original en desktop"
+            ],
+            "consultations": [
+              "consult:9:3"
+            ],
+            "status": "validated"
+          }
+        ],
+        "validation": {
+          "actor": "human",
+          "at": "2026-08-21T16:48:13.920Z",
+          "outcome": "approved",
+          "approval_ref": "chat:fredy:2026-08-21:task9-detalles-home-hsm-spei",
+          "note": "Fredy aprobo con \"ok\" el cierre de task:9 y la publicacion de las 4 proyecciones locales presentadas (margen negativo condicional, self-align vs items-align, solape max-width/md: en 768, caja shrink-to-fit sin holgura para text-align:center)."
+        },
+        "change_set": {
+          "base_checkpoint": "checkpoint:base:9",
+          "files": {
+            "added": [],
+            "modified": [],
+            "removed": []
+          }
+        },
+        "result": {},
+        "boundary": {
+          "mode": "normal",
+          "declared_at": "2026-08-21T15:18:47.930Z",
+          "measurement_eligible": true,
+          "prior_work": null,
+          "base": {
+            "status": "fresh",
+            "target": "src",
+            "captured_at": "2026-08-21T15:18:47.620Z",
+            "source_hash": "sha256:8fefeb2800e43403d20853afd314c002f3217bc87c2bd15d3cbd4a0bfe1ecac4",
+            "graph_hash": "sha256:bb2d15b9ff674901584556d9afa15464be114f84e93eda781f853b71f56abf2b",
+            "preexisting_delta": {
+              "nodes": {
+                "added": [],
+                "changed": [],
+                "removed": []
+              },
+              "edges": {
+                "added": [],
+                "changed": [],
+                "removed": []
+              },
+              "synapses": {
+                "added": [],
+                "changed": [],
+                "removed": []
+              },
+              "curated_preserved": {
+                "node_annotations": 0,
+                "edges": 1,
+                "synapses": 1,
+                "patterns": 0,
+                "cases": 0,
+                "exceptions": 0,
+                "projections": 46
+              },
+              "orphans": [
+                {
+                  "kind": "rationale",
+                  "id": "e20",
+                  "from": "src/components/sections/ContactSection.vue",
+                  "to": "src/schemas/contactSchema.ts"
+                }
+              ],
+              "orphans_resolved": []
+            },
+            "excluded_from_task": true
+          },
+          "close": {
+            "status": "fresh",
+            "target": "src",
+            "captured_at": "2026-08-21T16:48:13.792Z",
+            "source_hash": "sha256:d7a5e0190aedb7046f6f45b5903ed91fa686568f1ed842af52a045685b72225a",
+            "graph_hash": "sha256:f8ded9a524e52c2ff661d80d203bdb8b21ba1dbe3e72bf2e0f66200578ce0f0e",
+            "attribution": "task"
+          }
+        },
+        "submitted_at": "2026-08-21T16:42:57.162Z"
       }
     ],
     "checkpoints": [
@@ -11966,6 +12447,70 @@
               "local-projection:frt-cnct-web:task:frt-cnct-web:8:decision:8:6",
               "local-projection:frt-cnct-web:task:frt-cnct-web:8:decision:8:7",
               "local-projection:frt-cnct-web:task:frt-cnct-web:8:decision:8:8"
+            ]
+          }
+        }
+      },
+      {
+        "id": "checkpoint:base:9",
+        "parent": "checkpoint:8",
+        "task": "task:frt-cnct-web:9",
+        "kind": "task-baseline",
+        "created_at": "2026-08-21T15:18:47.930Z",
+        "graph_hash": "sha256:bb2d15b9ff674901584556d9afa15464be114f84e93eda781f853b71f56abf2b",
+        "curated_hash": "sha256:52fc36f3dbec7fc35cd1bc227d116b60e9a51eba8c22ec3b49a3841f9150a86d",
+        "delta": {
+          "kind": "task-baseline",
+          "excluded_from_task": true,
+          "derived": {
+            "attribution": "preexisting",
+            "verified": true,
+            "nodes_added": [],
+            "nodes_changed": [],
+            "nodes_removed": [],
+            "edges_added": [],
+            "edges_changed": [],
+            "edges_removed": [],
+            "synapses_added": [],
+            "synapses_changed": [],
+            "synapses_removed": []
+          }
+        }
+      },
+      {
+        "id": "checkpoint:9",
+        "parent": "checkpoint:base:9",
+        "task": "task:frt-cnct-web:9",
+        "kind": "task-recorded",
+        "created_at": "2026-08-21T16:48:13.920Z",
+        "graph_hash": "sha256:f8ded9a524e52c2ff661d80d203bdb8b21ba1dbe3e72bf2e0f66200578ce0f0e",
+        "curated_hash": "sha256:31c33e2aa35e3951b4637b99924cca9ea7e7c7878b3457bb05750a3bfed31e3c",
+        "delta": {
+          "derived": {
+            "attribution": "task",
+            "verified": true,
+            "nodes_added": [],
+            "nodes_changed": [],
+            "nodes_removed": [],
+            "edges_added": [],
+            "edges_changed": [],
+            "edges_removed": [],
+            "synapses_added": [],
+            "synapses_changed": [],
+            "synapses_removed": []
+          },
+          "curated": {
+            "annotations_added": [],
+            "edges_added": [],
+            "synapses_added": [],
+            "cases_added": [],
+            "patterns_added": [],
+            "exceptions_added": [],
+            "projections_added": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:9:decision:9:1",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:9:decision:9:2",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:9:decision:9:3",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:9:decision:9:4"
             ]
           }
         }

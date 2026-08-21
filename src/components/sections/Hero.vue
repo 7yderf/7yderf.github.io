@@ -14,7 +14,7 @@
         />
       </div>
 
-      <h1 class="hero  font-normal text-center mt-2 bg-gradient-to-r from-[#865BDA] to-accent bg-clip-text text-transparent mt-[-6rem]">
+      <h1 class="hero font-normal text-center mt-2 bg-gradient-to-r from-[#865BDA] to-accent bg-clip-text text-transparent md:mt-[-6rem]">
         {{ t('hero.titlePre') }} <span class="font-semibold italic">{{ t('hero.titleAccent') }}</span><br>
         {{ t('hero.titlePost') }}
       </h1>

@@ -11,7 +11,19 @@
      (align-items:stretch) estira el link inferior -que es flex por si mismo,
      mismo mecanismo que decision:2:4 sobre el boton- al ancho completo de la
      card. El texto se ve igual (justify-content sigue en flex-start), pero el
-     area de click/hover queda mas ancha que el texto visible. -->
+     area de click/hover queda mas ancha que el texto visible.
+
+     Icono y titulo (h3) llevan self-center min-[769px]:self-start -no
+     items-center en la card entera- por debajo de 768. El reset global ya
+     centra el TEXTO de h3/p ahi, pero eso no mueve la caja: el parrafo se ve
+     centrado solo porque su texto es largo y su caja ya ocupa casi todo el
+     ancho disponible (shrink-to-fit sin holgura); el h3 ("Visibilidad", una
+     palabra) se encoge exacto a su contenido y queda pegado a la izquierda
+     pese al text-align, igual que el icono. El link se deja intacto -la
+     referencia lo mantiene a la izquierda, no todo el bloque se centra como
+     en HsmSupport.vue-. min-[769px]: y no md: por la misma razon que ahi:
+     el reset global es max-width:768px (768 incluido) y md: es
+     min-width:768px (768 tambien incluido) -se pisarian en ese pixel. -->
 <template>
   <section class="sc-section w-full px-4 py-8 lg:px-8 lg-2:py-16">
     <h2 class="mx-auto max-w-3xl text-center font-secondary font-bold text-deep-ink">{{ t('spei.operate.title') }}</h2>
@@ -30,11 +42,11 @@
           :src="item.icon"
           alt=""
           aria-hidden="true"
-          class="h-12 w-12 object-contain"
+          class="h-12 w-12 self-center object-contain min-[769px]:self-start"
           loading="lazy"
           decoding="async"
         >
-        <h3 class="mt-6 font-secondary text-2xl font-bold leading-tight text-deep-ink">{{ item.title }}</h3>
+        <h3 class="mt-6 self-center font-secondary text-2xl font-bold leading-tight text-deep-ink min-[769px]:self-start">{{ item.title }}</h3>
         <p class="mt-3 text-sm font-medium text-ink-3">{{ item.description }}</p>
 
         <NuxtLink

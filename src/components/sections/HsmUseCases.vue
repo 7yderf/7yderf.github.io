@@ -2,7 +2,16 @@
      el de IndustriesGrid (flex-wrap + grow + basis-*): el numero de columnas lo
      decide el ancho disponible, no un breakpoint.
      Hover como el abanico de la zona 4 pero sin la opacidad: la card crece, el
-     degradado se aclara a blanco y aparece la sombra. -->
+     degradado se aclara a blanco y aparece la sombra.
+
+     El icono se centra por debajo de md(768) con self-center en el propio
+     <img> (no items-center en el article/section): el reset global ya centra
+     h3/p por texto (style.scss, text-align:center !important bajo 768px),
+     pero eso no mueve al icono -no es texto-. Cambiar items-* del contenedor
+     tambien habria alterado el <p>, que hoy se estira al ancho completo de la
+     card (align-items por defecto); centrar solo el icono deja ese stretch
+     intacto. -->
+
 <template>
   <section class="sc-section w-full px-4 py-8 lg:px-8 lg-2:py-16">
     <h2 class="mx-auto max-w-3xl text-center font-secondary font-bold text-deep-ink">{{ t('hsm.useCases.title') }}</h2>
@@ -32,7 +41,7 @@
           :src="item.icon"
           alt=""
           aria-hidden="true"
-          class="h-16 w-16 shrink-0 object-contain"
+          class="h-16 w-16 shrink-0 self-center object-contain md:self-start"
           loading="lazy"
           decoding="async"
         >
