@@ -1,4 +1,3 @@
 [mcp_servers.eure-k]
-command = "eure-k"
+command = "eure-k.cmd"
 args = ["mcp", "--project", "auto"]
-cwd = ".."

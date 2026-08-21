@@ -19,6 +19,7 @@ logs
 .fleet
 .idea
 .claude
+.codex
 
 # Local env files
 .env
@@ -33,3 +34,5 @@ logs
 # una tarea. El comodin cubre ambas y las que agregue despues.
 project-memory-v1.json.*.bak
 project-memory-v1.json.bak
+
+
