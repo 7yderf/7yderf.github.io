@@ -14,8 +14,7 @@
       <section
         v-for="path in paths"
         :key="path.title"
-        class="sc-section flex min-w-[28rem] grow basis-96 flex-col items-start rounded-3xl p-10"
-        :class="path.surface"
+        class="sc-section flex min-w-[28rem] grow basis-96 flex-col items-start rounded-3xl bg-bg p-10 transition-colors duration-200 hover:bg-brand-violet-soft"
       >
         <h3 class="font-secondary text-2xl font-bold leading-tight text-deep-ink">{{ path.title }}</h3>
 
@@ -48,22 +47,20 @@ const localePath = useLocalePath()
 const startItems = useLocalizedItems<PathItem>('caas.paths.startItems', 2, ['label'])
 const ownItems = useLocalizedItems<PathItem>('caas.paths.ownItems', 2, ['label'])
 
-// El camino de quien ya tiene HSM se distingue por la superficie lavanda de
-// marca; el otro usa el gris neutro de pagina. href apunta a la vista de
-// campaña real de cada camino (ver decision:5:2): "Aun no tienes HSM" ->
-// Ecosistema Cloud, "Ya tienes HSM" -> HSM Control Security.
+// href apunta a la vista de campaña real de cada camino (ver decision:5:2):
+// "Aun no tienes HSM" -> Ecosistema Cloud, "Ya tienes HSM" -> HSM Control
+// Security. Las dos cards comparten la misma superficie (gris en reposo,
+// lavanda de marca al hover) -ya no se distinguen por color fijo.
 const paths = computed(() => [
   {
     title: t('caas.paths.startTitle'),
     cta: t('caas.paths.startCta'),
-    surface: 'bg-bg',
     items: startItems.value,
     href: '/ecosistema-cloud',
   },
   {
     title: t('caas.paths.ownTitle'),
     cta: t('caas.paths.ownCta'),
-    surface: 'bg-brand-violet-soft',
     items: ownItems.value,
     href: '/hsm-control-security',
   },
