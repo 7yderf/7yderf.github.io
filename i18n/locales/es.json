@@ -380,19 +380,19 @@
       "startTitle": "Aún no opero SPEI directamente",
       "startCta": "Conectarme a SPEI",
       "startItems": [
-        { "label": "Conexión directa con Banxico" },
-        { "label": "Implementación y Certificación" },
-        { "label": "Diseño de Arquitectura" },
-        { "label": "Cumplimiento Regulatorio" },
-        { "label": "Acompañamiento integral" }
+        { "label": "Conexión directa con Banxico." },
+        { "label": "Implementación y certificación." },
+        { "label": "Diseño de arquitectura." },
+        { "label": "Cumplimiento regulatorio." },
+        { "label": "Acompañamiento integral." }
       ],
       "directTitle": "Ya soy Participante Directo",
-      "directCta": "Explorar capacidades de visibilidad",
+      "directCta": "Quiero SPEI 2.0",
       "directItems": [
         { "label": "Modernización de infraestructura" },
         { "label": "Migración a SPEI 2.0" },
-        { "label": "Alta Disponibilidad" },
-        { "label": "Optimización y Monitoreo" },
+        { "label": "Alta disponibilidad" },
+        { "label": "Optimización y monitoreo" },
         { "label": "Acompañamiento integral" }
       ]
     },

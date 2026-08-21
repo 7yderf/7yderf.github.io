@@ -380,14 +380,14 @@
       "startTitle": "I don't operate SPEI directly yet",
       "startCta": "Connect me to SPEI",
       "startItems": [
-        { "label": "Direct connection with Banxico" },
-        { "label": "Implementation and certification" },
-        { "label": "Architecture design" },
-        { "label": "Regulatory compliance" },
-        { "label": "End-to-end support" }
+        { "label": "Direct connection with Banxico." },
+        { "label": "Implementation and certification." },
+        { "label": "Architecture design." },
+        { "label": "Regulatory compliance." },
+        { "label": "End-to-end support." }
       ],
       "directTitle": "I am already a Direct Participant",
-      "directCta": "Explore visibility capabilities",
+      "directCta": "I want SPEI 2.0",
       "directItems": [
         { "label": "Infrastructure modernization" },
         { "label": "Migration to SPEI 2.0" },

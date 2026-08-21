@@ -15,8 +15,7 @@
       <section
         v-for="path in paths"
         :key="path.title"
-        class="sc-section flex min-w-[28rem] grow basis-96 flex-col rounded-2xl p-8"
-        :class="path.surface"
+        class="sc-section flex min-w-[28rem] grow basis-96 flex-col rounded-2xl bg-surface-2 p-8 transition-colors duration-200 hover:bg-info-soft"
       >
         <h3 class="font-secondary text-2xl font-bold leading-tight text-deep-ink">{{ path.title }}</h3>
 
@@ -27,15 +26,12 @@
           </li>
         </ul>
 
-        <div class="mt-8 flex justify-start">
-          <NuxtLink
-            :to="localePath('/contact')"
-            class="btn-custom"
-            :style="{ '--btn-color': 'var(--color-primary)' }"
-          >
-            {{ path.cta }} →
-          </NuxtLink>
-        </div>
+        <NuxtLink
+          :to="localePath('/contact')"
+          class="mt-auto flex items-center gap-2 pt-8 text-xs font-bold text-deep-ink hover:underline"
+        >
+          {{ path.cta }} →
+        </NuxtLink>
       </section>
     </article>
   </section>
@@ -52,19 +48,15 @@ const localePath = useLocalePath()
 const startItems = useLocalizedItems<PathItem>('spei.evolve.startItems', 5, ['label'])
 const directItems = useLocalizedItems<PathItem>('spei.evolve.directItems', 5, ['label'])
 
-// El camino "ya soy participante" se distingue por la superficie azul, que es
-// el unico token nuevo de esta vista (--color-info-soft).
 const paths = computed(() => [
   {
     title: t('spei.evolve.startTitle'),
     cta: t('spei.evolve.startCta'),
-    surface: 'bg-surface-2',
     items: startItems.value,
   },
   {
     title: t('spei.evolve.directTitle'),
     cta: t('spei.evolve.directCta'),
-    surface: 'bg-info-soft',
     items: directItems.value,
   },
 ])

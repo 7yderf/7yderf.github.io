@@ -25,6 +25,7 @@
       {{ t('spei.stages.titlePost') }}
     </h2>
 
+    <div class="hidden lg-2:block">
     <div class="mx-auto mt-12 w-full max-w-7xl" @mouseleave="active = null">
       <!-- Fila A — titulos. Cada celda apila el titulo arriba y deja que la
            flecha crezca hasta el borde inferior, asi todas terminan en la misma
@@ -116,6 +117,11 @@
         </div>
         <span class="shrink-0" :style="{ width: cell }" />
       </div>
+    </div>
+    </div>
+
+    <div class="lg-2:hidden mt-12">
+      <SpeiStagesCarousel :stages="stages" :columns="COLUMNS" />
     </div>
   </section>
 </template>
