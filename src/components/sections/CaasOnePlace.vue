@@ -46,7 +46,7 @@
         </ul>
 
         <NuxtLink
-          :to="localePath('/contact')"
+          :to="localePath(card.href)"
           class="mt-auto self-center pt-8 text-xs font-bold hover:underline"
         >
           {{ card.link }} →
@@ -65,11 +65,18 @@ const localePath = useLocalePath()
 // composable (tm() volcaria el AST compilado).
 const pillsPerCard = [6, 5, 2]
 
+// href por card, mismo criterio que CaasPaths.vue (ver decision:5:2/5:5): el
+// contenido de las 2 primeras cards es -verificado item por item- el mismo
+// que las 2 paginas nuevas. "Auth" no tiene vista de campaña propia todavia,
+// su link se queda en contacto.
+const hrefs = ['/ecosistema-cloud', '/hsm-control-security', '/contact']
+
 const cards = computed(() =>
   pillsPerCard.map((count, i) => ({
     title: t(`caas.onePlace.cards.${i}.title`),
     subtitle: t(`caas.onePlace.cards.${i}.subtitle`),
     link: t(`caas.onePlace.cards.${i}.link`),
+    href: hrefs[i],
     items: Array.from({ length: count }, (_, j) =>
       t(`caas.onePlace.cards.${i}.items.${j}`).split('**'),
     ),

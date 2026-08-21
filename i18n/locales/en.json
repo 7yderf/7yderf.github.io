@@ -684,5 +684,122 @@
       "title": "Take back control of your cryptography.",
       "cta": "Schedule a demo"
     }
+  },
+  "hsmcs": {
+    "meta": {
+      "title": "HSM Control Security — Conecta",
+      "description": "Manage and protect your HSMs from a single platform: monitoring, key management, discovery and cryptographic APIs in one control point."
+    },
+    "hero": {
+      "eyebrow": "HSM Control Security",
+      "titlePre": "Your keys,",
+      "titleHighlight": "always under control",
+      "subtitle": "Manage and protect your HSMs from a single platform, with greater control over your entire cryptographic infrastructure.",
+      "cta": "Discover the platform"
+    },
+    "what": {
+      "title": "What is it?",
+      "body1": "If you already have HSMs, this solution helps you manage them more efficiently.",
+      "body2": "Centralize operations, automate tasks, and keep control of your keys from a single point.",
+      "cta": "Schedule a demo"
+    },
+    "features": {
+      "title": "What you get",
+      "items": [
+        {
+          "title": "Monitoring",
+          "description": "Supervise the physical and logical status of your HSMs in real time, detect incidents before they affect operations, centralize events, and strengthen business continuity through proactive monitoring and advanced observability.",
+          "link": "Explore Monitor"
+        },
+        {
+          "title": "Key Manager",
+          "description": "Centralize the administration of all your cryptographic assets from a single console. Automate key creation, rotation, renewal, and backup, maintain a permanent inventory, and guarantee full traceability of every operation.",
+          "link": "Explore Key Manager"
+        },
+        {
+          "title": "KeyScan",
+          "description": "Discover, identify, and monitor cryptographic keys across your entire infrastructure, providing centralized visibility to strengthen governance, simplify audits, and reduce security risks.",
+          "link": "Explore KeyScan"
+        },
+        {
+          "title": "KeyOS",
+          "description": "Connect Key Manager with AWS KMS, Azure Key Vault, and Google Cloud KMS to manage the lifecycle, inventory, and governance of all cryptographic keys in your hybrid and multicloud environment from a single platform.",
+          "link": "Explore KeyOs"
+        },
+        {
+          "title": "Cryptographic Bus",
+          "description": "Expose cryptographic capabilities through modern, standardized APIs, simplifying integration with applications, microservices, and enterprise platforms while maintaining the highest level of security, availability, and performance.",
+          "link": "Explore Cryptographic Bus"
+        }
+      ]
+    },
+    "who": {
+      "title": "Who is it for?",
+      "body": "Organizations that already operate cryptographic infrastructure and want to simplify its administration without replacing what they already have.",
+      "cta": "Get started"
+    },
+    "finalCta": {
+      "eyebrow": "Schedule a session with our specialists.",
+      "titlePre": "Get more out of your",
+      "titleHighlight": "current infrastructure.",
+      "cta": "Talk to a specialist"
+    }
+  },
+  "ecoCloud": {
+    "meta": {
+      "title": "Cloud Ecosystem — Conecta",
+      "description": "Take your cryptography to the cloud without losing control: cryptographic vaults, identity management, and key administration as a service, without investing in your own hardware."
+    },
+    "hero": {
+      "titlePre": "Take your cryptography to the cloud,",
+      "titleHighlight": "without losing control.",
+      "subtitle": "Protect your keys, certificates, and critical processes from a secure platform.",
+      "cta": "Schedule a demo"
+    },
+    "what": {
+      "title": "What is it?",
+      "body": "Cloud Ecosystem lets you use enterprise-grade cryptographic services from the cloud, with fast implementation and simplified administration.",
+      "cta": "I want more information",
+      "diagram": {
+        "serverTitle": "Server Contents",
+        "region": "Mexico Region",
+        "databases": "Databases",
+        "hsm": "HSM",
+        "node": "Node Y",
+        "webServices": "Web Services",
+        "services": [
+          { "label": "2FA Authentication" },
+          { "label": "Cryptographic vaults (HSM as a Service)" },
+          { "label": "Identity management (IAM/CIAM)" },
+          { "label": "HSM monitoring" },
+          { "label": "On-prem and multicloud key management" },
+          { "label": "SDKs" }
+        ]
+      }
+    },
+    "capabilities": {
+      "title": "What can you do?",
+      "items": [
+        { "label": "Centralize key and certificate management." },
+        { "label": "Reduce your team's operational load." },
+        { "label": "Scale as your operation grows." },
+        { "label": "Protect applications and critical data." },
+        { "label": "Integrate new services quickly." }
+      ],
+      "cta": "Discover the capabilities"
+    },
+    "who": {
+      "title": "Who is it for?",
+      "bodyPre": "Ideal for organizations looking to get started quickly ",
+      "bodyStrong": "without investing in their own hardware",
+      "bodyPost": ". You get security, availability, and specialized support from day one.",
+      "cta": "Discover the architecture"
+    },
+    "finalCta": {
+      "eyebrow": "Schedule a session with our specialists.",
+      "titlePre": "Get started without buying",
+      "titleHighlight": "infrastructure.",
+      "cta": "Request specialized advice"
+    }
   }
 }

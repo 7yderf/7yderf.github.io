@@ -27,7 +27,7 @@
         </ul>
 
         <NuxtLink
-          :to="localePath('/contact')"
+          :to="localePath(path.href)"
           class="mt-auto flex items-center gap-2 pt-8 text-xs font-bold text-deep-ink hover:underline"
         >
           {{ path.cta }} →
@@ -49,19 +49,23 @@ const startItems = useLocalizedItems<PathItem>('caas.paths.startItems', 2, ['lab
 const ownItems = useLocalizedItems<PathItem>('caas.paths.ownItems', 2, ['label'])
 
 // El camino de quien ya tiene HSM se distingue por la superficie lavanda de
-// marca; el otro usa el gris neutro de pagina.
+// marca; el otro usa el gris neutro de pagina. href apunta a la vista de
+// campaña real de cada camino (ver decision:5:2): "Aun no tienes HSM" ->
+// Ecosistema Cloud, "Ya tienes HSM" -> HSM Control Security.
 const paths = computed(() => [
   {
     title: t('caas.paths.startTitle'),
     cta: t('caas.paths.startCta'),
     surface: 'bg-bg',
     items: startItems.value,
+    href: '/ecosistema-cloud',
   },
   {
     title: t('caas.paths.ownTitle'),
     cta: t('caas.paths.ownCta'),
     surface: 'bg-brand-violet-soft',
     items: ownItems.value,
+    href: '/hsm-control-security',
   },
 ])
 </script>

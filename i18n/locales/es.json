@@ -684,5 +684,122 @@
       "title": "Recupera el control de tu criptografía.",
       "cta": "Agenda una demo"
     }
+  },
+  "hsmcs": {
+    "meta": {
+      "title": "HSM Control Security — Conecta",
+      "description": "Administra y protege tus HSM desde una sola plataforma: monitoreo, gestión de llaves, descubrimiento y APIs criptográficas en un único punto de control."
+    },
+    "hero": {
+      "eyebrow": "HSM Control Security",
+      "titlePre": "Tus llaves",
+      "titleHighlight": "siempre bajo control",
+      "subtitle": "Administra y protege tus HSM desde una sola plataforma, con mayor control sobre toda tu infraestructura criptográfica.",
+      "cta": "Conoce la plataforma"
+    },
+    "what": {
+      "title": "¿Qué es?",
+      "body1": "Si ya cuentas con HSM, esta solución te ayuda a administrarlos de forma más eficiente.",
+      "body2": "Centraliza la operación, automatiza tareas y mantiene el control de tus llaves desde un único punto.",
+      "cta": "Agendar demo"
+    },
+    "features": {
+      "title": "Lo que obtienes",
+      "items": [
+        {
+          "title": "Monitoreo",
+          "description": "Supervise en tiempo real el estado físico y lógico de sus HSM, detecte incidentes antes de que afecten la operación, centralice eventos y fortalezca la continuidad del negocio mediante monitoreo proactivo y observabilidad avanzada.",
+          "link": "Explorar Monitor"
+        },
+        {
+          "title": "Key Manager",
+          "description": "Centralice la administración de todos sus activos criptográficos desde una única consola. Automatice la creación, rotación, renovación y resguardo de llaves, mantenga un inventario permanente y garantice la trazabilidad completa de cada operación.",
+          "link": "Explorar Key Manager"
+        },
+        {
+          "title": "KeyScan",
+          "description": "Descubre, identifica y supervisa llaves criptográficas en toda la infraestructura, proporcionando visibilidad centralizada para fortalecer la gobernanza, simplificar auditorías y reducir riesgos de seguridad.",
+          "link": "Explorar KeyScan"
+        },
+        {
+          "title": "KeyOS",
+          "description": "Conecte Key Manager con AWS KMS, Azure Key Vault y Google Cloud KMS para administrar desde una única plataforma el ciclo de vida, inventario y gobierno de todas las llaves criptográficas de su entorno híbrido y multicloud.",
+          "link": "Explorar KeyOs"
+        },
+        {
+          "title": "Bus Criptográfico",
+          "description": "Exponga capacidades criptográficas mediante APIs modernas y estandarizadas, simplificando la integración con aplicaciones, microservicios y plataformas empresariales, mientras mantiene el máximo nivel de seguridad, disponibilidad y rendimiento.",
+          "link": "Explorar Bus Criptográfico"
+        }
+      ]
+    },
+    "who": {
+      "title": "¿Para quién es?",
+      "body": "Organizaciones que ya operan infraestructura criptográfica y buscan simplificar su administración sin reemplazar lo que ya tienen.",
+      "cta": "Empieza ahora"
+    },
+    "finalCta": {
+      "eyebrow": "Agenda una sesión con nuestros especialistas.",
+      "titlePre": "Aprovecha mejor tu",
+      "titleHighlight": "infraestructura actual.",
+      "cta": "Hablar con un especialista"
+    }
+  },
+  "ecoCloud": {
+    "meta": {
+      "title": "Ecosistema Cloud — Conecta",
+      "description": "Lleva tu criptografía a la nube sin perder el control: bóvedas criptográficas, gestión de identidad y administración de llaves como servicio, sin invertir en hardware propio."
+    },
+    "hero": {
+      "titlePre": "Lleva tu criptografía a la nube,",
+      "titleHighlight": "sin perder el control.",
+      "subtitle": "Protege tus llaves, certificados y procesos críticos desde una plataforma segura.",
+      "cta": "Agendar demo"
+    },
+    "what": {
+      "title": "¿Qué es?",
+      "body": "Ecosistema Cloud te permite utilizar servicios criptográficos de nivel empresarial desde la nube, con una implementación rápida y una administración simplificada.",
+      "cta": "Quiero más información",
+      "diagram": {
+        "serverTitle": "Server Contents",
+        "region": "Región México",
+        "databases": "Databases",
+        "hsm": "HSM",
+        "node": "Node Y",
+        "webServices": "Web Services",
+        "services": [
+          { "label": "Autenticación 2FA" },
+          { "label": "Bóvedas criptográficas (HSM as a Service)" },
+          { "label": "Gestión de identidad (IAM/CIAM)" },
+          { "label": "Monitoreo de HSM" },
+          { "label": "Administración de llaves on-prem y multicloud" },
+          { "label": "SDKs" }
+        ]
+      }
+    },
+    "capabilities": {
+      "title": "¿Qué puedes hacer?",
+      "items": [
+        { "label": "Centralizar la gestión de llaves y certificados." },
+        { "label": "Reducir la carga operativa de tu equipo." },
+        { "label": "Escalar conforme crece tu operación." },
+        { "label": "Proteger aplicaciones y datos críticos." },
+        { "label": "Integrar nuevos servicios rápidamente." }
+      ],
+      "cta": "Conocer las capacidades"
+    },
+    "who": {
+      "title": "¿Para quién es?",
+      "bodyPre": "Ideal para organizaciones que buscan comenzar rápidamente ",
+      "bodyStrong": "sin invertir en hardware propio",
+      "bodyPost": ". Obtienes seguridad, disponibilidad y acompañamiento especializado desde el primer día.",
+      "cta": "Descubre la arquitectura"
+    },
+    "finalCta": {
+      "eyebrow": "Agenda una sesión con nuestros especialistas.",
+      "titlePre": "Empieza sin comprar",
+      "titleHighlight": "infraestructura.",
+      "cta": "Solicitar asesoría especializada"
+    }
   }
 }
