@@ -20,7 +20,10 @@ import { ref, onMounted, nextTick, type Ref } from 'vue'
 // devuelto. Sin el atributo, este composable no cambia nada: la libreria ya habra
 // arrancado sola.
 
-type SwiperContainer = HTMLElement & { initialize?: () => void }
+type SwiperContainer = HTMLElement & {
+  initialize?: () => void
+  swiper?: { update: () => void }
+}
 
 interface SwiperInitOptions {
   /**
@@ -61,6 +64,47 @@ export function useSwiperInit(options: SwiperInitOptions = {}): Ref<SwiperContai
     // servidor y la ventana previa a este arranque — el escenario que
     // useSwiperInit existe para evitar.
     el.value?.classList.add('is-ready')
+
+    // 5. reasegurar el calculo de posicion una vez asentado el layout.
+    //
+    // Reportado en produccion (no reproducible en dev, si en un build estatico
+    // real con la red retrasada a proposito): al llegar a un carrusel con loop
+    // por navegacion de Vue Router (nunca con una carga completa), el recorrido
+    // circular arrancaba centrado en la pieza equivocada y la pieza "anterior"
+    // no aparecia -el boton de retroceso se veia deshabilitado, como si no
+    // hubiera loop.
+    //
+    // Diagnostico verificado inspeccionando el propio swiper-wrapper en el
+    // momento roto (no supuesto): su transform (translate3d) apuntaba a ~4.2
+    // franjas de desplazamiento en vez de a la pieza 0 -Swiper arma los clones
+    // del modo loop y calcula la posicion inicial UNA vez, en base al ancho de
+    // slide que mide en ese instante (slidesPerViewDynamic, con
+    // slides-per-view="auto"). Si ese instante cae antes de que la hoja de
+    // estilos del carrusel (el ancho real de cada swiper-slide) haya terminado
+    // de aplicarse -en SPA nav ese <link> puede llegar en un archivo separado
+    // del chunk de JS de la ruta nueva, sin bloquear su ejecucion-, la medida
+    // usada para armar los clones y la posicion inicial queda mal aunque el
+    // ANCHO FINAL renderizado en pantalla despues si sea el correcto -son dos
+    // calculos distintos, y solo el segundo se corrige solo.
+    //
+    // update() le pide a Swiper que vuelva a medir el DOM tal como esta AHORA y
+    // recalcule posicion y clones contra eso -corrige el sintoma sin remontar
+    // nada, asi que nunca hay una ventana sin carrusel. Es seguro llamarlo
+    // siempre, no solo cuando algo salio mal: en el camino feliz (la mayoria)
+    // no cambia nada visible.
+    //
+    // Varios intentos escalonados, no uno solo: no hay forma generica de saber
+    // desde aca cuando termino de llegar el <link> de esa hoja de estilos
+    // -depende de la red real de quien visita-, asi que un solo temporizador
+    // fijo siempre puede correr antes de tiempo (probado: con el CSS retrasado
+    // a proposito 800ms, un unico intento a los 300ms no alcanzaba a corregir
+    // nada, porque todavia media contra el ancho viejo). Reintentar es barato
+    // -update() no hace nada perceptible si ya estaba bien- asi que en vez de
+    // adivinar EL numero correcto, se prueba en una serie que cubre desde una
+    // red rapida hasta una notablemente lenta.
+    for (const delay of [100, 300, 600, 1000]) {
+      setTimeout(() => el.value?.swiper?.update(), delay)
+    }
   })
 
   return el

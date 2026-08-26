@@ -8,7 +8,10 @@
      util para logos pero inservible para texto que hay que leer.
 
      slidesPerView fraccionario a proposito: la card siguiente se asoma cortada
-     y eso es lo que anuncia que hay mas contenido, sin flechas ni puntos.
+     y eso es lo que anuncia que hay mas contenido. Las flechas (pedidas por
+     Fredy 2026-08-26) son un segundo camino para el mismo gesto, no un
+     reemplazo: el asomo sigue siendo la pista visual, arrastrar sigue
+     funcionando igual, las flechas solo evitan depender solo del gesto tactil.
 
      El filete de frontera lo declara SIEMPRE la seccion que sigue (border-t),
      nunca la anterior: con un solo dueño por frontera no hay bordes dobles ni
@@ -58,6 +61,7 @@
         :keyboard="true"
         :speed="900"
         :autoplay="autoplay"
+        :navigation="true"
       >
         <swiper-slide v-for="item in items" :key="item.title">
           <article class="intel-card flex h-full flex-col rounded-2xl p-10">
@@ -177,5 +181,22 @@ const items = computed(() =>
   .intel-swiper swiper-slide {
     width: 30%;
   }
+}
+
+/* Navegadores laterales, pintados por ::part -la superficie que el componente
+   expone- igual que en CaasAreas.vue: mismo tratamiento visual para que las
+   flechas se lean como un patron del proyecto y no como un estilo propio de
+   cada seccion. */
+.intel-swiper {
+  --swiper-navigation-size: 1.6rem;
+}
+
+.intel-swiper::part(button-prev),
+.intel-swiper::part(button-next) {
+  width: 4.4rem;
+  height: 4.4rem;
+  border-radius: 9999px;
+  background-color: var(--color-primary-soft);
+  color: var(--color-brand-violet);
 }
 </style>

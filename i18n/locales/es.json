@@ -544,10 +544,10 @@
     "hero": {
       "brandAlt": "Tesseract",
       "eyebrow": "Criptografía (SaaS)",
-      "titlePre": "Controla tu criptografía,",
-      "titleMid": "con tu hardware o",
-      "titlePost": "con el nuestro.",
-      "subtitle": "Tus llaves, donde sea que vivan, pero siempre bajo tu control.",
+      "title": "Controla tu criptografía.",
+      "subtitlePre": "Tus llaves, donde sea que vivan, ",
+      "subtitleStrong": "con tu hardware o con el nuestro",
+      "subtitlePost": " pero siempre bajo tu control.",
       "cta": "Agenda una evaluación técnica"
     },
     "paths": {

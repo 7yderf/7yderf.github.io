@@ -1,6 +1,14 @@
 <!-- CaasHero.vue — Zona 1 de /cripto-as-a-service. Dos columnas: marca, eyebrow,
      titular y CTA a la izquierda; media sobre card rosa a la derecha.
-     Colapso por ancho disponible (flex-wrap + basis + min-w), no por viewport. -->
+     Colapso por ancho disponible (flex-wrap + basis + min-w), no por viewport.
+
+     El titulo es una sola clave (antes Pre/Mid/Post partido en 3 lineas): al
+     acortarse ya no necesita el salto forzado. El fragmento que salio del
+     titulo ("con tu hardware o con el nuestro") se movio al subtitulo como
+     segmento en negrita via subtitlePre/subtitleStrong/subtitlePost + strong
+     -mismo mecanismo que EcocloudWho.vue (ver decision:2:20: partir la frase
+     en claves por idioma es fragil, e inyectar markup desde i18n abre una via
+     de inyeccion). -->
 <template>
   <section class="sc-section w-full px-4 py-8 lg:px-8 lg-2:py-16">
     <article class="sc-article mx-auto w-full max-w-7xl flex-wrap items-center gap-10 lg-2:gap-16">
@@ -14,12 +22,12 @@
         <p class="mt-8 text-center text-base font-medium text-text md:text-left">{{ t('caas.hero.eyebrow') }}</p>
 
         <h1 class="hero mt-3 text-center font-secondary text-deep-ink md:text-left">
-          {{ t('caas.hero.titlePre') }}<br>
-          {{ t('caas.hero.titleMid') }}<br>
-          {{ t('caas.hero.titlePost') }}
+          {{ t('caas.hero.title') }}
         </h1>
 
-        <p class="mt-5 max-w-md text-center text-2xl font-medium text-text md:text-left">{{ t('caas.hero.subtitle') }}</p>
+        <p class="mt-5 max-w-md text-center text-2xl font-medium text-text md:text-left">
+          {{ t('caas.hero.subtitlePre') }}<strong class="font-bold">{{ t('caas.hero.subtitleStrong') }}</strong>{{ t('caas.hero.subtitlePost') }}
+        </p>
 
         <!-- El boton va envuelto en un flex container: .btn-* es display:flex con
              max-width:inherit, asi que suelto en un bloque se estira al 100%. -->
@@ -32,11 +40,24 @@
 
       <div class="sc-section min-w-[28rem] basis-[38rem]">
         <figure class="sc-figure overflow-hidden rounded-3xl bg-brand-blush">
-          <!-- Sin aspect fijo: el video declara su propia proporcion. La escala no
-               participa del layout, asi que el figure mide el alto natural y
-               recorta el 5% sobrante, que es donde vive el filo. -->
+          <!-- aspect-[4/3] + object-cover iguala el figure al de HsmHero.vue,
+               que es la referencia de tamaño para los heroes de esta franja de
+               paginas -confirmado por Fredy-. El video de aca (controla-
+               criptografia.mp4) es 1:1 en origen, no 4:3, asi que forzar el
+               marco recorta arriba/abajo -mismo mecanismo de recorte que ya
+               usaba HsmHero.vue sobre su propio video.
+
+               object-[50%_65%] en vez del centro por defecto (50% 50%): con
+               centro parejo, el recorte le comia el aro de la llave arriba y
+               las puntas de los dedos abajo a la vez -verificado extrayendo
+               varios frames crudos del propio video (la llave rota en el
+               loop, el margen superior real sobre ella varia entre ~195 y
+               ~275px de 1080, el margen inferior sobre la mano se mantiene
+               mas ajustado, ~140-180px). 65% recarga el recorte hacia arriba
+               (mas margen se saca de la llave, que sobra) y deja mas aire
+               abajo (donde la mano casi no tenia margen de sobra). -->
           <video
-            class="mix-blend-multiply block w-full scale-105"
+            class="mix-blend-multiply block aspect-[4/3] w-full scale-105 object-cover object-[50%_65%]"
             src="/videos/controla-criptografia.mp4"
             autoplay
             loop

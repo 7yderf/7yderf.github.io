@@ -1,7 +1,7 @@
 {
   "$schema": "https://eure-k.local/schemas/project-memory-v1.json",
   "schema": "eure-k.project-memory/v1",
-  "revision": 241,
+  "revision": 262,
   "project": {
     "id": "frt-cnct-web",
     "repository_fingerprint": "git-remote-v1:sha256:9cecfa5ed6040202f52f46768540e1b8a10fa6c11be8f5acbcaf8dbea368cb60",
@@ -26,9 +26,9 @@
   "genome_baseline": {
     "id": "eure-k",
     "revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
-    "server_version": "0.31.1",
+    "server_version": "0.31.7",
     "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
-    "last_consulted_at": "2026-08-21T15:54:42.957Z",
+    "last_consulted_at": "2026-08-26T17:28:53.751Z",
     "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7"
   },
   "graph": {
@@ -38,7 +38,7 @@
         "version": "headless-v1",
         "adapter": "legacy-front",
         "target": "src",
-        "generated_at": "2026-08-21T16:48:13.920Z",
+        "generated_at": "2026-08-26T17:31:34.022Z",
         "content_hash": "sha256:d8e7be724967bdd773d5cc6c966cd1c18ce86536b09f7e25fd9a7eecdf2b18b5"
       },
       "nodes": [
@@ -3193,6 +3193,50 @@
           "checkpoint": "checkpoint:9",
           "authored_by": "agente+humano",
           "approved_at": "2026-08-21T16:48:13.920Z"
+        },
+        {
+          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:10:decision:10:7",
+          "type": "projection",
+          "layer": "local-knowledge",
+          "scope": "local",
+          "status": "validated",
+          "concern": "Verificacion parcial de un bug de terceros deja pasar el sintoma real sin detectarlo",
+          "problem": "Un carrusel de terceros (Swiper) se reportaba roto en produccion solo bajo navegacion SPA client-side, nunca en carga con SSR. Dos rondas previas de fix (decision:10:4 con swiper.update() en reintentos, decision:10:5 con remount forzado via v-if) se dieron por verificadas y cerradas, pero ambas se apoyaban en comprobaciones PARCIALES -integridad del DOM (conteo de slides, presencia de una clase \"is-ready\") y un experimento sintetico con CSS artificialmente retrasado- en vez del resultado visual/funcional real. Fredy reporto que el problema seguia presente incluso despues de la segunda ronda, lo que expuso que ninguna de las dos verificaciones habia comprobado lo que en realidad importaba: si el contenido de cada pieza del carrusel se pintaba.",
+          "projection": "Cuando la verificacion de un fix sobre una libreria de terceros se apoya en señales estructurales indirectas (el DOM tiene los nodos esperados, una bandera de \"listo\" esta presente, un experimento sintetico reproduce el sintoma y el fix lo corrige) en vez de en el resultado funcional real (¿la imagen se pidio por red? ¿el elemento tiene estilo computado no vacio? ¿se ve en pantalla?), el fix puede darse por verificado y cerrado mientras el defecto real sigue presente sin que nada lo señale. La correccion no es desconfiar de toda verificacion, es instrumentar directamente la señal que importa -peticiones de red, getComputedStyle, un ciclo de interaccion real end-to-end- antes de aceptar un fix como definitivo, especialmente cuando el primer intento de verificacion parcial ya paso una vez y el sintoma reaparecio: esa reaparicion es la señal de que la verificacion, no la teoria, tenia el hueco. Un segundo patron util del mismo caso: cuando el comportamiento roto de una libreria de terceros correlaciona con estar en el limite exacto de una precondicion que la propia libreria documenta (aqui, el numero minimo de piezas para su modo circular), aislar la causa apagando esa caracteristica por completo como diagnostico -no como solucion- separa limpiamente \"es este mecanismo\" de \"es otra cosa\" antes de decidir si vale la pena preservar la caracteristica o renunciar a ella.",
+          "responsibilities": [
+            "Aislar la causa de un comportamiento roto de una libreria de terceros que opera en el limite exacto de una precondicion documentada, apagando esa caracteristica por completo solo para diagnostico antes de decidir la solucion definitiva",
+            "Detectar cuando una verificacion de fix se apoyo en señales parciales/indirectas en vez del resultado funcional real, especialmente tras una reaparicion del sintoma que una ronda anterior daba por resuelta"
+          ],
+          "facts": {
+            "framework": "nuxt",
+            "libreria": "swiper-element",
+            "project": "frt-cnct-web",
+            "sintoma": "figura interna sin estilo computado tras reordenamiento DOM del modo loop",
+            "verificacion_previa_insuficiente": "slideCount+hasIsReady, no visual/funcional"
+          },
+          "source_relations": [],
+          "evidence": [
+            {
+              "path": "src/components/sections/CaasAreas.vue",
+              "hash": "sha256:6a3147b6182c0643a29d79f44e7958638aaa93fb54cfe7b6c432ed5dcfe93a1f",
+              "symbols": [
+                "initial-slide",
+                "loop"
+              ]
+            },
+            {
+              "path": "src/composables/useSwiperInit.ts",
+              "hash": "sha256:bba6e6b16b804a7138620ce5efab7418ff71893654934adb07b8731d4cb90619",
+              "symbols": [
+                "useSwiperInit"
+              ]
+            }
+          ],
+          "task": "task:frt-cnct-web:10",
+          "decision": "decision:10:7",
+          "checkpoint": "checkpoint:10",
+          "authored_by": "agente+humano",
+          "approved_at": "2026-08-26T17:31:34.022Z"
         }
       ]
     }
@@ -11834,6 +11878,879 @@
           }
         },
         "submitted_at": "2026-08-21T16:42:57.162Z"
+      },
+      {
+        "id": "task:frt-cnct-web:10",
+        "sequence": 10,
+        "intent": "Dos detalles en /cripto-as-a-service. Detalle 1: CaasHero.vue -cambiar el copy del hero. Titulo actual \"Controla tu criptografía, con tu hardware o con el nuestro.\" (partido en titlePre/titleMid/titlePost) pasa a un titulo corto \"Controla tu criptografía.\" El fragmento \"con tu hardware o con el nuestro\" se mueve al subtitulo, en negrita: \"Tus llaves, donde sea que vivan, **con tu hardware o con el nuestro** pero siempre bajo tu control.\" Fredy senalo explicitamente el texto en negrita del subcopy como parte del cambio -no es solo mover texto, el subtitulo pasa de texto plano a tener un segmento en negrita. Detalle 2: pendiente de que Fredy lo describa.",
+        "status": "recorded",
+        "opened_at": "2026-08-26T02:22:13.266Z",
+        "closed_at": "2026-08-26T17:31:34.022Z",
+        "consultations": [
+          {
+            "id": "consult:10:1",
+            "at": "2026-08-26T02:22:34.612Z",
+            "intent": "CaasHero.vue: titulo a una sola clave, subtitulo con segmento en negrita via Pre/Strong/Post -mismo patron que EcocloudWho.vue, ya justificado en decision:2:20 (evita partir por idioma o inyectar markup desde i18n).",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "CaasHero.vue: acortar el h1 de 3 lineas (titlePre/titleMid/titlePost) a un titulo corto de una sola clave, y mover el fragmento que se quita (\"con tu hardware o con el nuestro\") al subtitulo como segmento en negrita -mismo mecanismo ya establecido en EcocloudWho.vue (bodyPre/bodyStrong/bodyPost + strong.font-bold), no **markdown** partido en segmentos (ese es para listas con multiples negritas, aca es un solo segmento fijo).",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Reemplazar un titulo partido en 3 claves i18n (Pre/Mid/Post) por una sola clave cuando el copy se acorta y ya no necesita el salto de linea forzado",
+                "Introducir un segmento en negrita fijo dentro de un parrafo existente que hoy es texto plano, siguiendo el patron ya usado (Pre/Strong/Post + <strong>)"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "path": "src/components/sections/CaasHero.vue",
+                "operation": "acortar-titulo-y-mover-fragmento-a-subtitulo-en-negrita"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:20",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:22"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:4dc303d0-65a8-4088-a2c1-d40b72f3b942",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.31.7",
+              "overlay_revision": 242,
+              "overlay_graph_hash": "sha256:0003ed0967fe7bd2ec99c1000935d7f893073bd3d2c299eacd520f274dc40a09",
+              "overlay_curated_hash": "sha256:31c33e2aa35e3951b4637b99924cca9ea7e7c7878b3457bb05750a3bfed31e3c",
+              "overlay_projections_revision": "sha256:f7f5344ce6cd92f5bee8a34ad98f8ea1c8cfc897d911c153b426573b73bb9a2e",
+              "output_hash": "sha256:43ce3ecb8d9b53f44847b5ce410d1698ddcc9fe27f488a8661de96a76fd47280",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:20",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:540a1b4323e309d99f9cf16575c83a270205a725343030da69e357d06ce6dddb"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:22",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:4d255325599edbfc589fdc186bb133ccbd2bc16e3a54c6dd111fda7c2b90f4d2"
+                }
+              ],
+              "query_revision": "sha256:1dbb78021e6e4c7a8142353c5545cfe52484d5b0c7ed88316daf30cffc19dc05",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 7468,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 2,
+                "used_excerpt_chars": 745,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:10:2",
+            "at": "2026-08-26T02:34:03.185Z",
+            "intent": "HsmHero.vue: aspect-[4/3] -> aspect-square, igualando el figure a CaasHero.vue (confirmado por Fredy).",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "HsmHero.vue: figure/video pasa de aspect-[4/3] a aspect-square (cuadrado), igualando el tamaño/forma del figure de CaasHero.vue -confirmado por el usuario tras medir en vivo (CaasHero 618x618 por video natural 1:1 sin aspect forzado; HsmHero 628x471 por aspect-[4/3] forzado sobre un video que ya es ~4:3 natural, 1500x1130). El video de HsmHero NO es cuadrado en origen, asi que forzar aspect-square recorta mas contenido del video via object-cover (ya presente) para llenar el marco 1:1.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Igualar la forma/tamaño de un figure de hero a otro figure de hero ya establecido en el sitio, cuando el video de origen no comparte la proporcion natural del video de referencia"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "path": "src/components/sections/HsmHero.vue",
+                "operation": "igualar-aspecto-de-figure-a-otro-hero-cuadrado"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "pattern:visual-dos-columnas-responsive"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:4f7bd794-1f3d-484e-afe9-a29d11ef32d7",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.31.7",
+              "overlay_revision": 244,
+              "overlay_graph_hash": "sha256:0003ed0967fe7bd2ec99c1000935d7f893073bd3d2c299eacd520f274dc40a09",
+              "overlay_curated_hash": "sha256:31c33e2aa35e3951b4637b99924cca9ea7e7c7878b3457bb05750a3bfed31e3c",
+              "overlay_projections_revision": "sha256:f7f5344ce6cd92f5bee8a34ad98f8ea1c8cfc897d911c153b426573b73bb9a2e",
+              "output_hash": "sha256:261397621549c0d98693e49caf266dd84eec69089e356470be00c07f727297f7",
+              "candidate_sources": [
+                {
+                  "id": "pattern:visual-dos-columnas-responsive",
+                  "source": "genome",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:4e7dffcead5dfc1bbcedbb97c95ae412266f96a85170d824a1b012548f69edd5"
+                }
+              ],
+              "query_revision": "sha256:058133ec5d80a4f6e7033ad30a7a63bf10d3d5e47c51055d441ed30ab7335466",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 3134,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 1,
+                "used_excerpt_chars": 42,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:10:3",
+            "at": "2026-08-26T02:43:06.052Z",
+            "intent": "CORRECCION: aspect-[4/3]+object-cover va en CaasHero.vue (ajustarlo a HsmHero como referencia), no al reves -decision:10:2 aplico el cambio al archivo equivocado y ya fue revertida por Fredy en HsmHero.vue.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "CORRECCION de decision:10:2 -Fredy aclaro que la explico al reves: la referencia real es HsmHero.vue (4:3, ya revertido a su estado original por el mismo Fredy), y el que hay que ajustar es CaasHero.vue (hoy cuadrado por el aspecto natural 1:1 de su propio video, sin aspect forzado). Aplicar aspect-[4/3] + object-cover al video de CaasHero, mismo tratamiento que HsmHero.vue. Corrige decision:10:2, que aplico el cambio al archivo equivocado.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Igualar la forma/tamano de un figure de hero a otro figure de hero de referencia ya establecido, cuando el video de origen (cuadrado) no comparte la proporcion del video de referencia (4:3)"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "path": "src/components/sections/CaasHero.vue",
+                "operation": "igualar-aspecto-de-figure-a-hsmhero-4-3"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "pattern:visual-dos-columnas-responsive"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:603695c7-11eb-4b5f-966c-3555e9e1374a",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.31.7",
+              "overlay_revision": 246,
+              "overlay_graph_hash": "sha256:0003ed0967fe7bd2ec99c1000935d7f893073bd3d2c299eacd520f274dc40a09",
+              "overlay_curated_hash": "sha256:31c33e2aa35e3951b4637b99924cca9ea7e7c7878b3457bb05750a3bfed31e3c",
+              "overlay_projections_revision": "sha256:f7f5344ce6cd92f5bee8a34ad98f8ea1c8cfc897d911c153b426573b73bb9a2e",
+              "output_hash": "sha256:aeece252e12bb703fe0bbb74df79be06a24d48bcb6f87d939ed882ddde6554f1",
+              "candidate_sources": [
+                {
+                  "id": "pattern:visual-dos-columnas-responsive",
+                  "source": "genome",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:4e7dffcead5dfc1bbcedbb97c95ae412266f96a85170d824a1b012548f69edd5"
+                }
+              ],
+              "query_revision": "sha256:3b6576c80b829798507cc1e6ab1cd1a4c3aa445f64d0f8dc7882cf49200eca0b",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 3134,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 1,
+                "used_excerpt_chars": 42,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:10:4",
+            "at": "2026-08-26T04:31:47.091Z",
+            "intent": "useSwiperInit.ts: reintentos escalonados de swiper.update() tras initialize(), confirmado por experimento A/B con CSS retrasado artificialmente (Playwright route()).",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "useSwiperInit.ts: bug de produccion reportado por multiples usuarios en distintos navegadores -carrusel con loop (CaasAreas.vue) arranca con el recorrido circular roto (boton \"anterior\" deshabilitado, falta la pieza previa) solo cuando se llega por navegacion de Vue Router, nunca con una carga completa. Diagnostico confirmado por experimento A/B: retrasando artificialmente el CSS con Playwright route() se reproduce el mismo defecto (coordenadas de slide en miles de pixeles negativos) sin el fix, y desaparece con el fix (reintentos escalonados de swiper.update() tras initialize()). Causa raiz: slides-per-view=\"auto\" mide el ancho REAL de cada slide para decidir cuantos caben en modo loop; en navegacion SPA el <link> de la hoja de estilos sin scope del carrusel puede llegar en un chunk separado del JS de la ruta, sin bloquear su ejecucion -a diferencia de una carga completa, donde el CSS ya esta aplicado antes de que corra cualquier script.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Corregir un calculo de layout (ancho de slide) que corre contra una hoja de estilos que puede no haber terminado de aplicarse todavia, sin bloquear ni retrasar el render inicial del componente (que ya esta protegido para SSR)",
+                "Elegir entre una unica correccion con timeout fijo vs reintentos escalonados cuando no hay una señal generica y confiable de 'este CSS especifico ya cargo' disponible desde el composable"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "path": "src/composables/useSwiperInit.ts",
+                "operation": "recalculo-de-slide-tras-carga-de-css-diferida-en-spa-nav"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:16",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:21"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:22dd9284-be4c-41aa-a463-899b40a712f6",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.31.7",
+              "overlay_revision": 248,
+              "overlay_graph_hash": "sha256:0003ed0967fe7bd2ec99c1000935d7f893073bd3d2c299eacd520f274dc40a09",
+              "overlay_curated_hash": "sha256:31c33e2aa35e3951b4637b99924cca9ea7e7c7878b3457bb05750a3bfed31e3c",
+              "overlay_projections_revision": "sha256:f7f5344ce6cd92f5bee8a34ad98f8ea1c8cfc897d911c153b426573b73bb9a2e",
+              "output_hash": "sha256:894395875ce0c1fdb20267ddf7b17bd428fc2575a0c3498ef7ddf815647de86b",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:16",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:f6dcb8a9c8a86932d40e710971efcdaa2888d807ebf9b19bb18e3cb2369d650f"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:21",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:d0ea2118d2585c32b8b6c575722725f993b937ec92276b4a46c0222321809062"
+                }
+              ],
+              "query_revision": "sha256:d991637ccadd802f2dbe5cbd8575505c22102750723845c1c7e0419e87412ca2",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 7321,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 2,
+                "used_excerpt_chars": 750,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:10:5",
+            "at": "2026-08-26T05:03:14.428Z",
+            "intent": "useSwiperInit.ts: CORRECCION de decision:10:4 -remount real via v-if (selfHeal), no swiper.update(). Verificado por instrumentacion directa que el ciclo si desmonta/remonta, mas rapido que la latencia de cualquier medicion externa.",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "useSwiperInit.ts: CORRECCION de decision:10:4 -Fredy pidio explicitamente el remount real (desmontar/remontar el swiper-container via v-if), no el recalculo con swiper.update() que yo habia implementado primero. Implementado con selfHeal:true (overload de TypeScript, no rompe los otros 7 consumidores del composable), medio segundo de espera, y un skeleton con aspect-ratio medido en vivo como v-else. Verificado por instrumentacion directa (console.log en el propio ciclo, no solo capturas externas) que el ciclo false->true SI desmonta y remonta el elemento real -el motivo de que las capturas/sondeos externos no lo detectaran es que corre en microtasks (nextTick), mas rapido que la latencia de cualquier vuelta Playwright.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Reemplazar un mecanismo de recalculo (swiper.update()) por un remount real (desmontar+remontar) cuando el usuario pide explicitamente esa semantica, sin romper la API del composable para los consumidores que no lo necesitan",
+                "Verificar un ciclo de estado que corre mas rapido que la latencia de instrumentacion externa (capturas de pantalla, sondeo del DOM) mediante logs colocados DENTRO del propio ciclo"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "path": "src/composables/useSwiperInit.ts",
+                "operation": "remount-real-via-v-if-en-vez-de-recalculo"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:15",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:27"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:74bf66d0-8782-41be-94db-4ec57dfc8168",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.31.7",
+              "overlay_revision": 250,
+              "overlay_graph_hash": "sha256:0003ed0967fe7bd2ec99c1000935d7f893073bd3d2c299eacd520f274dc40a09",
+              "overlay_curated_hash": "sha256:31c33e2aa35e3951b4637b99924cca9ea7e7c7878b3457bb05750a3bfed31e3c",
+              "overlay_projections_revision": "sha256:f7f5344ce6cd92f5bee8a34ad98f8ea1c8cfc897d911c153b426573b73bb9a2e",
+              "output_hash": "sha256:62e7395206703287ee0bcb110edae61275cf220e8faca5d4346d9de7c2157ea1",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:15",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:1dbd08901df9758543d11b4f7421e936ebf6b2656a08d2d816c91928b3b6a063"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:27",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:b780f57b8573a7ce1cc2172b402e33d765638eeb6b1d8e6451f6564f7fc654d0"
+                }
+              ],
+              "query_revision": "sha256:8dc7f975e7b74eebb8abafef7f68e12490294255bcec1b66f63aa537407a29e8",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 6962,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 2,
+                "used_excerpt_chars": 684,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:10:6",
+            "at": "2026-08-26T05:48:42.006Z",
+            "intent": "useSwiperInit.ts: corregir decision:10:5 (remount v-if) tras regresion reportada por Fredy - buscar precedente sobre corregir hacia adelante con diagnostico no confirmado vs revertir y diagnosticar con evidencia directa",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "useSwiperInit.ts: CORRECCION de decision:10:5 -Fredy reporto que el remount real (v-if) rompia el carrusel SIEMPRE, incluso en carga completa (regresion nueva, peor que el bug original). Se revirtio el remount por completo y se reinstauro swiper.update() en reintentos escalonados, ahora con diagnostico mecanico preciso (no solo empirico): se inspecciono el swiper-wrapper roto en vivo y su transform (translate3d) apuntaba a ~4.2 franjas de desplazamiento en vez de a la pieza 0 -Swiper arma los clones del loop y la posicion inicial en base al ancho de slide medido en el instante de initialize(), un calculo DISTINTO del ancho final renderizado (que si termina correcto via CSS). update() fuerza a Swiper a remedir y rearmar esa posicion/clones contra el DOM actual. Verificado que corrige el translate exacto (-2368px -> -812px, coincide con el estado sano) y que no reintroduce el problema de Fredy en carga normal (sin remount, sin ventana sin carrusel).",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Revertir un fix que introdujo una regresion nueva (rompia incluso el camino que antes funcionaba) y volver al enfoque anterior con un diagnostico mecanico mas preciso que la primera vez",
+                "Corregir la posicion inicial y el armado de clones del modo loop de un carrusel, distinguiendo ese calculo del ancho final renderizado de cada slide (que es un calculo CSS independiente y ya correcto)"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "path": "src/composables/useSwiperInit.ts",
+                "operation": "revertir-remount-reinstaurar-update-con-diagnostico-preciso"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:10",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:16"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:a295a632-38d9-40cb-aab7-a816eeb0db16",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.31.7",
+              "overlay_revision": 252,
+              "overlay_graph_hash": "sha256:0003ed0967fe7bd2ec99c1000935d7f893073bd3d2c299eacd520f274dc40a09",
+              "overlay_curated_hash": "sha256:31c33e2aa35e3951b4637b99924cca9ea7e7c7878b3457bb05750a3bfed31e3c",
+              "overlay_projections_revision": "sha256:f7f5344ce6cd92f5bee8a34ad98f8ea1c8cfc897d911c153b426573b73bb9a2e",
+              "output_hash": "sha256:45c8518606586a5c50e66c89ac75c58f7151d45024c23d9ccc94e623f0843ff7",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:10",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:01e477d94f612cfa33da0f41e7d8604990380571a55366174f144538848b8b86"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:16",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:f6dcb8a9c8a86932d40e710971efcdaa2888d807ebf9b19bb18e3cb2369d650f"
+                }
+              ],
+              "query_revision": "sha256:7b321957cba20b2601dfd67da2a695e3a4da9f66b7391011c3d2dadc71086a53",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 6747,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 2,
+                "used_excerpt_chars": 458,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:10:7",
+            "at": "2026-08-26T17:07:30.093Z",
+            "intent": "CaasAreas.vue: corregir causa raiz real del carrusel (loop mode + lazy loading), reemplazando la teoria de translate3d/update() de decision:10:6",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "CaasAreas.vue: causa raiz REAL confirmada del carrusel roto en SPA nav -reemplaza por completo decision:10:6 (que aun defendia la teoria de translate3d/swiper.update(), ya invalidada por evidencia directa). Dos causas distintas encontradas via instrumentacion en vivo: (1) loading=lazy nativo en las imagenes del carrusel nunca dispara la peticion de red porque el navegador mide cercania al viewport ANTES de que Swiper reposicione por transform y nunca vuelve a evaluar -se quito el atributo. (2) el modo loop de Swiper con slides-per-view=auto en el limite EXACTO minimo de piezas (5, el propio minimo que el archivo documenta) mueve nodos reales del DOM para armar el circuito y dejaba el <figure> interno de la pieza movida sin NINGUN estilo computado, de forma permanente e inmune a swiper.update(), swiper.loopFix(), reflow forzado y resize real -solo reproducible en montaje client-side puro (SPA nav), nunca en carga con SSR. Se aislo apagando loop temporalmente solo para diagnostico: las 5 piezas volvieron a pintar sin excepcion. Se opto por loop:false definitivo -perdida de recorrido infinito, flechas siguen funcionando- en vez de intentar parchar el mecanismo interno de la libreria en su propio limite marginal documentado.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Diagnosticar con instrumentacion directa (network requests, computed style, DOM order) en vez de seguir iterando sobre una teoria previa no confirmada, aislando la causa por eliminacion binaria de un parametro (loop on/off) hasta obtener una prueba decisiva y reproducible",
+                "Decidir entre parchar el sintoma de una libreria de terceros en su propio limite documentado vs renunciar a una caracteristica (loop infinito) para eliminar la clase de bug por completo"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "path": "src/components/sections/CaasAreas.vue",
+                "operation": "corregir-causa-raiz-real-loop-y-lazy-loading-carrusel"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:23",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:14"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:2e56e21e-e364-4541-894f-40e0c1b509f6",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.31.7",
+              "overlay_revision": 254,
+              "overlay_graph_hash": "sha256:0003ed0967fe7bd2ec99c1000935d7f893073bd3d2c299eacd520f274dc40a09",
+              "overlay_curated_hash": "sha256:31c33e2aa35e3951b4637b99924cca9ea7e7c7878b3457bb05750a3bfed31e3c",
+              "overlay_projections_revision": "sha256:f7f5344ce6cd92f5bee8a34ad98f8ea1c8cfc897d911c153b426573b73bb9a2e",
+              "output_hash": "sha256:dcf960737c27802eeabbe26132c6b5aaf7ac03efaf58546c3444d305fcb97fdc",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:23",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:883682cf19db341c29feacb565a5bce09c0b92cd6386ac9c81c8c81c60e0bb2f"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:14",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:f1b1dd8654d89993ef691eb31f5f468ffd31f4f9e62a725633b9e83702eb1a7d"
+                }
+              ],
+              "query_revision": "sha256:f4adb224aa9177a11c237ba5d4c136e28a81930ac6c84021553370c3586e5228",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 6671,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 2,
+                "used_excerpt_chars": 524,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:10:8",
+            "at": "2026-08-26T17:18:51.083Z",
+            "intent": "CaasAreas.vue: initial-slide=1 para que el carrusel sin loop arranque con la composicion completa visible",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "CaasAreas.vue: initial-slide=1 en el swiper-container para que arranque centrado en la segunda pieza en vez de la primera -sin loop, arrancar en 0 deja el lado izquierdo vacio (no hay pieza prev que mostrar); arrancando en 1 se ve la composicion completa (anterior+activa+siguiente) desde el primer pintado. Cambio puramente cosmetico/de configuracion, pedido explicito de Fredy comparando dos capturas.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Elegir la pieza inicial visible de un carrusel centrado sin loop para que la composicion se vea completa (anterior+activa+siguiente) desde el primer pintado, en vez de arrancar con un hueco visual en el lado sin pieza anterior"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "path": "src/components/sections/CaasAreas.vue",
+                "operation": "ajustar-pieza-inicial-carrusel-centrado-sin-loop"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:18"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:6a62d8e6-c641-42df-82c5-6a8dcd407f9e",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.31.7",
+              "overlay_revision": 256,
+              "overlay_graph_hash": "sha256:0003ed0967fe7bd2ec99c1000935d7f893073bd3d2c299eacd520f274dc40a09",
+              "overlay_curated_hash": "sha256:31c33e2aa35e3951b4637b99924cca9ea7e7c7878b3457bb05750a3bfed31e3c",
+              "overlay_projections_revision": "sha256:f7f5344ce6cd92f5bee8a34ad98f8ea1c8cfc897d911c153b426573b73bb9a2e",
+              "output_hash": "sha256:1528a6c3131b4de9824ff324ecab78a314d4e903a664b117b6708151fa92e75a",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:18",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:18e91fe22ce3010db53470449b8ad61f12f98373411dc5a4a1fcd0c599c6e2a7"
+                }
+              ],
+              "query_revision": "sha256:5d8c4a2e0afd68c68bca036ee7f5cdbc05ba35ad370dbf1fed3da553aac0cc7c",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 4180,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 1,
+                "used_excerpt_chars": 239,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:10:9",
+            "at": "2026-08-26T17:28:53.751Z",
+            "intent": "SpeiIntelligence.vue: agregar navegacion por flechas al carrusel, verificando primero ausencia del bug de CaasAreas",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "SpeiIntelligence.vue: agregar navegacion por flechas (:navigation=true) al carrusel intel-swiper, pedido explicito de Fredy tras ver la seccion \"Inteligencia que acelera\" -actualmente solo interactua por arrastre/gesto, quiere tambien el control de flechas. Se agrego mismo tratamiento visual (::part button-prev/next) que CaasAreas.vue, tras verificar primero que este carrusel especifico (4 piezas, sin centered-slides) NO tiene el bug de loop+figure-collapse encontrado en CaasAreas -ciclo completo probado, sin regresion.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Agregar un segundo camino de interaccion (flechas) a un carrusel que originalmente se diseño deliberadamente sin ellas (el propio comentario del archivo documentaba 'sin flechas ni puntos' como parte del diseño), sin remplazar el gesto de arrastre existente",
+                "Verificar que un carrusel con la misma configuracion base (loop+slides-per-view auto) que otro recien encontrado roto no comparta el mismo defecto antes de exponerlo a mas interaccion del usuario"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "path": "src/components/sections/SpeiIntelligence.vue",
+                "operation": "agregar-navegacion-flechas-carrusel-existente"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:1",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:15"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:9971fb97-9065-4e6f-8d35-bc19f52d1591",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.31.7",
+              "overlay_revision": 258,
+              "overlay_graph_hash": "sha256:0003ed0967fe7bd2ec99c1000935d7f893073bd3d2c299eacd520f274dc40a09",
+              "overlay_curated_hash": "sha256:31c33e2aa35e3951b4637b99924cca9ea7e7c7878b3457bb05750a3bfed31e3c",
+              "overlay_projections_revision": "sha256:f7f5344ce6cd92f5bee8a34ad98f8ea1c8cfc897d911c153b426573b73bb9a2e",
+              "output_hash": "sha256:33ef39f9f8b4f6e26a4eec7f47752de365c45b56e81d2d2be4936840c1664895",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:1",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:e7efd510de1e77388dec78ba65dd2c67744f3105baa329b0d93763b544ad83f2"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:15",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:1dbd08901df9758543d11b4f7421e936ebf6b2656a08d2d816c91928b3b6a063"
+                }
+              ],
+              "query_revision": "sha256:832f09de5873227c3b0753aa9072ad0e016995afd9a4d0ddf427e735a2be2e91",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 7629,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 2,
+                "used_excerpt_chars": 834,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          }
+        ],
+        "decisions": [
+          {
+            "id": "decision:10:1",
+            "kind": "local",
+            "rationale": "CaasHero.vue: titulo de 3 lineas (titlePre/titleMid/titlePost -> \"Controla tu criptografía, / con tu hardware o / con el nuestro.\") reemplazado por un titulo corto de una sola clave (\"Controla tu criptografía.\"), moviendo el fragmento eliminado al subtitulo como segmento en negrita: \"Tus llaves, donde sea que vivan, **con tu hardware o con el nuestro** pero siempre bajo tu control.\" Se uso el patron ya establecido (subtitlePre/subtitleStrong/subtitlePost + strong.font-bold) en vez de **markdown**, replicando exactamente EcocloudWho.vue -decision:2:20 ya justifico por que: partir la frase en claves separadas por idioma es fragil (numero de tramos distinto por idioma, orden que puede variar), e inyectar markup desde el archivo de i18n abre una via de inyeccion. Actualizado en es.json y en.json en paralelo (contenido de negocio, no matiz de traduccion). Verificado por captura en 1440/767/375px: coincide exacto con la referencia de Fredy en desktop y mobile.",
+            "evidence": [
+              "src/components/sections/CaasHero.vue: h1 titlePre/titleMid/titlePost -> title; p subtitle -> subtitlePre+strong+subtitlePost",
+              "i18n/locales/es.json y en.json: caas.hero title/subtitlePre/subtitleStrong/subtitlePost",
+              "caashero-1440.png/375.png: coincide exacto con la referencia (titulo corto, negrita en el subtitulo)"
+            ],
+            "consultations": [
+              "consult:10:1"
+            ],
+            "status": "validated"
+          },
+          {
+            "id": "decision:10:2",
+            "kind": "local",
+            "rationale": "HsmHero.vue: el figure/video cambio de aspect-[4/3] a aspect-square, igualando forma y tamaño al figure de CaasHero.vue -confirmado por Fredy tras mostrarle la medicion real de ambos (CaasHero 618x618, cuadrado solo porque su propio video ya es 1:1 natural sin aspect forzado; HsmHero 628x471, 4:3 porque el aspect-[4/3] se forzaba sobre un video que ya es ~4:3 en origen -1500x1130-). El video de HsmHero (escudo.mp4) NO es cuadrado en origen, asi que forzar aspect-square recorta mas contenido de sus bordes via el object-cover que ya tenia -mismo mecanismo de recorte que antes, con mas superficie recortada para llenar el marco 1:1. Verificado por medicion real (figure 628x628 vs 618x618, casi identico) y por captura en desktop (1440px) y mobile (375px): el HSM llena el marco de forma comparable al key+mano de CaasHero, sin distorsion ni corte que pierda el sujeto principal.",
+            "evidence": [
+              "src/components/sections/HsmHero.vue: video class aspect-[4/3] -> aspect-square",
+              "medicion real: figure CaasHero 618x618, HsmHero antes 628x471 (4:3) / despues 628x628 (cuadrado, coincide)",
+              "herocompare-hsm.png: HSM llena el marco cuadrado sin distorsion",
+              "hsmhero-mobile-375.png: sin regresion en mobile"
+            ],
+            "consultations": [
+              "consult:10:2"
+            ],
+            "status": "validated"
+          },
+          {
+            "id": "decision:10:3",
+            "kind": "local",
+            "rationale": "CORRIGE decision:10:2: el ajuste de aspect-[4/3]+object-cover era para CaasHero.vue, no para HsmHero.vue -Fredy aclaro que se explico al reves; HsmHero era la referencia (4:3) y ya la revirtio el mismo a su estado original. Se aplico el cambio correcto a CaasHero.vue.\n\nCon el recorte a object-cover center (50% 50%) por defecto, el marco 4:3 le comia el aro de la llave arriba y las puntas de los dedos abajo a la vez -reportado por Fredy con captura, confirmado extrayendo 5 frames crudos del propio video en distintos puntos del loop (no un solo frame: la llave rota en 3D durante la animacion, asi que su extension vertical real varia con el tiempo). El margen superior sobre la llave resulto consistentemente mayor (~195-275px de 1080px) que el margen inferior sobre la mano (~140-180px) en todos los frames muestreados. Se cambio object-position de 50%/50% a object-[50%_65%] -recarga el recorte hacia la llave (que sobraba margen) y libera aire hacia la mano (que casi no tenia de sobra). Verificado sembrando el propio elemento <video> a tiempos especificos del loop (0.1s, 4.84s, 9.5s) antes de capturar, en vez de confiar en un timing de autoplay no determinista: llave y mano quedan con margen visible en los 3 puntos, sin tocar los bordes del marco.\n\nSe reemplazo ademas el archivo public/videos/controla-criptografia.mp4 con la copia de assets/cripto-as-a-service/ que Fredy indico como reemplazo -verificado por checksum que ambos archivos eran YA identicos byte a byte antes del reemplazo (mismo hash md5), asi que la copia no cambio contenido; se hizo de todas formas porque Fredy la pidio explicitamente tras que se le informara.",
+            "evidence": [
+              "src/components/sections/CaasHero.vue: video class aspect-[4/3] w-full scale-105 object-cover -> +object-[50%_65%]",
+              "public/videos/controla-criptografia.mp4: reemplazado (checksum identico antes y despues, fa9e0cdd...)",
+              "frame-t0.10.png/t2.42.png/t4.84.png: frames crudos del video mostrando la variacion de margenes segun rotacion de la llave",
+              "caashero-seek-0.1.png/9.5.png: recorte final con margen visible arriba y abajo en 2 puntos distintos del loop"
+            ],
+            "consultations": [
+              "consult:10:3"
+            ],
+            "status": "validated"
+          },
+          {
+            "id": "decision:10:4",
+            "kind": "novel",
+            "rationale": "Bug de produccion reportado por multiples personas en distintos navegadores: el carrusel con loop de CaasAreas.vue arrancaba con el recorrido circular roto (boton \"anterior\" deshabilitado en la primera pieza, la pieza previa ausente) SOLO al llegar por navegacion de Vue Router -nunca con una carga completa, donde el mismo carrusel funciona bien siempre.\n\nInvestigacion: intente reproducirlo en dev y en el build estatico real (npm run generate, servido como host estatico puro, incluso contra el sitio en vivo) navegando desde varias paginas de origen -nunca lo logre asi, ni siquiera con el DOM completo que Fredy capturo del bug (los 5 slides SI estan en el DOM, con las clases prev/active/next bien asignadas -el problema no es que falten piezas, es que la POSICION calculada para la pieza \"prev\" queda fuera del marco visible).\n\nCausa raiz confirmada por experimento A/B (no supuesta): con slides-per-view=\"auto\", Swiper mide el ancho REAL en pantalla de cada swiper-slide para decidir cuantas piezas caben en modo loop. En una carga completa esa medida ya es correcta porque el CSS esta aplicado antes de que corra cualquier script; en una navegacion SPA, el <link> de la hoja de estilos sin scope del carrusel (el ancho de swiper-slide se define ahi, no en Tailwind) puede llegar en un chunk separado del JS de la ruta nueva, sin bloquear su ejecucion -initialize() puede alcanzar a correr con los slides todavia en su ancho por defecto. Reproduje el defecto exacto (coordenadas de slide en miles de pixeles negativos) retrasando el CSS artificialmente con Playwright route() sobre el build estatico real, y confirme que desaparece con el fix aplicado -mismo experimento, antes/despues, nada mas cambia.\n\nFix: useSwiperInit.ts llama swiper.update() en una serie de reintentos escalonados (100/300/600/1000ms) despues de initialize(). No hay una señal generica y confiable desde el composable de \"este <link> especifico ya cargo\" -verificado que un solo intento a un tiempo fijo (300ms) no alcanza a corregir el defecto si el CSS tarda mas que eso (probado con 800ms de retraso artificial); reintentar es barato (update() no cambia nada perceptible si ya estaba bien) asi que en vez de adivinar un solo numero, se cubre un rango. Deliberadamente NO se implemento como remount forzado (v-if con bandera retrasada, la idea original que Fredy propuso): eso hubiera ocultado el carrusel durante la espera en TODOS los casos (no solo el roto), perdiendo el render de servidor que useSwiperInit ya protege por diseño -update() corrige sin ocultar nada, y en el camino feliz (la mayoria) no cambia nada visible.",
+            "projection": "etiqueta: css-de-ruta-en-chunk-separado-no-bloquea-js-en-spa-nav-remedir-tras-initialize-con-reintentos-escalonados",
+            "evidence": [
+              "src/composables/useSwiperInit.ts: setTimeout(() => el.value?.swiper?.update(), delay) para delay en [100, 300, 600, 1000]",
+              "experimento A/B con Playwright route() retrasando *.css 800ms sobre npm run generate real: sin el fix, prevRect.x=-1368 (fuera de pantalla); con el fix, prevRect.x=186 (visible, coordenadas sanas)",
+              "DOM capturado por Fredy en produccion: 5 swiper-slide presentes con clases prev/active/next correctas, confirmando que el defecto es de POSICION/medida, no de conteo de piezas",
+              "fuente de Swiper (node_modules/swiper/shared/swiper-core.mjs:1637): el warning 'not enough slides for loop mode' no pone params.loop en false -el precondition check usa slidesPerViewDynamic(), que depende del ancho real medido en el DOM"
+            ],
+            "consultations": [
+              "consult:10:4"
+            ],
+            "status": "validated"
+          },
+          {
+            "id": "decision:10:5",
+            "kind": "novel",
+            "rationale": "CORRIGE decision:10:4: Fredy pidio explicitamente el remount real (desmontar y volver a montar el swiper-container, la razon original por la que recomendo v-if) en vez del recalculo con swiper.update() que yo habia implementado primero -aclaro que evitar el remount \"estuvo mal\" porque el sentido de la propuesta era justo ese, reiniciar el componente de cero.\n\nImplementado en useSwiperInit.ts con un overload de TypeScript (useSwiperInit({selfHeal:true}) -> {el, ready}; sin el flag, sigue devolviendo el ref plano de siempre) para no romper los otros 7 consumidores del composable. ready arranca en true (primera pintura, SSR incluido, sin skeleton -igual que antes), y medio segundo despues del primer arranque hace un ciclo false->true->boot() real: el <swiper-container> se desmonta y se vuelve a montar, no solo se remide. Quien pide selfHeal debe envolver el swiper-container en v-if=\"ready\" con un v-else que muestre un skeleton -aplicado en CaasAreas.vue con el aspect-ratio medido en vivo del carrusel real en cada corte (375px:347/318, 768px:740/375, 1200px:1136/447).\n\nHallazgo de verificacion: intentar CONFIRMAR el remount con capturas de pantalla y sondeo del DOM (page.evaluate poleado cada ~10-50ms alrededor de los 500ms) fallo sistematicamente -parecia que nada pasaba-, pese a que el A/B de CSS retrasado (decision:10:4) seguia pasando con este mismo codigo. Se resolvio instrumentando DENTRO del propio ciclo (console.log en cada paso: antes del timeout, con ready=false y el.value ya null, con ready=true y el.value ya el nodo nuevo) -eso SI confirmo que el.value pasa por null entre los dos nextTick(). La causa de que la medicion externa no lo detectara: el ciclo corre en dos microtasks de Vue (nextTick), que resuelven en submilisegundos, mientras que cada vuelta de Playwright (captura de pantalla o page.evaluate) tiene su propio costo de varios milisegundos de por medio -la ventana en null viene y se va antes de que cualquier medicion externa alcance a mirar. Esto es en realidad el mejor resultado posible: el remount es real (satisface el pedido) y a la vez imperceptible (no hay parpadeo visible en la practica), aunque el skeleton se deja como red de seguridad para cuando Vue tarde mas de un frame bajo carga real.",
+            "projection": "etiqueta: verificar-ciclo-mas-rapido-que-un-frame-con-logs-dentro-no-con-medicion-externa",
+            "evidence": [
+              "src/composables/useSwiperInit.ts: overload selfHeal, ciclo ready.value=false/await nextTick/ready.value=true/await nextTick/boot()",
+              "src/components/sections/CaasAreas.vue: v-if=\"ready\" en swiper-container, v-else con skeleton aspect-[347/318] md:aspect-[740/375] xl:aspect-[1136/447]",
+              "instrumentacion directa (console.log dentro del ciclo): confirma el.value=null entre los dos nextTick, ready pasa por false genuinamente",
+              "poll-remount.js (sondeo externo cada 10-50ms 0-1200ms): nunca detecto el estado null -confirma que el ciclo es mas rapido que la latencia de medicion externa, no que no ocurra"
+            ],
+            "consultations": [
+              "consult:10:5"
+            ],
+            "status": "validated"
+          },
+          {
+            "id": "decision:10:6",
+            "kind": "novel",
+            "rationale": "Corrige decision:10:5 (obsoleta): el remount real via v-if introdujo una regresion NUEVA reportada por Fredy -el carrusel quedaba roto incluso en carga completa, peor que el defecto original- y fue revertido por completo (useSwiperInit.ts y CaasAreas.vue via git checkout a HEAD pre-task-10). En vez de corregir hacia adelante sobre el remount, se instrumento el estado roto EN VIVO (swiper-wrapper.transform via Playwright + CSS retrasado a proposito) para obtener diagnostico mecanico directo en lugar de uno supuesto: el translate3d apuntaba a ~4.2 franjas de desplazamiento (el ancho de CADA slide ya era el correcto, pero la posicion/clones de loop que Swiper calcula UNA sola vez en initialize() -via slidesPerViewDynamic()- se habia medido antes de que la hoja de estilos de la ruta nueva (llegada en SPA nav como chunk async que no bloquea JS) terminara de aplicar el ancho real. Son dos calculos distintos: el ancho final renderizado se autocorrige via CSS, la posicion/clones cacheados por Swiper no. Se reinstauro swiper.update() en reintentos escalonados [100,300,600,1000]ms (sin remount, sin ventana sin carrusel) apoyado en ese diagnostico verificado, no en el empirico de decision:10:4. Verificado: build+lint limpios, wrapper transform corregido de -2368px a -812.765px (coincide con posiciones sanas conocidas), y cero regresion en navegacion SPA limpia (sin retraso artificial) en 3 origenes tanto contra build local como contra el sitio en vivo. CaasAreas.vue no requirio cambios: el fix vive enteramente en el composable compartido. Referencia consult:10:6 / local-projection decision:3:10 (evitar corregir hacia adelante sobre diagnostico no confirmado en integraciones de terceros que fallan de forma no atribuible): aqui se siguio esa forma -se detuvo el avance sobre el remount, se revirtio a un estado conocido, y se obtuvo evidencia directa antes de reintentar-, por eso el resultado se resolvio en un solo ciclo adicional en vez de seguir apilando intentos.",
+            "projection": "etiqueta: revertir-a-evidencia-directa-antes-de-reintentar-fix-de-terceros",
+            "evidence": [
+              "src/composables/useSwiperInit.ts:68-107",
+              "inspect-transform-detail.js output: wrapperTransform corregido de translate3d(-2368px) a translate3d(-812.765px)",
+              "npm run build: sin errores",
+              "npm run lint: sin errores nuevos (2 warnings preexistentes no relacionados)",
+              "repro-clean.js (local, 3 origenes SPA): found:true slideCount:5 hasIsReady:true console:[]",
+              "repro-live.js (https://7yderf.github.io/, 3 origenes SPA, comportamiento actual pre-deploy): slideCount:5 hasIsReady:true console:[]"
+            ],
+            "consultations": [
+              "consult:10:6"
+            ],
+            "status": "validated"
+          },
+          {
+            "id": "decision:10:7",
+            "kind": "novel",
+            "rationale": "Reemplaza a decision:10:6 (obsoleta): esa decision aun defendia la teoria de translate3d/slidesPerViewDynamic()-timing y el fix de swiper.update() como solucion definitiva, verificada solo contra un build estatico local con preview. Fredy confirmo que localmente (dev server) el problema seguia presente, lo que expuso el hueco: esa verificacion previa solo comprobaba integridad del DOM (slideCount, hasIsReady), nunca el resultado VISUAL real. Se re-investigo con instrumentacion directa en vivo (Playwright contra dev server, sin retrasos artificiales) y se encontraron DOS causas reales, distintas entre si y de la teoria anterior: (1) las imagenes del carrusel tenian loading=lazy nativo; el navegador mide cercania al viewport ANTES de que Swiper reposicione por transform, decide no cargarlas, y nunca vuelve a evaluar esa decision -confirmado con cero peticiones de red para la imagen de la pieza prev. Se quito el atributo (CaasAreas.vue linea ~73-78). (2) con esa causa ya resuelta, la pieza prev y las piezas fuera de vista seguian sin pintar: se aislo que el modo loop de Swiper, con slides-per-view=auto en el limite EXACTO minimo de piezas que el propio archivo documenta (5 piezas, el minimo exacto para visibles+grupo+1), mueve nodos reales del DOM (no clones, confirmado: scopedSlideCount=5 siempre, mismo orden fisico en el caso roto y en el sano) para armar el circuito, y en ese proceso el <figure> interno de la pieza movida queda sin NINGUN estilo computado -ni width, ni display, nada- de forma permanente e inmune a swiper.update(), swiper.loopFix(), forzar reflow, evento resize sintetico y resize real de la ventana; solo se reproduce en montaje puramente client-side (navegacion SPA post-hidratacion), nunca cuando SSR ya establecio el layout antes de que Swiper toque el DOM. Se aislo la causa apagando loop unicamente para diagnostico (no como intento de solucion): las 5 piezas volvieron a pintar sin excepcion, en los 3 origenes probados, siempre. Se opto por loop:false como fix definitivo -renunciar al recorrido infinito antes que depender de un comportamiento de la libreria que falla silenciosamente en su propio limite documentado, sin margen para agregar piezas de relleno de forma no forzada-. Verificado: build+lint limpios, ciclo completo de navegacion (next() x5 mas un intento extra al final) mantiene los 5 anchos correctos en todo momento, y contra el build estatico generado (paridad con el despliegue real) en los 3 origenes SPA. Nota para investigacion futura, fuera de alcance de esta tarea: la consola sigue mostrando \"Swiper Loop Warning: not enough slides\" al navegar desde /infraestructura-spei -no proviene de CaasAreas (loop:false ya no dispara ese warning por diseño), sino de otro carrusel en esa pagina (candidatos: SpeiWhyCarousel.vue o SpeiIntelligence.vue) que probablemente comparte el mismo patron de limite marginal.",
+            "projection": "etiqueta: instrumentar-en-vivo-antes-de-confiar-en-verificacion-parcial-de-terceros",
+            "evidence": [
+              "src/components/sections/CaasAreas.vue:73-78 (loading=lazy removido)",
+              "src/components/sections/CaasAreas.vue:59 (:loop=\"false\")",
+              "src/components/sections/CaasAreas.vue:45-62 (comentario DESVIACION documentando causa y descarte de alternativas)",
+              "compare-slides2.js: cero peticiones de red para 5.webp antes del fix; una peticion + naturalWidth:1400 despues",
+              "check-scoped-broken.js (loop:true): figWidth vacio para idx 4,2,3; correcto (529.906px) solo para idx0,1",
+              "check-scoped-broken.js (loop:false, diagnostico): figWidth correcto (529.906px) para las 5 piezas sin excepcion",
+              "test-loopfix.js, test-nudges.js: swiper.loopFix(), reflow forzado, resize sintetico y resize real -ninguno corrige el estilo vacio con loop:true",
+              "test-navigation-cycle.js: ciclo completo next() x5 + intento extra, allFigWidthsOK:true en cada paso, se detiene correctamente en la ultima pieza sin loop",
+              "npm run build: sin errores",
+              "npm run lint: sin errores nuevos (2 warnings preexistentes no relacionados)",
+              "repro-static-final.js contra .output/public (build estatico, paridad produccion): 3 origenes, allFigWidthsOK:true siempre"
+            ],
+            "consultations": [
+              "consult:10:7"
+            ],
+            "status": "validated"
+          },
+          {
+            "id": "decision:10:8",
+            "kind": "local",
+            "rationale": "Con loop:false (decision:10:7), arrancar en la pieza 0 deja el lado izquierdo vacio -no hay pieza \"anterior\" que mostrar en la primera posicion, se ve incompleto comparado con el resto del recorrido. Fredy comparo dos capturas (arranque en pieza 0 vs pieza 1) y pidio el segundo, condicionado a que fuera facil. Se agrego initial-slide=\"1\" como ATRIBUTO (mismo camino de conversion que centered-slides y slides-per-view, ya documentado en el archivo) para que el primer pintado muestre la composicion completa (anterior+activa+siguiente) sin alterar layout, precondiciones ni el limite marginal de piezas ya documentado. Verificado: build+lint limpios; slidePrev() desde el estado inicial retrocede correctamente a la pieza 0; ciclo completo next() x5 mantiene los 5 anchos correctos igual que antes. Local porque es una eleccion de composicion visual atada a esta pieza especifica (5 elementos, sin loop, centrada) -no una forma reutilizable fuera de este contexto.",
+            "evidence": [
+              "src/components/sections/CaasAreas.vue:74 (initial-slide=\"1\")",
+              "src/components/sections/CaasAreas.vue:41-46 (comentario explicando el porque)",
+              "initial-slide-1.png: composicion completa desde el primer pintado, coincide con la captura de referencia de Fredy",
+              "test-navigation-cycle.js: activeTitle inicial \"Tecnología\" (idx1), ciclo completo sin regresion, allFigWidthsOK:true en cada paso",
+              "shot-initial-slide.js: slidePrev() desde el estado inicial retrocede correctamente a \"Dirección\"",
+              "npm run build: sin errores",
+              "npm run lint: sin errores nuevos"
+            ],
+            "consultations": [
+              "consult:10:8"
+            ],
+            "status": "validated"
+          },
+          {
+            "id": "decision:10:9",
+            "kind": "local",
+            "rationale": "Fredy pidio explicitamente poder interactuar con el carrusel \"Inteligencia que acelera\" tambien por flechas, no solo por arrastre. El archivo documentaba \"sin flechas ni puntos\" como decision de diseño deliberada (el asomo fraccionario de la siguiente card era la unica pista visual); se actualizo ese comentario para reflejar que las flechas son un SEGUNDO camino, no un reemplazo -el asomo y el arrastre siguen intactos. Antes de agregar la interaccion se verifico que este carrusel (4 piezas, slides-per-view=auto, loop:true, SIN centered-slides) no comparte el bug real encontrado en CaasAreas (decision:10:7): se ciclo next() x6 -mas de una vuelta completa del loop- y las 4 figuras mantuvieron ancho computado correcto en todo momento, sin colapso. La consola SI emite el mismo \"Swiper Loop Warning: not enough slides\", confirmando que este es el carrusel que generaba ese warning visto antes en las pruebas de CaasAreas (no un carrusel distinto) -pero aqui el warning no correlaciona con ruptura visual, a diferencia de CaasAreas. Se implemento :navigation=\\\"true\\\" (bindeado, seguiendo la convencion propia de este archivo para booleanos) y el mismo tratamiento visual por ::part(button-prev/next) que CaasAreas.vue, para que las flechas se lean como un patron consistente del proyecto. Verificado: build+lint limpios; clic real sobre el boton de flecha avanza el carrusel (activeIdx 0->1) sin romper ninguna figura. Local: reutiliza el patron visual existente sobre una pieza especifica, no introduce una forma nueva.",
+            "evidence": [
+              "src/components/sections/SpeiIntelligence.vue:61 (:navigation=\"true\")",
+              "src/components/sections/SpeiIntelligence.vue:10-14 (comentario actualizado: flechas como segundo camino, no reemplazo)",
+              "src/components/sections/SpeiIntelligence.vue:183-198 (::part button-prev/next, mismo tratamiento que CaasAreas.vue)",
+              "check-intel-cycle.js: 6 llamadas next() (mas de una vuelta completa), allOK:true en cada paso, sin colapso de figuras",
+              "check-intel-swiper.js: confirma que este carrusel es el origen del \"Swiper Loop Warning\" visto en pruebas anteriores, no CaasAreas",
+              "shot-intel-nav.js: clic real sobre el boton de flecha avanza activeIdx 0->1, figuras siguen correctas (304px x4)",
+              "intel-nav-initial.png: flechas visibles con el mismo tratamiento visual que CaasAreas",
+              "npm run build: sin errores",
+              "npm run lint: sin errores nuevos"
+            ],
+            "consultations": [
+              "consult:10:9"
+            ],
+            "status": "validated"
+          }
+        ],
+        "validation": {
+          "actor": "human",
+          "at": "2026-08-26T17:31:34.022Z",
+          "outcome": "approved",
+          "approval_ref": "chat:2026-08-26:fredy-ok",
+          "note": "Fredy: \"ok\" -confirmacion explicita para publicar la proyeccion decision:10:7 y cerrar la tarea 10."
+        },
+        "change_set": {
+          "files": [
+            "src/components/sections/CaasHero.vue",
+            "src/components/sections/HsmHero.vue",
+            "src/composables/useSwiperInit.ts",
+            "src/components/sections/CaasAreas.vue",
+            "src/components/sections/SpeiIntelligence.vue",
+            "i18n/locales/es.json",
+            "i18n/locales/en.json"
+          ],
+          "base_checkpoint": "checkpoint:base:10"
+        },
+        "result": {
+          "summary": "CaasHero: copy reestructurado con segmento en negrita. CaasHero/HsmHero: aspect-ratio 4:3 igualado con video reemplazado. CaasAreas: bug de produccion del carrusel resuelto -loading=lazy removido (imagenes nunca pedian red en nav SPA) y loop:false (bug de la libreria Swiper en modo loop+slides-per-view=auto en el limite minimo de piezas, dejaba figuras sin estilo computado) mas initial-slide=1 para composicion visual completa desde el primer pintado. SpeiIntelligence: navegacion por flechas agregada, verificado que no comparte el bug de CaasAreas.",
+          "build": "npm run build sin errores",
+          "lint": "npm run lint sin errores nuevos (2 warnings preexistentes no relacionados)"
+        },
+        "boundary": {
+          "mode": "normal",
+          "declared_at": "2026-08-26T02:22:13.266Z",
+          "measurement_eligible": true,
+          "prior_work": null,
+          "base": {
+            "status": "fresh",
+            "target": "src",
+            "captured_at": "2026-08-26T02:22:13.075Z",
+            "source_hash": "sha256:d7a5e0190aedb7046f6f45b5903ed91fa686568f1ed842af52a045685b72225a",
+            "graph_hash": "sha256:0003ed0967fe7bd2ec99c1000935d7f893073bd3d2c299eacd520f274dc40a09",
+            "preexisting_delta": {
+              "nodes": {
+                "added": [],
+                "changed": [],
+                "removed": []
+              },
+              "edges": {
+                "added": [],
+                "changed": [],
+                "removed": []
+              },
+              "synapses": {
+                "added": [],
+                "changed": [],
+                "removed": []
+              },
+              "curated_preserved": {
+                "node_annotations": 0,
+                "edges": 1,
+                "synapses": 1,
+                "patterns": 0,
+                "cases": 0,
+                "exceptions": 0,
+                "projections": 50
+              },
+              "orphans": [
+                {
+                  "kind": "rationale",
+                  "id": "e20",
+                  "from": "src/components/sections/ContactSection.vue",
+                  "to": "src/schemas/contactSchema.ts"
+                }
+              ],
+              "orphans_resolved": []
+            },
+            "excluded_from_task": true
+          },
+          "close": {
+            "status": "fresh",
+            "target": "src",
+            "captured_at": "2026-08-26T17:31:33.845Z",
+            "source_hash": "sha256:7123436e46e67fb7bc2df1c7dbeaeab14dc25571cd363c625705f3052a5f436b",
+            "graph_hash": "sha256:c0390e138274840e083f9adf996bc55c153818c282694d033d598a7854b2e76a",
+            "attribution": "task"
+          }
+        },
+        "submitted_at": "2026-08-26T17:30:09.608Z"
       }
     ],
     "checkpoints": [
@@ -12511,6 +13428,67 @@
               "local-projection:frt-cnct-web:task:frt-cnct-web:9:decision:9:2",
               "local-projection:frt-cnct-web:task:frt-cnct-web:9:decision:9:3",
               "local-projection:frt-cnct-web:task:frt-cnct-web:9:decision:9:4"
+            ]
+          }
+        }
+      },
+      {
+        "id": "checkpoint:base:10",
+        "parent": "checkpoint:9",
+        "task": "task:frt-cnct-web:10",
+        "kind": "task-baseline",
+        "created_at": "2026-08-26T02:22:13.266Z",
+        "graph_hash": "sha256:0003ed0967fe7bd2ec99c1000935d7f893073bd3d2c299eacd520f274dc40a09",
+        "curated_hash": "sha256:31c33e2aa35e3951b4637b99924cca9ea7e7c7878b3457bb05750a3bfed31e3c",
+        "delta": {
+          "kind": "task-baseline",
+          "excluded_from_task": true,
+          "derived": {
+            "attribution": "preexisting",
+            "verified": true,
+            "nodes_added": [],
+            "nodes_changed": [],
+            "nodes_removed": [],
+            "edges_added": [],
+            "edges_changed": [],
+            "edges_removed": [],
+            "synapses_added": [],
+            "synapses_changed": [],
+            "synapses_removed": []
+          }
+        }
+      },
+      {
+        "id": "checkpoint:10",
+        "parent": "checkpoint:base:10",
+        "task": "task:frt-cnct-web:10",
+        "kind": "task-recorded",
+        "created_at": "2026-08-26T17:31:34.022Z",
+        "graph_hash": "sha256:c0390e138274840e083f9adf996bc55c153818c282694d033d598a7854b2e76a",
+        "curated_hash": "sha256:465e7353d260ea8baaf512d0e4cab8403107b847b71f22998bc51d801744f432",
+        "delta": {
+          "derived": {
+            "attribution": "task",
+            "verified": true,
+            "nodes_added": [],
+            "nodes_changed": [],
+            "nodes_removed": [],
+            "edges_added": [],
+            "edges_changed": [],
+            "edges_removed": [],
+            "synapses_added": [],
+            "synapses_changed": [],
+            "synapses_removed": []
+          },
+          "curated": {
+            "annotations_added": [],
+            "edges_added": [],
+            "synapses_added": [],
+            "cases_added": [],
+            "patterns_added": [],
+            "exceptions_added": [],
+            "projections_added": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:10:decision:10:7"
             ]
           }
         }

@@ -37,11 +37,32 @@
       <!-- centered-slides va como ATRIBUTO, no como propiedad enlazada: getParams
            lee primero las propiedades y despues los atributos, y solo el camino
            del atributo pasa por el conversor que interpreta el texto. Mismo
-           camino que slides-per-view, ya probado aqui.
-           Precondicion del modo circular, verificada y no asumida: el total de
-           piezas debe ser >= visibles + grupo + 1 cuando se centra. Son 5 piezas
-           contra 2 visibles + 1 + 1 = 4 en el corte mas ancho, y menos exigente
-           en los angostos. -->
+           camino que slides-per-view e initial-slide, ya probado aqui. -->
+      <!-- initial-slide="1" arranca centrado en la segunda pieza en vez de la
+           primera: sin loop, arrancar en la 0 deja el lado izquierdo vacio (no
+           hay pieza "prev" que mostrar ahi). Arrancando en la 1 se ve la
+           composicion completa -anterior, activa, siguiente- desde el primer
+           pintado. Puramente cosmetico: no cambia layout, precondiciones ni el
+           limite marginal documentado abajo. -->
+      <!-- DESVIACION sobre la base de SPEI: loop="false" en vez de true.
+           Reportado en produccion, reproducido solo en navegacion SPA (nunca en
+           carga directa): con loop y slides-per-view="auto" en el limite exacto
+           de piezas que el modo circular necesita (5 piezas contra 2 visibles +
+           1 + 1 = 4 en el corte mas ancho -el minimo, sin margen-), Swiper
+           reordena los nodos reales del DOM (no clones) para armar el circuito,
+           y en una parte de esos movimientos el <figure> interno de la pieza
+           movida queda sin NINGUN estilo computado -ni ancho, ni display, nada-
+           de forma permanente: inmune a swiper.update(), a swiper.loopFix(), a
+           forzar reflow y a un resize real de la ventana. Se probo apagando loop
+           nada mas para diagnosticar (no como solucion) y las 5 piezas volvieron
+           a pintar sin excepcion, lo que aisla la causa al propio mecanismo de
+           loop de la libreria en este limite marginal, no a una regla CSS de
+           este archivo ni a un problema de carga de hojas de estilo. Con las 5
+           piezas ya justo en el minimo que el modo circular exige, no hay forma
+           de darle margen sin agregar piezas de relleno; se prefirio renunciar
+           al recorrido infinito -las flechas siguen funcionando, solo dejan de
+           dar la vuelta- antes que depender de un comportamiento de la libreria
+           que falla silenciosamente en su propio limite documentado. -->
       <!-- init="false" es la compuerta que la propia libreria expone: al conectarse
            comprueba este atributo y se abstiene de tocar el DOM. Sin el, el
            componente se autoinicializa en cuanto queda definido —antes de que Vue
@@ -56,7 +77,8 @@
         slides-per-view="auto"
         space-between="32"
         centered-slides="true"
-        :loop="true"
+        initial-slide="1"
+        :loop="false"
         :keyboard="true"
         :speed="600"
         :navigation="true"
@@ -74,7 +96,6 @@
                 :src="area.image"
                 :alt="area.title"
                 class="block w-full object-cover"
-                loading="lazy"
                 decoding="async"
               >
             </div>
