@@ -1,7 +1,7 @@
 {
   "$schema": "https://eure-k.local/schemas/project-memory-v1.json",
   "schema": "eure-k.project-memory/v1",
-  "revision": 262,
+  "revision": 267,
   "project": {
     "id": "frt-cnct-web",
     "repository_fingerprint": "git-remote-v1:sha256:9cecfa5ed6040202f52f46768540e1b8a10fa6c11be8f5acbcaf8dbea368cb60",
@@ -28,7 +28,7 @@
     "revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
     "server_version": "0.31.7",
     "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
-    "last_consulted_at": "2026-08-26T17:28:53.751Z",
+    "last_consulted_at": "2026-08-26T21:29:45.684Z",
     "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7"
   },
   "graph": {
@@ -38,7 +38,7 @@
         "version": "headless-v1",
         "adapter": "legacy-front",
         "target": "src",
-        "generated_at": "2026-08-26T17:31:34.022Z",
+        "generated_at": "2026-08-26T21:32:29.561Z",
         "content_hash": "sha256:d8e7be724967bdd773d5cc6c966cd1c18ce86536b09f7e25fd9a7eecdf2b18b5"
       },
       "nodes": [
@@ -12751,6 +12751,176 @@
           }
         },
         "submitted_at": "2026-08-26T17:30:09.608Z"
+      },
+      {
+        "id": "task:frt-cnct-web:11",
+        "sequence": 11,
+        "intent": "CaasHero.vue: reemplazar el video actual (Controla tu criptografia.mp4) por uno nuevo que Fredy proporciono -assets/cripto-as-a-service/Control de llave.mp4- en el mismo lugar/rol dentro del hero de /cripto-as-a-service (la llave y la mano). No es un cambio de contenido byte-identico como el de decision:10:3 -esta vez el video es genuinamente distinto.",
+        "status": "recorded",
+        "opened_at": "2026-08-26T21:21:28.551Z",
+        "closed_at": "2026-08-26T21:32:29.561Z",
+        "consultations": [
+          {
+            "id": "consult:11:1",
+            "at": "2026-08-26T21:29:45.684Z",
+            "intent": "CaasHero.vue: reemplazar contenido de video del hero sin cambiar codigo, verificar encuadre vigente contra el nuevo contenido",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "CaasHero.vue: reemplazar el contenido del video del hero (public/videos/controla-criptografia.mp4, mismo path publico, mismo src en el componente) por un video genuinamente distinto que Fredy proporciono -assets/cripto-as-a-service/Control de llave.mp4-, sin tocar codigo del componente. El nuevo video resulta ser casi exactamente 4:3 en origen (1200x906) a diferencia del anterior (1:1), asi que el mismo aspect-[4/3]+object-cover+object-[50%_65%] ya vigente enmarca bien el nuevo contenido sin necesitar reajuste -verificado sembrando el video en 5 puntos de su loop.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Reemplazar el contenido binario de un asset de video referenciado por un path publico fijo, sin modificar el componente que lo consume, y verificar que el encuadre (aspect-ratio + object-position) ya vigente siga siendo apropiado para el contenido nuevo en vez de asumirlo"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "path": "src/components/sections/CaasHero.vue",
+                "operation": "reemplazar-contenido-video-hero-sin-cambiar-codigo"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:26"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:dc9e9a3e-2fc0-4616-88d6-78c53c6c03c3",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.31.7",
+              "overlay_revision": 263,
+              "overlay_graph_hash": "sha256:f10012f37e782da7a74b260939c860e414741169f55ac1f61555c71a82d365c5",
+              "overlay_curated_hash": "sha256:465e7353d260ea8baaf512d0e4cab8403107b847b71f22998bc51d801744f432",
+              "overlay_projections_revision": "sha256:9e9cb1fe97ded9abc5c0124e16cb4dbafe2e08a7ffd6f622d055391a3fa01016",
+              "output_hash": "sha256:2e0286292bc9269884bae0c32489856c73432a14cab56ca87c707462eba8155a",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:26",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:34ce18ef49d11d74466662053ec075f7f911ee68d591ff52daa8948b5c190ffb"
+                }
+              ],
+              "query_revision": "sha256:e21f5b4de1939e50d55a58297a00f7f70cd0c02c0964aeddf4075369d5efed8c",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 4138,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 1,
+                "used_excerpt_chars": 310,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          }
+        ],
+        "decisions": [
+          {
+            "id": "decision:11:1",
+            "kind": "local",
+            "rationale": "Fredy pidio reemplazar el video del hero de /cripto-as-a-service por uno nuevo (assets/cripto-as-a-service/Control de llave.mp4), en el mismo lugar del que ya estaba. Se copio el archivo nuevo sobre public/videos/controla-criptografia.mp4 -mismo path publico que ya consume CaasHero.vue, sin tocar el componente- siguiendo la misma convencion que decision:10:3. A diferencia de esa vez (donde el reemplazo resulto ser un archivo byte-identico), este es un video genuinamente distinto (md5 fcc808f6... vs fa9e0cdd... anterior), asi que no se asumio que el encuadre vigente (aspect-[4/3] + object-cover + object-[50%_65%], calibrado para el video ANTERIOR que era 1:1 en origen) siguiera siendo apropiado. Se verifico: el nuevo video mide 1200x906 en origen (~1.32:1, practicamente 4:3 ya de por si, muy distinto al 1:1 anterior), y se sembro en 5 puntos de su loop completo (0.2s, 2.4s, 4.8s, 7.2s, 9.5s de 9.76s totales) para confirmar que el encuadre se mantiene estable -a diferencia del video anterior, este no rota la llave en 3D, la composicion es practicamente estatica salvo un pulso de luz. El mismo object-[50%_65%] enmarca bien el nuevo contenido sin recorte problematico en ningun punto muestreado, asi que no se toco. Verificado tambien en mobile (375px). Build+lint limpios.",
+            "evidence": [
+              "public/videos/controla-criptografia.mp4: reemplazado, md5 fcc808f6dcda738e685906dea1c6def2 (antes fa9e0cddeebbe1a91d20f90c7fab55a4)",
+              "check-new-video.js: videoWidth=1200 videoHeight=906 (~1.32:1), duration=9.76s",
+              "newvid-seek-0.2.png / 4.8.png / 9.5.png: encuadre estable en todo el loop, sin recorte problematico",
+              "new-video-hero-t0.png: composicion completa (llave+mano) visible en desktop",
+              "newvid-mobile-375.png: sin regresion en mobile",
+              "npm run build: sin errores",
+              "npm run lint: sin errores nuevos (2 warnings preexistentes no relacionados)"
+            ],
+            "consultations": [
+              "consult:11:1"
+            ],
+            "status": "validated"
+          }
+        ],
+        "validation": {
+          "actor": "human",
+          "at": "2026-08-26T21:32:29.561Z",
+          "outcome": "approved",
+          "approval_ref": "chat:2026-08-26:fredy-cierra-commit-push",
+          "note": "Fredy: \"cierra commit u push\" -confirmacion explicita para cerrar la tarea 11 (sin decisiones novel que proyectar, decision:11:1 es local)."
+        },
+        "change_set": {
+          "files": [
+            "public/videos/controla-criptografia.mp4"
+          ],
+          "base_checkpoint": "checkpoint:base:11"
+        },
+        "result": {
+          "summary": "Video del hero de CaasHero.vue reemplazado por Control de llave.mp4, mismo path publico, sin cambios de codigo. Encuadre vigente verificado apropiado para el nuevo contenido en todo el loop y en mobile.",
+          "build": "npm run build sin errores",
+          "lint": "npm run lint sin errores nuevos"
+        },
+        "boundary": {
+          "mode": "normal",
+          "declared_at": "2026-08-26T21:21:28.551Z",
+          "measurement_eligible": true,
+          "prior_work": null,
+          "base": {
+            "status": "fresh",
+            "target": "src",
+            "captured_at": "2026-08-26T21:21:26.084Z",
+            "source_hash": "sha256:7123436e46e67fb7bc2df1c7dbeaeab14dc25571cd363c625705f3052a5f436b",
+            "graph_hash": "sha256:f10012f37e782da7a74b260939c860e414741169f55ac1f61555c71a82d365c5",
+            "preexisting_delta": {
+              "nodes": {
+                "added": [],
+                "changed": [],
+                "removed": []
+              },
+              "edges": {
+                "added": [],
+                "changed": [],
+                "removed": []
+              },
+              "synapses": {
+                "added": [],
+                "changed": [],
+                "removed": []
+              },
+              "curated_preserved": {
+                "node_annotations": 0,
+                "edges": 1,
+                "synapses": 1,
+                "patterns": 0,
+                "cases": 0,
+                "exceptions": 0,
+                "projections": 51
+              },
+              "orphans": [
+                {
+                  "kind": "rationale",
+                  "id": "e20",
+                  "from": "src/components/sections/ContactSection.vue",
+                  "to": "src/schemas/contactSchema.ts"
+                }
+              ],
+              "orphans_resolved": []
+            },
+            "excluded_from_task": true
+          },
+          "close": {
+            "status": "fresh",
+            "target": "src",
+            "captured_at": "2026-08-26T21:32:29.330Z",
+            "source_hash": "sha256:7123436e46e67fb7bc2df1c7dbeaeab14dc25571cd363c625705f3052a5f436b",
+            "graph_hash": "sha256:9efc158f1e61dc2e5158dd6152f4f554ba60b04ec5d42ac79e0a2404adda33b5",
+            "attribution": "task"
+          }
+        },
+        "submitted_at": "2026-08-26T21:32:22.295Z"
       }
     ],
     "checkpoints": [
@@ -13490,6 +13660,65 @@
             "projections_added": [
               "local-projection:frt-cnct-web:task:frt-cnct-web:10:decision:10:7"
             ]
+          }
+        }
+      },
+      {
+        "id": "checkpoint:base:11",
+        "parent": "checkpoint:10",
+        "task": "task:frt-cnct-web:11",
+        "kind": "task-baseline",
+        "created_at": "2026-08-26T21:21:28.551Z",
+        "graph_hash": "sha256:f10012f37e782da7a74b260939c860e414741169f55ac1f61555c71a82d365c5",
+        "curated_hash": "sha256:465e7353d260ea8baaf512d0e4cab8403107b847b71f22998bc51d801744f432",
+        "delta": {
+          "kind": "task-baseline",
+          "excluded_from_task": true,
+          "derived": {
+            "attribution": "preexisting",
+            "verified": true,
+            "nodes_added": [],
+            "nodes_changed": [],
+            "nodes_removed": [],
+            "edges_added": [],
+            "edges_changed": [],
+            "edges_removed": [],
+            "synapses_added": [],
+            "synapses_changed": [],
+            "synapses_removed": []
+          }
+        }
+      },
+      {
+        "id": "checkpoint:11",
+        "parent": "checkpoint:base:11",
+        "task": "task:frt-cnct-web:11",
+        "kind": "task-recorded",
+        "created_at": "2026-08-26T21:32:29.561Z",
+        "graph_hash": "sha256:9efc158f1e61dc2e5158dd6152f4f554ba60b04ec5d42ac79e0a2404adda33b5",
+        "curated_hash": "sha256:465e7353d260ea8baaf512d0e4cab8403107b847b71f22998bc51d801744f432",
+        "delta": {
+          "derived": {
+            "attribution": "task",
+            "verified": true,
+            "nodes_added": [],
+            "nodes_changed": [],
+            "nodes_removed": [],
+            "edges_added": [],
+            "edges_changed": [],
+            "edges_removed": [],
+            "synapses_added": [],
+            "synapses_changed": [],
+            "synapses_removed": []
+          },
+          "curated": {
+            "annotations_added": [],
+            "edges_added": [],
+            "synapses_added": [],
+            "cases_added": [],
+            "patterns_added": [],
+            "exceptions_added": [],
+            "projections_added": []
           }
         }
       }
