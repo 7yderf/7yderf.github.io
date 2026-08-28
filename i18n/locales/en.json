@@ -761,11 +761,7 @@
       "body": "Cloud Ecosystem lets you use enterprise-grade cryptographic services from the cloud, with fast implementation and simplified administration.",
       "cta": "I want more information",
       "diagram": {
-        "serverTitle": "Server Contents",
-        "region": "Mexico Region",
-        "databases": "Databases",
-        "hsm": "HSM",
-        "node": "Node Y",
+        "alt": "Architecture diagram: the Tesseract server content is replicated across two regions in Mexico, each with its own databases and HSMs, kept in sync with each other (Node Y).",
         "webServices": "Web Services",
         "services": [
           { "label": "2FA Authentication" },

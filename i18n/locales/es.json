@@ -761,11 +761,7 @@
       "body": "Ecosistema Cloud te permite utilizar servicios criptográficos de nivel empresarial desde la nube, con una implementación rápida y una administración simplificada.",
       "cta": "Quiero más información",
       "diagram": {
-        "serverTitle": "Server Contents",
-        "region": "Región México",
-        "databases": "Databases",
-        "hsm": "HSM",
-        "node": "Node Y",
+        "alt": "Diagrama de arquitectura: el contenido del servidor Tesseract se replica entre dos regiones en México, cada una con sus propias bases de datos y HSM, sincronizadas entre sí (Node Y).",
         "webServices": "Web Services",
         "services": [
           { "label": "Autenticación 2FA" },

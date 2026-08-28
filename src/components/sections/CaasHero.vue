@@ -8,30 +8,37 @@
      segmento en negrita via subtitlePre/subtitleStrong/subtitlePost + strong
      -mismo mecanismo que EcocloudWho.vue (ver decision:2:20: partir la frase
      en claves por idioma es fragil, e inyectar markup desde i18n abre una via
-     de inyeccion). -->
+     de inyeccion).
+
+     min-[769px]: y NO md: en el bloque de texto+CTA -mismo defecto que
+     HsmSupport.vue/SpeiOperate.vue/EcocloudHero.vue documentan: el reset
+     global (style.scss) es max-width:768px (768 incluido) y el md: de
+     Tailwind es min-width:768px (768 TAMBIEN incluido), asi que con md: ambos
+     rangos se pisan exactamente en 768px. Corregido al verificar los
+     acuerdos de responsive del proyecto en toda la web (Fredy, 2026-08-27). -->
 <template>
   <section class="sc-section w-full px-4 py-8 lg:px-8 lg-2:py-16">
     <article class="sc-article mx-auto w-full max-w-7xl flex-wrap items-center gap-10 lg-2:gap-16">
-      <div class="sc-section flex min-w-[28rem] basis-[36rem] flex-col items-center text-center md:items-start md:text-left">
+      <div class="sc-section flex min-w-[28rem] basis-[36rem] flex-col items-center text-center min-[769px]:items-start min-[769px]:text-left">
         <img
           src="/logos/tesseract.svg"
           :alt="t('caas.hero.brandAlt')"
           class="h-7 w-auto object-contain opacity-45 grayscale"
         >
 
-        <p class="mt-8 text-center text-base font-medium text-text md:text-left">{{ t('caas.hero.eyebrow') }}</p>
+        <p class="mt-8 text-center text-base font-medium text-text min-[769px]:text-left">{{ t('caas.hero.eyebrow') }}</p>
 
-        <h1 class="hero mt-3 text-center font-secondary text-deep-ink md:text-left">
+        <h1 class="hero mt-3 text-center font-secondary text-deep-ink min-[769px]:text-left">
           {{ t('caas.hero.title') }}
         </h1>
 
-        <p class="mt-5 max-w-md text-center text-2xl font-medium text-text md:text-left">
+        <p class="mt-5 max-w-md text-center text-2xl font-medium text-text min-[769px]:text-left">
           {{ t('caas.hero.subtitlePre') }}<strong class="font-bold">{{ t('caas.hero.subtitleStrong') }}</strong>{{ t('caas.hero.subtitlePost') }}
         </p>
 
         <!-- El boton va envuelto en un flex container: .btn-* es display:flex con
              max-width:inherit, asi que suelto en un bloque se estira al 100%. -->
-        <div class="mt-8 flex flex-wrap items-center justify-center gap-4 md:justify-start">
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-4 min-[769px]:justify-start">
           <NuxtLink :to="localePath('/contact')" class="btn-primary">
             {{ t('caas.hero.cta') }}
           </NuxtLink>

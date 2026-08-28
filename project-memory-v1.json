@@ -1,7 +1,7 @@
 {
   "$schema": "https://eure-k.local/schemas/project-memory-v1.json",
   "schema": "eure-k.project-memory/v1",
-  "revision": 267,
+  "revision": 285,
   "project": {
     "id": "frt-cnct-web",
     "repository_fingerprint": "git-remote-v1:sha256:9cecfa5ed6040202f52f46768540e1b8a10fa6c11be8f5acbcaf8dbea368cb60",
@@ -28,7 +28,7 @@
     "revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
     "server_version": "0.31.7",
     "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
-    "last_consulted_at": "2026-08-26T21:29:45.684Z",
+    "last_consulted_at": "2026-08-27T19:43:54.466Z",
     "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7"
   },
   "graph": {
@@ -38,7 +38,7 @@
         "version": "headless-v1",
         "adapter": "legacy-front",
         "target": "src",
-        "generated_at": "2026-08-26T21:32:29.561Z",
+        "generated_at": "2026-08-28T15:57:42.970Z",
         "content_hash": "sha256:d8e7be724967bdd773d5cc6c966cd1c18ce86536b09f7e25fd9a7eecdf2b18b5"
       },
       "nodes": [
@@ -3237,6 +3237,105 @@
           "checkpoint": "checkpoint:10",
           "authored_by": "agente+humano",
           "approved_at": "2026-08-26T17:31:34.022Z"
+        },
+        {
+          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:12:decision:12:1",
+          "type": "projection",
+          "layer": "local-knowledge",
+          "scope": "local",
+          "status": "validated",
+          "concern": "Replicar un conector visual (tronco+ramas+punto) sin SVG ni medir el DOM",
+          "problem": "Un diseño trae un conector tipo organigrama -tronco vertical, un nodo central, y una rama horizontal desde ese tronco hasta cada item de una lista- y los items tienen alturas variables (texto de 1 o 2 líneas según el idioma/contenido). Replicar esto pixel-a-pixel parece requerir SVG con coordenadas absolutas calculadas a partir de las posiciones reales de cada item, lo que a su vez exige medir el DOM (JS) porque las alturas no se conocen de antemano.",
+          "projection": "Cada rama vive DENTRO de su propia fila, como parte del flujo normal de esa fila (flex + items-center), en vez de vivir en una capa SVG superpuesta con coordenadas globales. Al ser parte de la fila, la rama se centra sola respecto a esa fila específica sin importar cuánto mida -si el texto ocupa 1 línea o 2, la rama sigue centrada porque el propio centrado vertical de flexbox la sigue. El tronco (la línea vertical continua) es un único elemento absoluto que corre inset-y-0 sobre el CONTENEDOR que envuelve todas las filas -su alto lo define el flujo normal de esas filas, nunca un valor fijo ni calculado por JS-, y el nodo central se posiciona en el punto medio de ese mismo contenedor (top-1/2), no de una fila en particular. El resultado: un conector que se mantiene geométricamente correcto (ramas siempre alineadas a su fila, tronco siempre del alto correcto) usando solo flexbox y position:absolute con porcentajes, sin necesitar medir nada en tiempo de ejecución ni depender de un SVG con coordenadas fijas que se rompería si el contenido cambia de alto.",
+          "responsibilities": [
+            "Alinear un elemento conector (una rama/línea) con una fila de altura desconocida/variable sin medir el DOM",
+            "Posicionar un nodo central en el punto medio de un conjunto de filas de alto variable sin un valor fijo ni cálculo por JS"
+          ],
+          "facts": {
+            "framework": "nuxt",
+            "stack": "tailwind"
+          },
+          "source_relations": [],
+          "evidence": [
+            {
+              "path": "src/components/sections/EcocloudWhat.vue",
+              "hash": "sha256:34d283bb4c9888fba015f6dd527b8adc231605ba8befa2abf1d23d86faf245d3",
+              "symbols": [
+                "services"
+              ]
+            }
+          ],
+          "task": "task:frt-cnct-web:12",
+          "decision": "decision:12:1",
+          "checkpoint": "checkpoint:12",
+          "authored_by": "agente+humano",
+          "approved_at": "2026-08-28T15:57:42.970Z"
+        },
+        {
+          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:12:decision:12:2",
+          "type": "projection",
+          "layer": "local-knowledge",
+          "scope": "local",
+          "status": "validated",
+          "concern": "Un ícono \"pálido\" en una comparación visual puede ser un problema de escala, no de color/opacidad",
+          "problem": "Al comparar una implementación contra su referencia visual, un ícono decorativo se percibe \"pálido\" o \"perdido\" respecto al mismo ícono en la referencia. La reacción intuitiva es sospechar de color, opacidad, o del propio asset (¿la versión que tengo es de menor calidad?). Ninguna de esas hipótesis es la causa real: el ícono en la referencia está deliberadamente sobredimensionado -1.5 a 1.8 veces el alto de su propio contenedor- y se desborda por fuera del borde del contenedor a propósito, anclado a un lado. Contenerlo \"prolijamente\" adentro del contenedor lo deja unas 5-6 veces más chico de lo que debería verse, lo cual el ojo interpreta como \"más pálido\" aunque el color y la opacidad sean idénticos.",
+          "projection": "Antes de ajustar color u opacidad de un elemento que se ve \"más débil\" que su referencia, medir su tamaño relativo real contra el contenedor -un recorte (crop) de ambas versiones a la misma escala expone la diferencia de inmediato. Si el elemento en la referencia es sustancialmente más grande que su contenedor, la implementación correcta no es contenerlo prolijamente adentro: es sacarlo del flujo normal (position:absolute), dimensionarlo a su tamaño real e independiente del contenedor, y anclarlo al borde relevante -dejando que el contenedor mantenga su propio alto definido solo por su contenido real (texto), no por el elemento sobredimensionado. Cuando varios de estos elementos se apilan en una lista, hay que revisar también el espacio ENTRE ellos: un elemento que se desborda de su propio contenedor puede solaparse visualmente con el contenedor siguiente si el espaciado entre ellos no creció en proporción al desborde.",
+          "responsibilities": [
+            "Diagnosticar por qué un elemento decorativo se percibe más débil/pálido que su referencia cuando el color y la opacidad ya coinciden",
+            "Dimensionar y posicionar un elemento deliberadamente sobredimensionado que debe desbordar su contenedor sin alterar el tamaño de ese contenedor"
+          ],
+          "facts": {
+            "framework": "nuxt",
+            "stack": "tailwind"
+          },
+          "source_relations": [],
+          "evidence": [
+            {
+              "path": "src/components/sections/EcocloudWhat.vue",
+              "hash": "sha256:34d283bb4c9888fba015f6dd527b8adc231605ba8befa2abf1d23d86faf245d3",
+              "symbols": [
+                "services"
+              ]
+            }
+          ],
+          "task": "task:frt-cnct-web:12",
+          "decision": "decision:12:2",
+          "checkpoint": "checkpoint:12",
+          "authored_by": "agente+humano",
+          "approved_at": "2026-08-28T15:57:42.970Z"
+        },
+        {
+          "id": "local-projection:frt-cnct-web:task:frt-cnct-web:12:decision:12:6",
+          "type": "projection",
+          "layer": "local-knowledge",
+          "scope": "local",
+          "status": "validated",
+          "concern": "Un cambio de GEOMETRIA entre breakpoints puede no ser expresable reacomodando el mismo DOM",
+          "problem": "Un diseño responsive pide que, por debajo de cierto ancho, un elemento decorativo (un conector visual con líneas/flechas) cambie de forma fundamental -no solo de tamaño o de dirección de apilado (columna en vez de fila), sino de GEOMETRÍA: por ejemplo, pasar de \"una línea troncal con una rama horizontal por cada item de una lista vertical\" a \"un punto con dos flechas diagonales hacia un grid bidimensional\". La tentación es intentar que las MISMAS clases utilitarias (flex-col en vez de flex-row, etc.) reacomoden un único conjunto de elementos para cubrir ambos casos.",
+          "projection": "Cuando el cambio entre breakpoints no es de tamaño/dirección sino de geometría real del conector (la cantidad de líneas, sus ángulos, o la técnica misma para dibujarlas ya no aplica igual), no vale la pena forzar una sola estructura DOM reutilizada con clases condicionales: se implementan dos estructuras DOM separadas, cada una mostrada/ocultada por breakpoint (hidden .../ .../hidden), cada una usando la técnica que le resulta más simple y correcta a SU geometría -líneas horizontales rectas pueden resolverse con el truco de borde CSS dentro del flujo normal; ángulos/diagonales genuinos justifican un SVG chico y autocontenido. La duplicación de marcado es el costo aceptado a cambio de que cada variante siga siendo simple de leer y de mantener, en vez de una única estructura con lógica condicional que intenta cubrir dos geometrías distintas con las mismas piezas.",
+          "responsibilities": [
+            "Decidir entre reacomodar una unica estructura DOM via clases responsive vs. duplicarla en dos variantes independientes, cuando el cambio entre breakpoints es de geometria y no solo de tamaño/direccion",
+            "Elegir la tecnica de dibujo (CSS puro vs SVG) segun la geometria real de cada variante en vez de forzar una tecnica unica para ambas"
+          ],
+          "facts": {
+            "framework": "nuxt",
+            "stack": "tailwind"
+          },
+          "source_relations": [],
+          "evidence": [
+            {
+              "path": "src/components/sections/EcocloudWhat.vue",
+              "hash": "sha256:34d283bb4c9888fba015f6dd527b8adc231605ba8befa2abf1d23d86faf245d3",
+              "symbols": [
+                "services"
+              ]
+            }
+          ],
+          "task": "task:frt-cnct-web:12",
+          "decision": "decision:12:6",
+          "checkpoint": "checkpoint:12",
+          "authored_by": "agente+humano",
+          "approved_at": "2026-08-28T15:57:42.970Z"
         }
       ]
     }
@@ -12921,6 +13020,791 @@
           }
         },
         "submitted_at": "2026-08-26T21:32:22.295Z"
+      },
+      {
+        "id": "task:frt-cnct-web:12",
+        "sequence": 12,
+        "intent": "Nueva seccion en /cripto-as-a-service: \"Ecosistema Cloud\" -diagrama de arquitectura (Tesseract Server Contents / Databases+HSM por region / flechas Node Y) a la izquierda como IMAGEN PLANA (no HTML/CSS, confirmado por Fredy: ese recorte especifico es un PNG, no una composicion), y a la derecha una lista de 6 capacidades con icono (Autenticacion 2FA, Bovedas criptograficas HSM as a Service, Gestion de identidad IAM/CIAM, Monitoreo de HSM, Administracion de llaves on-prem y multicloud, SDKS) maquetada con HTML semantico (sc-*) y los iconos individuales de assets/Cripto As a Service_Ecosistema Cloud/iconos-que-puedes-hacer/. Recursos ya provistos por Fredy en esa carpeta, organizados por nombre de seccion e iconos enumerados por orden. Plan de trabajo: recortar/medir cada sub-seccion de la referencia (proporciones, composicion) antes de maquetar, usando el catalogo de clases semanticas del proyecto (docs/patterns/semantic-classes.md) igual que en toda seccion anterior de este proyecto.",
+        "status": "recorded",
+        "opened_at": "2026-08-27T16:17:54.004Z",
+        "closed_at": "2026-08-28T15:57:42.970Z",
+        "consultations": [
+          {
+            "id": "consult:12:1",
+            "at": "2026-08-27T16:18:08.258Z",
+            "intent": "CaasEcosystem: patron de dos columnas y precedentes relevantes antes de maquetar",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Nueva seccion CaasEcosystem (o nombre similar) en /cripto-as-a-service: mitad izquierda = imagen plana de un diagrama de arquitectura (Tesseract Server Contents, Databases+HSM por region, Node Y), mitad derecha = lista de 6 capacidades con icono propio cada una (titulo corto + icono). Maquetar con clases semanticas (sc-section/sc-figure/sc-article) igual que toda seccion previa del proyecto, midiendo proporciones de la referencia antes de escribir CSS.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Incrustar una imagen plana de terceros (un diagrama ya renderizado, no reconstruible en CSS) como parte de una seccion de dos columnas, sin intentar recrear su contenido interno en HTML/CSS",
+                "Maquetar una lista de items con icono+titulo (capacidades/features) a partir de una referencia visual, midiendo proporciones reales antes de escribir clases utilitarias",
+                "Decidir estructura de columnas/breakpoints para una seccion de dos mitades (imagen + lista) consistente con el resto de secciones del proyecto"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "path": "src/components/sections/",
+                "operation": "nueva-seccion-imagen-diagrama-mas-lista-capacidades"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:10:decision:10:7",
+              "pattern:visual-dos-columnas-responsive",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:97529b6e-88e3-462c-8165-4711be534afd",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.31.7",
+              "overlay_revision": 268,
+              "overlay_graph_hash": "sha256:f74104275dbfba5f8090a815b9ee001c132cf692f16a5839774a3274d32a80dd",
+              "overlay_curated_hash": "sha256:465e7353d260ea8baaf512d0e4cab8403107b847b71f22998bc51d801744f432",
+              "overlay_projections_revision": "sha256:9e9cb1fe97ded9abc5c0124e16cb4dbafe2e08a7ffd6f622d055391a3fa01016",
+              "output_hash": "sha256:f49a8172c949a2cd4b137031683e5ae608908dccd143e6bb31dbe79124b7d75f",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:10:decision:10:7",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:f33b7ae6c652e00390d255253daada75615d707fbe9f2d8fea1d9335b35bfa4a"
+                },
+                {
+                  "id": "pattern:visual-dos-columnas-responsive",
+                  "source": "genome",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:4e7dffcead5dfc1bbcedbb97c95ae412266f96a85170d824a1b012548f69edd5"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:efb8d260195f4da3fe18b1a1400d1d427e2745440e127bfa6112030cb83d8d42"
+                }
+              ],
+              "query_revision": "sha256:bf766f917b1ede4385ed956a22f0e113ba85226c13999df3ed73818e402bf93b",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 9868,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 3,
+                "used_excerpt_chars": 1148,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:12:2",
+            "at": "2026-08-27T16:52:08.540Z",
+            "intent": "EcocloudWhat.vue: construir conector tronco+ramas+punto central y corregir paleta de colores",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "EcocloudWhat.vue: construir el conector \"Web Services\" -> punto central naranja -> 6 flechas ramificadas hacia cada pildora de servicio, reemplazando el riel simple (border-l) actual. Colores confirmados por muestreo de pixeles contra la referencia: panel=accent-soft(#FFE8DE), pildora=accent-mid(#FFCAA6), punto=accent(#FF6700). El punto lleva el icono icono-central-que-es-.png (blanco, cloud+gear) centrado adentro. Cada pildora necesita su propia rama horizontal desde el tronco vertical hasta su borde izquierdo, centrada verticalmente respecto a ESA pildora (las pildoras tienen alturas variables por texto de 1 o 2 lineas), sin medir el DOM con JS -via flexbox items-center por fila, no via SVG con coordenadas globales fijas. decision:5:4 ya elimino la opcion de replicar lineas curvas individuales por pildora \"sin el asset real\"; ahora si hay referencia visual precisa (icono central) pero las curvas siguen sin ser el foco -se opta por lineas rectas con vertice en angulo recto, no arcos SVG.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Construir un conector tipo arbol/organigrama (tronco vertical + ramas horizontales por item + nodo central) que se mantenga alineado con filas de altura variable sin medir el DOM, usando solo flexbox/CSS",
+                "Reemplazar la paleta de un panel existente (violeta/lavanda) por la paleta correcta de la referencia (durazno/naranja) usando los tokens de color ya definidos en el proyecto en vez de valores sueltos"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "path": "src/components/sections/EcocloudWhat.vue",
+                "operation": "conector-tronco-ramas-organigrama-css"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:12",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:23"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:bcef6d8f-169d-45c5-80cb-9ec7ab79c6cc",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.31.7",
+              "overlay_revision": 269,
+              "overlay_graph_hash": "sha256:f74104275dbfba5f8090a815b9ee001c132cf692f16a5839774a3274d32a80dd",
+              "overlay_curated_hash": "sha256:465e7353d260ea8baaf512d0e4cab8403107b847b71f22998bc51d801744f432",
+              "overlay_projections_revision": "sha256:9e9cb1fe97ded9abc5c0124e16cb4dbafe2e08a7ffd6f622d055391a3fa01016",
+              "output_hash": "sha256:0e08a48211b00b527894770390e85c75ebf9e4318343ad71ee61b5a0807c6eeb",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:12",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:2230523c330453d13f70043cb56acb0967b4ef13c5300240a2bf9b5031abd096"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:3:decision:3:23",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:883682cf19db341c29feacb565a5bce09c0b92cd6386ac9c81c8c81c60e0bb2f"
+                }
+              ],
+              "query_revision": "sha256:ebab3f3d8e25e1ae077156b4cf3fc705842e6580dc135782c2217bb703cf59ab",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 6754,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 2,
+                "used_excerpt_chars": 513,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:12:3",
+            "at": "2026-08-27T17:28:03.036Z",
+            "intent": "EcocloudWhat.vue: icono sobredimensionado desbordado por fuera de la pildora, anclado al borde derecho",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "EcocloudWhat.vue: los iconos de las 6 pildoras de servicio deben ser mucho mas grandes que la propia pildora y desbordarse visualmente por encima/debajo de su borde -anclados al borde derecho, semi-superpuestos sobre la esquina redondeada-, sin que el alto de la pildora (definido solo por el texto) cambie. Confirmado por comparacion directa contra la referencia real, pixel a pixel: el icono mide aprox 1.5-1.8x el alto de la pildora. Implementacion: icono posicionado absolute dentro de una pildora con position:relative, centrado verticalmente en el centro de la pildora (top-1/2 -translate-y-1/2) pero con su propio tamaño grande e independiente del flujo, para que el overflow visual no afecte el alto de la fila.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Hacer que un icono decorativo se desborde deliberadamente del contenedor que lo aloja (una pildora redondeada) sin alterar el alto de ese contenedor, que sigue determinado solo por su texto"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "path": "src/components/sections/EcocloudWhat.vue",
+                "operation": "icono-sobredimensionado-desbordado-en-pildora"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:16"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:690182c5-b15d-4989-a476-b65e9b70b4a8",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.31.7",
+              "overlay_revision": 271,
+              "overlay_graph_hash": "sha256:f74104275dbfba5f8090a815b9ee001c132cf692f16a5839774a3274d32a80dd",
+              "overlay_curated_hash": "sha256:465e7353d260ea8baaf512d0e4cab8403107b847b71f22998bc51d801744f432",
+              "overlay_projections_revision": "sha256:9e9cb1fe97ded9abc5c0124e16cb4dbafe2e08a7ffd6f622d055391a3fa01016",
+              "output_hash": "sha256:71f7cfc328d7e0a488bac6fe759e91ff53cc8fc9bd444e76782209e3e8466419",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:16",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:3a1ffde343c1293e2b36849615d8576d55b582c742a802fd7db39414dc876182"
+                }
+              ],
+              "query_revision": "sha256:d07aad78067719af43a637e461122c3e7410f848c001cf8c44b1ac0f96e26fcc",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 4402,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 1,
+                "used_excerpt_chars": 443,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:12:4",
+            "at": "2026-08-27T18:34:45.984Z",
+            "intent": "EcocloudHero.vue: aplicar acuerdo de responsive existente (min-[769px]) tras verificacion pedida por Fredy",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "EcocloudHero.vue: aplicar el acuerdo de responsive ya establecido (min-[769px]: en vez de md: para evitar la colision con el reset global de text-align en 768px exacto) -mismo defecto que HsmSupport.vue/SpeiOperate.vue ya documentaron y corrigieron, encontrado ahora en EcocloudHero.vue al verificar que los acuerdos de responsive del proyecto estuvieran aplicados en la pagina de Ecosistema Cloud. Se encontro ademas que el MISMO patron sin corregir (md:items-start md:text-left) aparece en otros 8 archivos del proyecto (CaasHero, HsmcsFeatures, FeatureCards, HsmcsHero, HsmDataLocation, HsmHero, ProcessCta, SpeiHero) -fuera del alcance de esta tarea (Ecosistema Cloud especificamente), reportado a Fredy para decidir si amerita una tarea aparte.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Aplicar un acuerdo de responsive ya establecido y documentado en el proyecto (min-[769px] en vez de md para el bloque hero de dos columnas) a una pagina nueva que todavia usaba el patron viejo con el defecto conocido",
+                "Detectar que el mismo defecto sin corregir esta presente en multiples archivos del proyecto mas alla del que se esta tocando, y reportarlo en vez de expandir el alcance de la tarea actual sin autorizacion"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "path": "src/components/sections/EcocloudHero.vue",
+                "operation": "aplicar-acuerdo-responsive-min-769px-existente"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:10:decision:10:7",
+              "pattern:visual-dos-columnas-responsive"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:d7aaab58-ffdf-4fed-9980-c418899b071f",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.31.7",
+              "overlay_revision": 273,
+              "overlay_graph_hash": "sha256:f74104275dbfba5f8090a815b9ee001c132cf692f16a5839774a3274d32a80dd",
+              "overlay_curated_hash": "sha256:465e7353d260ea8baaf512d0e4cab8403107b847b71f22998bc51d801744f432",
+              "overlay_projections_revision": "sha256:9e9cb1fe97ded9abc5c0124e16cb4dbafe2e08a7ffd6f622d055391a3fa01016",
+              "output_hash": "sha256:78d8c1e235934f96a2b7b2f1761682fe46a95d3c0c83dbf916592eb680bcb1e2",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:10:decision:10:7",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:f33b7ae6c652e00390d255253daada75615d707fbe9f2d8fea1d9335b35bfa4a"
+                },
+                {
+                  "id": "pattern:visual-dos-columnas-responsive",
+                  "source": "genome",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:4e7dffcead5dfc1bbcedbb97c95ae412266f96a85170d824a1b012548f69edd5"
+                }
+              ],
+              "query_revision": "sha256:9a6d8ac4aa88c56f41392b15545c7eff8864bf43e171568891465f71dd4caed7",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 6469,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 2,
+                "used_excerpt_chars": 642,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:12:5",
+            "at": "2026-08-27T18:42:48.948Z",
+            "intent": "EcocloudWhat.vue: contener desborde de icono en el panel para 320px",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "EcocloudWhat.vue: overflow-hidden en el panel para contener el desborde del icono sobredimensionado (translate-x-1/4) en el corte mas angosto del proyecto (xs-2, 320px), donde arrastraba scroll horizontal a TODA la pagina -no solo a la seccion. Verificado con deteccion de elementos que exceden el viewport (getBoundingClientRect) en vez de solo mirar capturas de pantalla.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Contener el desborde deliberado de un elemento decorativo (icono que se sale de su pildora a proposito) dentro del limite correcto -el panel, no la pagina- cuando el espacio disponible se angosta lo suficiente para que ese desborde cruce el borde del viewport"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "path": "src/components/sections/EcocloudWhat.vue",
+                "operation": "contener-desborde-icono-en-viewport-angosto"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "pattern:visual-dos-columnas-responsive"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:ce948198-eac9-4b03-90c5-b55776189f5e",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.31.7",
+              "overlay_revision": 275,
+              "overlay_graph_hash": "sha256:f74104275dbfba5f8090a815b9ee001c132cf692f16a5839774a3274d32a80dd",
+              "overlay_curated_hash": "sha256:465e7353d260ea8baaf512d0e4cab8403107b847b71f22998bc51d801744f432",
+              "overlay_projections_revision": "sha256:9e9cb1fe97ded9abc5c0124e16cb4dbafe2e08a7ffd6f622d055391a3fa01016",
+              "output_hash": "sha256:d34e572057abaf9c4be0c28f124e377ef947f7cc1aa0885564c24ccc94adc34a",
+              "candidate_sources": [
+                {
+                  "id": "pattern:visual-dos-columnas-responsive",
+                  "source": "genome",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:4e7dffcead5dfc1bbcedbb97c95ae412266f96a85170d824a1b012548f69edd5"
+                }
+              ],
+              "query_revision": "sha256:f393c92e82297c60d5667731891cafda334f3fad97af3fe4ccf804011982055c",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 2950,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 1,
+                "used_excerpt_chars": 42,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:12:6",
+            "at": "2026-08-27T18:44:48.609Z",
+            "intent": "Aplicar acuerdo min-[769px] a los 8 archivos restantes con el mismo defecto",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "Aplicar el acuerdo min-[769px] (en vez de md:) ya establecido y validado 3 veces (HsmSupport.vue, SpeiOperate.vue, EcocloudHero.vue) a los 8 archivos restantes del proyecto que todavia usan md:items-start/md:text-left/md:justify-start/md:flex-row en bloques afectados por el reset global de text-align en 768px: CaasHero.vue, HsmcsFeatures.vue, FeatureCards.vue, HsmcsHero.vue, HsmDataLocation.vue, HsmHero.vue, ProcessCta.vue, SpeiHero.vue. Fredy pidio explicitamente corregirlo aqui mismo (no como tarea aparte). Es la misma correccion mecanica repetida 8 veces, no una decision nueva cada vez.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Aplicar un acuerdo de responsive ya validado y documentado (min-[769px] en vez de md:) de forma consistente a todos los archivos del proyecto que todavia tienen el defecto conocido, no solo al que se estaba tocando"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "path": "src/components/sections/",
+                "operation": "aplicar-acuerdo-min-769px-a-8-archivos-restantes"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:0ad14506-e1ca-46e7-8475-9e0d771ab6c6",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.31.7",
+              "overlay_revision": 277,
+              "overlay_graph_hash": "sha256:f74104275dbfba5f8090a815b9ee001c132cf692f16a5839774a3274d32a80dd",
+              "overlay_curated_hash": "sha256:465e7353d260ea8baaf512d0e4cab8403107b847b71f22998bc51d801744f432",
+              "overlay_projections_revision": "sha256:9e9cb1fe97ded9abc5c0124e16cb4dbafe2e08a7ffd6f622d055391a3fa01016",
+              "output_hash": "sha256:2433b2639d9dc7048276f9ecda1b60b590968bc7a28e2bc2ef19d7d30b6c48a0",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:efb8d260195f4da3fe18b1a1400d1d427e2745440e127bfa6112030cb83d8d42"
+                }
+              ],
+              "query_revision": "sha256:343359035bd8fb78008512dcb1f2552b6cb537da204d02de1da7d571fc2cad59",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 5103,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 1,
+                "used_excerpt_chars": 506,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:12:7",
+            "at": "2026-08-27T18:51:08.283Z",
+            "intent": "default.vue: corregir overflow del nav de escritorio en 1024px",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "default.vue (layout compartido de TODO el sitio): el nav de escritorio (logo + ul de 5 items con gap-8 + language switcher + boton CTA) se desborda horizontalmente exactamente en 1024px, el arranque del breakpoint lg: que activa ese nav -content necesario (logo 155 + ul 505 + right-div 327 = 987px) supera el ancho disponible (1024 - 64px de padding lg:px-8 = 960px). El div derecho (lang+boton) es el que efectivamente se corta (right=1051 contra viewport=1024, 27px de mas). Encontrado al verificar los acuerdos de responsive del proyecto -sitewide, no propio de una seccion.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Corregir el desborde horizontal de una barra de navegacion compartida en el arranque exacto de su propio breakpoint de activacion, sin cambiar en que ancho aparece el nav de escritorio ni el menu movil"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "path": "src/layouts/default.vue",
+                "operation": "corregir-overflow-nav-1024px"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:86f4eb48-e2d3-47b1-9e4c-9a32e92e1b29",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.31.7",
+              "overlay_revision": 278,
+              "overlay_graph_hash": "sha256:f74104275dbfba5f8090a815b9ee001c132cf692f16a5839774a3274d32a80dd",
+              "overlay_curated_hash": "sha256:465e7353d260ea8baaf512d0e4cab8403107b847b71f22998bc51d801744f432",
+              "overlay_projections_revision": "sha256:9e9cb1fe97ded9abc5c0124e16cb4dbafe2e08a7ffd6f622d055391a3fa01016",
+              "output_hash": "sha256:6c5a47d22157f65f8bd4ef1f45f58b0baca7f1ddad2a1c79fcc4cdfec70be07d",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:2:decision:2:4",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:efb8d260195f4da3fe18b1a1400d1d427e2745440e127bfa6112030cb83d8d42"
+                }
+              ],
+              "query_revision": "sha256:3d823f1c6281142b25e76d09aba13960cd1471ad88c55d9a4e775c6d4322865a",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 4916,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 1,
+                "used_excerpt_chars": 506,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          },
+          {
+            "id": "consult:12:8",
+            "at": "2026-08-27T19:43:54.466Z",
+            "intent": "EcocloudWhat.vue: construir variante responsive dedicada (diagrama distinto + grid de pildoras) por debajo de 991px",
+            "tool": "find_guidance",
+            "arguments": {
+              "intent": "EcocloudWhat.vue: variante responsive dedicada para el panel \"Web Services\" -Fredy proporciono un segundo diagrama (que-es-responsive.png: Tesseract arriba, las 2 regiones lado a lado abajo conectadas por Node Y, arreglo distinto al desktop, no solo reescalado) y una referencia visual de la composicion completa esperada por debajo de 991px (lg-2 en la escala de breakpoints del proyecto): grid de 3 columnas x 2 filas para las 6 pildoras (icono arriba, texto abajo, centrado -no la pildora horizontal con icono a la derecha del desktop), con el punto central + 2 flechas diagonales bajando hacia el grid en vez de 6 ramas horizontales individuales. A partir de 991px (lg-2:) se mantiene la composicion de 2 columnas ya construida.",
+              "alternate_intents": [],
+              "responsibilities": [
+                "Mostrar una composicion de layout GENUINAMENTE distinta (no solo reescalada) por debajo de un breakpoint especifico, incluyendo una imagen de diagrama diferente a la de desktop -no una unica estructura de DOM que se reacomode via CSS, sino dos variantes mostradas/ocultadas por breakpoint",
+                "Rearmar el grafico de flechas del conector para un grid de 2 dimensiones (2 flechas diagonales hacia el grid) en vez de ramas horizontales 1:1 por pildora"
+              ],
+              "facts": {
+                "project": "frt-cnct-web",
+                "framework": "nuxt",
+                "path": "src/components/sections/EcocloudWhat.vue",
+                "operation": "variante-responsive-diagrama-y-grid-distinta-a-desktop"
+              },
+              "mode": "normal",
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600
+              }
+            },
+            "genome_revision": "sha256:ebec05ae00ce9c4b401e012920cd47dbd752e9610c0d1253e732989a79edd431",
+            "candidates": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:26",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:10:decision:10:7"
+            ],
+            "receipt": {
+              "id": "consultation-receipt:9eb41c74-8de1-481c-8251-2c79ac77ae28",
+              "ledger_revision": "sha256:12a93f6becd2a79ab7863d3f1fdb0a46e5155995737cfb4c0cf769a0a4cf15a7",
+              "schema_revision": "sha256:20cfdfb6772611eedef6394022eaa73e9e61e11a3ff35c68dd201daa05017b13",
+              "server_version": "0.31.7",
+              "overlay_revision": 280,
+              "overlay_graph_hash": "sha256:f74104275dbfba5f8090a815b9ee001c132cf692f16a5839774a3274d32a80dd",
+              "overlay_curated_hash": "sha256:465e7353d260ea8baaf512d0e4cab8403107b847b71f22998bc51d801744f432",
+              "overlay_projections_revision": "sha256:9e9cb1fe97ded9abc5c0124e16cb4dbafe2e08a7ffd6f622d055391a3fa01016",
+              "output_hash": "sha256:612f79b57a399e49f1acb4a14956a00860db99eec63633b209543dc346605c13",
+              "candidate_sources": [
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:4:decision:4:26",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:34ce18ef49d11d74466662053ec075f7f911ee68d591ff52daa8948b5c190ffb"
+                },
+                {
+                  "id": "local-projection:frt-cnct-web:task:frt-cnct-web:10:decision:10:7",
+                  "source": "overlay",
+                  "lane": "composable_parts",
+                  "candidate_revision": "sha256:f33b7ae6c652e00390d255253daada75615d707fbe9f2d8fea1d9335b35bfa4a"
+                }
+              ],
+              "query_revision": "sha256:ee55c3de9921de86c632ed29bc887411159e0abd502daf88a0d979e24f77f7f8",
+              "local": {
+                "state": "not_configured"
+              },
+              "output_bytes": 7755,
+              "budget": {
+                "max_results": 6,
+                "max_excerpt_chars": 600,
+                "used_results": 2,
+                "used_excerpt_chars": 910,
+                "omitted_by_lane": {
+                  "direct_local_obligations": 0,
+                  "direct_genome_precedents": 0,
+                  "composable_parts": 0,
+                  "directed_exploration": 0
+                }
+              }
+            }
+          }
+        ],
+        "decisions": [
+          {
+            "id": "decision:12:1",
+            "kind": "novel",
+            "rationale": "Fredy comparo la web contra su referencia y senalo tres diferencias: color de panel/pildoras equivocado (violeta en vez de durazno), faltaba el conector central (punto naranja con icono cloud+gear del que ya habia compartido icono-central-que-es-.png) y las flechas ramificadas hacia cada pildora. Colores resueltos por muestreo de pixel exacto contra la imagen de referencia (no a ojo): panel=accent-soft(#FFE8DE, medido 255/235/224), pildora=accent-mid(#FFCAA6, medido 253/206/180), tronco/punto/flechas=accent(#FF6700, medido exacto 255/103/0) -los tres ya eran tokens existentes del proyecto, no valores nuevos. El conector tronco+punto+ramas se armo con flexbox puro, sin SVG ni medicion de DOM: cada rama vive DENTRO de su propia fila (flex items-center), centrandose sola respecto a esa pildora especifica sin importar si el texto ocupa 1 o 2 lineas -las pildoras de este set tienen alturas variables (\"Bovedas criptograficas (HSM as a Service)\" ocupa 2 lineas, el resto 1-, y este approach queda alineado automaticamente en ambos casos sin necesidad de igualar alturas ni medir nada por JS. El tronco es una linea absoluta inset-y-0 sobre el wrapper que envuelve las 6 filas -su alto lo define el flujo normal de esas filas-, y el punto se centra en top-1/2 de ESE MISMO wrapper (al medio del tronco, entre las piezas 3 y 4 de 6, igual que en la referencia). Las flechas por rama son un triangulo CSS (border-trick), no iconos, evitando reintroducir la dependencia de Iconify que se habia quitado en la iteracion anterior de esta misma tarea. Reemplaza en la practica la mitad derecha de la limitacion de decision:5:4 (\"no se puede replicar sin el asset real\"): con el icono central real disponible ahora si hay evidencia suficiente para ese conector, y result que SI es replicable con flexbox puro (no requeria SVG ni el asset curvo que decision:5:4 asumia necesario). Verificado: build+lint limpios, captura desktop 1440px coincide con la referencia en color/estructura, captura mobile 375px muestra el mismo conector reacomodado sin romperse (Web Services pasa a 2 lineas naturalmente, pildoras de 2 lineas siguen centrando su propia flecha).",
+            "projection": "etiqueta: conector-arbol-por-fila-sin-medir-dom",
+            "evidence": [
+              "src/components/sections/EcocloudWhat.vue:37-56 (conector tronco+punto+ramas, colores accent-soft/accent-mid/accent)",
+              "src/components/sections/EcocloudWhat.vue:1-14 (comentario de cabecera actualizado con el porque del enfoque flexbox-per-row)",
+              "public/images/ecosistema-cloud/que-es/central.png (icono central, 40x40 con alpha)",
+              "sharp raw pixel sampling contra Cripto As a Service_Ecosistema Cloud.png: dot=(255,103,0)=accent exacto, pildora=(253,206,180)~accent-mid, panel=(255,235,224)~accent-soft",
+              "ecowhat-before-1440.png (post-fix): coincide con la referencia de Fredy en color, conector y disposicion",
+              "ecowhat-mobile-375.png (post-fix): conector se reacomoda sin romperse, pildoras de 2 lineas centran su propia flecha",
+              "npm run build: sin errores",
+              "npm run lint: sin errores nuevos (2 warnings preexistentes no relacionados)"
+            ],
+            "consultations": [
+              "consult:12:2"
+            ],
+            "status": "validated"
+          },
+          {
+            "id": "decision:12:2",
+            "kind": "novel",
+            "rationale": "Fredy pidio explicitamente que primero solo describiera las diferencias contra la referencia sin tocar codigo -asi se hizo, comparando crops precisos (sharp) de mi render vs la referencia real, encontrando que el icono de cada pildora en la referencia mide ~1.5-1.8x el alto de la propia pildora y se desborda deliberadamente por encima/abajo de su borde, anclado al lado derecho -mi implementacion anterior lo tenia contenido adentro a 24px, de ahi que se viera \"palido/perdido\": no era un problema de color sino de escala (unas 5-6x mas chico de lo debido). Confirmado por Fredy (\"que bueno que ya lo notaste, vamos a ello\") se implemento: pildora con position:relative y padding derecho (pr-16) en vez de justify-between, icono position:absolute (h-16/w-16, lg-2:h-20/w-20) centrado en el eje vertical de la pildora (top-1/2 -translate-y-1/2) mas un translate-x-1/4 para que se monte sobre la esquina redondeada -asi el alto de la pildora sigue definido solo por su texto (1 o 2 lineas), no por el icono, igual que en la referencia. Se aumento el gap entre filas de gap-3 a gap-7: con el icono sobredimensionado, el gap anterior causaba que el icono de una fila se superpusiera visualmente con la pildora de la fila siguiente -verificado con un crop de las dos primeras pildoras antes/despues del ajuste. Verificado: build+lint limpios, captura desktop 1440px sin superposicion entre filas, captura mobile 375px con el mismo comportamiento sin romperse.",
+            "projection": "etiqueta: icono-desbordado-anclado-sin-afectar-alto-de-fila",
+            "evidence": [
+              "src/components/sections/EcocloudWhat.vue: pildora relative+pr-16, icono absolute h-16/w-16 lg-2:h-20/w-20 top-1/2 -translate-y-1/2 translate-x-1/4",
+              "src/components/sections/EcocloudWhat.vue: gap-3 -> gap-7 en el wrapper de filas",
+              "ref-pills-all.png: crop de referencia confirmando icono ~1.5-1.8x el alto de pildora, desbordado, anclado al borde derecho",
+              "mine-pill1.png vs ref-pill1-v2.png: comparacion directa que expuso la diferencia real de escala",
+              "mine-gap-check.png: crop mostrando la superposicion antes de aumentar el gap",
+              "ecowhat-before-1440.png (post-fix): sin superposicion, coincide con la referencia",
+              "ecowhat-mobile-375.png (post-fix): mismo resultado sin romperse en mobile",
+              "npm run build: sin errores",
+              "npm run lint: sin errores nuevos"
+            ],
+            "consultations": [
+              "consult:12:3"
+            ],
+            "status": "validated"
+          },
+          {
+            "id": "decision:12:3",
+            "kind": "local",
+            "rationale": "Fredy pidio verificar que los acuerdos de responsive del proyecto estuvieran aplicados en la pagina de Ecosistema Cloud. Se encontro que EcocloudHero.vue seguia usando md:items-start md:text-left md:justify-start -el mismo defecto que HsmSupport.vue y SpeiOperate.vue ya habian documentado y corregido en tareas anteriores: el reset global (style.scss) es max-width:768px (768 incluido) y md: de Tailwind es min-width:768px (768 TAMBIEN incluido), asi que ambos rangos se pisan exactamente en 768px -confirmado con captura en 767/768/769px: a 768px el texto quedaba centrado (ganaba el reset) pero el boton ya se habia movido a la izquierda (md:justify-start no esta sujeto al reset), un estado partido/inconsistente visible solo en ese pixel exacto. Se aplico el mismo fix ya establecido: min-[769px]: en vez de md: para los TRES atributos del bloque (items-start, text-left, justify-start) -no solo los que colisionan directamente con el reset, sino todos los del mismo bloque, para que el cambio de mobile a desktop ocurra en un solo pixel limpio y no en dos pasos distintos (texto y boton moviendose en momentos diferentes). Verificado: 767px y 768px ahora centrados de forma consistente (texto+boton), 769px ya alineado a la izquierda de forma consistente. Build+lint limpios.\\n\\nHallazgo adicional, fuera de alcance de esta tarea (Ecosistema Cloud especificamente): el mismo patron sin corregir (md:items-start md:text-left) aparece en otros 8 archivos del proyecto -CaasHero.vue, HsmcsFeatures.vue, FeatureCards.vue, HsmcsHero.vue, HsmDataLocation.vue, HsmHero.vue, ProcessCta.vue, SpeiHero.vue-, confirmado visualmente en HsmHero y CaasHero a 768px (mismo sintoma: texto centrado con caja ya movida). Reportado a Fredy para que decida si amerita una tarea aparte -no se toco ninguno de estos 8 archivos en esta tarea, cuyo alcance declarado es la pagina de Ecosistema Cloud.",
+            "evidence": [
+              "src/components/sections/EcocloudHero.vue: md:items-start/md:text-left/md:justify-start -> min-[769px]:items-start/min-[769px]:text-left/min-[769px]:justify-start",
+              "src/components/sections/EcocloudHero.vue: comentario de cabecera documentando el porque, referenciando HsmSupport.vue/SpeiOperate.vue",
+              "eco-hero-w767.png/w768.png/w769.png: transicion limpia en un solo pixel, sin estado partido",
+              "hsm-hero-w768.png, caas-hero-w768.png: mismo defecto confirmado sin corregir en otros 2 de los 8 archivos reportados",
+              "npm run build: sin errores",
+              "npm run lint: sin errores nuevos"
+            ],
+            "consultations": [
+              "consult:12:4"
+            ],
+            "status": "validated"
+          },
+          {
+            "id": "decision:12:4",
+            "kind": "local",
+            "rationale": "Al verificar los acuerdos de responsive del proyecto (pedido de Fredy), se hizo un barrido de scrollWidth>clientWidth en 320/535/768/1024px sobre /ecosistema-cloud, no solo capturas visuales -metodo mas riguroso que detecto un scroll horizontal a nivel de PAGINA COMPLETA en 320px, invisible en las capturas de mobile (375px) ya revisadas porque 375 no alcanza a exponerlo. Causa: el icono sobredimensionado de decision:12:2 usa translate-x-1/4 (fijo, proporcional a su propio tamaño) para montarse sobre el borde de la pildora; en 320px -el corte xs-2 mas angosto que el proyecto define- la pildora se angosta lo suficiente para que ese desborde cruce el borde del VIEWPORT, no solo el de la pildora, arrastrando scroll horizontal a toda la pagina. El limite correcto de ese desborde es el panel (rounded-3xl bg-accent-soft), no la pildora ni la pagina: se agrego overflow-hidden ahi. Verificado con deteccion de elementos que exceden el viewport (getBoundingClientRect, no solo captura): scrollWidth=clientWidth en 320/535/768px tras el fix; en desktop (1440px) los iconos siguen desbordandose visualmente sin cortarse porque nunca llegan a tocar el borde del panel a ese ancho -el overflow-hidden es una red de seguridad para el caso angosto, no cambia el efecto visual en los anchos donde ya se habia verificado. A 320px exacto el icono queda parcialmente recortado por el borde del panel -aceptado como trade-off: prioriza no romper el scroll horizontal de TODA la pagina sobre la estetica del icono en el corte mas extremo y menos usado en la practica.\\n\\nSegundo hallazgo del mismo barrido, fuera de alcance de esta tarea: a 1024px hay overflow horizontal causado por el nav (.hidden.items-center.gap-3.lg:flex) y el boton \\\"Hablar con un experto\\\" del HEADER del sitio (layout compartido, no un componente de Ecosistema Cloud) -reportado a Fredy, no se toco.",
+            "evidence": [
+              "src/components/sections/EcocloudWhat.vue: overflow-hidden agregado al panel (rounded-3xl bg-accent-soft)",
+              "src/components/sections/EcocloudWhat.vue: comentario documentando el porque (desborde de icono vs viewport en 320px)",
+              "find-overflow.js (320px, pre-fix): IMG icon right=350 excediendo viewport=320",
+              "shot-eco-fullpage.js (post-fix): scrollWidth=clientWidth en 320/535/768px",
+              "eco-panel-320.png: icono recortado limpiamente por el borde del panel a 320px, sin scroll horizontal de pagina",
+              "find-overflow.js (1024px): overflow confirmado en nav/btn-primary del header compartido, no relacionado a Ecosistema Cloud -reportado, no corregido",
+              "npm run build: sin errores",
+              "npm run lint: sin errores nuevos"
+            ],
+            "consultations": [
+              "consult:12:5"
+            ],
+            "status": "validated"
+          },
+          {
+            "id": "decision:12:5",
+            "kind": "local",
+            "rationale": "Fredy pidio corregir aqui mismo (no como tarea aparte) los dos hallazgos reportados al verificar los acuerdos de responsive del proyecto en toda la web. (1) Se aplico el acuerdo min-[769px] ya validado 3 veces (HsmSupport.vue, SpeiOperate.vue, EcocloudHero.vue) a los 8 archivos restantes que todavia usaban md:items-start/md:text-left/md:justify-start/md:flex-row en bloques afectados por el reset global de text-align en 768px: CaasHero.vue, SpeiHero.vue, HsmHero.vue, HsmcsHero.vue, HsmDataLocation.vue, FeatureCards.vue, ProcessCta.vue, HsmcsFeatures.vue -misma correccion mecanica en cada uno, convirtiendo TODOS los atributos del mismo bloque (no solo el que colisiona directo con el reset) para que el cambio de mobile a desktop ocurra en un pixel limpio, igual que el criterio ya establecido. HsmcsFeatures.vue tambien llevaba md:flex-row, convertido junto con items-start/text-left por ser el mismo cambio de layout. Verificado visualmente en 768px exacto para HsmHero.vue y SpeiHero.vue: texto+logos+boton quedan centrados de forma consistente (antes texto centrado con boton ya movido).\\n\\n(2) Se corrigio ademas el overflow horizontal a 1024px del HEADER compartido (src/layouts/default.vue, layout de TODO el sitio, no una seccion): el nav de escritorio (logo 155px + ul de 5 items con gap-8 + lang+CTA 327px = 987px de contenido) superaba el ancho disponible (960px = 1024 - 64px de lg:px-8) en el arranque exacto del breakpoint lg: que lo activa. Se cambio el gap del ul de items de gap-8 (fijo) a gap-6 xl:gap-8 -recupera 32px (4 huecos x 8px) solo en el tramo angosto 1024-1199px, donde el nav recien aparece y el espacio es mas ajustado; desde 1200px (xl:) el espaciado original se conserva sin cambios, ahi sobra espacio de sobra. No se toco el boton ni el language switcher -el hueco entre items del propio nav era el margen mas facil de ceder sin achicar nada interactivo.\\n\\nVerificado con barrido de scrollWidth>clientWidth (no solo capturas) en 5 paginas x 8 anchos (320/375/535/768/1023/1024/1200/1440): cero overflow en todas las combinaciones tras ambos fixes. Build+lint limpios.",
+            "evidence": [
+              "src/components/sections/CaasHero.vue, SpeiHero.vue, HsmHero.vue, HsmcsHero.vue, HsmDataLocation.vue, FeatureCards.vue, ProcessCta.vue, HsmcsFeatures.vue: md:items-start/md:text-left/md:justify-start/md:flex-row -> min-[769px]:*, con comentario documentando el porque en cada uno",
+              "src/layouts/default.vue: ul del nav gap-8 -> gap-6 xl:gap-8, con comentario documentando el calculo (987px necesarios vs 960px disponibles)",
+              "final-overflow-sweep.js: 5 paginas x 8 anchos, cero overflow tras el fix",
+              "nav-w1024.png: nav completo visible sin cortes en 1024px",
+              "nav-w1200.png: espaciado original conservado desde 1200px",
+              "hero-hardware-criptografico-w768.png, hero-infraestructura-spei-w768.png: texto+boton+logos centrados de forma consistente en 768px exacto",
+              "npm run build: sin errores",
+              "npm run lint: sin errores nuevos (2 warnings preexistentes no relacionados)"
+            ],
+            "consultations": [
+              "consult:12:6",
+              "consult:12:7"
+            ],
+            "status": "validated"
+          },
+          {
+            "id": "decision:12:6",
+            "kind": "novel",
+            "rationale": "Fredy pidio que por debajo de 991px (lg-2: en la escala de breakpoints del proyecto) el panel \"¿Que es?\" muestre una composicion GENUINAMENTE distinta a la de escritorio, no la misma reacomodada por CSS: proporciono un segundo diagrama (que-es-responsive.png -Tesseract arriba, las 2 regiones lado a lado abajo conectadas por Node Y, arreglo distinto, no un reescalado) y una referencia visual completa de ese corte -grid de 3 columnas para las 6 pildoras (icono arriba, texto abajo, centrado, en vez de la pildora horizontal con icono a la derecha) y el punto central con 2 flechas diagonales bajando hacia el grid en vez de 6 ramas horizontales 1:1.\\n\\nSe implemento como DOS estructuras DOM separadas (article hidden lg-2:flex para escritorio, div lg-2:hidden para el nuevo corte), no una sola reacomodada: el conector cambia de GEOMETRIA entre los dos cortes (ramas horizontales por fila vs. 2 flechas diagonales desde un punto), algo que no es expresable reutilizando las mismas clases utilitarias -las flechas diagonales se resolvieron con un SVG chico (2 paths punteados + 2 pares de trazos como punta de flecha, stroke=currentColor + text-accent para heredar el color del token en vez de un valor de color suelto), mientras que las ramas horizontales de escritorio siguen usando el truco de borde CSS -son problemas geometricamente distintos, no vale la pena forzar una sola tecnica para los dos.\\n\\nOrden de las 6 pildoras en el grid: se dejo igual al de la lista de escritorio (mismo array `services`), no el orden que parece mostrar la referencia -reordenar por idioma seria fragil si el texto cambia de largo entre traducciones; queda pendiente de confirmar con Fredy si el orden visual de la referencia era intencional.\\n\\nVerificado: transicion limpia en el pixel exacto (990px muestra el grid, 991px el desktop, sin estado partido). Sin overflow horizontal en 320/375/535/600/768/900/990px. Build+lint limpios.",
+            "projection": "etiqueta: dos-doms-para-conector-con-geometria-distinta-por-breakpoint",
+            "evidence": [
+              "src/components/sections/EcocloudWhat.vue: article.hidden.lg-2:flex (desktop) + div.lg-2:hidden (nuevo, grid 3 columnas + SVG de flechas diagonales)",
+              "public/images/ecosistema-cloud/que-es/diagrama-mobile.png: segundo diagrama, arreglo distinto (regiones lado a lado)",
+              "eco-responsive-w375.png/w768.png/w990.png: grid legible en todo el rango, sin overlap ni overflow",
+              "eco-responsive-w991.png: composicion de escritorio, transicion limpia en el pixel exacto contra w990",
+              "check-overflow-responsive.js: overflow=0 en 320/375/535/600/768/900/990px",
+              "npm run build: sin errores",
+              "npm run lint: sin errores nuevos"
+            ],
+            "consultations": [
+              "consult:12:8"
+            ],
+            "status": "validated"
+          },
+          {
+            "id": "decision:12:7",
+            "kind": "local",
+            "rationale": "Fredy confirmo que la variante responsive (decision:12:6) quedo bien, con un solo ajuste: la imagen del diagrama la haria un poco mas grande. Se cambio max-w-xs (320px) a max-w-md (448px) en el contenedor del diagrama movil -a 375px el efecto es nulo (ya estaba limitado por el ancho del panel, no por el max-w), a partir de ahi (768/990px) el diagrama crece proporcionalmente al panel, mas cerca de la referencia. Verificado en 375/768/990px. Build+lint limpios.",
+            "evidence": [
+              "src/components/sections/EcocloudWhat.vue: contenedor del diagrama movil max-w-xs -> max-w-md",
+              "eco-responsive-w990.png: diagrama notablemente mas grande, proporcionado al panel",
+              "eco-responsive-w375.png: sin cambio visible (ya limitado por el ancho del panel, no por max-w)",
+              "npm run build: sin errores",
+              "npm run lint: sin errores nuevos"
+            ],
+            "status": "validated"
+          }
+        ],
+        "validation": {
+          "actor": "human",
+          "at": "2026-08-28T15:57:42.970Z",
+          "outcome": "approved",
+          "approval_ref": "chat:2026-08-27:fredy-si-confirmo",
+          "note": "Fredy: \"si confirmo\" -confirmacion explicita para publicar las 3 proyecciones (decision:12:1, 12:2, 12:6) y cerrar la tarea 12."
+        },
+        "change_set": {
+          "files": [
+            "src/components/sections/EcocloudWhat.vue",
+            "src/components/sections/EcocloudHero.vue",
+            "src/components/sections/EcocloudWho.vue",
+            "src/components/sections/CaasHero.vue",
+            "src/components/sections/SpeiHero.vue",
+            "src/components/sections/HsmHero.vue",
+            "src/components/sections/HsmcsHero.vue",
+            "src/components/sections/HsmDataLocation.vue",
+            "src/components/sections/FeatureCards.vue",
+            "src/components/sections/ProcessCta.vue",
+            "src/components/sections/HsmcsFeatures.vue",
+            "src/layouts/default.vue",
+            "i18n/locales/es.json",
+            "i18n/locales/en.json",
+            "public/images/ecosistema-cloud/",
+            "public/videos/ecosistema-cloud-hero.mp4",
+            "public/videos/ecosistema-cloud-quien-es.mp4"
+          ],
+          "base_checkpoint": "checkpoint:base:12"
+        },
+        "result": {
+          "summary": "Pagina /ecosistema-cloud: diagrama+iconos reales, conector tronco+punto+ramas con colores correctos, videos reales en hero y 'para quien es', variante responsive dedicada por debajo de 991px (diagrama distinto + grid 3 columnas). Ademas: aplicado el acuerdo min-[769px] a los 9 archivos del sitio que aun colisionaban con el reset global de text-align en 768px, y corregido el overflow del header compartido en 1024px.",
+          "build": "npm run build sin errores en cada iteracion",
+          "lint": "npm run lint sin errores nuevos en cada iteracion"
+        },
+        "boundary": {
+          "mode": "normal",
+          "declared_at": "2026-08-27T16:17:54.004Z",
+          "measurement_eligible": true,
+          "prior_work": null,
+          "base": {
+            "status": "fresh",
+            "target": "src",
+            "captured_at": "2026-08-27T16:17:53.803Z",
+            "source_hash": "sha256:7123436e46e67fb7bc2df1c7dbeaeab14dc25571cd363c625705f3052a5f436b",
+            "graph_hash": "sha256:f74104275dbfba5f8090a815b9ee001c132cf692f16a5839774a3274d32a80dd",
+            "preexisting_delta": {
+              "nodes": {
+                "added": [],
+                "changed": [],
+                "removed": []
+              },
+              "edges": {
+                "added": [],
+                "changed": [],
+                "removed": []
+              },
+              "synapses": {
+                "added": [],
+                "changed": [],
+                "removed": []
+              },
+              "curated_preserved": {
+                "node_annotations": 0,
+                "edges": 1,
+                "synapses": 1,
+                "patterns": 0,
+                "cases": 0,
+                "exceptions": 0,
+                "projections": 51
+              },
+              "orphans": [
+                {
+                  "kind": "rationale",
+                  "id": "e20",
+                  "from": "src/components/sections/ContactSection.vue",
+                  "to": "src/schemas/contactSchema.ts"
+                }
+              ],
+              "orphans_resolved": []
+            },
+            "excluded_from_task": true
+          },
+          "close": {
+            "status": "fresh",
+            "target": "src",
+            "captured_at": "2026-08-28T15:57:42.810Z",
+            "source_hash": "sha256:4d729fb3b00cde14f3b085e64377fd0e41f6d0207eb8dd67d60642dfa20b1199",
+            "graph_hash": "sha256:255dd3b8d15cca906369df70cb1edb50feaff106b395869003a843aef889f89a",
+            "attribution": "task"
+          }
+        },
+        "submitted_at": "2026-08-28T15:55:09.125Z"
       }
     ],
     "checkpoints": [
@@ -13719,6 +14603,69 @@
             "patterns_added": [],
             "exceptions_added": [],
             "projections_added": []
+          }
+        }
+      },
+      {
+        "id": "checkpoint:base:12",
+        "parent": "checkpoint:11",
+        "task": "task:frt-cnct-web:12",
+        "kind": "task-baseline",
+        "created_at": "2026-08-27T16:17:54.004Z",
+        "graph_hash": "sha256:f74104275dbfba5f8090a815b9ee001c132cf692f16a5839774a3274d32a80dd",
+        "curated_hash": "sha256:465e7353d260ea8baaf512d0e4cab8403107b847b71f22998bc51d801744f432",
+        "delta": {
+          "kind": "task-baseline",
+          "excluded_from_task": true,
+          "derived": {
+            "attribution": "preexisting",
+            "verified": true,
+            "nodes_added": [],
+            "nodes_changed": [],
+            "nodes_removed": [],
+            "edges_added": [],
+            "edges_changed": [],
+            "edges_removed": [],
+            "synapses_added": [],
+            "synapses_changed": [],
+            "synapses_removed": []
+          }
+        }
+      },
+      {
+        "id": "checkpoint:12",
+        "parent": "checkpoint:base:12",
+        "task": "task:frt-cnct-web:12",
+        "kind": "task-recorded",
+        "created_at": "2026-08-28T15:57:42.970Z",
+        "graph_hash": "sha256:255dd3b8d15cca906369df70cb1edb50feaff106b395869003a843aef889f89a",
+        "curated_hash": "sha256:fb27866b828f16383534c23d2071f0e48f92c73c55548f163c28872db65a417a",
+        "delta": {
+          "derived": {
+            "attribution": "task",
+            "verified": true,
+            "nodes_added": [],
+            "nodes_changed": [],
+            "nodes_removed": [],
+            "edges_added": [],
+            "edges_changed": [],
+            "edges_removed": [],
+            "synapses_added": [],
+            "synapses_changed": [],
+            "synapses_removed": []
+          },
+          "curated": {
+            "annotations_added": [],
+            "edges_added": [],
+            "synapses_added": [],
+            "cases_added": [],
+            "patterns_added": [],
+            "exceptions_added": [],
+            "projections_added": [
+              "local-projection:frt-cnct-web:task:frt-cnct-web:12:decision:12:1",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:12:decision:12:2",
+              "local-projection:frt-cnct-web:task:frt-cnct-web:12:decision:12:6"
+            ]
           }
         }
       }

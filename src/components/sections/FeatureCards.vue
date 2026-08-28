@@ -1,3 +1,12 @@
+<!-- min-[769px]: y NO md: en items-start/text-left de la columna de texto de
+     cada card -mismo defecto que HsmSupport.vue/SpeiOperate.vue/
+     EcocloudHero.vue documentan: el reset global (style.scss) es
+     max-width:768px (768 incluido) y el md: de Tailwind es min-width:768px
+     (768 TAMBIEN incluido), asi que con md: ambos rangos se pisan
+     exactamente en 768px. Corregido al verificar los acuerdos de responsive
+     del proyecto en toda la web (Fredy, 2026-08-27). Los demas md: de este
+     archivo (gap-12, text-[3.2rem]) no colisionan -el reset solo fuerza
+     text-align, no gap ni font-size- y se dejan como estaban. -->
 <template>
   <section id="soluciones" class="sc-section w-full scroll-mt-24 px-4 py-8 text-center lg:px-8 lg-2:py-16">
     <h2 class="mx-auto text-center font-secondary text-deep-ink">
@@ -32,7 +41,7 @@
               aria-hidden="true"
             ></video>
           </div>
-          <div class="sc-section flex min-w-[260px] basis-96 flex-col items-center text-center md:items-start md:text-left">
+          <div class="sc-section flex min-w-[260px] basis-96 flex-col items-center text-center min-[769px]:items-start min-[769px]:text-left">
             <h3 class="font-secondary text-[2.6rem] font-bold leading-tight text-deep-ink md:text-[3.2rem] lg-2:text-[4.4rem]">{{ item.title }}</h3>
             <p class="mt-3 max-w-md text-ink-3">{{ item.description }}</p>
             <NuxtLink

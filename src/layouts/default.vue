@@ -17,14 +17,27 @@
       </p>
     </div>
 
-    <!-- Header / Nav -->
+    <!-- Header / Nav
+
+         gap-6 xl:gap-8 en el ul: logo(155) + ul(505 con gap-8) + lang+CTA(327)
+         = 987px de contenido necesario contra 960px disponibles (1024 -
+         64px de lg:px-8) en el arranque exacto de lg: -el nav de escritorio
+         se desbordaba 27px justo en el primer pixel en que aparece, antes
+         de que hubiera espacio real para el. gap-6 en vez de gap-8 recupera
+         32px (4 huecos entre 5 items) solo en el tramo angosto 1024-1199px;
+         xl: (1200px) devuelve el espaciado original, que ahi si sobra
+         espacio de sobra. No se toco el boton ni el language switcher -el
+         hueco entre items del propio nav era el margen mas facil de ceder
+         sin achicar nada que el usuario deba tocar. Encontrado al verificar
+         los acuerdos de responsive del proyecto en toda la web (Fredy,
+         2026-08-27). -->
     <header class="sc-header sticky top-0 z-40 flex-col border-b border-line bg-bg-second/95 backdrop-blur">
       <nav class="sc-nav mx-auto w-full max-w-7xl items-center justify-between gap-4 px-4 py-4 lg:px-8">
         <NuxtLink :to="localePath('/')" class="shrink-0">
           <img src="/images/logo-conecta.png" alt="CONECTA" class="h-6 w-auto">
         </NuxtLink>
 
-        <ul class="hidden items-center gap-8 font-secondary text-sm font-medium text-text lg:flex">
+        <ul class="hidden items-center gap-6 font-secondary text-sm font-medium text-text xl:gap-8 lg:flex">
           <li ref="solutionsRef" class="relative">
             <button
               type="button"

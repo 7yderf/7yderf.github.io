@@ -1,7 +1,14 @@
+<!-- min-[769px]: y NO md: en items-start/text-left del bloque de titulo+CTA
+     -mismo defecto que HsmSupport.vue/SpeiOperate.vue/EcocloudHero.vue
+     documentan: el reset global (style.scss) es max-width:768px (768
+     incluido) y el md: de Tailwind es min-width:768px (768 TAMBIEN
+     incluido), asi que con md: ambos rangos se pisan exactamente en 768px.
+     Corregido al verificar los acuerdos de responsive del proyecto en toda
+     la web (Fredy, 2026-08-27). -->
 <template>
   <section class="sc-section w-full px-4 py-12 lg:px-8 lg-2:py-24">
     <div class="sc-article mx-auto w-full max-w-7xl flex-wrap items-center justify-between gap-8 rounded-3xl bg-[linear-gradient(89.78deg,_#865BDA_0.19%,_#240F4E_115.48%)] p-6 lg-2:p-12">
-      <div class="flex min-w-[240px] flex-1 flex-col items-center gap-4 text-center md:items-start md:text-left">
+      <div class="flex min-w-[240px] flex-1 flex-col items-center gap-4 text-center min-[769px]:items-start min-[769px]:text-left">
         <h2 class="font-secondary text-xl leading-tight text-text-invert md:text-2xl lg-2:text-3xl">{{ t('process.title') }}</h2>
         <NuxtLink :to="localePath('/contact')" class="btn-custom" :style="{ '--btn-color': '#3B1E73' }">
           {{ t('process.cta') }} →
