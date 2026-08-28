@@ -1,3 +1,4 @@
 [mcp_servers.eure-k]
 command = "eure-k.cmd"
 args = ["mcp", "--project", "auto"]
+env_vars = ["EUREK_CULTIVATOR"]

@@ -3,9 +3,19 @@
      pattern:visual-dos-columnas-responsive), sin la fila de logos de
      fabricantes que si lleva HsmHero -el mockup de esta pagina no la incluye-.
 
-     PLACEHOLDER: sin recurso propio todavia. Se reusa el video de
-     escudo.mp4 (mismo tratamiento que HsmHero) hasta que llegue el arte de la
-     "caja/boveda" del mockup.
+     Video propio (Fredy 2026-08-28): 1:1 en origen (2000x2000), fondo cream
+     opaco -no transparente-, medido exacto contra el token del proyecto
+     (245,239,229 = --color-cream #F5F1E6). SIN mix-blend-multiply -a
+     diferencia de CaasHero.vue/EcocloudHero.vue, donde el video es blanco y
+     el blend lo funde contra una tarjeta de OTRO color (blanco es el
+     elemento neutro de multiply, no oscurece nada): aca el video YA es del
+     mismo color que la tarjeta, y multiply oscurece cualquier color que no
+     sea blanco puro (cream(245)×cream(245)/255≈235, mas oscuro que
+     cualquiera de los dos) -se probo, se vio un rectangulo visible detras
+     del cubo. Sin blend, el video se funde solo porque el color ya coincide.
+     La tarjeta pasa de bg-primary-soft (lavanda, color de placeholder) a
+     bg-cream, confirmado por muestreo de pixel contra la referencia real
+     (Cripto As a Service_HSMCS.png).
 
      min-[769px]: y NO md: en el bloque de texto+CTA -mismo defecto que
      HsmSupport.vue/SpeiOperate.vue/EcocloudHero.vue documentan: el reset
@@ -34,10 +44,10 @@
       </div>
 
       <div class="sc-section min-w-[28rem] basis-[38rem]">
-        <figure class="sc-figure overflow-hidden rounded-3xl bg-primary-soft">
+        <figure class="sc-figure overflow-hidden rounded-3xl bg-cream p-10">
           <video
-            class="mix-blend-multiply block aspect-[4/3] w-full scale-105 object-cover"
-            src="/videos/escudo.mp4"
+            class="block aspect-square w-full object-contain"
+            src="/videos/hsmcs-hero.mp4"
             autoplay
             loop
             muted
